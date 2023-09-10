@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import StudentTopNav from "../../components/student/StudentTopNav";
-
+import "./student.css";
+import { useNavigate } from "react-router-dom";
 export default function StudentMainPage() {
   const rightDivStyle = {
     height: "35%",
@@ -16,6 +17,19 @@ export default function StudentMainPage() {
 
   const borderRound = {
     borderRadius: "60px",
+  };
+  const navigate = useNavigate();
+  const navigateToConsumption = () => {
+    navigate("/student/consumption");
+  };
+  const navigateToBank = () => {
+    navigate("/student/bank");
+  };
+  const navigateToAuction = () => {
+    navigate("/student/auction");
+  };
+  const navigateToRanking = () => {
+    navigate("/student/ranking");
   };
   return (
     <div className="h-100">
@@ -37,6 +51,24 @@ export default function StudentMainPage() {
             직업
             <li>우유 가져오기</li>
           </div>
+        </div>
+      </div>
+      <div className="d-flex justify-content-around">
+        <div onClick={navigateToConsumption}>
+          <div className="text-center">돈 쓰러가기(소비항목)</div>
+          <div className="kiki"></div>
+        </div>
+        <div onClick={navigateToBank}>
+          <div className="text-center">은행으로 가기</div>
+          <div className="ageo"></div>
+        </div>
+        <div onClick={navigateToAuction}>
+          <div className="text-center">부동산 정보 보기</div>
+          <div className="lamu"></div>
+        </div>
+        <div onClick={navigateToRanking}>
+          <div className="text-center">통계 보기</div>
+          <div className="ccoli"></div>
         </div>
       </div>
     </div>

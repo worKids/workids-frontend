@@ -18,7 +18,7 @@ export default function TeacherSideNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = (index) => {
-    const pathParts = location.pathname.split("/"); // 현재 경로를 "/"로 나눠 배열로 만듭니다.
+    const pathParts = location.pathname.split("/"); 
     return pathParts[pathParts.length - 1] === navigateMenu[index];
   };
   const navigateTo = (idx) => {
@@ -28,7 +28,7 @@ export default function TeacherSideNav() {
     <div
       key={index}
       onClick={() => navigateTo(index)}
-      className={`my-3 border text-center p-3 rounded-pill sideNav ${
+      className={`my-3 border border-dark  border-3 text-center p-3 rounded-pill sideNav ${
         isActive(index) ? "bg-warning text-white" : ""
       }`}
     >

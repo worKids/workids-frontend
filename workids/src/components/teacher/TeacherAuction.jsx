@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Auction() {
+export default function TeacherAuction() {
   const auctionMenu = ["경매 내역", "경매 생성"];
   const [state, setState] = useState(0); // 클릭 여부 파악 위한 useState
 
@@ -11,6 +11,7 @@ export default function Auction() {
   // style로 넣어줘야함.
   const divStyle = {
     width: "80%",
+    borderRadius: "40px",
   };
 
   // 부동산 페이지의 경매 내역, 경매 생성 버튼을 map으로 만들어주는 것.
@@ -20,7 +21,7 @@ export default function Auction() {
     <div
       key={index}
       onClick={() => clickMenu(index)}
-      className={`m-2 border text-center p-3 rounded-pill ${
+      className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
         state === index ? "bg-warning text-white" : ""
       }`}
     >
@@ -30,7 +31,7 @@ export default function Auction() {
   // return() 문에 html 형식으로 넣어주어야 함.
   // 위에 지정한 변수를 가져오려면 {}를 사용.
   return (
-    <div style={divStyle} className="border p-3">
+    <div style={divStyle} className="border border-dark  border-3 p-3">
       <div className="d-flex justify-content-between">
         <div className="d-flex">{menu}</div>
         <div>부동산 관리</div>

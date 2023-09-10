@@ -1,0 +1,32 @@
+.kiki {
+  background-image: url(../../assets/kiki.png);
+  background-position: center;
+  background-size: contain;
+  width: 10vw;
+  height: 20vh;
+  background-repeat: no-repeat;
+}
+.ageo {
+  background-image: url(../../assets/ageo.png);
+  background-position: center;
+  background-size: contain;
+  width: 10vw;
+  height: 20vh;
+  background-repeat: no-repeat;
+}
+.lamu {
+  background-image: url(../../assets/lamu.png);
+  background-position: center;
+  background-size: contain;
+  width: 10vw;
+  height: 20vh;
+  background-repeat: no-repeat;
+}
+.ccoli {
+  background-image: url(../../assets/ccoli.png);
+  background-position: center;
+  background-size: contain;
+  width: 10vw;
+  height: 20vh;
+  background-repeat: no-repeat;
+}

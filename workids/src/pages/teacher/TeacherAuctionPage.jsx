@@ -1,15 +1,15 @@
 import React from "react";
 
-import Auction from "../../components/teacher/Auction";
 import TeacherSideNav from "../../components/teacher/TeacherSideNav";
-import TeacherTopNav from '../../components/teacher/TeacherTopNav';
+import TeacherTopNav from "../../components/teacher/TeacherTopNav";
+import TeacherAuction from "../../components/teacher/TeacherAuction";
 export default function TeacherAuctionPage() {
   return (
     <div>
       <TeacherTopNav />
-      <div className="d-flex">
+      <div className="d-flex ">
         <TeacherSideNav />
-        <Auction />
+        <TeacherAuction />
       </div>
     </div>
   );
