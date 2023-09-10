@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import "./Teacher.css";
 export default function TeacherSideNav() {
   const navbarMenu = [
     "법 관리",
@@ -28,7 +28,7 @@ export default function TeacherSideNav() {
     <div
       key={index}
       onClick={() => navigateTo(index)}
-      className={`fs-2 my-3 border text-center p-3 rounded-pill ${
+      className={`my-3 border text-center p-3 rounded-pill sideNav ${
         isActive(index) ? "bg-warning text-white" : ""
       }`}
     >
