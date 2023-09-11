@@ -4,8 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import React from "react";
 import App from "./App";
+import { RecoilRoot } from "recoil";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <RecoilRoot>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </RecoilRoot>
 );
