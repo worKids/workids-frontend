@@ -17,12 +17,14 @@ import StudentConsumptionPage from "./pages/student/StudentConsumptionPage";
 import StudentJobPage from "./pages/student/StudentJobPage";
 import StudentRankingPage from "./pages/student/StudentRankingPage";
 import StudentLawPage from "./pages/student/StudentLawPage";
+import NationPickPage from "./pages/NationPickPage";
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/join" element={<JoinPage />} />
-      <Route path="/teacher" element={<TeacherMainPage />} />
+      <Route path="/select" element={<NationPickPage />} />
+      <Route path="/teacher/nation" element={<TeacherMainPage />} />
       <Route path="/teacher/law" element={<TeacherLawPage />} />
       <Route path="/teacher/job" element={<TeacherJobPage />} />
       <Route path="/teacher/bank" element={<TeacherBankPage />} />
@@ -30,7 +32,7 @@ export default function App() {
       <Route path="/teacher/consumption" element={<TeacherConsumptionPage />} />
       <Route path="/teacher/citizen" element={<TeacherCitizenPage />} />
       <Route path="/teacher/nation" element={<TeacherNationPage />} />
-      <Route path="/student" element={<StudentMainPage />} />
+      <Route path="/student/nation" element={<StudentMainPage />} />
       <Route path="/student/auction" element={<StudentAuctionPage />} />
       <Route path="/student/bank" element={<StudentBankPage />} />
       <Route path="/student/consumption" element={<StudentConsumptionPage />} />

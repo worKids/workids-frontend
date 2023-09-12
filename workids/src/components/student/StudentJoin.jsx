@@ -28,24 +28,25 @@ export default function StudentJoin() {
     setPhone(event.currentTarget.value);
   };
 
-  // const join = () => {
-  //   axios
-  //     .post("http://localhost:8070/student/account/join", {
-  //       id: id,
-  //       password: password,
-  //       name: name,
-  //       email: email,
-  //       phone: phone,
-  //     })
-  //     .then((response) => {
-  //       console.log(id);
-  //       console.log(password);
-  //       console.log(response);
-  //     })
-  //     .catch((err) => {
-  //       alert(err.response.data.message);
-  //     });
-  // };
+  const join = () => {
+    axios
+      .post("http://localhost:8070/student/account/join", {
+        id: id,
+        password: password,
+        name: name,
+        email: email,
+        phone: phone,
+        registNumber: registNumber,
+      })
+      .then((response) => {
+        console.log(id);
+        console.log(password);
+        console.log(response);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
   return (
     <div>
       <div className="input-form-backgroud row ">
@@ -125,7 +126,11 @@ export default function StudentJoin() {
               </div>
             </div>
             <div className="row justify-content-center my-3">
-              <button className="col-9 btn btn-warning btn-lg btn-block text-white" type="submit">
+              <button
+                className="col-9 btn btn-warning btn-lg btn-block text-white"
+                type="submit"
+                onClick={join}
+              >
                 가입 완료
               </button>
             </div>

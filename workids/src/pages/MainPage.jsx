@@ -35,6 +35,10 @@ export default function MainPage() {
   };
 
   const login = () => {
+    if (!id) {
+      alert("id를 입력해주세요.");
+      return;
+    }
     if (userType === "teacher") {
       console.log("login");
       axios
@@ -43,21 +47,46 @@ export default function MainPage() {
           password: password,
         })
         .then((response) => {
-          console.log(response.data);
           const state = {
-            accessToken: response.data,
+            accessToken: response.data.accessToken,
+            userNum: response.data.userNum,
+            userName: response.data.userName,
             id: id,
             password: password,
             userType: userType,
           };
-          console.log(state);
           setuserData(state);
-          console.log("accesstoken", userData);
+          console.log(userData);
+          navigate("/select");
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      axios
+        .post("http://localhost:8070/student/account/login", {
+          id: id,
+          password: password,
+        })
+        .then((response) => {
+          console.log(response.data);
+          const state = {
+            accessToken: response.data.accessToken,
+            userNum: response.data.userNum,
+            userName: response.data.userName,
+            id: id,
+            password: password,
+            userType: userType,
+          };
+          setuserData(state);
+          console.log(userData);
+          navigate("/select");
         })
         .catch((err) => {
           alert(err.response.data.message);
         });
     }
+    console.log(userData);
   };
 
   const navigate = useNavigate();
@@ -67,9 +96,6 @@ export default function MainPage() {
 
   return (
     <div className="h-100">
-      <h1>{userType}</h1>
-      <h1>{id}</h1>
-      <h1>{password}</h1>
       <div className="h-75 d-flex justify-content-center align-items-center ">
         <div className="border border-dark  border-3 p-4" style={borderRound}>
           <div className="d-flex justify-content-center">

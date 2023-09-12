@@ -12,7 +12,11 @@ export const userState = atom({
     accessToken: "",
     id: "",
     password: "",
+    userName: "",
+    userNumber: "",
     userType: "",
+    nationNum: "",
+    nationName: "",
   },
   effects_UNSTABLE: [persistAtom],
 });

@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StudentTopNav from "../../components/student/StudentTopNav";
 import "./student.css";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { axBase } from "../../apis/axiosInstance";
 export default function StudentMainPage() {
-  const [nationName, setNationName] = useState("삼다수나라");
+  const userData = useRecoilValue();
   const [state, setState] = useState(0);
+
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+      navigate("/");
+    }
+    axBase(token)({
+      method: "post",
+      url: "/nation/list",
+      data: {
+        nationNum: userData.nationNum,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  }, []);
   const isActive = (index) => {
     if (state === index) {
       return true;
     }
     return false;
   };
-  const nationData = [`${nationName}의 법`, `${nationName}의 직업`];
+  const nationData = [`${userData.nationName}의 법`, `${userData.nationName}의 직업`];
 
   const nationMap = nationData.map((data, index) => (
     <div
@@ -58,15 +80,7 @@ export default function StudentMainPage() {
       <div className="d-flex justify-content-between m-3" style={mainNav}>
         <div className="w-50 border border-dark  border-3 mx-5 my-3 p-1" style={borderRound}>
           <div className="d-flex">{nationMap}</div>
-          {state===0 ? (
-            <div>
-              법 넣기
-            </div>
-          ) : (
-            <div>
-              직업 넣기
-            </div>
-          )}
+          {state === 0 ? <div>법 넣기</div> : <div>직업 넣기</div>}
         </div>
         <div className="w-50 my-3 mx-5">
           <div className="d-flex" style={rightDivStyle}>

@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TeacherTopNav from "../../components/teacher/TeacherTopNav";
 import TeacherSideNav from "../../components/teacher/TeacherSideNav";
+import { axBase } from "../../apis/axiosInstance";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../recoil/userAtoms";
+import { useNavigate } from "react-router-dom";
 export default function TeacherMainPage() {
+  const userData = useRecoilValue(userState);
+  const navigate = useNavigate();
   const divStyle = {
     width: "80%",
   };
+
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+      navigate("/");
+    }
+    axBase(token)({
+      method: "post",
+      url: "/nation/list",
+      data: {
+        nationNum: userData.nationNum,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  }, []);
   return (
     <div className="h-100">
       <TeacherTopNav />
