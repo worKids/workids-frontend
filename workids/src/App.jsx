@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import TeacherMainPage from "./pages/teacher/TeacherMainPage";
 import React from "react";
 import MainPage from "./pages/MainPage";
+import JoinPage from "./pages/joinPage";
 import TeacherJobPage from "./pages/teacher/TeacherJobPage";
 import TeacherLawPage from "./pages/teacher/TeacherLawPage";
 import TeacherBankPage from "./pages/teacher/TeacherBankPage";
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
+      <Route path="/join" element={<JoinPage />} />
       <Route path="/teacher" element={<TeacherMainPage />} />
       <Route path="/teacher/law" element={<TeacherLawPage />} />
       <Route path="/teacher/job" element={<TeacherJobPage />} />
