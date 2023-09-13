@@ -18,12 +18,14 @@ import StudentJobPage from "./pages/student/StudentJobPage";
 import StudentRankingPage from "./pages/student/StudentRankingPage";
 import StudentLawPage from "./pages/student/StudentLawPage";
 import NationPickPage from "./pages/NationPickPage";
+import CreateNationPage from "./pages/CreateNationPage";
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/join" element={<JoinPage />} />
       <Route path="/select" element={<NationPickPage />} />
+      <Route path="/nation/create" element={<CreateNationPage />} />
       <Route path="/teacher/nation" element={<TeacherMainPage />} />
       <Route path="/teacher/law" element={<TeacherLawPage />} />
       <Route path="/teacher/job" element={<TeacherJobPage />} />

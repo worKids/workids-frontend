@@ -16,13 +16,14 @@ export default function NationPickPage() {
     if (!token) {
       navigate("/");
     }
+    console.log(userData.userNumber);
     // 학생 axios 추가하기
     if (userData.userType === "teacher") {
       axBase(token)({
         method: "post",
         url: "/teacher/nation/list",
         data: {
-          teacherNum: 1,
+          teacherNum: userData.userNumber,
         },
       })
         .then((response) => {
@@ -38,6 +39,9 @@ export default function NationPickPage() {
     borderRadius: "40px",
   };
 
+  const navigateToCreate = () => {
+    navigate("/nation/create");
+  };
   const navigateToNation = (index) => {
     const updateUserData = {
       ...userData,
@@ -61,13 +65,31 @@ export default function NationPickPage() {
       {menu.name}
     </div>
   ));
+
   return (
     <div>
-      {userData.userType === "teacher" ? <TeacherTopNav /> : <StudentTopNav />}
-      <div className="border border-dark  border-3 m-4 p-3 bg-warning" style={borderRound}>
-        <h4 className="ms-3">운영중인 나라</h4>
-        {nationBtn}
-      </div>
+      {userData.userType === "teacher" ? (
+        <div>
+          <TeacherTopNav />
+          <div className="border border-dark  border-3 m-4 p-3 bg-warning" style={borderRound}>
+            <div className="d-flex justify-content-between">
+              <h4 className="ms-3 ">운영중인 나라</h4>
+              <div className="me-4" onClick={navigateToCreate}>
+                나라 생성하기 &gt;
+              </div>
+            </div>
+            {nationBtn}
+          </div>
+        </div>
+      ) : (
+        <div>
+          <StudentTopNav />
+          <div className="border border-dark  border-3 m-4 p-3 bg-warning" style={borderRound}>
+            <h4 className="ms-3">운영중인 나라</h4>
+            {nationBtn}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

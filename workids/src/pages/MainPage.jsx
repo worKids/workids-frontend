@@ -49,7 +49,7 @@ export default function MainPage() {
         .then((response) => {
           const state = {
             accessToken: response.data.accessToken,
-            userNum: response.data.userNum,
+            userNumber: response.data.userNum,
             userName: response.data.userName,
             id: id,
             password: password,
@@ -72,7 +72,7 @@ export default function MainPage() {
           console.log(response.data);
           const state = {
             accessToken: response.data.accessToken,
-            userNum: response.data.userNum,
+            userNumber: response.data.userNum,
             userName: response.data.userName,
             id: id,
             password: password,
