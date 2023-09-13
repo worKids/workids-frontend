@@ -5,7 +5,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./datePick.css";
 import { axBase } from "../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 export default function CreateNationPage() {
+  const navigate = useNavigate();
   const userData = useRecoilValue(userState);
   const [name, setName] = useState("");
   const [moneyName, setmoneyName] = useState("");
@@ -80,6 +82,7 @@ export default function CreateNationPage() {
     })
       .then((response) => {
         console.log(response.data);
+        navigate("/select");
       })
       .catch((err) => {
         console.log(err.response.data.message);
