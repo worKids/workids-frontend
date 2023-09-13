@@ -23,7 +23,7 @@ export default function NationPickPage() {
         method: "post",
         url: "/teacher/nation/list",
         data: {
-          teacherNum: userData.userNumber,
+          num: userData.userNumber,
         },
       })
         .then((response) => {
