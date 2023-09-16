@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { userState } from "../../recoil/userAtoms";
+import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
-import { axBase } from "../../apis/axiosInstance";
+import { axBase } from "../../../apis/axiosInstance";
 import TeacherLawCreate from "./TeacherLawCreate";
+import TeacherLawDelete from "./TeacherLawDelete";
+import TeacherLawUpdate from "./TeacherLawUpdate";
 
 export default function TeacherLaw(){
     const lawMenu = ["법 조회", "벌금 부여", "벌칙 부여"];
@@ -64,48 +66,12 @@ export default function TeacherLaw(){
 
     }, []);
 
-    //받아온 값 넣어서 저장하기
-    const saveToLaw = (index) => {
-        const updateUserData = {
-          ...userData,
-          lawNum: lawList[index].lawNum,
-          content: lawList[index].content,
-          type: lawList[index].type,
-          lawFine: lawList[index].fine,
-          penalty: lawList[index].penalty,
-        };
-        setUserData(updateUserData);
-        console.log(userData);
-        
-      };
-    
-    
-    const navigateToLawDelete = () => {
-        alert("정말로 법 항목을 삭제하시겠습니까?");
-    };
-
-    //프론트에 List 출력
-    const lawItems  = lawList.map((menu, index) => (
-        <tr key={index}>
-            <td>{menu.content}</td>
-            <td>{menu.fine}미소</td>
-            <td>{menu.penalty}</td>
-            <td style={{ display: 'flex', flexDirection: 'column' }}>
-                <button>수정</button>
-                <button onClick={navigateToLawDelete}>삭제</button>
-            </td>
-        </tr>
-    ));
-
     //벌금-학생 리스트
     useEffect(() => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
-        console.log(userData.userNumber);
-        console.log(userData.nationNum);
-
         //벌금-학생 항목 리스트 뽑아오기
         axBase(token)({
             method: "post",
@@ -123,22 +89,7 @@ export default function TeacherLaw(){
             });
 
         }, []);
-    //받아온 값 넣어서 저장하기
-    const saveToFineStudent = (index) => {
-        const updateUserData = {
-          ...userData,
-          lawNationStudentNum: fineStudentList[index].lawNationStudentNum,
-          citizenNumber: fineStudentList[index].citizenNumber,
-          studentName: fineStudentList[index].studentName,
-          content: fineStudentList[index].content,
-          type: fineStudentList[index].type,
-          penalty: fineStudentList[index].penalty,
-          penaltyCompleteState: fineStudentList[index].penaltyCompleteState,
-        };
-        setUserData(updateUserData);
-        console.log(userData);
-        
-      };
+
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
         <tr key={index}>
@@ -151,6 +102,7 @@ export default function TeacherLaw(){
             </td>
         </tr>
     ));
+    
 
     //벌칙-학생 리스트
     useEffect(() => {
@@ -158,8 +110,6 @@ export default function TeacherLaw(){
         if (!token) {
             navigate("/");
         }
-        console.log(userData.userNumber);
-        console.log(userData.nationNum);
 
         //벌칙-학생 항목 리스트 뽑아오기
         axBase(token)({
@@ -178,22 +128,7 @@ export default function TeacherLaw(){
             });
 
         }, []);
-    //받아온 값 넣어서 저장하기
-    const saveToPenaltyStudent = (index) => {
-        const updateUserData = {
-          ...userData,
-          lawNationStudentNum: penaltyStudentList[index].lawNationStudentNum,
-          citizenNumber: penaltyStudentList[index].citizenNumber,
-          studentName: penaltyStudentList[index].studentName,
-          content: penaltyStudentList[index].content,
-          type: penaltyStudentList[index].type,
-          penalty: penaltyStudentList[index].penalty,
-          penaltyCompleteState: penaltyStudentList[index].penaltyCompleteState,
-        };
-        setUserData(updateUserData);
-        console.log(userData);
-        
-      };
+
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
         <tr key={index}>
@@ -207,7 +142,6 @@ export default function TeacherLaw(){
         </tr>
     ));
 
-
     return (
         <div style={divStyle} className="border border-dark  border-3 p-3">
                 <div className="d-flex justify-content-between">
@@ -216,21 +150,39 @@ export default function TeacherLaw(){
                 </div>
                 {state === 0 ? (
                     <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '50%' }}>법 내용</th>
-                                    <th style={{ width: '15%' }}>벌금</th>
-                                    <th style={{ width: '30%' }}>벌칙</th>
-                                    <th style={{ width: '10%' }}></th>
+                        <table style={{ marginLeft: '25%' }}>
+                        {lawList.map((menu, index) => (
+                            <tbody key={index}>
+                                <tr key={`${index}_content`}>
+                                    <td style={{ width: '30%' }}>법 내용</td>
+                                    <td style={{ width: '50%' }}>{menu.content}</td>
+                                    {menu.type === 0 && (
+                                        <>
+                                            <td><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
+                                            <td><TeacherLawDelete lawNum={menu.lawNum} /></td>
+                                            
+                                        </>
+                                    )}
+                                    {menu.type === 1 && (
+                                        <>
+                                            <td></td>
+                                            <td><TeacherLawDelete lawNum={menu.lawNum}/></td>
+                                        </>
+                                    )}
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {lawItems}
+                                <tr key={`${index}_fine`}>
+                                    <td>벌금</td>
+                                    <td key={index}>{menu.fine}</td>
+                                </tr>
+                                <tr key={`${index}_penalty`}>
+                                    <td>벌칙</td>
+                                    <td key={index}>{menu.penalty}</td>
+                                </tr>
                             </tbody>
-                        </table>
+                        ))}
+                    </table>
                         <div>
-                            <TeacherLawCreate lawList={lawList} />
+                            <TeacherLawCreate />
                         </div>
                     </div>
                 ) : state ===1? (
