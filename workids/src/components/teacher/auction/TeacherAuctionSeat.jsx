@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherAuctionSeat() {
+export default function AuctionSeat() {
   const userData = useRecoilValue(userState);
   const [rows, setRows] = useState();
   const [cols, setCols] = useState();
