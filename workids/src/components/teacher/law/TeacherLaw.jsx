@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
 import TeacherLawCreate from "./TeacherLawCreate";
 import TeacherLawDelete from "./TeacherLawDelete";
-import TeacherLawUpdate from "./TeacherLawUpdate";
+//import TeacherLawUpdate from "./TeacherLawUpdate";
 
 export default function TeacherLaw(){
     const lawMenu = ["법 조회", "벌금 부여", "벌칙 부여"];
