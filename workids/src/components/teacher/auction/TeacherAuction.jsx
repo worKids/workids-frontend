@@ -32,6 +32,9 @@ export default function TeacherAuction() {
   ));
   // return() 문에 html 형식으로 넣어주어야 함.
   // 위에 지정한 변수를 가져오려면 {}를 사용.
+  const updateData = (num) => {
+    setState(num);
+  };
   return (
     <div style={divStyle} className="border border-dark  border-3 p-3">
       <div className="d-flex justify-content-between">
@@ -44,7 +47,7 @@ export default function TeacherAuction() {
         </div>
       ) : (
         <div>
-          <TeacherAuctionSeat />
+          <TeacherAuctionSeat updateData={updateData} />
         </div>
       )}
     </div>

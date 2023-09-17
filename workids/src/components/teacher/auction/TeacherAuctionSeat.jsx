@@ -4,14 +4,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
-export default function AuctionSeat() {
+export default function AuctionSeat({ updateData }) {
   const userData = useRecoilValue(userState);
-  const [rows, setRows] = useState();
-  const [cols, setCols] = useState();
+  const [rows, setRows] = useState("");
+  const [cols, setCols] = useState("");
   const [seats, setSeats] = useState([]);
   const [date, setDate] = useState(new Date());
-  const [totalseat, setTotalSeat] = useState();
+  const [totalseat, setTotalSeat] = useState("");
+  const navigate = useNavigate();
   const createAuction = () => {
     const token = userData.accessToken;
 
@@ -24,9 +26,21 @@ export default function AuctionSeat() {
     };
     axBase(token)({
       method: "post",
-      url: "/teacher/auction/done",
+      url: "/teacher/auction",
       data: auctionData,
-    });
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        alert("경매 생성");
+        goToList();
+        navigate("/teacher/auction");
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+  const goToList = () => {
+    updateData(0);
   };
 
   const generateSeat = () => {
@@ -135,7 +149,9 @@ export default function AuctionSeat() {
           </button>
         </div>
         <div className="d-flex justify-content-center my-3">
-          <button style={divStyle}>경매 생성하기</button>
+          <button style={divStyle} onClick={createAuction}>
+            경매 생성하기
+          </button>
         </div>
       </div>
     </div>
