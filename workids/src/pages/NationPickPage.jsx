@@ -33,6 +33,21 @@ export default function NationPickPage() {
         .catch((err) => {
           alert(err.response.data.message);
         });
+    } else {
+      axBase(token)({
+        method: "post",
+        url: "/student/nation/list",
+        data: {
+          num: userData.userNumber,
+        },
+      })
+        .then((response) => {
+          console.log(response.data.data);
+          setNationList(response.data.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
     }
   }, []);
   const borderRound = {

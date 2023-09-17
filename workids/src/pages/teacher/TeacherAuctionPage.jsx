@@ -2,7 +2,7 @@ import React from "react";
 
 import TeacherSideNav from "../../components/teacher/TeacherSideNav";
 import TeacherTopNav from "../../components/teacher/TeacherTopNav";
-import TeacherAuction from "../../components/teacher/TeacherAuction";
+import TeacherAuction from "../../components/teacher/auction/TeacherAuction";
 export default function TeacherAuctionPage() {
   return (
     <div>
