@@ -14,6 +14,8 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}
     const handleShow = () => {
         if(lawNum==0){
             alert("부여할 법을 선택해주세요.");
+        }else if(citizenNumber==0){
+            alert("학급 번호를 입력해주세요.");
         }else{
             setShow(true)
         }

@@ -32,7 +32,7 @@ export default function TeacherLaw(){
         setState(idx);
         onReset();
         if(idx=1){
-            setCheckedItems(initialCheckedItems);
+            setCheckedItems(initialCheckedItems); //checkbox 초기 설정
         }
       };
 
@@ -52,18 +52,15 @@ export default function TeacherLaw(){
         >
           {menu}
         </div>
-      ));
+    ));
 
-    
+    //법 항목 리스트 뽑아오기
     useEffect(() => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
-        console.log(userData.userNumber);
-        console.log(userData.nationNum);
 
-        //법 항목 리스트 뽑아오기
         axBase(token)({
         method: "post",
         url: "/law/list",
@@ -81,13 +78,13 @@ export default function TeacherLaw(){
 
     }, []);
 
-    //벌금-학생 리스트
+    //벌금-학생 항목 리스트 뽑아오기
     useEffect(() => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
-        //벌금-학생 항목 리스트 뽑아오기
+        
         axBase(token)({
             method: "post",
             url: "/teacher/law/fine/list",
@@ -103,7 +100,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-        }, []);
+    }, []);
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
@@ -120,14 +117,13 @@ export default function TeacherLaw(){
     ));
     
 
-    //벌칙-학생 리스트
+    //벌칙-학생 항목 리스트 뽑아오기
     useEffect(() => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
 
-        //벌칙-학생 항목 리스트 뽑아오기
         axBase(token)({
             method: "post",
             url: "/teacher/law/penalty/list",
@@ -143,9 +139,9 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-        }, []);
+    }, []);
 
-    //수행여부 (check)
+    //수행여부 (check) 하기
     function CompletePenalty(penaltyCompleteState, lawNationStudentNum) {
         const token = userData.accessToken;
         if (!token) {
@@ -167,29 +163,28 @@ export default function TeacherLaw(){
         });
     }
 
+    //초기 checkbox 설정
     const initialCheckedItems = penaltyStudentList.reduce((acc, menu) => {
         if (menu.penaltyCompleteState === 1) {
           acc.push(menu.lawNationStudentNum);
         }
         return acc;
-      }, []);
+    }, []);
 
-    const [checkedItems, setCheckedItems] = useState([]);
+    const [checkedItems, setCheckedItems] = useState([]); //수행여부 checkbox
 
-
+    //checkbox 누를때 발생하는 event
     const handleCheckboxChange = (value) => {
         
         // value가 이미 배열에 있는지 확인하고, 있으면 제거하고 없으면 추가
         if (checkedItems.includes(value)) {
           setCheckedItems(checkedItems.filter((item) => item !== value));
-          console.log(value);
           CompletePenalty(0,value);  
         } else {
           setCheckedItems([...checkedItems, value]);
-          console.log(value);
           CompletePenalty(1,value);
         }
-      };
+    };
 
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
@@ -228,6 +223,7 @@ export default function TeacherLaw(){
         setSelectLawNum(selectedOption.getAttribute("data-lawnum"));
     }
 
+    //input text 값 채우기
     const getTextInput = (e) =>{
         const {name, value} = e.target;
         const nextInputs = {
@@ -246,7 +242,7 @@ export default function TeacherLaw(){
             citizenNumber: 0,
         })
         setSelectLawNum(0);
-      };
+    };
 
     //벌금-벌칙 부여하는 부분
     const AddLawStudent = (tabType)=>(
