@@ -7,6 +7,7 @@ import dayjs from "dayjs"; //day format
 import TeacherConsumptionCreate from "./TeacherConsumptionCreate";
 import TeacherConsumptionUpdate from "./TeacherConsumptionUpdate";
 import TeacherConsumptionDelete from "./TeacherConusmptionDelete";
+import TeacherConsumptionProcess from "./TeacherConsumptionProcess";
 
 export default function TeacherConsumption(){
     const consumptionMenu = ["소비 항목 조회", "국민 소비 관리"];
@@ -24,6 +25,26 @@ export default function TeacherConsumption(){
     width: "80%",
     borderRadius: "40px",
     };
+
+    const firstBlock ={
+        float: "left",
+        marginLeft: "30px",
+        padding: "20px",
+        borderRadius: "40px",
+        width: "45%",
+        height: "80%",
+        backgroundColor: 'rgba(254, 211, 56, 0.7)'
+    }
+
+    const secondBlock ={
+        display: "inline-block",
+        marginLeft: "10px",
+        padding: "20px",
+        borderRadius: "40px",
+        width: "45%",
+        height: "80%",
+        backgroundColor: 'rgba(217, 217, 217, 0.5)'
+    }
 
     //menuTab 관리
     const menu = consumptionMenu.map((menu, index) => (
@@ -86,6 +107,18 @@ export default function TeacherConsumption(){
     
     }, []);
 
+    //미결재 리스트 출력
+    const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
+        <tr key={index}>
+            <td>{menu.citizenNumber}</td>
+            <td>{menu.studentName}</td>
+            <td>{menu.content}</td>
+            <td>{menu.amount}미소</td>
+            <td>{dayjs(menu.createdDate).format('YY-MM-DD')}</td>
+            <td><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state}/></td>
+        </tr>
+    ));
+
     //소비-학생 결재 리스트 가져오기
     useEffect(() => {
         const token = userData.accessToken;
@@ -110,7 +143,17 @@ export default function TeacherConsumption(){
     
     }, []);
 
-
+    //결재 리스트 출력
+    const approvalItems = approvalConsumptionList.map((menu,index) => (
+        <tr key={index}>
+            <td>{menu.citizenNumber}</td>
+            <td>{menu.studentName}</td>
+            <td>{menu.content}</td>
+            <td>{menu.amount}미소</td>
+            <td>{dayjs(menu.updatedDate).format('YY-MM-DD')}</td>
+            <td>{menu.state === 1 ? "승인됨" : "거절됨"}</td>
+        </tr>
+    ));
 
     return(
         <div style={divStyle} className="border border-dark  border-3 p-3">
@@ -143,9 +186,44 @@ export default function TeacherConsumption(){
                     </div>
                 ):(
                     //두번째 탭 메뉴
-                    <div>
-                        두번째 탭
-                    </div>
+                    <>
+                        <div style={firstBlock} className="border border-dark  border-3 p-3">
+                            <h3 style={{textAlign:'center'}}>결재 완료</h3>
+                            <table style={{ fontSize: '16px'}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: '8%' }}>번호</th>
+                                        <th style={{ width: '15%' }}>이름</th>
+                                        <th style={{ width: '25%' }}>소비내역</th>
+                                        <th style={{ width: '15%' }}>금액</th>
+                                        <th style={{ width: '16%' }}>승인일</th>
+                                        <th style={{ width: '11%' }}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {approvalItems}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style={secondBlock} className="border border-dark  border-3 p-3">
+                            <h3 style={{textAlign:'center'}}>미결재</h3>
+                            <table style={{ fontSize: '17px'}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: '10%' }}>번호</th>
+                                        <th style={{ width: '20%' }}>이름</th>
+                                        <th style={{ width: '25%' }}>소비내역</th>
+                                        <th style={{ width: '20%' }}>금액</th>
+                                        <th style={{ width: '20%' }}>신청일</th>
+                                        <th style={{ width: '15%' }}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {outStadndingItems}
+                                </tbody>
+                            </table>
+                        </div></>
                 )}
         </div>
     );
