@@ -4,15 +4,15 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherLawDelete({lawNum}){
+export default function TeacherConsumptionDelete({consumptionNum}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    //법 삭제
-    const handleDeleteLaw = () => {
+    //소비 항목 삭제
+    const handleDeleteConsumption = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -20,13 +20,13 @@ export default function TeacherLawDelete({lawNum}){
     
         axBase(token)({
             method: "patch",
-            url: "/teacher/law/hide",
+            url: "/teacher/consumption/hide",
             data: {
-                lawNum:lawNum,
+                consumptionNum:consumptionNum,
             },
         })
         .then((response) => {
-            alert("법 삭제 완료");
+            alert("소비 항목 삭제 완료");
             setShow(false)
             window.location.reload();
         })
@@ -34,7 +34,6 @@ export default function TeacherLawDelete({lawNum}){
             alert(err.response.data.message);
         });
     };
-
 
     return(
         <div>
@@ -45,7 +44,7 @@ export default function TeacherLawDelete({lawNum}){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 삭제하기</Modal.Title>
+                    <Modal.Title>소비 항목 삭제하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -53,10 +52,11 @@ export default function TeacherLawDelete({lawNum}){
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleDeleteLaw()}>Yes</button>
+                    <button onClick={() => handleDeleteConsumption()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
         </div>
     )
+
 }
