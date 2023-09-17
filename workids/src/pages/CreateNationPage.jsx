@@ -82,7 +82,12 @@ export default function CreateNationPage() {
     })
       .then((response) => {
         console.log(response.data);
-        navigate("/select");
+ 
+        navigate("/teacher/nationCreate", {
+          state: {
+            code: `${code}`
+          },
+        });
       })
       .catch((err) => {
         console.log(err.response.data.message);
