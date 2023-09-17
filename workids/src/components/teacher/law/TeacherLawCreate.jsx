@@ -86,7 +86,8 @@ export default function TeacherLawCreate(){
         })
         .then((response) => {
             alert("법 등록 완료");
-            handleClose();
+            setShow(false)
+            window.location.reload();
         })
         .catch((err) => {
             alert(err.response.data.message);

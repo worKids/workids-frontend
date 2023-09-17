@@ -18,7 +18,6 @@ export default function TeacherLawDelete({lawNum}){
             navigate("/");
         }
     
-        // 벌금-학생 항목 리스트 뽑아오기
         axBase(token)({
             method: "patch",
             url: "/teacher/law/hide",
@@ -28,7 +27,8 @@ export default function TeacherLawDelete({lawNum}){
         })
         .then((response) => {
             alert("법 삭제 완료");
-            handleClose();
+            setShow(false)
+            window.location.reload();
         })
         .catch((err) => {
             alert(err.response.data.message);
