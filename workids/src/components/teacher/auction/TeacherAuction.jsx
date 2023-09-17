@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import AuctionSeat from "./AuctionSeat";
+import TeacherAuctionSeat from "./TeacherAuctionSeat";
+import TeacherAuctionList from "./TeacherAuctionList";
 
 export default function TeacherAuction() {
   const auctionMenu = ["경매 내역", "경매 생성"];
@@ -39,12 +40,11 @@ export default function TeacherAuction() {
       </div>
       {state === 0 ? (
         <div>
-          <h1>{state}</h1>
-          <AuctionSeat />
+          <TeacherAuctionList />
         </div>
       ) : (
         <div>
-          <h1>{state}</h1>
+          <TeacherAuctionSeat />
         </div>
       )}
     </div>
