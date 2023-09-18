@@ -28,6 +28,12 @@ export default function StudentMainPage() {
       .catch((err) => {
         console.log(err.response.data.message);
       });
+  }, []);
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+      navigate("/");
+    }
     axBase(token)({
       method: "post",
       url: "/student/nation",

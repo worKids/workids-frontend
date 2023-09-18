@@ -13,8 +13,6 @@ export default function StudentAuctionList() {
     if (!token) {
       navigate("/");
     }
-    console.log(userData.nationStudentNum);
-    console.log(userData.nationNum);
     axBase(token)({
       method: "post",
       url: "/student/auction/list",

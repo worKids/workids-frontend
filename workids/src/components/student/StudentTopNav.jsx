@@ -2,6 +2,8 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
+import NavModal from "../NavModal";
+import "../teacher/Teacher.css";
 export default function StudentTopNav() {
   const userData = useRecoilValue(userState);
   const navigate = useNavigate();
@@ -15,15 +17,28 @@ export default function StudentTopNav() {
     <div style={divStyle} className="fs-3 mx-4">
       <div className="d-flex justify-content-between">
         <div className="d-flex">
-          <div className="mx-3" onClick={navigateToSelect}>
-            로고 칸
+          <div className=" logo" onClick={navigateToSelect}>
           </div>
-          <div className="mx-3">{userData.nationName}</div>
-          <div className="mx-3">{userData.userName}</div>
+          <div className="m-3">{userData.nationName}</div>
+          <div className="m-3">{userData.userName}</div>
         </div>
-        <div className="m-3">마이페이지</div>
+        <div
+          className="m-3 hoverable"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          마이페이지
+        </div>
       </div>
-      <div className="mx-3"></div>
+      <div
+        className="offcanvas offcanvas-end"
+        tabIndex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <NavModal />
+      </div>
     </div>
   );
 }

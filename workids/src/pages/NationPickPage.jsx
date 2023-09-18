@@ -62,7 +62,7 @@ export default function NationPickPage() {
       ...userData,
       nationName: nationList[index].name,
       nationNum: nationList[index].nationNum,
-      totalStudent: nationList[index].totalStudent
+      totalStudent: nationList[index].totalStudent,
     };
     setUserData(updateUserData);
     console.log(userData);
@@ -87,7 +87,6 @@ export default function NationPickPage() {
       <div>나라를 생성해주세요</div>
     );
 
-
   return (
     <div>
       {userData.userType === "teacher" ? (
@@ -97,7 +96,7 @@ export default function NationPickPage() {
             <div className="d-flex justify-content-between">
               <h4 className="ms-3 ">운영중인 나라</h4>
               <div className="me-4" onClick={navigateToCreate}>
-              <div style={{ fontSize: '20px' }}>나라 설립하기 &gt;</div>
+                <div style={{ fontSize: "20px" }}>나라 설립하기 &gt;</div>
               </div>
             </div>
             {nationBtn}

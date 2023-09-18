@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { userState } from "../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
+import "./datePick.css";
 export default function MainPage() {
   const [userType, setUserType] = useState("student");
   const [id, setId] = useState("");
@@ -95,12 +96,13 @@ export default function MainPage() {
   };
 
   return (
-    <div className="h-100">
-      <div className="h-75 d-flex justify-content-center align-items-center "> 
-        <div className="border border-dark  border-6 p-5" style={borderRound}> 
-        <h3 className="d-flex justify-content-center mt-1">로그인</h3>
-          <div className="d-flex justify-content-center">  
-            <div className="form-check mx-5 my-3"> 
+    <div className="h-100 w-100">
+      <div className="mainLogo w-50 m-auto mb-0"></div>
+      <div className="h-75 d-flex justify-content-center align-items-end">
+        <div className="border border-dark  border-6 p-5 mb-5" style={borderRound}>
+          <h3 className="d-flex justify-content-center mt-1">로그인</h3>
+          <div className="d-flex justify-content-center">
+            <div className="form-check mx-5 my-3">
               <input
                 className="form-check-input"
                 type="radio"
