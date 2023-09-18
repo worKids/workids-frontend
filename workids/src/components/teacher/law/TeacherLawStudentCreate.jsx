@@ -5,10 +5,12 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import {FaSearch} from "react-icons/fa";//아이콘 가져오기
+import { useNavigate } from "react-router-dom";
 
 export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
+    const navigate = useNavigate();
     
     const handleClose = () => setShow(false);
     const handleShow = () => {

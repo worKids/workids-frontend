@@ -7,11 +7,13 @@ import Col from 'react-bootstrap/Col';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 
 export default function TeacherLawCreate(){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
+    const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState('tab1'); // 초기 선택된 탭
     const [addLaw, setAddLaw] = useState({
         nationNum : userData.nationNum,

@@ -11,6 +11,7 @@ import TeacherLawDelete from "./TeacherLawDelete";
 import TeacherLawUpdate from "./TeacherLawUpdate";
 import TeacherLawStudentCreate from "./TeacherLawStudentCreate";
 import TeacherLawStudentDelete from "./TeacherLawStudentDelete";
+import { auto } from "@popperjs/core";
 
 export default function TeacherLaw(){
     const lawMenu = ["법 조회", "벌금 부여", "벌칙 부여"];
@@ -36,8 +37,15 @@ export default function TeacherLaw(){
       };
 
     const divStyle = {
-    width: "80%",
-    borderRadius: "40px",
+        width: "80%",
+        borderRadius: "40px"
+    };
+
+    const tabledivStyle = {
+        width: "80%",
+        height: "70%",
+        overflowX:'hidden', 
+        overflowY:'scroll'
     };
 
     //법 메뉴의 탭들
@@ -299,13 +307,13 @@ export default function TeacherLaw(){
                     <div>법 관리</div>
                 </div>
                 {state === 0 ? (
-                    <div>
-                        <table style={{ marginLeft: '25%' }}>
+                    <div style={{overflowX:'hidden', overflowY:'scroll', height:'580px'}}>
+                        <table style={{marginLeft: 'auto', marginRight:'auto', width:'60%', height:'80%' }}>
                         {lawList.map((menu, index) => (
                             <tbody key={index}>
-                                <tr key={`${index}_content`}>
-                                    <td style={{ width: '30%' }}>법 내용</td>
-                                    <td style={{ width: '50%' }}>{menu.content}</td>
+                                <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
+                                    <td style={{ width: '30%', padding:'10px' }}>법 내용</td>
+                                    <td style={{ width: '50%', padding:'10px' }}>{menu.content}</td>
                                     {menu.type === 0 && (
                                         <>
                                             <td><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
@@ -320,14 +328,18 @@ export default function TeacherLaw(){
                                         </>
                                     )}
                                 </tr>
-                                <tr key={`${index}_fine`}>
-                                    <td>벌금</td>
-                                    <td key={index}>{menu.fine}</td>
-                                </tr>
-                                <tr key={`${index}_penalty`}>
-                                    <td>벌칙</td>
-                                    <td key={index}>{menu.penalty}</td>
-                                </tr>
+                                {menu.type === 0 && (
+                                    <tr key={`${index}_fine`} style={{padding:'10px'}}>
+                                        <td style={{padding:'10px'}}>벌금</td>
+                                        <td key={index} style={{padding:'10px'}}>{menu.fine}</td>
+                                    </tr>
+                                )}
+                                {menu.type === 1 && (
+                                    <tr key={`${index}_penalty`} style={{padding:'10px'}}>
+                                        <td style={{padding:'10px'}}>벌칙</td>
+                                        <td key={index} style={{padding:'10px'}}>{menu.penalty}</td>
+                                    </tr>
+                                )}
                             </tbody>
                         ))}
                     </table>
