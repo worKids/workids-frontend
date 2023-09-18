@@ -33,8 +33,8 @@ export default function joinPage() {
   ));
   return (
     <div className="m-auto row d-flex justify-content-center" style={joinSize}>
-      <div className="col-6 mt-2 border border-dark border-3" style={borderRound}>
-        <h3 className="d-flex justify-content-center mt-2">회원가입</h3>
+      <div className="col-6 mt-5 border border-dark border-3" style={borderRound}>
+        <h3 className="d-flex justify-content-center mt-3">회원가입</h3>
         <div className="d-flex justify-content-around m-3">{userMap}</div>
         {typeState === 0 ? <TeacherJoin /> : <StudentJoin />}
       </div>

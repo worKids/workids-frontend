@@ -6,12 +6,14 @@ import Col from 'react-bootstrap/Col';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 
 export default function TeacherLawUpdate({lawNum, content, fine}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [updateFine, setUpdateFine] = useState(fine);
+    const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

@@ -3,10 +3,12 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
+    const navigate = useNavigate();
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

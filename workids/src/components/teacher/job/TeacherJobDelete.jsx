@@ -3,18 +3,18 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
-import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawDelete({lawNum}){
+export default function TeacherJobDelete({name}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
-    const navigate = useNavigate();
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+   
 
-    //법 삭제
-    const handleDeleteLaw = () => {
+
+    //직업 삭제
+    const handleDeleteJob = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -22,15 +22,15 @@ export default function TeacherLawDelete({lawNum}){
     
         axBase(token)({
             method: "patch",
-            url: "/teacher/law/hide",
+            url: "/teacher/job/citizen/hide",
             data: {
-                lawNum:lawNum,
+                nationNum: userData.nationNum,
+                name:name,
             },
         })
         .then((response) => {
-            alert("법 삭제 완료");
-            setShow(false)
-            window.location.reload();
+            alert("직업 삭제 완료");
+            handleClose();
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -47,7 +47,7 @@ export default function TeacherLawDelete({lawNum}){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 삭제하기</Modal.Title>
+                    <Modal.Title>직업 삭제하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -55,7 +55,7 @@ export default function TeacherLawDelete({lawNum}){
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleDeleteLaw()}>Yes</button>
+                    <button onClick={() => handleDeleteJob()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>

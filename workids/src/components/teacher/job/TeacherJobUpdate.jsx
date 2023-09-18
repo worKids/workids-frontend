@@ -3,18 +3,18 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
-import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawDelete({lawNum}){
+export default function TeacherJobUpdate({citizenNumber, name}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
-    const navigate = useNavigate();
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+   
 
-    //법 삭제
-    const handleDeleteLaw = () => {
+
+    //직업부여 수정
+    const handleUpdateJob = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -22,15 +22,16 @@ export default function TeacherLawDelete({lawNum}){
     
         axBase(token)({
             method: "patch",
-            url: "/teacher/law/hide",
+            url: "/teacher/job/citizen",
             data: {
-                lawNum:lawNum,
+                nationNum: userData.nationNum,
+                citizenNumber : citizenNumber,
+                name : name,
             },
         })
         .then((response) => {
-            alert("법 삭제 완료");
-            setShow(false)
-            window.location.reload();
+            alert("직업 수정 완료");
+            handleClose();
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -40,22 +41,22 @@ export default function TeacherLawDelete({lawNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>삭제</button>
+            <button onClick={handleShow}>수정</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 삭제하기</Modal.Title>
+                    <Modal.Title>직업 수정하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        정말로 삭제하시겠습니까?
+                        정말로 수정하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleDeleteLaw()}>Yes</button>
+                    <button onClick={() => handleUpdateJob()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>

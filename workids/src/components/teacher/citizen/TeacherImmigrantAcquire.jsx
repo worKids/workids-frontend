@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherJoin() {
+export default function TeacherImmigrantAcquire() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -11,7 +11,7 @@ export default function TeacherJoin() {
   const navigate = useNavigate();
   const join = () => {
     axios
-      .post("http://localhost:8070/teacher/account/join", {
+      .post("http://localhost:8070/teacher/citizen/immigrant/acquire", {
         id: id,
         password: password,
         name: name,
@@ -22,7 +22,6 @@ export default function TeacherJoin() {
         console.log(id);
         console.log(password);
         console.log(response);
-        alert("회원가입이 완료되었습니다.");
         navigate("/");
       })
       .catch((err) => {
