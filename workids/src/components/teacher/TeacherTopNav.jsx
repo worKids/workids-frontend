@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
+import "./Teacher.css";
 export default function TeacherTopNav() {
   const [userData, setUserData] = useRecoilState(userState);
   const navigate = useNavigate();
@@ -9,7 +10,6 @@ export default function TeacherTopNav() {
     height: "13%",
   };
   const navigateToSelect = () => {
-    
     navigate("/select");
   };
   return (
@@ -21,7 +21,33 @@ export default function TeacherTopNav() {
           </div>
           <div className="m-3">{userData.userName} 선생님</div>
         </div>
-        <div className="m-3">마이페이지</div>
+        <div
+          className="m-3 fs-3 hoverable"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          마이페이지
+        </div>
+      </div>
+      <div
+        className="offcanvas offcanvas-end"
+        tabIndex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasRightLabel">
+            마이페이지
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="offcanvas-body">...</div>
       </div>
     </div>
   );
