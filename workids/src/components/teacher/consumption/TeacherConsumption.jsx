@@ -15,6 +15,7 @@ export default function TeacherConsumption(){
     const [consumptionList, setConsumptionList] = useState([]); //소비 항목 리스트
     const [outStandingConsumptionList, setOutStandingConsumptionList] = useState([]); //소비-학생 미결재 리스트
     const [approvalConsumptionList, setApprovalConsumptionList] = useState([]); // 소비-학생 결재 리스트
+    const navigate = useNavigate();
 
     const clickMenu = (idx) => {
         setState(idx);

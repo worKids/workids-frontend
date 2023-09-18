@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 export default function TeacherConsumptionCreate(){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
+    const navigate = useNavigate();
     const [addConsumption, setAddConsumption] = useState({
         content: "",
         amount: 0,
