@@ -34,6 +34,7 @@ export default function StudentRecentAuction() {
         setCols(response.data.data.classColumn);
         setCreateDate(response.data.data.createdDate);
         setTotalSeat(response.data.data.totalSeat);
+        console.log(userData);
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -76,7 +77,7 @@ export default function StudentRecentAuction() {
       navigate("/");
     }
     axBase(token)({
-      method: "post",
+      method: "patch",
       url: "/student/auction/",
       data: {
         auctionNum: auctionNum,

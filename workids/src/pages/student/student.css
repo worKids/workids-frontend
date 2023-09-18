@@ -30,3 +30,11 @@
   height: 20vh;
   background-repeat: no-repeat;
 }
+.bibi {
+  background-image: url(../../assets/bibi.png);
+  background-position: center;
+  background-size: contain;
+  width: 10vw;
+  height: 20vh;
+  background-repeat: no-repeat;
+}

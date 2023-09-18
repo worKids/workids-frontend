@@ -46,7 +46,7 @@ export default function TeacherAuctionList() {
   const endAuction = (num) => {
     const token = userData.accessToken;
     axBase(token)({
-      method: "post",
+      method: "patch",
       url: "/teacher/auction/done",
       data: {
         auctionNum: num,
@@ -64,7 +64,7 @@ export default function TeacherAuctionList() {
   const deleteAuction = (num) => {
     const token = userData.accessToken;
     axBase(token)({
-      method: "post",
+      method: "patch",
       url: "/teacher/auction/hide",
       data: {
         auctionNum: num,
