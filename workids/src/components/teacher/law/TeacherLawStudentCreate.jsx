@@ -4,7 +4,6 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
-import {FaSearch} from "react-icons/fa";//아이콘 가져오기
 import { useNavigate } from "react-router-dom";
 
 export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}){
@@ -16,7 +15,7 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}
     const handleShow = () => {
         if(lawNum==0){
             alert("부여할 법을 선택해주세요.");
-        }else if(citizenNumber==0){
+        }else if(citizenNumber==null){
             alert("학급 번호를 입력해주세요.");
         }else{
             setShow(true)
@@ -78,7 +77,7 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}
 
     return(
         <div>
-            <button type="button" className="search-button" onClick={handleShow}><FaSearch /></button>
+            <button type="button" onClick={handleShow} style={{fontSize:'15px'}}>부여하기</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
