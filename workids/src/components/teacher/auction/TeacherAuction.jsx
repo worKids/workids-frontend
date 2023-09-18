@@ -13,6 +13,7 @@ export default function TeacherAuction() {
   // style로 넣어줘야함.
   const divStyle = {
     width: "80%",
+    height: "80vh",
     borderRadius: "40px",
   };
 
