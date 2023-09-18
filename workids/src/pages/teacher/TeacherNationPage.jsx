@@ -5,7 +5,7 @@ import TeacherTopNav from "../../components/teacher/TeacherTopNav";
 export default function TeacherNationPage() {
   return (
     <div>
-      <TeacherTopNav />
+      <TeacherTopNav /> dkssud
       <TeacherSideNav />
     </div>
   );
