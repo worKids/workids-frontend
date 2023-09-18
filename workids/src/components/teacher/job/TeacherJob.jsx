@@ -8,12 +8,14 @@ import TeacherJobDelete from "./TeacherJobDelete";
 import TeacherJobUpdate from "./TeacherJobUpdate";
 
 export default function TeacherJob(){
-    const jobMenu = ["직업 조회", "직업 부여"];
+    const jobMenu = ["직업 조회", "직업 수정"];
     const [state, setState] = useState(0);//버튼 클릭
     const [userData, setUserData] = useRecoilState(userState);
     const [jobList, setJobList] = useState([]); //직업 항목
     const [jobStudentList, setJobStudentList] = useState([]); //학생 직업 부여 항목
+    const [jobKindList, setJobKindList] = useState([]); //직업 종류 항목
     const navigate = useNavigate();
+  
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -87,37 +89,69 @@ export default function TeacherJob(){
 
         }, []);
 
-       
-//직업조회 출력화면
-const JobItems  = jobList.map((menu, index) => (
-    <tr key={index}>
-        <td>{menu.name}</td>
-        <td>{menu.jobToDoContent}</td>
-        <td>{menu.salary}</td>
-        <td style={{ display: 'flex', flexDirection: 'column' }}>
-            <button>취소</button>
-        </td>
-    </tr>
-));
+        //직업 종류뽑아오기
+    useEffect(() => {
+        const token = userData.accessToken;
+        if (!token) {
+            navigate("/");
+        }
 
-    //직업부여 출력화면
-    const JobStudentItems  = jobStudentList.map((menu, index) => (
-        <tr key={index}>
+        axBase(token)({
+            method: "post",
+            url: "/teacher/job/kind/list",
+            data: {
+                nationNum: userData.nationNum,
+            },
+            })
+            .then((response) => {
+                console.log(response.data.data);
+                setJobKindList(response.data.data);
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
+
+        }, []);
+
+       
+
+
+
+    //직업수정 출력화면
+    function JobStudentUpdateItem({ menu, jobList }) {
+        const [selectedJob, setSelectedJob] = useState(menu.name);
+      
+        return (
+          <tr>
             <td>{menu.citizenNumber}</td>
             <td>{menu.studentName}</td>
-            <td><select name="jobs" id="jobs">
-            <option >{menu.name}</option>
-            <option >{menu.name}</option>
-          
-        </select></td>
-           
             <td>
-            <TeacherJobUpdate citizenNumber={menu.citizenNumber} name ={menu.name}/>
+              <select
+                name="jobs"
+                id="jobs"
+                value={selectedJob}
+                onChange={(e) => setSelectedJob(e.target.value)}
+              >
+                    <option value={menu.name}>{menu.name}</option>
+                {jobList.map((job, index) => (
+                  <option key={index} value={job.name}>
+                    {job.name}
+                  </option>
+                ))}
+              </select>
+            </td>
+            <td>
+              <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
             </td>
             <hr></hr>
-        </tr>
-        
-    ));
+          </tr>
+        );
+      }
+      
+      // JobStudentUpdateItems 배열을 사용하여 컴포넌트 렌더링
+      const JobStudentUpdateItems = jobStudentList.map((menu, index) => (
+        <JobStudentUpdateItem key={index} menu={menu} jobList={jobList} />
+      ));
     
 
 
@@ -157,27 +191,27 @@ const JobItems  = jobList.map((menu, index) => (
                             <TeacherJobCreate />
                         </div>
                     </div>
-                ) : (
-                    <div>
-                        <table>
-                            
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '20%' }}>학급 번호</th>
-                                    <th style={{ width: '40%' }}>이름</th>
-                                    <th style={{ width: '40%' }}>직업</th>
-                                    <th style={{ width: '40%' }}></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                {JobStudentItems}
-                            </tbody>
-                           
+               
+                   ) : (
+                   <div>
+                    <table>
+                        
+                        <thead>
+                            <tr>
+                                <th style={{ width: '20%' }}>학급 번호</th>
+                                <th style={{ width: '40%' }}>이름</th>
+                                <th style={{ width: '40%' }}>직업</th>
+                                <th style={{ width: '40%' }}></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {JobStudentUpdateItems}
+                        </tbody>
+                       
 
-                        </table>
-                    </div>
-                        )}
-            </div>
+                    </table>
+                </div>
+            )}
+        </div>
     );
 }
