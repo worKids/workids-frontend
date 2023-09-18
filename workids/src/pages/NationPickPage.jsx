@@ -16,8 +16,6 @@ export default function NationPickPage() {
     if (!token) {
       navigate("/");
     }
-    console.log(userData.userNumber);
-    // 학생 axios 추가하기
     if (userData.userType === "teacher") {
       axBase(token)({
         method: "post",
@@ -26,6 +24,21 @@ export default function NationPickPage() {
           num: userData.userNumber,
           //name: userData.name,
           //totalStudent: userData.totalStudent
+        },
+      })
+        .then((response) => {
+          console.log(response.data.data);
+          setNationList(response.data.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    } else {
+      axBase(token)({
+        method: "post",
+        url: "/student/nation/list",
+        data: {
+          num: userData.userNumber,
         },
       })
         .then((response) => {
@@ -56,7 +69,7 @@ export default function NationPickPage() {
     if (userData.userType === "teacher") {
       navigate("/teacher/nation/main");
     } else {
-      navigate("student/nation");
+      navigate("/student/nation");
     }
   };
   const nationBtn = nationList.map((menu, index) => (

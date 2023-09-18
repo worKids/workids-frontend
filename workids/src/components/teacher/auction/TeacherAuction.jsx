@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import TeacherAuctionSeat from "./TeacherAuctionSeat";
+import TeacherAuctionList from "./TeacherAuctionList";
 
 export default function TeacherAuction() {
   const auctionMenu = ["경매 내역", "경매 생성"];
@@ -30,6 +32,9 @@ export default function TeacherAuction() {
   ));
   // return() 문에 html 형식으로 넣어주어야 함.
   // 위에 지정한 변수를 가져오려면 {}를 사용.
+  const updateData = (num) => {
+    setState(num);
+  };
   return (
     <div style={divStyle} className="border border-dark  border-3 p-3">
       <div className="d-flex justify-content-between">
@@ -38,11 +43,11 @@ export default function TeacherAuction() {
       </div>
       {state === 0 ? (
         <div>
-          <h1>{state}</h1>
+          <TeacherAuctionList />
         </div>
       ) : (
         <div>
-          <h1>{state}</h1>
+          <TeacherAuctionSeat updateData={updateData} />
         </div>
       )}
     </div>

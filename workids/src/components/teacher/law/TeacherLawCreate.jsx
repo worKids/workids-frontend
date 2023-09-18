@@ -36,6 +36,7 @@ export default function TeacherLawCreate(){
         setAddLaw(nextInputs);
     }
 
+    //tab 누를때 입력된 내용 reset
     const onResetFine = () => {
         setAddLaw({
           nationNum: userData.nationNum, 
@@ -44,7 +45,7 @@ export default function TeacherLawCreate(){
           fine: 0,
           penalty: "",
         })
-      };
+    };
 
     const onResetPenalty = () => {
         setAddLaw({
@@ -54,7 +55,7 @@ export default function TeacherLawCreate(){
           fine: 0,
           penalty: "",
         })
-      };
+    };
 
     const handleTabChange = (e) => {
         if (e.target.id === 'inline-radio-1') {
@@ -67,30 +68,35 @@ export default function TeacherLawCreate(){
     };
 
     const handleAddLaw = () => {
-        const token = userData.accessToken;
-        if (!token) {
-            navigate("/");
+        if((addLaw.content=="" || addLaw.fine==0) &&  (addLaw.content=="" || addLaw.penalty=="")){
+            alert("빈칸을 모두 채워주세요. (벌금은 0이 될 수 없습니다.)");
+        }else{
+            const token = userData.accessToken;
+            if (!token) {
+                navigate("/");
+            }
+        
+            // 벌금-학생 항목 리스트 뽑아오기
+            axBase(token)({
+                method: "post",
+                url: "/teacher/law",
+                data: {
+                    nationNum: addLaw.nationNum,
+                    content: addLaw.content,
+                    type: addLaw.type,
+                    fine: addLaw.fine,
+                    penalty: addLaw.penalty,
+                },
+            })
+            .then((response) => {
+                alert("법 등록 완료");
+                setShow(false)
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
         }
-    
-        // 벌금-학생 항목 리스트 뽑아오기
-        axBase(token)({
-            method: "post",
-            url: "/teacher/law",
-            data: {
-                nationNum: addLaw.nationNum,
-                content: addLaw.content,
-                type: addLaw.type,
-                fine: addLaw.fine,
-                penalty: addLaw.penalty,
-            },
-        })
-        .then((response) => {
-            alert("법 등록 완료");
-            handleClose();
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
     };
     
     
@@ -131,7 +137,6 @@ export default function TeacherLawCreate(){
                         ))}
                         {selectedTab === 'tab1' && (
                             <div>
-                                벌금 항목 추가
                                 <Form.Group as={Row} className="mb-3">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 
@@ -161,7 +166,6 @@ export default function TeacherLawCreate(){
                         )}
                         {selectedTab === 'tab2' && (
                             <div>
-                                벌칙 항목 추가
                                 <Form.Group as={Row} className="mb-3" controlId="content">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 

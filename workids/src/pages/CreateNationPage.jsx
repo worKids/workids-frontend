@@ -147,7 +147,6 @@ export default function CreateNationPage() {
             </div>
             <div className="d-flex m-auto">
               <DatePicker
-                showIcon
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 dateFormat="yyyy-MM-dd"
@@ -159,7 +158,6 @@ export default function CreateNationPage() {
                 placeholderText={formatDate(new Date())}
               />
               <DatePicker
-                showIcon
                 selected={endDate}
                 onChange={(data) => setEndDate(data)}
                 dateFormat="yyyy-MM-dd"

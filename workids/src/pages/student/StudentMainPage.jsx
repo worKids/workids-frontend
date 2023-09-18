@@ -4,8 +4,9 @@ import "./student.css";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { axBase } from "../../apis/axiosInstance";
+import { userState } from "../../recoil/userAtoms";
 export default function StudentMainPage() {
-  const userData = useRecoilValue();
+  const userData = useRecoilValue(userState);
   const [state, setState] = useState(0);
 
   useEffect(() => {
