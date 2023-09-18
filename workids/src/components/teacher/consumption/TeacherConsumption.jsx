@@ -3,7 +3,6 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
-import dayjs from "dayjs"; //day format
 import TeacherConsumptionCreate from "./TeacherConsumptionCreate";
 import TeacherConsumptionUpdate from "./TeacherConsumptionUpdate";
 import TeacherConsumptionDelete from "./TeacherConusmptionDelete";
@@ -114,7 +113,7 @@ export default function TeacherConsumption(){
             <td>{menu.studentName}</td>
             <td>{menu.content}</td>
             <td>{menu.amount}미소</td>
-            <td>{dayjs(menu.createdDate).format('YY-MM-DD')}</td>
+            <td>{menu.createdDate}</td>
             <td><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state}/></td>
         </tr>
     ));
@@ -150,7 +149,7 @@ export default function TeacherConsumption(){
             <td>{menu.studentName}</td>
             <td>{menu.content}</td>
             <td>{menu.amount}미소</td>
-            <td>{dayjs(menu.updatedDate).format('YY-MM-DD')}</td>
+            <td>{menu.updatedDate}</td>
             <td>{menu.state === 1 ? "승인됨" : "거절됨"}</td>
         </tr>
     ));
