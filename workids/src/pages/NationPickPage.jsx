@@ -54,7 +54,7 @@ export default function NationPickPage() {
     setUserData(updateUserData);
     console.log(userData);
     if (userData.userType === "teacher") {
-      navigate("/teacher/nation");
+      navigate("/teacher/nation/main");
     } else {
       navigate("student/nation");
     }

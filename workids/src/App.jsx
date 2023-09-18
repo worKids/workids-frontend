@@ -43,7 +43,7 @@ export default function App() {
       <Route path="/student/law" element={<StudentLawPage />} />
       <Route path="/student/ranking" element={<StudentRankingPage />} />
       <Route path="/teacher/nation/citizen" element={<TeacherMainPage />} />
-      <Route path="/teacher/nation/later" element={<TeacherMainPage />} />
+      <Route path="/teacher/nation/main" element={<TeacherMainPage />} />
     </Routes>
   );
 }

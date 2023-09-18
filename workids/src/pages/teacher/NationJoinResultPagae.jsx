@@ -15,10 +15,22 @@ export default function NationPickPage() {
 
   const borderRound = {
     borderRadius: "40px",
+    textAlign: 'center',
   };
 
-  const navigateToCreate = () => {
-    navigate("/nation/create");
+  const btn = {
+    borderRadius: "30px", 
+    backgroundColor: 'white', 
+    color: 'black',
+    marginRight: '10px'
+  };
+
+  const navigateToCitizen = () => {
+    navigate("/nation/citizen");
+  };
+
+  const navigateToMain = () => {
+    navigate("/teacher/nation/main");
   };
 
   const location = useLocation();
@@ -35,6 +47,13 @@ export default function NationPickPage() {
         <h3 className="ms-3 ">참여코드를 통해 국민을 초대해보세요!</h3><br/>
         <h3 className="ms-3 ">(국민 목록 설정과 참여코드는 나라 운영에서 확인 가능합니다.)</h3><br/> 
 
+      {/* 버튼 1 */}
+      <button className="btn btn-primary" onClick={navigateToCitizen} style={btn}>국민 목록 설정하기</button>
+
+      {/* 버튼 2 */}
+      <button className="btn btn-secondary" onClick={navigateToMain} style={btn}>나중에 하기</button>
+ 
+ 
           
     </div>
   </div>
