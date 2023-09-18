@@ -9,7 +9,6 @@ import Col from 'react-bootstrap/Col';
 import TeacherLawCreate from "./TeacherLawCreate";
 import TeacherLawDelete from "./TeacherLawDelete";
 import TeacherLawUpdate from "./TeacherLawUpdate";
-import dayjs from "dayjs"; //day format
 import TeacherLawStudentCreate from "./TeacherLawStudentCreate";
 import TeacherLawStudentDelete from "./TeacherLawStudentDelete";
 
@@ -109,7 +108,7 @@ export default function TeacherLaw(){
             <td>{menu.studentName}</td>
             <td>{menu.content}</td>
             <td>{menu.fine}미소</td>
-            <td>{dayjs(menu.createdDate).format('YYYY-MM-DD')}</td>
+            <td>{menu.createdDate}</td>
             <td style={{ display: 'flex', flexDirection: 'column' }}>
                 <TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum}/>
             </td>
@@ -193,7 +192,7 @@ export default function TeacherLaw(){
             <td>{menu.studentName}</td>
             <td>{menu.content}</td>
             <td>{menu.penalty}</td>
-            <td>{dayjs(menu.createdDate).format('YYYY-MM-DD')}</td>
+            <td>{menu.createdDate}</td>
             <td>
                 <input
                 type="checkbox"
