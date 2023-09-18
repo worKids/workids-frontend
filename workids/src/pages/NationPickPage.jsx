@@ -86,6 +86,7 @@ export default function NationPickPage() {
     ) : (
       <div>나라를 생성해주세요</div>
     );
+
   return (
     <div>
       {userData.userType === "teacher" ? (
