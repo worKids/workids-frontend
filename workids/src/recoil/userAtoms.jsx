@@ -13,10 +13,11 @@ export const userState = atom({
     id: "",
     password: "",
     userName: "",
-    userNumber: "",
+    userNumber: "", // 학생, 선생 번호
     userType: "",
-    nationNum: "",
+    nationNum: "", // 나라 번호
     nationName: "",
+    nationStudentNum: "", // 나라학생 번호
   },
   effects_UNSTABLE: [persistAtom],
 });

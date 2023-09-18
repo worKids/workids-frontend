@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StudentTopNav from "../../components/student/StudentTopNav";
-import StudentAuction from "../../components/student/StudentAuction";
 import { useNavigate } from "react-router-dom";
+import StudentAuction from "../../components/student/auction/StudentAuction";
 
 export default function StudentAuctionPage() {
   const [state, setState] = useState(0);
