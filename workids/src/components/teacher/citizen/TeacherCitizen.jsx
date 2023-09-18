@@ -4,6 +4,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
 import TeacherCreditRatingUpdate from "./TeacherCreditRatingUpdate";
+import TeacherImmigrantList from "./TeacherImmigrantList";
 
 
 export default function TeacherCitizen(){
@@ -17,6 +18,12 @@ export default function TeacherCitizen(){
         const updatedCreditRatingList = [...creditRatingList];
         updatedCreditRatingList[index].creditRating = e.target.value;
         setCreditRatingList(updatedCreditRatingList);
+      };
+      const [inputValue, setInputValue] = useState(""); // 입력한 값을 상태로 관리합니다.
+
+      const handleInputChange = (e) => {
+        // 입력값이 변경될 때 상태를 업데이트합니다.
+        setInputValue(e.target.value);
       };
  
       
@@ -81,7 +88,6 @@ export default function TeacherCitizen(){
         if (!token) {
             navigate("/");
         }
-
         axBase(token)({
             method: "post",
             url: "/teacher/citizen/credit/list",
@@ -100,9 +106,8 @@ export default function TeacherCitizen(){
 
         }, []);
 
-         
+        
 
-       
 
     //국민관리 출력화면
     const citizenItems  = citizenList.map((menu, index) => (
@@ -116,6 +121,8 @@ export default function TeacherCitizen(){
             <hr></hr>
         </tr>
     ));
+
+     
 
 
     //신용도관리 출력화면
@@ -136,6 +143,9 @@ export default function TeacherCitizen(){
         </tr>  
      
     ));
+
+   
+
     
 
 
@@ -167,7 +177,8 @@ export default function TeacherCitizen(){
                     </table>
                 </div>
                     
-                ) : (<div>
+                    ) : state ===1? (
+                    <div>
                     <table>
                         
                         <thead>
@@ -186,7 +197,56 @@ export default function TeacherCitizen(){
                        
 
                     </table>
-                </div>)}
+                </div>
+                ) : state ===2?(
+                    <div>
+                        <table>
+                        <input
+                             type="number"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                        />
+                         <TeacherImmigrantList citizenNumber={inputValue} />
+                        </table>
+                    <table>
+                    
+                        <thead>
+                            <tr>
+                                <th style={{ width: '20%' }}>학급 번호</th>
+                                <th style={{ width: '20%' }}>이름</th>
+                                <th style={{ width: '20%' }}>직업</th>
+                                <th style={{ width: '20%' }}>자산</th>
+                                <th style={{ width: '20%' }}>신용도</th>
+                                <th style={{ width: '20%' }}></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+             
+                         
+                        </tbody>
+                       
+
+                    </table>
+                </div>
+
+                ) : (
+                 <div>
+                       <table>
+                            <thead>
+                               <tr>
+                                 <th style={{ width: '15%' }}>학급 번호</th>
+                                 <th style={{ width: '20%' }}>이름</th>
+                                  <th style={{ width: '30%' }}>법 내용</th>
+                                  <th style={{ width: '30%' }}>벌칙</th>
+                                  <th style={{ width: '15%' }}></th>
+                             </tr>
+                         </thead>
+                          <tbody>
+                                
+                         </tbody>
+                     </table>
+                 </div>
+)}
             </div>
     );
 }
