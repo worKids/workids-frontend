@@ -22,6 +22,7 @@ export default function TeacherLaw(){
     const [penaltyStudentList, setPenaltyStudentList] = useState([]); //학생 벌칙 부여 항목
     const [selectLawNum, setSelectLawNum] = useState(0);
     const navigate = useNavigate();
+    const numberOfLawList = lawList.length;
     const [addLawStudent, setAddLawStudent] = useState({
         content: "",
         citizenNumber: 0,
@@ -47,9 +48,10 @@ export default function TeacherLaw(){
         fontSize: "18px",
         textAlign: "center",
         marginTop: "2vh",
-        height: "33vh",
+        height: "38vh",
         backgroundColor: 'rgba(217, 217, 217, 0.5)',
-        overflow: "auto"
+        overflow: "auto",
+        border: "solid 5px gray"
     }
 
     //법 메뉴의 탭들
@@ -119,7 +121,7 @@ export default function TeacherLaw(){
             <div className="col-2">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
             <div className="col-3">{menu.content}</div>
-            <div className="col-2">{menu.fine}미소</div>
+            <div className="col-2">{menu.fine}</div>
             <div className="col-2">{menu.createdDate}</div>
             <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum}/></div>
         </div>
@@ -307,7 +309,17 @@ export default function TeacherLaw(){
                     <div>법 관리</div>
                 </div>
                 {state === 0 ? (
+                    
+                    numberOfLawList === 0 ?(
+                        <div className="h-100 d-flex justify-content-center align-items-center">
+                            <div>법을 제정해주세요.</div>
+                            <div className="justify-content-end p-3">
+                                <TeacherLawCreate />
+                            </div>
+                        </div>
+                    ) :(
                     <div className="container justify-content-md-center" style={{width:'90%'}}>
+                    <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
                     <div className="overflow-auto m-3 p-4" style={{height:'50vh' }}>
                         <table style={{marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                         {lawList.map((menu, index) => (
@@ -349,11 +361,13 @@ export default function TeacherLaw(){
                             <TeacherLawCreate />
                         </div>
                     </div>
+                    )
                 ) : state ===1? (
                     <div>
-                        <div className="container justify-content-md-center p-4" style={{width:'60%', height:'30%', marginTop:'4vh'}}>
+                        <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(0)}
                         </div>
+                        <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
                             <div className="row m-3 p-1">
                                 <div className="col-2">학급번호</div>
@@ -368,9 +382,10 @@ export default function TeacherLaw(){
                     </div>
                 ) : (
                     <div>
-                        <div className="container justify-content-md-center p-4" style={{width:'60%', height:'30%', marginTop:'4vh'}}>
+                        <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(1)}
                         </div>
+                        <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
                             <div className="row m-3 p-1">
                                 <div className="col-sm-2">학급번호</div>
