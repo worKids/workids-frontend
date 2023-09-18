@@ -1,17 +1,19 @@
-import React from "react";
-import { useRecoilState } from "recoil";
+import React, { useEffect } from "react";
+import { useRecoilValue } from "recoil";
 import { userState } from "../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import "./Teacher.css";
+import TeacherNavModal from "./TeacherNavModal";
 export default function TeacherTopNav() {
-  const [userData, setUserData] = useRecoilState(userState);
+  const userData = useRecoilValue(userState);
   const navigate = useNavigate();
   const divStyle = {
-    height: "13%",
+    height: "10vh",
   };
   const navigateToSelect = () => {
     navigate("/select");
   };
+
   return (
     <div style={divStyle} className="fs-3">
       <div className="d-flex justify-content-between">
@@ -36,18 +38,7 @@ export default function TeacherTopNav() {
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
       >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasRightLabel">
-            마이페이지
-          </h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">...</div>
+        <TeacherNavModal />
       </div>
     </div>
   );

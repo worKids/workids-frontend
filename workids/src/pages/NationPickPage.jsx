@@ -69,16 +69,20 @@ export default function NationPickPage() {
       navigate("/student/nation");
     }
   };
-  const nationBtn = nationList.map((menu, index) => (
-    <div
-      key={index}
-      className={`m-3 border border-dark  border-3 text-center p-3 bg-white rounded-pill sideNav `}
-      onClick={() => navigateToNation(index)}
-    >
-      {menu.name}
-    </div>
-  ));
-
+  const nationBtn =
+    nationList !== null ? (
+      nationList.map((menu, index) => (
+        <div
+          key={index}
+          className={`m-3 border border-dark  border-3 text-center p-3 bg-white rounded-pill sideNav `}
+          onClick={() => navigateToNation(index)}
+        >
+          {menu.name}
+        </div>
+      ))
+    ) : (
+      <div>나라를 생성해주세요</div>
+    );
   return (
     <div>
       {userData.userType === "teacher" ? (
