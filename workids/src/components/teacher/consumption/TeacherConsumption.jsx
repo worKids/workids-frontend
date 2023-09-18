@@ -3,7 +3,6 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
-import dayjs from "dayjs"; //day format
 import TeacherConsumptionCreate from "./TeacherConsumptionCreate";
 import TeacherConsumptionUpdate from "./TeacherConsumptionUpdate";
 import TeacherConsumptionDelete from "./TeacherConusmptionDelete";
