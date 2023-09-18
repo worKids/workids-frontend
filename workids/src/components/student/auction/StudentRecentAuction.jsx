@@ -100,58 +100,64 @@ export default function StudentRecentAuction() {
   return (
     <div>
       <h4 className="mx-3">{createDate} 경매</h4>
-      <div className="border border-dark  border-3" style={divStyle}>
-        <div className="text-center w-50 border m-auto" style={{ backgroundColor: "#D9D9D9" }}>
-          칠판(정면)
-        </div>
-        <div className="m-3">
-          <br />
-          {seats.map((row, rowIndex) => (
-            <div key={rowIndex} className="d-flex justify-content-around">
-              {row.map((seat, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`btn d-flex w-25 justify-content-center mx-3 mt-1 border border-dark ${
-                    selectSeat === seat
-                      ? "bg-warning text-white"
-                      : selectSeat === ""
-                      ? "readOnly"
-                      : ""
-                  }`}
-                  onClick={() => pickSeat(seat)}
-                >
-                  {seat}{" "}
+      {auctionNum === "" ? (
+        <div>최근 경매가 존재하지 않습니다.</div>
+      ) : (
+        <div>
+          <div className="border border-dark  border-3" style={divStyle}>
+            <div className="text-center w-50 border m-auto" style={{ backgroundColor: "#D9D9D9" }}>
+              칠판(정면)
+            </div>
+            <div className="m-3">
+              <br />
+              {seats.map((row, rowIndex) => (
+                <div key={rowIndex} className="d-flex justify-content-around">
+                  {row.map((seat, colIndex) => (
+                    <div
+                      key={colIndex}
+                      className={`btn d-flex w-25 justify-content-center mx-3 mt-1 border border-dark ${
+                        selectSeat === seat
+                          ? "bg-warning text-white"
+                          : selectSeat === ""
+                          ? "readOnly"
+                          : ""
+                      }`}
+                      onClick={() => pickSeat(seat)}
+                    >
+                      {seat}{" "}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="w-75 m-auto border border-dark  border-3 mt-3" style={divStyle}>
-        <div className="my-3">
-          <div className="d-flex justify-content-center">
-            <div className="mx-2">부동산 번호 :</div>
-            <input
-              className="text-center"
-              value={selectSeat}
-              onChange={(e) => setSelectSeat(e.target.value)}
-            />
           </div>
-          <div className="d-flex justify-content-center">
-            <div className="mx-3">입찰 금액 :</div>
-            <input
-              className="text-center"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
+          <div className="w-75 m-auto border border-dark  border-3 mt-3" style={divStyle}>
+            <div className="my-3">
+              <div className="d-flex justify-content-center">
+                <div className="mx-2">부동산 번호 :</div>
+                <input
+                  className="text-center"
+                  value={selectSeat}
+                  onChange={(e) => setSelectSeat(e.target.value)}
+                />
+              </div>
+              <div className="d-flex justify-content-center">
+                <div className="mx-3">입찰 금액 :</div>
+                <input
+                  className="text-center"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="d-flex justify-content-center my-3">
+              <button style={divStyle} onClick={creatBid}>
+                입찰하기
+              </button>
+            </div>
           </div>
         </div>
-        <div className="d-flex justify-content-center my-3">
-          <button style={divStyle} onClick={creatBid}>
-            입찰하기
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
