@@ -15,6 +15,10 @@ export default function AuctionSeat({ updateData }) {
   const [totalseat, setTotalSeat] = useState("");
   const navigate = useNavigate();
   const createAuction = () => {
+    if (!rows || !cols || !totalseat) {
+      alert("정보를 입력하세요");
+      return;
+    }
     const token = userData.accessToken;
 
     const auctionData = {

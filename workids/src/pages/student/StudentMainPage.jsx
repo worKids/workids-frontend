@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import StudentTopNav from "../../components/student/StudentTopNav";
 import "./student.css";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { axBase } from "../../apis/axiosInstance";
 import { userState } from "../../recoil/userAtoms";
 export default function StudentMainPage() {
-  const userData = useRecoilValue(userState);
+  const [userData, setUserData] = useRecoilState(userState);
   const [state, setState] = useState(0);
   const [lawList, setLawList] = useState([]); //법 항목
 
@@ -24,6 +24,25 @@ export default function StudentMainPage() {
     })
       .then((response) => {
         console.log(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+    axBase(token)({
+      method: "post",
+      url: "/student/nation",
+      data: {
+        nationNum: userData.nationNum,
+        studentNum: userData.userNumber,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        const updateUserData = {
+          ...userData,
+          nationStudentNum: response.data.data.nationStudentNum,
+        };
+        setUserData(updateUserData);
       })
       .catch((err) => {
         console.log(err.response.data.message);
