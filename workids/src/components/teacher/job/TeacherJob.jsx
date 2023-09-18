@@ -8,14 +8,14 @@ import TeacherJobDelete from "./TeacherJobDelete";
 import TeacherJobUpdate from "./TeacherJobUpdate";
 
 export default function TeacherJob(){
-    const jobMenu = ["직업 조회", "직업 부여"];
+    const jobMenu = ["직업 조회", "직업 수정"];
     const [state, setState] = useState(0);//버튼 클릭
     const [userData, setUserData] = useRecoilState(userState);
     const [jobList, setJobList] = useState([]); //직업 항목
     const [jobStudentList, setJobStudentList] = useState([]); //학생 직업 부여 항목
     const [jobKindList, setJobKindList] = useState([]); //직업 종류 항목
     const navigate = useNavigate();
-    const [selectedJob, setSelectedJob] = useState("");
+  
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -116,27 +116,42 @@ export default function TeacherJob(){
        
 
 
-    //직업부여 출력화면
-    const JobStudentItems  = jobStudentList.map((menu, index) => (
-        <tr key={index}>
+
+    //직업수정 출력화면
+    function JobStudentUpdateItem({ menu, jobList }) {
+        const [selectedJob, setSelectedJob] = useState(menu.name);
+      
+        return (
+          <tr>
             <td>{menu.citizenNumber}</td>
             <td>{menu.studentName}</td>
-            <td> 
-                <select
-          name="jobs"
-          id="jobs"
-          value={selectedJob} 
-          onChange={(e) => setSelectedJob(e.target.value)} 
-                >
-          <option value={menu.name}>{menu.name}</option>
-        </select>
-        </td>
             <td>
-            <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
+              <select
+                name="jobs"
+                id="jobs"
+                value={selectedJob}
+                onChange={(e) => setSelectedJob(e.target.value)}
+              >
+                    <option value={menu.name}>{menu.name}</option>
+                {jobList.map((job, index) => (
+                  <option key={index} value={job.name}>
+                    {job.name}
+                  </option>
+                ))}
+              </select>
+            </td>
+            <td>
+              <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
             </td>
             <hr></hr>
-        </tr>  
-    ));
+          </tr>
+        );
+      }
+      
+      // JobStudentUpdateItems 배열을 사용하여 컴포넌트 렌더링
+      const JobStudentUpdateItems = jobStudentList.map((menu, index) => (
+        <JobStudentUpdateItem key={index} menu={menu} jobList={jobList} />
+      ));
     
 
 
@@ -176,27 +191,27 @@ export default function TeacherJob(){
                             <TeacherJobCreate />
                         </div>
                     </div>
-                ) : (
-                    <div>
-                        <table>
-                            
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '20%' }}>학급 번호</th>
-                                    <th style={{ width: '40%' }}>이름</th>
-                                    <th style={{ width: '40%' }}>직업</th>
-                                    <th style={{ width: '40%' }}></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                {JobStudentItems}
-                            </tbody>
-                           
+               
+                   ) : (
+                   <div>
+                    <table>
+                        
+                        <thead>
+                            <tr>
+                                <th style={{ width: '20%' }}>학급 번호</th>
+                                <th style={{ width: '40%' }}>이름</th>
+                                <th style={{ width: '40%' }}>직업</th>
+                                <th style={{ width: '40%' }}></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {JobStudentUpdateItems}
+                        </tbody>
+                       
 
-                        </table>
-                    </div>
-                        )}
-            </div>
+                    </table>
+                </div>
+            )}
+        </div>
     );
 }
