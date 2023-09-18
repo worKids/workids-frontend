@@ -19,7 +19,7 @@ export default function TeacherLawCreate(){
         nationNum : userData.nationNum,
         content: "",
         type: 0,
-        fine: 0,
+        fine: null,
         penalty: "",
       });
     const {nationNum, content, type, fine, penalty} = addLaw;
@@ -44,7 +44,7 @@ export default function TeacherLawCreate(){
           nationNum: userData.nationNum, 
           content: "",
           type: 0,
-          fine: 0,
+          fine: null,
           penalty: "",
         })
     };
@@ -54,7 +54,7 @@ export default function TeacherLawCreate(){
           nationNum: userData.nationNum,  
           content: "",
           type: 1,
-          fine: 0,
+          fine: null,
           penalty: "",
         })
     };
@@ -70,7 +70,7 @@ export default function TeacherLawCreate(){
     };
 
     const handleAddLaw = () => {
-        if((addLaw.content=="" || addLaw.fine==0) &&  (addLaw.content=="" || addLaw.penalty=="")){
+        if((addLaw.content=="" || addLaw.fine==null) &&  (addLaw.content=="" || addLaw.penalty=="")){
             alert("빈칸을 모두 채워주세요. (벌금은 0이 될 수 없습니다.)");
         }else{
             const token = userData.accessToken;
@@ -104,7 +104,7 @@ export default function TeacherLawCreate(){
     
     return(
         <div>
-            <button onClick={handleShow}>추가</button>
+            <button onClick={handleShow} style={{fontSize:"20px"}}>추가</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
@@ -152,7 +152,7 @@ export default function TeacherLawCreate(){
                                         벌금: 
                                     </Form.Label>
                                     <Col sm="3">
-                                        <Form.Control type="text" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine}/>
+                                        <Form.Control type="text" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
                                     </Col>
                                     <Col sm="3">미소</Col>
                                 </Form.Group>
