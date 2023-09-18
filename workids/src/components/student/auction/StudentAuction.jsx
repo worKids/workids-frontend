@@ -1,5 +1,6 @@
 import React from "react";
 import StudentRecentAuction from "./StudentRecentAuction";
+import StudentAuctionList from "./StudentAuctionList";
 
 export default function StudentAuction(props) {
   const divStyle = {
@@ -7,7 +8,7 @@ export default function StudentAuction(props) {
     borderRadius: "40px",
   };
   const heightStyle = {
-    height: "85%",
+    height: "100%",
     borderRadius: "40px",
   };
 
@@ -21,9 +22,8 @@ export default function StudentAuction(props) {
         </div>
       ) : (
         <div className="h-100">
-          <div className="mx-3 mt-2 mb-4 fs-3">경매 내역 보기</div>
           <div className="border border-dark  border-3 p-5" style={heightStyle}>
-            <h1>{props.state}</h1>
+            <StudentAuctionList />
           </div>
         </div>
       )}
