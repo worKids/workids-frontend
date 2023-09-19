@@ -9,6 +9,7 @@ export default function StudentMainPage() {
   const [userData, setUserData] = useRecoilState(userState);
   const [state, setState] = useState(0);
   const [lawList, setLawList] = useState([]); //법 항목
+  const [jobList, setJobList] = useState([]); //직업 항목
 
   useEffect(() => {
     const token = userData.accessToken;
@@ -78,6 +79,29 @@ export default function StudentMainPage() {
     });
 
   }, []);
+  //직업 항목 리스트 뽑아오기
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+        navigate("/");
+    }
+
+    axBase(token)({
+    method: "post",
+    url: "/student/job/list",
+    data: {
+        nationNum: userData.nationNum,
+    },
+    })
+    .then((response) => {
+        console.log(response.data.data);
+        setJobList(response.data.data);
+    })
+    .catch((err) => {
+        alert(err.response.data.message);
+    });
+
+  }, []);
 
   const isActive = (index) => {
     if (state === index) {
@@ -130,6 +154,10 @@ export default function StudentMainPage() {
     navigate("/student/law");
   };
 
+  const navigateToJob = () => {
+    navigate("/student/job");
+  };
+
   return (
     <div className="h-100">
       <StudentTopNav />
@@ -143,7 +171,14 @@ export default function StudentMainPage() {
                 <div className="m-1">{menu.content}</div>
               ))}
             </div>
-          ) : <div>직업 넣기</div>}
+          ) : state === 1 ? (
+            <div className="margin-left-20 p-2">
+              <div className="p-2"><button style={{border:'none', backgroundColor:'transparent', float: 'right'}} onClick={navigateToJob}>내 직업 보러가기&gt;</button></div>
+              {jobList.map((menu, index) => (
+                <div className="m-1">{menu.name}</div>
+              ))}
+            </div>
+          ) : null}
         </div>
         <div className="w-50 my-3 mx-5">
           <div className="d-flex" style={rightDivStyle}>
