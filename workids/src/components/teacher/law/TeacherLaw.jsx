@@ -47,9 +47,7 @@ export default function TeacherLaw(){
         fontSize: "18px",
         textAlign: "center",
         marginTop: "2vh",
-        height: "38vh",
         backgroundColor: 'rgba(217, 217, 217, 0.5)',
-        overflow: "auto",
         border: "solid 5px gray"
     }
 
@@ -117,11 +115,11 @@ export default function TeacherLaw(){
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
         <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
-            <div className="col-2">{menu.citizenNumber}</div>
+            <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
             <div className="col-3">{menu.content}</div>
             <div className="col-2">{menu.fine}</div>
-            <div className="col-2">{menu.createdDate}</div>
+            <div className="col-3">{menu.createdDate}</div>
             <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum}/></div>
         </div>
     ));
@@ -199,10 +197,10 @@ export default function TeacherLaw(){
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
         <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
-            <div className="col-sm-2">{menu.citizenNumber}</div>
-            <div className="col-sm-2">{menu.studentName}</div>
-            <div className="col-sm-2">{menu.content}</div>
-            <div className="col-sm-2">{menu.penalty}</div>
+            <div className="col-sm-1">{menu.citizenNumber}</div>
+            <div className="col-sm-1">{menu.studentName}</div>
+            <div className="col-sm-3">{menu.content}</div>
+            <div className="col-sm-3">{menu.penalty}</div>
             <div className="col-sm-2">{menu.createdDate}</div>
             <div className="col-sm-1">
                 <input
@@ -370,14 +368,16 @@ export default function TeacherLaw(){
                         <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
                             <div className="row m-3 p-1">
-                                <div className="col-2">학급번호</div>
+                                <div className="col-1">번호</div>
                                 <div className="col-2">이름</div>
                                 <div className="col-3">법 내용</div>
                                 <div className="col-2">벌금</div>
-                                <div className="col-2">부과일</div>
+                                <div className="col-3">부과일</div>
                                 <div className="col-1"></div>
                             </div>
-                            {FineStudentItems}    
+                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                                {FineStudentItems}    
+                            </div>
                         </div>
                     </div>
                 ) : (
@@ -388,15 +388,17 @@ export default function TeacherLaw(){
                         <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
                             <div className="row m-3 p-1">
-                                <div className="col-sm-2">학급번호</div>
-                                <div className="col-sm-2">이름</div>
-                                <div className="col-sm-2">법 내용</div>
-                                <div className="col-sm-2">벌칙</div>
+                                <div className="col-sm-1">번호</div>
+                                <div className="col-sm-1">이름</div>
+                                <div className="col-sm-3">법 내용</div>
+                                <div className="col-sm-3">벌칙</div>
                                 <div className="col-sm-2">부과일</div>
                                 <div className="col-sm-1">체크</div>
                                 <div className="col-sm-1"></div>
                             </div>
-                            {PenaltyStudentItems}    
+                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                                {PenaltyStudentItems}   
+                            </div> 
                         </div>
                     </div>
                 )}
