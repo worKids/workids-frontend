@@ -6,6 +6,7 @@ import { axBase } from "../../../apis/axiosInstance";
 import TeacherCreditRatingUpdate from "./TeacherCreditRatingUpdate";
 import TeacherImmigrantList from "./TeacherImmigrantList";
 import TeacherImmigrantList2 from "./TeacherImmigrantList2";
+import TeacherCitizenInfo from "./TeacherCitizenInfo";
 
 
 export default function TeacherCitizen() {
@@ -21,6 +22,10 @@ export default function TeacherCitizen() {
         setCreditRatingList(updatedCreditRatingList);
     };
     const [inputValue, setInputValue] = useState(""); // 입력한 값을 상태로 관리합니다.
+
+    
+      
+
 
     const handleInputChange = (e) => {
         // 입력값이 변경될 때 상태를 업데이트합니다.
@@ -111,19 +116,18 @@ export default function TeacherCitizen() {
 
 
 
-
-    //국민관리 출력화면
-    const citizenItems = citizenList.map((menu, index) => (
-        <tr key={index}>
-            <td>{menu.citizenNumber}</td>
-            <td>{menu.studentName}</td>
-            <td>{menu.name}</td>
-            <td>{menu.asset}</td>
-            <td>{menu.credit_rating}</td>
-
-            <hr></hr>
-        </tr>
-    ));
+   // 국민관리 출력화면
+  const citizenItems = citizenList.map((menu, index) => (
+    <tr key={index}>
+      <td>
+      <TeacherCitizenInfo citizenNumber = {menu.citizenNumber} />
+      </td>
+      <td>{menu.studentName}</td>
+      <td>{menu.name}</td>
+      <td>{menu.asset}</td>
+      <td>{menu.credit_rating}</td>
+    </tr>
+  ));
 
 
 
@@ -246,7 +250,9 @@ export default function TeacherCitizen() {
               </div>
             </div>
           ) : (
-            <button></button>
+           <p> 통계페이지</p>
           )}
-        </div>
-      )};
+    
+    </div>
+  );
+}
