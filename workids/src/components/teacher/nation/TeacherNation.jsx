@@ -81,6 +81,7 @@ export default function TeacherNation(){
         })
           .then((response) => {
             console.log("변경된 내용이 성공적으로 저장되었습니다.");
+            alert("변경된 내용이 성공적으로 저장되었습니다.");
           })
           .catch((err) => {
             console.log("변경된 내용 저장 중 오류가 발생했습니다.", err.response.data.message);
@@ -262,13 +263,7 @@ export default function TeacherNation(){
                                 />
                             </div>
                             <div className="mb-3">
-                                <input
-                                type="text"
-                                className="form-control"
-                                id="code"
-                                value={nationInfo.code}
-                                onChange={(e) => setNationInfo({ ...nationInfo, code: e.target.value })}
-                                />
+                                {nationInfo.code}
                             </div>
                         </div> 
                     </div>
