@@ -8,6 +8,7 @@ export default function TeacherImmigrantList({ citizenNumber }) {
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [immigrantList, setImmigrantList] = useState([]); // 국민 항목
+    const [jobList, setJobList] = useState([]); //직업 항목
 
     const handleClose = () => setShow(false);
 
@@ -34,10 +35,34 @@ export default function TeacherImmigrantList({ citizenNumber }) {
             });
     };
 
-    // 이민자관리 출력화면
+    //직업리스트 뽑아오기
+    useEffect(() => {
+        const token = userData.accessToken;
+        if (!token) {
+            navigate("/");
+        }
+
+        axBase(token)({
+            method: "post",
+            url: "/job/list",
+            data: {
+                nationNum: userData.nationNum,
+            },
+        })
+            .then((response) => {
+                console.log(response.data.data);
+                setJobList(response.data.data);
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
+
+    }, []);
+
     const [name, setName] = useState('');
     const [asset, setAsset] = useState('');
     const [creditRating, setCreditRating] = useState('');
+    const [selectedJob, setSelectedJob] = useState(''); // 선택된 직업
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -53,19 +78,33 @@ export default function TeacherImmigrantList({ citizenNumber }) {
 
     const immigrantItems = immigrantList.map((menu, index) => (
         <tr key={index}>
-            <td>{menu.citizenNumber}</td>
-            <td>{menu.studentName}</td>
-            <td><input type="text" value={name} onChange={handleNameChange} /></td>
-            <td><input type="number" value={asset} onChange={handleAssetChange} /></td>
-            <td><input type="number" value={creditRating} onChange={handleCreditRatingChange} /></td>
-            <td><TeacherImmigrantAcquire
-                citizenNumber={menu.citizenNumber}
-                name={name}
-                asset={asset}
-                creditRating={creditRating}
-            /></td>
+          <td>{menu.citizenNumber}</td>
+          <td>{menu.studentName}</td>
+          <td>
+            <select
+              name="jobs"
+              id="jobs"
+              value={selectedJob}
+              onChange={(e) => setSelectedJob(e.target.value)}
+            >
+              <option value={selectedJob}>{selectedJob}</option>
+              {jobList.map((job, index) => (
+                <option key={index} value={job.name}>
+                  {job.name}
+                </option>
+              ))}
+            </select>
+          </td>
+          <td><input type="number" value={asset} onChange={handleAssetChange} /></td>
+          <td><input type="number" value={creditRating} onChange={handleCreditRatingChange} /></td>
+          <td><TeacherImmigrantAcquire
+            citizenNumber={menu.citizenNumber}
+            name={selectedJob}
+            asset={asset}
+            creditRating={creditRating}
+          /></td>
         </tr>
-    ));
+      ));
     return (
         <div>
             <button onClick={handleShow}>학급번호로 조회</button>
