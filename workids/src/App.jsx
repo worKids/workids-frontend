@@ -20,6 +20,7 @@ import StudentLawPage from "./pages/student/StudentLawPage";
 import NationPickPage from "./pages/NationPickPage";
 import CreateNationPage from "./pages/CreateNationPage";
 import TeacherJoinResultPage from './pages/teacher/NationJoinResultPagae';
+import TeacherNationCitizenPage from "./pages/teacher/TeacherNationCitizenPage";
 export default function App() {
   return (
     <Routes>
@@ -44,6 +45,7 @@ export default function App() {
       <Route path="/student/ranking" element={<StudentRankingPage />} />
       <Route path="/teacher/nation/citizen" element={<TeacherMainPage />} />
       <Route path="/teacher/nation/main" element={<TeacherMainPage />} /> 
+      <Route path="/teacher/citizenCreate" element={<TeacherNationCitizenPage />} /> 
     </Routes>
   );
 }

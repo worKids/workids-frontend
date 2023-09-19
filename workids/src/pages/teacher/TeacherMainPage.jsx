@@ -78,7 +78,7 @@ export default function TeacherMainPage() {
 
 }, []);
 
-    //법 항목 출력
+  //법 항목 출력
   const LawItems = lawList.map((item,index)=>(
 
     <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"15px", textAlign:"center"}}>
