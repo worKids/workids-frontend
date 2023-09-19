@@ -85,7 +85,7 @@ export default function CreateNationPage() {
  
         navigate("/teacher/nationCreate", {
           state: {
-            code: `${code}`
+            code: nationData.code
           },
         });
       })
