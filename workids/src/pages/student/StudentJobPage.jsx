@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StudentTopNav from "../../components/student/StudentTopNav";
 import { useNavigate } from "react-router-dom";
-import StudentJob from "../../components/student/job/StudentJob";
+//import StudentJob from "../../components/student/job/StudentJob";
 
 export default function StudentJobPage() {
   const [state, setState] = useState(0);

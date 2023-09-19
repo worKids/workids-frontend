@@ -281,14 +281,21 @@ export default function TeacherNation(){
                   </div>
                   </div>
                 ) : (
-                    <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
-                    <p>국민 목록 설정이 되어있지 않습니다.</p>
-                    <p>국민 목록을 설정해주세요 ~ !</p>
-                    
-                    <p/>
-                    <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
-
-                    </div>
+                    showCitizenList ? (
+                        <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
+                        <p>국민 목록 설정이 되어있지 않습니다.</p>
+                        <p>국민 목록을 설정해주세요 ~ !</p>
+                        <p/>
+                        {navigateToCitizenCreate ? (
+                          <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
+                        ) : null}
+                      </div>
+                      ) : (
+                        <div>
+                          {/* 여기에 국민 목록 설정 컴포넌트를 렌더링 */}
+                          {/* 예: <CitizenList /> */}
+                        </div>
+                      )
                 )}
             </div>
     );

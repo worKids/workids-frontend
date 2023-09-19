@@ -41,7 +41,7 @@ export default function NationPickPage() {
     <TeacherTopNav />
     <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
         <h3 className="ms-3 ">나라 설립을 환영합니다!</h3><br/>
-        <h3 className="ms-3 ">참여코드:{code} </h3><br/>
+        <h3 className="ms-3 ">참여코드: </h3><br/>
 
         <h3 className="ms-3 ">참여 가능한 국민 목록을 설정하고</h3><br/>
         <h3 className="ms-3 ">참여코드를 통해 국민을 초대해보세요!</h3><br/>
