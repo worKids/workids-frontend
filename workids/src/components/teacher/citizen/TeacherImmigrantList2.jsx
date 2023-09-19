@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
-import TeacherImmigrantAcquire from "./TeacherImmigrantAcquire";
+import TeacherImmigrantLeave from "./TeacherImmigrantLeave";
 
-export default function TeacherImmigrantList({ citizenNumber }) {
+export default function TeacherImmigrantList2({ citizenNumber }) {
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
-    const [immigrantList, setImmigrantList] = useState([]); // 국민 항목
+    const [immigrantList2, setImmigrantList2] = useState([]); // 국민 항목
 
     const handleClose = () => setShow(false);
 
@@ -26,7 +26,7 @@ export default function TeacherImmigrantList({ citizenNumber }) {
             })
             .then((response) => {
                 console.log(response.data.data);
-                setImmigrantList(response.data.data);
+                setImmigrantList2(response.data.data);
                 setShow(true); // 조회 결과가 있으면 테이블을 보여주도록 설정
             })
             .catch((err) => {
@@ -35,37 +35,17 @@ export default function TeacherImmigrantList({ citizenNumber }) {
     };
 
     // 이민자관리 출력화면
-    const [name, setName] = useState('');
-    const [asset, setAsset] = useState('');
-    const [creditRating, setCreditRating] = useState('');
-
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
-
-    const handleAssetChange = (event) => {
-        setAsset(event.target.value);
-    };
-
-    const handleCreditRatingChange = (event) => {
-        setCreditRating(event.target.value);
-    };
-
-    const immigrantItems = immigrantList.map((menu, index) => (
+    const immigrantItems2 = immigrantList2.map((menu, index) => (
         <tr key={index}>
             <td>{menu.citizenNumber}</td>
             <td>{menu.studentName}</td>
-            <td><input type="text" value={name} onChange={handleNameChange} /></td>
-            <td><input type="number" value={asset} onChange={handleAssetChange} /></td>
-            <td><input type="number" value={creditRating} onChange={handleCreditRatingChange} /></td>
-            <td><TeacherImmigrantAcquire
-                citizenNumber={menu.citizenNumber}
-                name={name}
-                asset={asset}
-                creditRating={creditRating}
-            /></td>
+            <td>{menu.name}</td>
+            <td>{menu.asset}</td>
+            <td>{menu.credit_rating}</td>
+            <td><TeacherImmigrantLeave citizenNumber={menu.citizenNumber} /></td>
         </tr>
     ));
+
     return (
         <div>
             <button onClick={handleShow}>학급번호로 조회</button>
@@ -81,7 +61,7 @@ export default function TeacherImmigrantList({ citizenNumber }) {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>{immigrantItems}</tbody>
+                    <tbody>{immigrantItems2}</tbody>
                 </table>
             )}
         </div>

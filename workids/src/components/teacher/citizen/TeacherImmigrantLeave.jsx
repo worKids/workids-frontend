@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherImmigrantAcquire({citizenNumber, name, asset, creditRating}){
+export default function TeacherImmigrantLeave({citizenNumber}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     
@@ -13,8 +13,8 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
    
 
 
-    //신용도 수정
-    const handleAcquireImmigrant = () => {
+    //국적 이탈
+    const handleLeaveImmigrant = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -22,17 +22,14 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
     
         axBase(token)({
             method: "patch",
-            url: "/teacher/citizen/immigrant/acquire",
+            url: "/teacher/citizen/immigrant/leave",
             data: {
                 nationNum: userData.nationNum,
                 citizenNumber : citizenNumber,
-                name : name,
-                asset : asset,
-                creditRating : creditRating,
             },
         })
         .then((response) => {
-            alert("취득 신고 완료");
+            alert("완료");
             handleClose();
         })
         .catch((err) => {
@@ -43,14 +40,14 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
 
     return(
         <div>
-            <button onClick={handleShow}>취득신고</button>
+            <button onClick={handleShow}>이탈신고</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>취득신고하기</Modal.Title>
+                    <Modal.Title>국적 이탈하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -58,7 +55,7 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleAcquireImmigrant()}>Yes</button>
+                    <button onClick={() => handleLeaveImmigrant()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
