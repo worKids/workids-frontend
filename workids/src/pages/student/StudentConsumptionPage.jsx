@@ -48,7 +48,7 @@ export default function StudentConsumptionPage() {
                 <div className="border border-dark  border-3 text-center p-3 rounded-pill">
                     KB 시장입니다~
                 </div>
-                <div className="lamu" onClick={navigateToMain}></div>
+                <div className="kiki" onClick={navigateToMain}></div>
                 </div>
             </div>
             </div>
