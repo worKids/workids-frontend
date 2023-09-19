@@ -3,65 +3,63 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
-export default function TeacherImmigrantAcquire({citizenNumber, name, asset, creditRating}){
+export default function StudentConsumptionCreate({consumptionNum}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
-    
+    const navigate = useNavigate();
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-   
 
-
-    //신용도 수정
-    const handleAcquireImmigrant = () => {
+    //소비항목 신청
+    const handleStudentConsumptionCreate = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
     
         axBase(token)({
-            method: "patch",
-            url: "/teacher/citizen/immigrant/acquire",
+            method: "post",
+            url: "/student/consumption",
             data: {
-                nationNum: userData.nationNum,
-                citizenNumber : citizenNumber,
-                name : name,
-                asset : asset,
-                creditRating : creditRating,
+                consumptionNum:consumptionNum,
+                nationStudentNum: userData.nationStudentNum,
             },
         })
         .then((response) => {
-            alert("취득 신고 완료");
-            handleClose();
+            alert("소비 항목 신청 완료");
+            setShow(false)
+            window.location.reload();
         })
         .catch((err) => {
             alert(err.response.data.message);
         });
     };
 
-
     return(
         <div>
-            <button onClick={handleShow}>취득신고</button>
+            <button onClick={handleShow}>신청</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>취득신고하기</Modal.Title>
+                    <Modal.Title>소비 항목 신청하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        정말로 수정하시겠습니까?
+                        해당 소비 항목을 신청하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleAcquireImmigrant()}>Yes</button>
+                    <button onClick={() => handleStudentConsumptionCreate()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
         </div>
     )
+
 }

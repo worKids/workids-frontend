@@ -3,18 +3,18 @@ import Modal from 'react-bootstrap/Modal';
 import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
-export default function TeacherImmigrantAcquire({citizenNumber, name, asset, creditRating}){
+export default function StudentConsumptionDelete({consumptionNationStudentNum}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
-    
+    const navigate = useNavigate();
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-   
 
-
-    //신용도 수정
-    const handleAcquireImmigrant = () => {
+    //신청 내역 취소
+    const handleStudentConsumptionDelete = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -22,46 +22,43 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
     
         axBase(token)({
             method: "patch",
-            url: "/teacher/citizen/immigrant/acquire",
+            url: "/student/consumption/cancel",
             data: {
-                nationNum: userData.nationNum,
-                citizenNumber : citizenNumber,
-                name : name,
-                asset : asset,
-                creditRating : creditRating,
+                consumptionNationStudentNum:consumptionNationStudentNum,
             },
         })
         .then((response) => {
-            alert("취득 신고 완료");
-            handleClose();
+            alert("신청 내역 취소 완료");
+            setShow(false)
+            window.location.reload();
         })
         .catch((err) => {
             alert(err.response.data.message);
         });
     };
 
-
     return(
         <div>
-            <button onClick={handleShow}>취득신고</button>
+            <button onClick={handleShow}>취소</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>취득신고하기</Modal.Title>
+                    <Modal.Title>신청 내역 취소하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        정말로 수정하시겠습니까?
+                        해당 소비 내역 신청을 취소하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleAcquireImmigrant()}>Yes</button>
+                    <button onClick={() => handleStudentConsumptionDelete()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
         </div>
     )
+
 }

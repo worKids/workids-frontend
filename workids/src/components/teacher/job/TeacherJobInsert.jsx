@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherImmigrantAcquire({citizenNumber, name, asset, creditRating}){
+export default function TeacherJobUpdate({citizenNumber, name}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     
@@ -13,26 +13,25 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
    
 
 
-    //신용도 수정
-    const handleAcquireImmigrant = () => {
+    //직업부여 수정
+    const handleInsertJob = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
         }
     
         axBase(token)({
-            method: "patch",
-            url: "/teacher/citizen/immigrant/acquire",
+            method: "post",
+            url: "teacher/job/citizen/join",
             data: {
                 nationNum: userData.nationNum,
                 citizenNumber : citizenNumber,
                 name : name,
-                asset : asset,
-                creditRating : creditRating,
+                state : 0
             },
         })
         .then((response) => {
-            alert("취득 신고 완료");
+            alert("직업 수정 완료");
             handleClose();
         })
         .catch((err) => {
@@ -43,22 +42,22 @@ export default function TeacherImmigrantAcquire({citizenNumber, name, asset, cre
 
     return(
         <div>
-            <button onClick={handleShow}>취득신고</button>
+            <button onClick={handleShow}>등록</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>취득신고하기</Modal.Title>
+                    <Modal.Title>직업 등록하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        정말로 수정하시겠습니까?
+                        정말로 등록하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleAcquireImmigrant()}>Yes</button>
+                    <button onClick={() => handleInsertJob()}>Yes</button>
                     <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
