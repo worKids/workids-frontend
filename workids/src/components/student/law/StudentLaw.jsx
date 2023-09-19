@@ -3,146 +3,142 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
-import StudentConsumptionCreate from "./StudentConsumptionCreate";
-import StudentConsumptionDelete from "./StudentConsumptionDelete";
 
-export default function StudentConsumption(props) {
+export default function StudentLaw(props) {
   const [userData, setUserData] = useRecoilState(userState);
+  const [lawList, setLawList] = useState([]); //법 항목
+  const [fineStudentList, setFineStudentList] = useState([]); //벌금 부여 항목
+  const [penaltyStudentList, setPenaltyStudentList] = useState([]); //벌칙 부여 항목
   const navigate = useNavigate();
-  const [consumptionList, setConsumptionList] = useState([]); //소비 항목 리스트
-  const [studentConsumptionList, setStudentConsumptionList] = useState([]); // 신청 리스트
-  const [approvalConsumptionList, setApprovalConsumptionList] = useState([]); // 결재 완료 리스트
-  const numberOfConsumptionList = consumptionList.length;
-  const numberOfStudentConsumptionList = studentConsumptionList.length;
-  const numberOfApprovalConsumptionList = approvalConsumptionList.length;
+  const numberOfLawList = lawList.length;
+  const numberOfFineList = fineStudentList.length;
+  const numberOfPenaltyList = penaltyStudentList.length;
 
   const divStyle = {
       width: "80%",
       borderRadius: "40px",
-    };
-    const heightStyle = {
+  };
+  const heightStyle = {
       height: "85%",
       borderRadius: "40px",
       backgroundColor: 'rgba(254, 211, 56, 0.7)',
-    };
+  };
 
-  //내 소비 신청 내역 조회
+  //법 항목 리스트 뽑아오기
   useEffect(() => {
-    const token = userData.accessToken;
-    if (!token) {
-        navigate("/");
-    }
+      const token = userData.accessToken;
+      if (!token) {
+          navigate("/");
+      }
 
-    axBase(token)({
-        method: "post",
-        url: "/consumption/list",
-        data: {
-            nationNum: userData.nationNum,
-        },
-        })
-        .then((response) => {
-            console.log(response.data.data);
-            setConsumptionList(response.data.data);
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
+      axBase(token)({
+      method: "post",
+      url: "/law/list",
+      data: {
+          nationNum: userData.nationNum,
+      },
+      })
+      .then((response) => {
+          console.log(response.data.data);
+          setLawList(response.data.data);
+      })
+      .catch((err) => {
+          alert(err.response.data.message);
+      });
+
   }, []);
 
-  //소비 항목 출력
-  const ConsumptionItems = consumptionList.map((item,index)=>(
+  //법 항목 출력
+  const LawItems = lawList.map((item,index)=>(
+
     <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
       <div className="col-1 p-2">{index+1}</div>
       <div className="col-4 p-2">{item.content}</div>
-      <div className="col-3 p-2">{item.amount}</div> 
-      <div className="col-3 p-2"><StudentConsumptionCreate consumptionNum={item.consumptionNum}/></div>
-      <hr></hr>
-    </div>
-  ));
-
-  //소비 신청 내역 조회
-  useEffect(() => {
-    const token = userData.accessToken;
-    if (!token) {
-        navigate("/");
-    }
-
-    axBase(token)({
-        method: "post",
-        url: "/student/consumption/list",
-        data: {
-          nationStudentNum: userData.nationStudentNum,
-        },
-        })
-        .then((response) => {
-            console.log(response.data.data);
-            setStudentConsumptionList(response.data.data);
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
-
-  }, []);
-
-  //소비 신청 내역 출력
-  const StudentConsumptionItems = studentConsumptionList.map((item,index)=>(
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.amount}</div>
-      <div className="col-2 p-2">{item.createdDate}</div>
-      {item.state===0 ?(
-        <div className="col-1 p-2"><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum}/></div>
-      ):(
-        <div className="col-1 p-2"></div>
+      {item.type === 0 && (
+        <div className="col-3 p-2">{item.fine}</div>
       )}
-      {item.state===0 &&(
-        <div className="col-2 p-2">대기중</div>
+      {item.type === 1 &&(
+        <div className="col-3 p-2">{item.penalty}</div>
       )}
-      {item.state===1 &&(
-        <div className="col-2 p-2">승인됨</div>
-      )}
-      {item.state===2 &&(
-        <div className="col-2 p-2">거절됨</div>
-      )}
-      {item.state===3 &&(
-        <div className="col-2 p-2">취소됨</div>
-      )}
-      <hr></hr>
-    </div>
-  ));
-
-  //소비 승인 완료 내역 조회
-  useEffect(() => {
-    const token = userData.accessToken;
-    if (!token) {
-        navigate("/");
-    }
-
-    axBase(token)({
-        method: "post",
-        url: "/student/consumption/complete/list",
-        data: {
-          nationStudentNum: userData.nationStudentNum,
-        },
-        })
-        .then((response) => {
-            console.log(response.data.data);
-            setApprovalConsumptionList(response.data.data);
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
-  }, []);
-
-  //소비 승인 완료 항목 출력
-  const ApprovalItems = approvalConsumptionList.map((item,index)=>(
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.amount}</div>
       <div className="col-3 p-2">{item.createdDate}</div>
-      <div className="col-3 p-2">{item.updatedDate}</div>
+      <hr></hr>
+    </div>
+  ));
+
+  //부과된 벌금 리스트
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+        navigate("/");
+    }
+    
+    axBase(token)({
+        method: "post",
+        url: "/student/law/fine/list",
+        data: {
+          nationStudentNum: userData.nationStudentNum,
+        },
+        })
+        .then((response) => {
+            console.log(response.data.data);
+            setFineStudentList(response.data.data);
+        })
+        .catch((err) => {
+            alert(err.response.data.message);
+        });
+
+  }, []);
+
+  //부여된 벌금 출력
+  const FineItems = fineStudentList.map((item,index)=>(
+
+    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
+      <div className="col-2 p-2">{index+1}</div>
+      <div className="col-4 p-2">{item.content}</div>
+      <div className="col-2 p-2">{item.fine}</div>
+      <div className="col-3 p-2">{item.createdDate}</div>
+      <hr></hr>
+    </div>
+  ));
+
+  //부과된 벌칙 리스트
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+        navigate("/");
+    }
+
+    axBase(token)({
+        method: "post",
+        url: "/student/law/penalty/list",
+        data: {
+          nationStudentNum: userData.nationStudentNum,
+        },
+        })
+        .then((response) => {
+            console.log(response.data.data);
+            setPenaltyStudentList(response.data.data);
+        })
+        .catch((err) => {
+            alert(err.response.data.message);
+        });
+
+  }, []);
+
+  //부여된 벌칙 출력
+  const PenaltyItems = penaltyStudentList.map((item,index)=>(
+
+    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
+      <div className="col-1 p-2">{index+1}</div>
+      <div className="col-3 p-2">{item.content}</div>
+      <div className="col-3 p-2">{item.penalty}</div>
+      <div className="col-2 p-2">{item.createdDate}</div>
+      {item.penaltyCompleteState===0 && (
+        <div className="col-3 p-2">미수행</div>
+      )}
+      {item.penaltyCompleteState===1 && (
+        <div className="col-3 p-2">수행</div>
+      )}
       <hr></hr>
     </div>
   ));
@@ -151,24 +147,24 @@ export default function StudentConsumption(props) {
     <div className="border border-dark  border-3 p-3 h-100" style={divStyle}>
       {props.state === 0 ? (
         <div className="h-100">
-          <div className="mx-3 mt-2 fs-3">소비 신청하기</div>
-          {numberOfConsumptionList === 0 ? (
+          <div className="mx-3 mt-2 fs-3">나라 법 조회하기</div>
+          {numberOfLawList === 0 ? (
             <div className="h-100 d-flex justify-content-center align-items-center">
-              아직 생성된 소비 항목이 없습니다.
+              아직 제정된 법이 없습니다.
             </div>
-          ) : (
+          ): (
             <>
             <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
-                <div className="col-4">소비 항목</div>
-                <div className="col-3">금액</div>
-                <div className="col-3"></div>
+                <div className="col-4">법 항목</div>
+                <div className="col-3">부과내용</div>
+                <div className="col-3">제정일</div>
               </div>
               <hr className="border border-dark border-3"></hr>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
-                {ConsumptionItems}
+                {LawItems}
               </div>
             </div>
             </>
@@ -176,26 +172,24 @@ export default function StudentConsumption(props) {
         </div>
       ) :props.state === 1 ? (
         <div className="h-100">
-          <div className="mx-3 mt-2 fs-3">소비 신청 내역 보기</div>
-          {numberOfStudentConsumptionList === 0 ? (
+          <div className="mx-3 mt-2 fs-3">벌금 내역 보기</div>
+          {numberOfFineList === 0 ? (
             <div className="h-100 d-flex justify-content-center align-items-center">
-              신청한 소비 항목이 없습니다.
+              부과된 벌금이 없습니다.
             </div>
-          ) : (
+          ): (
             <>
             <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
-                <div className="col-1">No.</div>
-                <div className="col-3">소비 항목</div>
-                <div className="col-2">금액</div>
-                <div className="col-2">신청일</div>
-                <div className="col-1"></div>
-                <div className="col-2">상태</div>
+                <div className="col-2">No.</div>
+                <div className="col-4">법 항목</div>
+                <div className="col-2">벌금</div>
+                <div className="col-3">부과일</div>
               </div>
               <hr className="border border-dark border-3"></hr>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
-                {StudentConsumptionItems}
+                {FineItems}
               </div>
             </div>
             </>
@@ -203,25 +197,25 @@ export default function StudentConsumption(props) {
         </div>
       ):(
         <div className="h-100">
-          <div className="mx-3 mt-2 fs-3">소비 완료 내역 보기</div>
-          {numberOfApprovalConsumptionList === 0 ? (
+          <div className="mx-3 mt-2 fs-3">벌칙 내역 보기</div>
+          {numberOfPenaltyList === 0 ? (
             <div className="h-100 d-flex justify-content-center align-items-center">
-              소비 완료 항목이 없습니다.
+              부과된 벌칙이 없습니다.
             </div>
-          ) : (
+          ): (
             <>
             <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
-                <div className="col-3">소비 항목</div>
-                <div className="col-2">금액</div>
-                <div className="col-3">신청일</div>
-                <div className="col-3">승인일</div>
+                <div className="col-3">법 항목</div>
+                <div className="col-3">벌칙</div>
+                <div className="col-2">부과일</div>
+                <div className="col-3">수행여부</div>
               </div>
               <hr className="border border-dark border-3"></hr>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
-                {ApprovalItems}
+                {PenaltyItems}
               </div>
             </div>
             </>

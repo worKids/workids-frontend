@@ -81,6 +81,7 @@ export default function TeacherNation(){
         })
           .then((response) => {
             console.log("변경된 내용이 성공적으로 저장되었습니다.");
+            alert("변경된 내용이 성공적으로 저장되었습니다.");
           })
           .catch((err) => {
             console.log("변경된 내용 저장 중 오류가 발생했습니다.", err.response.data.message);
@@ -262,13 +263,7 @@ export default function TeacherNation(){
                                 />
                             </div>
                             <div className="mb-3">
-                                <input
-                                type="text"
-                                className="form-control"
-                                id="code"
-                                value={nationInfo.code}
-                                onChange={(e) => setNationInfo({ ...nationInfo, code: e.target.value })}
-                                />
+                                {nationInfo.code}
                             </div>
                         </div> 
                     </div>
@@ -281,14 +276,21 @@ export default function TeacherNation(){
                   </div>
                   </div>
                 ) : (
-                    <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
-                    <p>국민 목록 설정이 되어있지 않습니다.</p>
-                    <p>국민 목록을 설정해주세요 ~ !</p>
-                    
-                    <p/>
-                    <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
-
-                    </div>
+                    showCitizenList ? (
+                        <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
+                        <p>국민 목록 설정이 되어있지 않습니다.</p>
+                        <p>국민 목록을 설정해주세요 ~ !</p>
+                        <p/>
+                        {navigateToCitizenCreate ? (
+                          <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
+                        ) : null}
+                      </div>
+                      ) : (
+                        <div>
+                          {/* 여기에 국민 목록 설정 컴포넌트를 렌더링 */}
+                          {/* 예: <CitizenList /> */}
+                        </div>
+                      )
                 )}
             </div>
     );
