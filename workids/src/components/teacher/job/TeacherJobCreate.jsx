@@ -77,7 +77,7 @@ export default function TeacherJobCreate(){
     
     return(
         <div>
-            <button onClick={handleShow}>추가</button>
+              <button onClick={handleShow} style={{fontSize:"20px"}}>추가</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
