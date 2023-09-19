@@ -74,6 +74,12 @@ export default function TeacherBankList(){
 
     // 판매중인 은행 상품
     const showInUseBankList =  (
+        (bankInUseList.length === 0) 
+        ?
+        <div className="h-100 d-flex justify-content-center align-items-center">
+            은행 상품을 추가해보세요!
+        </div>
+        :
         bankInUseList.map((bank, index) => (
         
         <div key={index}>
@@ -114,6 +120,12 @@ export default function TeacherBankList(){
 
      // 판매종료한 은행 상품
      const showUnUseBankList =  (
+        (bankUnUseList.length === 0) 
+        ?
+        <div className="h-100 d-flex justify-content-center align-items-center">
+            판매 종료한 은행 상품이 없습니다!
+        </div>
+        :
         bankUnUseList.map((bank, index) => (
 
         <div key={index}>
@@ -150,62 +162,46 @@ export default function TeacherBankList(){
 
     return (
         <div>
-            <div className="row">
-                <div className="col">
-                    <div>판매중인 상품</div>
-                </div>
-                <div className="col-2 d-flex justify-content-end">
-                    <div className="btn border" onClick={() => openModal()}>상품 추가</div>
-                </div>
-            </div>
-            {
-                (bankInUseList.length === 0) 
-                ?
-                <div className="h-100 d-flex justify-content-center align-items-center">
-                    은행 상품을 추가해보세요!
-                </div>
-                :
-                <div>
-                    <div className="row m-2 text-center p-3 ">
-                        <div className="col-1">번호</div>
-                        <div className="col-1">유형</div>
-                        <div className="col-1">상품명</div>
-                        <div className="col-3">상품 설명</div>
-                        <div className="col-2">상품 가입 기간(주)</div>
-                        <div className="col-2">만기 이자율(%)</div>
-                        <div className="col-1">생성일</div>
-                        <div className="col-1">삭제</div>
+            <div>
+                <div className="row">
+                    <div className="col">
+                        <div>판매중인 상품</div>
                     </div>
+                    <div className="col-2 d-flex justify-content-end">
+                        <div className="btn border" onClick={() => openModal()}>상품 추가</div>
+                    </div>
+                </div>
+                <div className="row m-2 text-center p-3 ">
+                    <div className="col-1">번호</div>
+                    <div className="col-1">유형</div>
+                    <div className="col-1">상품명</div>
+                    <div className="col-3">상품 설명</div>
+                    <div className="col-2">상품 가입 기간(주)</div>
+                    <div className="col-2">만기 이자율(%)</div>
+                    <div className="col-1">생성일</div>
+                    <div className="col-1">삭제</div>
                     <div className="container overflow-auto" style={{ height: "50vh" }}>
                         {showInUseBankList}
                     </div>
-                    <div className="border-top"></div> {/* 구분선 */}
                 </div>
-            }
-            <div>판매종료한 상품</div>
-            {
-                (bankUnUseList.length === 0) 
-                ?
-                <div className="h-100 d-flex justify-content-center align-items-center">
-                    삭제한 은행 상품이 없습니다!
+            </div>
+            <div className="border-top"></div> {/* 구분선 */}
+            <div>
+                <div>판매종료한 상품</div>
+                <div className="row m-2 text-center p-3 ">
+                    <div className="col-1">번호</div>
+                    <div className="col-1">유형</div>
+                    <div className="col-1">상품명</div>
+                    <div className="col-3">상품 설명</div>
+                    <div className="col-2">상품 가입 기간(주)</div>
+                    <div className="col-2">만기 이자율(%)</div>
+                    <div className="col-1">생성일</div>
+                    <div className="col-1">종료일</div>
                 </div>
-                :
-                <div>
-                    <div className="row m-2 text-center p-3 ">
-                        <div className="col-1">번호</div>
-                        <div className="col-1">유형</div>
-                        <div className="col-1">상품명</div>
-                        <div className="col-3">상품 설명</div>
-                        <div className="col-2">상품 가입 기간(주)</div>
-                        <div className="col-2">만기 이자율(%)</div>
-                        <div className="col-1">생성일</div>
-                        <div className="col-1">종료일</div>
-                    </div>
-                    <div className="container overflow-auto" style={{ height: "50vh" }}>
-                        {showUnUseBankList}
-                    </div>
+                <div className="container overflow-auto" style={{ height: "50vh" }}>
+                    {showUnUseBankList}
                 </div>
-            }
+            </div>
             <Modal
                 show={showModal}
                 onHide={closeModal}

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import TeacherBankList from "./TeacherBankList";
+import TeacherDepositBankList from "./TeacherDepositBankList";
+import TeacherMainBankList from "./TeacherMainBankList"
 
 export default function TeacherBank(){
-    const bankMenu = ["상품 관리", "예금 계좌 가입 조회", "주거래 계좌 가입 조회"];
+    const bankMenu = ["상품 관리", "예금 계좌 가입 내역", "주거래 계좌 가입 내역"];
     const [state, setState] = useState(0);
 
     const clickMenu = (idx) => {
@@ -36,11 +38,15 @@ export default function TeacherBank(){
             <div>
                 <TeacherBankList />
             </div>
-        ) : (
+        ) : state === 1 ? (
             <div>
-                <h1>{state}</h1>
+                <TeacherDepositBankList />
             </div>
-        )}
+        ) : 
+            <div>
+                <TeacherMainBankList />
+            </div>
+        }
     </div>
     );
 }
