@@ -1,58 +1,14 @@
-import React, { useState } from "react";
-import StudentTopNav from "../../components/student/StudentTopNav";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
+import StudentTopNav from '../../components/student/StudentTopNav';
 import StudentJob from "../../components/student/job/StudentJob";
-
-export default function StudentJobPage() {
-  const [state, setState] = useState(0);
-  const navbarMenu = ["전체 직업보기", "내 직업 보기"];
-  const divStyle = {
-    width: "15%",
-  };
-  const heightStyle = {
-    height: "83%",
-  };
-  const isActive = (index) => {
-    if (state === index) {
-      return true;
-    }
-    return false;
-  };
-
-  const navigate = useNavigate();
-  const navigateToMain = () => {
-    navigate("/student");
-  };
-  const navigateMenu = (index) => {
-    setState(index);
-  };
-  const navbar = navbarMenu.map((menu, index) => (
-    <div
-      key={index}
-      onClick={() => navigateMenu(index)}
-      className={`my-3 border border-dark  border-3 text-center p-3 rounded-pill sideNav ${
-        isActive(index) ? "bg-warning text-white" : ""
-      }`}
-    >
-      {menu}
-    </div>
-  ));
+export default function TeacherJobPage() {
   return (
-    <div className="h-100">
+    <div>
       <StudentTopNav />
-      <div className="d-flex justify-content-around m-3" style={heightStyle}>
-        <div style={divStyle}>
-          {navbar}
-          <div className="d-flex justify-content-center ">
-            <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
-              <div className="border border-dark  border-3 text-center p-3 rounded-pill">
-                여긴 직업
-              </div>
-              <div className="lamu" onClick={navigateToMain}></div>
-            </div>
-          </div>
-        </div>
-        <StudentJob state={state} />
+      <div className="d-flex ">
+        <StudentSideNav />
+        <StudentJob />
       </div>
     </div>
   );
