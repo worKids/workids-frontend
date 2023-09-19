@@ -87,26 +87,26 @@ export default function StudentConsumption(props) {
   //소비 신청 내역 출력
   const StudentConsumptionItems = studentConsumptionList.map((item,index)=>(
     <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1">{index+1}</div>
-      <div className="col-3">{item.content}</div>
-      <div className="col-2">{item.amount}</div>
-      <div className="col-2">{item.createdDate}</div>
+      <div className="col-1 p-2">{index+1}</div>
+      <div className="col-3 p-2">{item.content}</div>
+      <div className="col-2 p-2">{item.amount}</div>
+      <div className="col-2 p-2">{item.createdDate}</div>
       {item.state===0 ?(
-        <div className="col-1"><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum}/></div>
+        <div className="col-1 p-2"><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum}/></div>
       ):(
-        <div className="col-1"></div>
+        <div className="col-1 p-2"></div>
       )}
       {item.state===0 &&(
-        <div className="col-2">대기중</div>
+        <div className="col-2 p-2">대기중</div>
       )}
       {item.state===1 &&(
-        <div className="col-2">승인됨</div>
+        <div className="col-2 p-2">승인됨</div>
       )}
       {item.state===2 &&(
-        <div className="col-2">거절됨</div>
+        <div className="col-2 p-2">거절됨</div>
       )}
       {item.state===3 &&(
-        <div className="col-2">취소됨</div>
+        <div className="col-2 p-2">취소됨</div>
       )}
       <hr></hr>
     </div>
