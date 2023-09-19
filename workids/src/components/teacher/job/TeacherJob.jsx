@@ -6,6 +6,7 @@ import { axBase } from "../../../apis/axiosInstance";
 import TeacherJobCreate from "./TeacherJobCreate";
 import TeacherJobDelete from "./TeacherJobDelete";
 import TeacherJobUpdate from "./TeacherJobUpdate";
+import TeacherJobInsert from "./TeacherJobInsert";
 
 export default function TeacherJob(){
     const jobMenu = ["직업 조회", "직업 수정"];
@@ -141,7 +142,11 @@ export default function TeacherJob(){
               </select>
             </td>
             <td>
-              <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
+                {menu.name === null ? (
+                    <TeacherJobInsert citizenNumber={menu.citizenNumber} name = {selectedJob} />
+                ) : (
+                    <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
+                )}
             </td>
             <hr></hr>
           </tr>
