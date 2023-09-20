@@ -11,7 +11,7 @@ export default function TeacherNation(){
     const [nationInfo, setNationInfo] = useState([]); 
     const [citizenList, setCitizenList] = useState([]); 
     const navigate = useNavigate();
-      const [showCitizenList, setShowCitizenList] = useState(false);
+    const [showCitizenList, setShowCitizenList] = useState(false);
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -116,7 +116,7 @@ export default function TeacherNation(){
 
     }, []);
 
-    useEffect(() => {
+    const handleGetCitizen = () => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -138,7 +138,7 @@ export default function TeacherNation(){
                 alert(err.response.data.message);
             });
 
-    }, []);
+    };
 
     //국민 목록 출력
     const CitizenItems = citizenList.map((item,index)=>(
