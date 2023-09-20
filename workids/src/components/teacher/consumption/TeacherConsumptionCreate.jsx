@@ -64,7 +64,6 @@ export default function TeacherConsumptionCreate(){
             .then((response) => {
                 alert("소비 항목 등록 완료");
                 setShow(false);
-                window.location.reload();
             })
             .catch((err) => {
                 alert(err.response.data.message);

@@ -30,28 +30,28 @@ export default function TeacherConsumption(){
 
     const firstBlock ={
         float: "left",
-        marginLeft: "6vh",
+        marginLeft: "2vh",
         paddingTop: "3vh",
         borderRadius: "40px",
-        width: "45%",
+        width: "48%",
         height: "80%",
         backgroundColor: 'rgba(254, 211, 56, 0.7)'
     }
 
     const secondBlock ={
         display: "inline-block",
-        marginLeft: "4vh",
+        marginLeft: "2vh",
         paddingTop: "3vh",
         borderRadius: "40px",
-        width: "45%",
+        width: "47%",
         height: "80%",
         backgroundColor: 'rgba(217, 217, 217, 0.5)'
     }
 
-    const table_student_consumption ={
-        fontSize: '16px',
-        width: '95%',
-        textAlign: 'center'
+    //내용 길어질때 col 속성
+    const colStyle = {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
     }
 
     //menuTab 관리
@@ -89,7 +89,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, []);
+    }, [consumptionList]);
 
     //소비-학생 미결재 리스트 가져오기
     useEffect(() => {
@@ -113,18 +113,18 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, []);
+    }, [outStandingConsumptionList]);
 
     //미결재 리스트 출력
     const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
-        <tr key={index}>
-            <td className="m-2">{menu.citizenNumber}</td>
-            <td className="m-2">{menu.studentName}</td>
-            <td className="m-2">{menu.content}</td>
-            <td className="m-2">{menu.amount}</td>
-            <td className="m-2">{menu.createdDate}</td>
-            <td className="m-2"><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state}/></td>
-        </tr>
+        <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
+            <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
+            <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
+            <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
+            <div className="col-sm-1 p-2" style={colStyle}>{menu.amount}</div>
+            <div className="col-sm-3 p-2" style={colStyle}>{menu.createdDate}</div>
+            <div className="col-sm-2 p-2" style={colStyle}><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state}/></div>
+        </div>
     ));
 
     //소비-학생 결재 리스트 가져오기
@@ -149,19 +149,20 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, []);
+    }, [approvalConsumptionList]);
 
     //결재 리스트 출력
     const approvalItems = approvalConsumptionList.map((menu,index) => (
-            <tr key={index}>
-                <td className="m-3 p-1">{menu.citizenNumber}</td>
-                <td className="m-3 p-1">{menu.studentName}</td>
-                <td className="m-3">{menu.content}</td>
-                <td className="m-3 p-2">{menu.amount}</td>
-                <td className="m-3">{menu.updatedDate}</td>
-                <td className="m-3 p-1">{menu.state === 1 ? "승인됨" : "거절됨"}</td>
-            </tr>
-        ));
+
+            <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
+                <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
+                <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
+                <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
+                <div className="col-sm-1 p-2" style={colStyle}>{menu.amount}</div>
+                <div className="col-sm-3 p-2" style={colStyle}>{menu.updatedDate}</div>
+                <div className="col-sm-2 p-2" style={colStyle}>{menu.state === 1 ? "승인됨" : "거절됨"}</div>
+            </div>
+    ));
 
     return(
         <div style={divStyle} className="border border-dark  border-3 p-3">
@@ -181,10 +182,10 @@ export default function TeacherConsumption(){
                         </div>
                     </div>
                     ):(
-                    <div className="container justify-content-md-center" style={{width:'90%'}}>
-                    <div className="container d-flex justify-content-end">(금액 단위:미소)</div>    
-                    <div className="overflow-auto m-3 p-4" style={{height:'50vh' }}>
-                        <table style={{marginLeft:'auto', marginRight:'auto', width:'90%'}}>
+                    <div className="container justify-content-md-center" style={{height:'80%'}}>
+                    <div className="container d-flex justify-content-end">(단위:미소)</div>    
+                    <div className="overflow-auto m-3 p-4" style={{height:'80%' }}>
+                        <table style={{marginLeft:'auto', marginRight:'auto', width:'80%'}}>
                         {consumptionList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
@@ -209,49 +210,37 @@ export default function TeacherConsumption(){
                 ):(
                     //두번째 탭 메뉴
                     <>
+                    <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={firstBlock} className="container justify-content-md-center border border-dark  border-3">
                             <h3 style={{textAlign:'center'}}>결재 완료</h3>
-                            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
-                            <div style={{height:'40vh', overflowY:'auto', overflowX:'hidden'}}>
-                                <table style={table_student_consumption} >
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: '10%' }} className="p-1 m-2">번호</th>
-                                            <th style={{ width: '15%' }} className="p-1 m-2">이름</th>
-                                            <th style={{ width: '30%' }} className="p-1 m-2">소비내역</th>
-                                            <th style={{ width: '10%' }} className="p-1 m-2">금액</th>
-                                            <th style={{ width: '20%' }} className="p-1 m-2">승인일</th>
-                                            <th style={{ width: '15%' }} className="p-1 m-2"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {approvalItems}
-                                    </tbody>
-                                </table>
+                            <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>
+                                <div className="col-sm-1 p-1" style={colStyle}>번호</div>
+                                <div className="col-sm-2 p-1" style={colStyle}>이름</div>
+                                <div className="col-sm-3 p-1" style={{...colStyle, overflow:"hidden"}}>소비내역</div>
+                                <div className="col-sm-1 p-1" style={colStyle}>금액</div>
+                                <div className="col-sm-3 p-1" style={colStyle}>승인일</div>
+                                <div className="col-sm-2 p-1" style={colStyle}></div>
+                            </div>
+                            <div style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
+                                {approvalItems}
                             </div>
                         </div>
-                        
+                    
                         <div style={secondBlock} className="container justify-content-md-center border border-dark  border-3">
                             <h3 style={{textAlign:'center'}}>미결재</h3>
-                            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
-                            <div style={{height:'40vh', overflowY:'auto', overflowX:'hidden' }}>
-                                <table style={table_student_consumption} >
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: '10%' }} className="p-1 m-2">번호</th>
-                                            <th style={{ width: '20%' }} className="p-1 m-2">이름</th>
-                                            <th style={{ width: '25%' }} className="p-1 m-2">소비내역</th>
-                                            <th style={{ width: '15%' }} className="p-1 m-2">금액</th>
-                                            <th style={{ width: '20%' }} className="p-1 m-2">신청일</th>
-                                            <th style={{ width: '20%' }} className="p-1 m-2"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {outStadndingItems}
-                                    </tbody>
-                                </table>
-                            </div>    
-                        </div></>
+                            <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>
+                                <div className="col-sm-1 p-1" style={colStyle}>번호</div>
+                                <div className="col-sm-2 p-1" style={colStyle}>이름</div>
+                                <div className="col-sm-3 p-1" style={{...colStyle, overflow:"hidden"}}>소비내역</div>
+                                <div className="col-sm-1 p-1" style={colStyle}>금액</div>
+                                <div className="col-sm-3 p-1" style={colStyle}>신청일</div>
+                                <div className="col-sm-2 p-1" style={colStyle}></div>
+                            </div>
+                            <div style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
+                                {outStadndingItems}
+                            </div>
+                        </div>
+                        </>
                 )}
         </div>
     );
