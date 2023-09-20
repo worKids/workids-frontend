@@ -122,10 +122,10 @@ export default function TeacherCitizen() {
       <td style={{ width: '20%', padding: '10px', fontSize: '20px' }}>
         <TeacherCitizenInfo citizenNumber={menu.citizenNumber} />
       </td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '19px' }}>{menu.studentName}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '19px' }}>{menu.name}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '19px' }}>{menu.asset}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '19px' }}>{'\u00A0\u00A0\u00A0'}{menu.credit_rating}</td>
+      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.studentName}</td>
+      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.name}</td>
+      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.asset}</td>
+      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{'\u00A0\u00A0\u00A0'}{menu.credit_rating}</td>
     </tr>
   ));
 
@@ -134,21 +134,23 @@ export default function TeacherCitizen() {
 
   //신용도관리 출력화면
   const creditRatingItems = creditRatingList.map((menu, index) => (
-
-    <tr key={index}>
-      <td>{menu.citizenNumber}</td>
-      <td>{menu.studentName}</td>
-      <td><input type="number" min={0} max={100} step={1} value={menu.creditRating} onChange={(e) => handleCreditRatingChange(e, index)}></input></td>
-      <td>
-        <td>
-          <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
-        </td>
-
+    <tr key={index} style={{ borderTop: '2.5px solid black' }}>
+      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>{menu.studentName}</td>
+      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>
+        <input
+          type="number"
+          min={0}
+          max={100}
+          step={1}
+          value={menu.creditRating}
+          onChange={(e) => handleCreditRatingChange(e, index)}
+        />
       </td>
-
-
+      <td style={{ width: '20%', padding: '2px', fontSize: '15px' }}>
+        <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
+      </td>
     </tr>
-
   ));
 
 
@@ -184,71 +186,99 @@ export default function TeacherCitizen() {
         </div>
       ) : state === 1 ? (
         <div>
-          <table>
-            <thead>
-              <tr>
-                <th style={{ width: '30%' }}>학급 번호</th>
-                <th style={{ width: '30%' }}>이름</th>
-                <th style={{ width: '30%' }}>신용도</th>
-                <th style={{ width: '30%' }}></th>
-              </tr>
-            </thead>
-            <tbody>
-              {creditRatingItems}
-            </tbody>
-          </table>
+          <div style={{ overflowX: 'auto', width: '80%', margin: '0 auto' }}>
+            <table style={{ width: '100%' }}>
+              <thead>
+                <tr>
+                  <th style={{ width: '20%', fontSize: '20px', padding: '10px' }}>학급 번호</th>
+                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}>이름</th>
+                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}>신용도</th>
+                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}></th>
+                </tr>
+              </thead>
+              <tbody>
+                {creditRatingItems}
+              </tbody>
+            </table>
+          </div>
+
         </div>
       ) : state === 2 ? (
+
         <div>
-
           <div>
-            <div>
-              <input
-                type="radio"
-                id="option1"
-                value="option1"
-                checked={radioValue === 'option1'}
-                onChange={handleRadioChange}
-              />
-              <label htmlFor="option1">국적취득신고</label>
-
-              <input
-                type="radio"
-                id="option2"
-                value="option2"
-                checked={radioValue === 'option2'}
-                onChange={handleRadioChange}
-              />
-              <label htmlFor="option2">국적이탈신고</label>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ marginRight: '40px', marginTop: '20px' }}> {/* marginTop 추가 */}
+                <input
+                  type="radio"
+                  id="option1"
+                  value="option1"
+                  checked={radioValue === 'option1'}
+                  onChange={handleRadioChange}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                  }}
+                />
+                <label htmlFor="option1" style={{ fontSize: '35px' }}>국적취득신고</label>
+              </div>
+              <div style={{ marginRight: '40px', marginTop: '20px' }}> {/* marginTop 추가 */}
+                <input
+                  type="radio"
+                  id="option2"
+                  value="option2"
+                  checked={radioValue === 'option2'}
+                  onChange={handleRadioChange}
+                  style={{
+                    width: '30px',
+                    height: '30px',
+                  }}
+                />
+                <label htmlFor="option1" style={{ fontSize: '35px' }}>국적이탈신고</label>
+              </div>
             </div>
 
-            {radioValue === 'option1' ? (
-              <div>
-                {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
 
-                <div>
+
+            {radioValue === 'option1' ? (
+              <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
+                {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* 가운데 정렬 */}
                   <input
                     type="number"
                     value={inputValue}
                     onChange={handleInputChange}
+                    style={{
+                      width: '160px', // 원하는 넓이로 조절
+                      marginRight: '10px',
+                    }}
                   />
-                  <TeacherImmigrantList citizenNumber={inputValue} />
-                </div>
+                  <div>
 
+                  <TeacherImmigrantList citizenNumber={inputValue} />
+                  </div>
+                </div>
               </div>
             ) : (
-              <div>
+              <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
                 {/* 2번 라디오 버튼을 선택한 경우 보여질 내용 */}
-                <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* 가운데 정렬 */}
                   <input
                     type="number"
                     value={inputValue}
                     onChange={handleInputChange}
+                    style={{
+                      width: '160px', // 원하는 넓이로 조절
+                      marginRight: '10px',
+                    }}
                   />
                   <TeacherImmigrantList2 citizenNumber={inputValue} />
                 </div>
               </div>
             )}
+
+
+
           </div>
         </div>
       ) : (

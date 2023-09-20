@@ -35,7 +35,7 @@ export default function TeacherCitizenInfo({ citizenNumber }) {
             },
         })
             .then((response) => {
-              
+
                 setCitizenInfo(response.data.data);
             })
             .catch((err) => {
@@ -75,26 +75,28 @@ export default function TeacherCitizenInfo({ citizenNumber }) {
     // 각 탭에 따른 내용을 정의
     const tabContents = {
         tab1: (
+            
             <div>
-              
+                <hr style={{ border: '2px solid #000' }} />
                 <p>자산 내용을 여기에 추가.</p>
+
             </div>
         ),
         tab2: (
             <div>
-             
+                <hr style={{ border: '2px solid #000' }} />
                 <p>벌금 내용을 여기에 추가.</p>
             </div>
         ),
         tab3: (
             <div>
-             
+                <hr style={{ border: '2px solid #000' }} />
                 <p>벌칙 내용을 여기에 추가.</p>
             </div>
         ),
         tab4: (
             <div>
-              
+                <hr style={{ border: '2px solid #000' }} />
                 <p>부동산 내용을 여기에 추가.</p>
             </div>
         ),
@@ -102,18 +104,23 @@ export default function TeacherCitizenInfo({ citizenNumber }) {
 
     return (
         <div>
-           <button onClick={() => { handleShow(); handleCitizenInfo(); }}>{citizenNumber}</button>
-
+            <button
+                onClick={() => { handleShow(); handleCitizenInfo(); }}
+                style={{ backgroundColor: '#FFD700', color: 'black' }}
+            >
+                {citizenNumber}
+            </button>
             <Modal
                 show={show}
                 onHide={handleClose}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                size="lg"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>{citizenInfoItems}</Modal.Title>
                 </Modal.Header>
-            
+                
                 <Modal.Body>
                     {/* 라디오 버튼 */}
                     <Form>
@@ -157,11 +164,7 @@ export default function TeacherCitizenInfo({ citizenNumber }) {
 
                     {tabContents[selectedTab]}
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        닫기
-                    </Button>
-                </Modal.Footer>
+                
             </Modal>
         </div>
     );
