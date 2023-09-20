@@ -18,6 +18,7 @@ export const userState = atom({
     nationNum: "", // 나라 번호
     nationName: "",
     nationStudentNum: "", // 나라학생 번호
+    code: "", // 나라 코드
   },
   effects_UNSTABLE: [persistAtom],
 });
