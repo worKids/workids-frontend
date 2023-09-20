@@ -11,7 +11,7 @@ export default function StudentMainPage() {
   const [lawList, setLawList] = useState([]); //법 항목
   const [jobList, setJobList] = useState([]); //직업 항목
   const [jobMyList, setMyJobList] = useState([]); //직업 항목
-  const index = jobList.findIndex(job => job.name === jobMyList[0].name);
+
 
   
 
@@ -228,11 +228,7 @@ export default function StudentMainPage() {
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
 
-          {jobMyList.length > 0 && (
-  <div className="m-1">(내직업){jobMyList[0].name}</div>
-)}
-<div className="m-1">{jobList[index].jobToDoContent}</div>
-
+ 
 
           </div>
         </div>
