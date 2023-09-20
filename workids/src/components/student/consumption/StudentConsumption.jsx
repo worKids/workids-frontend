@@ -23,7 +23,7 @@ export default function StudentConsumption(props) {
   const heightStyle = {
     height: "85%",
     borderRadius: "40px",
-    backgroundColor: 'rgba(254, 211, 56, 0.7)',
+    backgroundColor: 'rgba(254, 225, 115, 1)',
   };
 
   const hrStyle = {
