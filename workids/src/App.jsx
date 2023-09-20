@@ -19,8 +19,9 @@ import StudentRankingPage from "./pages/student/StudentRankingPage";
 import StudentLawPage from "./pages/student/StudentLawPage";
 import NationPickPage from "./pages/NationPickPage";
 import CreateNationPage from "./pages/CreateNationPage";
-import TeacherJoinResultPage from './pages/teacher/NationJoinResultPagae';
+import TeacherJoinResultPage from './pages/teacher/NationJoinResultPage';
 import TeacherNationCitizenPage from "./pages/teacher/TeacherNationCitizenPage"; 
+import StudentNationJoinPage from "./pages/student/StudentNationJoinPage";
 
 export default function App() {
   return (
@@ -47,6 +48,7 @@ export default function App() {
       <Route path="/teacher/nation/citizen" element={<TeacherMainPage />} />
       <Route path="/teacher/nation/main" element={<TeacherMainPage />} /> 
       <Route path="/teacher/citizenCreate" element={<TeacherNationCitizenPage />} />  
+      <Route path="/student/nation/join" element={<StudentNationJoinPage />} />
     </Routes>
   );
 }
