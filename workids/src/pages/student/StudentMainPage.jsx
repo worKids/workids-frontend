@@ -14,12 +14,10 @@ export default function StudentMainPage() {
   const [studentJobList, setJobStudentList] = useState([]); //직업 항목
   const [jobMyList, setMyJobList] = useState([]); //직업 항목
   
-  const matchingJobList = jobList.filter(job => job.name === jobMyList[0].name);
+  
 
-  let matchingJobToDoContent = null;
-  if (matchingJobList.length > 0) {
-    matchingJobToDoContent = matchingJobList[0].jobToDoContent;
-  }
+
+ 
 
 
   
@@ -167,6 +165,7 @@ export default function StudentMainPage() {
   }, []);
  
 
+  
   const isActive = (index) => {
     if (state === index) {
       return true;
@@ -262,12 +261,9 @@ export default function StudentMainPage() {
             </div>
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
-          {jobMyList.length > 0 && (
-        <div className="m-1">(내 직업){jobMyList[0].name}</div>
-        )}  
-       <p>{matchingJobToDoContent}
-        </p> 
          
+        
+       
                 
                
                 
