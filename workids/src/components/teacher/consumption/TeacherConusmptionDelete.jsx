@@ -29,8 +29,7 @@ export default function TeacherConsumptionDelete({consumptionNum}){
         })
         .then((response) => {
             alert("소비 항목 삭제 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);
