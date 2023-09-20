@@ -39,6 +39,8 @@ export default function TeacherNation(){
           {menu}
         </div>
     ));
+
+    
     // 학생 정보를 저장할 상태 변수
     const [students, setStudents] = useState([
         { id: 1, citizenNumber: '', studentName: '', birthdate: '' },
@@ -138,6 +140,7 @@ export default function TeacherNation(){
         </table>
         <button onClick={addStudent}>추가</button>
     </div>
+    <button onClick={handleSaveChanges}>등록</button>
     </div> 
     )
 }
