@@ -10,8 +10,16 @@ export default function StudentMainPage() {
   const [state, setState] = useState(0);
   const [lawList, setLawList] = useState([]); //법 항목
   const [jobList, setJobList] = useState([]); //직업 항목
+  const [jobKindList, setJobKindList] = useState([]); //직업 항목
+  const [studentJobList, setJobStudentList] = useState([]); //직업 항목
   const [jobMyList, setMyJobList] = useState([]); //직업 항목
+  
+  const matchingJobList = jobList.filter(job => job.name === jobMyList[0].name);
 
+  let matchingJobToDoContent = null;
+  if (matchingJobList.length > 0) {
+    matchingJobToDoContent = matchingJobList[0].jobToDoContent;
+  }
 
 
   
@@ -84,6 +92,31 @@ export default function StudentMainPage() {
       });
 
   }, []);
+
+   //직업리스트 뽑아오기
+   useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+        navigate("/");
+    }
+
+    axBase(token)({
+        method: "post",
+        url: "/job/list",
+        data: {
+            nationNum: userData.nationNum,
+        },
+    })
+        .then((response) => {
+            console.log(response.data.data);
+            setJobList(response.data.data);
+        })
+        .catch((err) => {
+            alert(err.response.data.message);
+        });
+
+}, []);
+
   //직업 항목 리스트 뽑아오기
   useEffect(() => {
     const token = userData.accessToken;
@@ -100,7 +133,7 @@ export default function StudentMainPage() {
     })
       .then((response) => {
         console.log(response.data.data);
-        setJobList(response.data.data);
+        setJobKindList(response.data.data);
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -132,6 +165,7 @@ export default function StudentMainPage() {
       });
 
   }, []);
+ 
 
   const isActive = (index) => {
     if (state === index) {
@@ -206,7 +240,7 @@ export default function StudentMainPage() {
           ) : state === 1 ? (
             <div className="margin-left-20 p-2">
               <div className="p-2"><button style={{ border: 'none', backgroundColor: 'transparent', float: 'right' }} onClick={navigateToJob}>내 직업 보러가기&gt;</button></div>
-              {jobList.map((menu, index) => (
+              {jobKindList.map((menu, index) => (
                 <div className="m-1">{menu.name}</div>
               ))}
             </div>
@@ -228,7 +262,15 @@ export default function StudentMainPage() {
             </div>
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
-      
+          {jobMyList.length > 0 && (
+        <div className="m-1">(내 직업){jobMyList[0].name}</div>
+        )}  
+       <p>{matchingJobToDoContent}
+        </p> 
+         
+                
+               
+                
           
 
  
