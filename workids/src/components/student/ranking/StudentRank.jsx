@@ -22,7 +22,7 @@ export default function StudentRank(props) {
         </div>
       ) : (
         <div className="h-100">
-          <div className="border border-dark  border-3 p-5" style={heightStyle}>
+          <div className="border border-dark  border-3 p-3" style={heightStyle}>
             <StudentStatistic />
           </div>
         </div>

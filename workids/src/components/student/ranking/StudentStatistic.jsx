@@ -14,6 +14,7 @@ export default function StudentStatistic() {
   const [expend, setExpend] = useState([]);
   const [income, setIncome] = useState([]);
   const [incomeExend, setIncomeExpend] = useState([]);
+  const [monthly, setMonthly] = useState([]);
   const [assetState, setAssetState] = useState({
     series: [],
     options: {
@@ -67,6 +68,19 @@ export default function StudentStatistic() {
       },
     },
   });
+  const [monthlyState, setMonthlyState] = useState({
+    series: [],
+    options: {
+      chart: {
+        type: "line",
+      },
+      labels: [],
+      title: {
+        text: "월별 수입 지출 통계",
+        align: "center",
+      },
+    },
+  });
   // 화면 첫 렌더링
   useEffect(() => {
     console.log("1실행");
@@ -80,6 +94,7 @@ export default function StudentStatistic() {
       url: "/student/statistic",
       data: {
         nationStudentNum: userData.nationStudentNum,
+        nationNum: userData.nationNum,
       },
     })
       .then((response) => {
@@ -88,6 +103,7 @@ export default function StudentStatistic() {
         setExpend(response.data.data.expend);
         setIncome(response.data.data.income);
         setIncomeExpend(response.data.data.incomeExpend);
+        setMonthly(response.data.data.monthly);
         setLoading(false);
       })
       .catch((err) => {
@@ -96,7 +112,7 @@ export default function StudentStatistic() {
   }, []);
 
   useEffect(() => {
-    console.log("incomeExpend", incomeExend);
+    console.log("monthly", monthly);
     if (!loading && asset) {
       console.log("2실행");
       const assetUpdate = {
@@ -151,10 +167,91 @@ export default function StudentStatistic() {
           },
         },
       };
+      const monthlyUpdate = {
+        chart: {
+          height: 350,
+          type: "line",
+          dropShadow: {
+            enabled: true,
+            color: "#000",
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        series: monthly
+          ? [
+              { name: "수입", data: monthly.income },
+              { name: "지출", data: monthly.expend },
+            ]
+          : [],
+        options: {
+          chart: {
+            height: 350,
+            type: "line",
+            dropShadow: {
+              enabled: true,
+              color: "#000",
+              top: 18,
+              left: 7,
+              blur: 10,
+              opacity: 0.2,
+            },
+            toolbar: {
+              show: false,
+            },
+          },
+          colors: ["#77B6EA", "#545454"],
+          dataLabels: {
+            enabled: true,
+          },
+          stroke: {
+            curve: "smooth",
+          },
+          title: {
+            text: "월별 수익 지출 내역",
+            align: "center",
+          },
+          grid: {
+            borderColor: "#e7e7e7",
+            row: {
+              colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+              opacity: 0.5,
+            },
+          },
+          markers: {
+            size: 1,
+          },
+          xaxis: {
+            categories: monthly ? monthly.month : [],
+            title: {
+              text: "Month",
+            },
+          },
+          yaxis: {
+            title: {
+              text: "금액",
+            },
+          },
+          legend: {
+            position: "top",
+            horizontalAlign: "right",
+            floating: true,
+            offsetY: -25,
+            offsetX: -5,
+          },
+        },
+      };
+      console.log(monthly.month);
       setAssetState(assetUpdate);
       setExpendState(expendUpdate);
       setIncomeState(incomeUpdate);
       setIncomeExpendState(incomeExpendUpdate);
+      setMonthlyState(monthlyUpdate);
       setLoading2(false);
     }
   }, [loading, asset]);
@@ -165,8 +262,8 @@ export default function StudentStatistic() {
         <div>로딩 중</div>
       ) : (
         <div className="h-100">
-          <div className="row h-50 border">
-            <div className="col-3" style={{ height: "500px" }}>
+          <div className="d-flex justify-content-center border" style={{ height: "40%" }}>
+            <div className="m-auto">
               {asset ? (
                 <div>
                   <Chart
@@ -180,9 +277,9 @@ export default function StudentStatistic() {
                 <div>자산이 존재하지 않습니다.</div>
               )}
             </div>
-            <div className="col-3" style={{ height: "500px" }}>
+            <div className="m-auto">
               {expend ? (
-                <div className="col-3">
+                <div>
                   <Chart
                     options={expendState.options}
                     series={expendState.series}
@@ -194,9 +291,9 @@ export default function StudentStatistic() {
                 <div>소비를 하지 않았습니다.</div>
               )}
             </div>
-            <div className="col-3 m-auto" style={{ height: "500px" }}>
+            <div className="m-auto">
               {income ? (
-                <div className="col-3">
+                <div>
                   <Chart
                     options={incomeState.options}
                     series={incomeState.series}
@@ -205,12 +302,14 @@ export default function StudentStatistic() {
                   />
                 </div>
               ) : (
-                <div>수입이 없습니다.</div>
+                <div className="d-flex justify-content-center align-items-center">
+                  수입이 없습니다.
+                </div>
               )}
             </div>
-            <div className="col-3 m-auto" style={{ height: "500px" }}>
+            <div className="m-auto">
               {incomeExend ? (
-                <div className="col-3">
+                <div>
                   <Chart
                     options={incomeExpendState.options}
                     series={incomeExpendState.series}
@@ -223,7 +322,17 @@ export default function StudentStatistic() {
               )}
             </div>
           </div>
-          <div className="h-50">차트칸</div>
+          <div className="h-50">
+            <div className="d-flex justify-content-center">
+              <Chart
+                options={monthlyState.options}
+                series={monthlyState.series}
+                type="line"
+                width={1000}
+                height={300}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
