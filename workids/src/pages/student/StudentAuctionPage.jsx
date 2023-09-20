@@ -21,7 +21,7 @@ export default function StudentAuctionPage() {
 
   const navigate = useNavigate();
   const navigateToMain = () => {
-    navigate("/student");
+    navigate("/student/nation");
   };
   const navigateMenu = (index) => {
     setState(index);

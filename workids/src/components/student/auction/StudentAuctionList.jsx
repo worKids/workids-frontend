@@ -64,7 +64,7 @@ export default function StudentAuctionList() {
       ))
     ) : (
       <div className="h-100 d-flex justify-content-center align-items-center">
-        경매를 생성해주세요
+        생성된 경매가 없습니다.
       </div>
     );
 
