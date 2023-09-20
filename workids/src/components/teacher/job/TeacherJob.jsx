@@ -22,6 +22,15 @@ export default function TeacherJob() {
         setState(idx);
     };
 
+    const divJobStudentList = {
+        width: "90%",
+        fontSize: "18px",
+        textAlign: "center",
+        marginTop: "2vh",
+        backgroundColor: 'rgba(217, 217, 217, 0.5)',
+        border: "solid 5px gray"
+    }
+
 
     const divStyle = {
         width: "80%",
@@ -212,7 +221,7 @@ export default function TeacherJob() {
                         <table style={{ width: '100%' }}>
                             <thead>
                                 <tr>
-                                    <th style={{ width: '20%', fontSize: '22px', textAlign: 'left' }}>{'\u00A0\u00A0\u00A0\u00A0'}학급 번호</th>
+                                    <th style={{ width: '20%', fontSize: '22px', textAlign: 'left' }}>학급 번호</th>
                                     <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}>이름</th>
                                     <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}>직업</th>
                                     <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}></th>
