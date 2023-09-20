@@ -35,11 +35,11 @@
   /* 다른 스타일 설정도 추가할 수 있습니다 */
 }
 .vertical-line {
-  border-right: 1px solid #000; /* 원하는 선 스타일 및 색상으로 변경하세요 */
+  border-right: 1px solid white; /* 원하는 선 스타일 및 색상으로 변경하세요 */
   padding-right: 15px; /* 원하는 간격으로 변경하세요 */
 }
 .info-cell {
-  border-right: 1px solid #ccc; /* 원하는 선 스타일 및 색상 설정 */
+  border-right: 1px solid white; /* 원하는 선 스타일 및 색상 설정 */
   padding: 5px 10px; /* 원하는 여백 설정 */
 }
 
