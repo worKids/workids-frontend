@@ -9,6 +9,7 @@ export default function TeacherNation(){
     const [state, setState] = useState(0);//버튼 클릭
     const userData = useRecoilValue(userState);  
     const [nationInfo, setNationInfo] = useState([]); 
+    const [citizenList, setCitizenList] = useState([]); 
     const navigate = useNavigate();
       const [showCitizenList, setShowCitizenList] = useState(false);
 
@@ -41,7 +42,9 @@ export default function TeacherNation(){
 
     const navigateToCitizenCreate = () => {
         setShowCitizenList(true); // 버튼 클릭 시 상태 변경
+        navigate("/teacher/citizenCreate");
       };
+ 
   
     const menu = nationInfoMenu.map((menu, index) => (
         <div
@@ -112,6 +115,44 @@ export default function TeacherNation(){
             });
 
     }, []);
+
+    useEffect(() => {
+        const token = userData.accessToken;
+        if (!token) {
+            navigate("/");
+        }
+        console.log(userData.nationNum); 
+
+        axBase(token)({
+            method: "post",
+            url: "/teacher/citizen/list",
+            data: { 
+                num: userData.nationNum,
+            },
+            }) 
+            .then((response) => {
+                console.log(response.data.data); 
+                setCitizenList(response.data.data); // 상태 업데이트   
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
+
+    }, []);
+
+    //국민 목록 출력
+    const CitizenItems = citizenList.map((item,index)=>(
+
+        <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"15px", textAlign:"center"}}>
+        <div className="col-1 p-2">{item.citizenNumber}</div>
+        <div className="col-4 p-2">{item.studentName}</div>   
+        <div className="col-4 p-2">{item.birthDate}</div>   
+        <hr></hr>
+        </div>
+    ));
+
+
+ 
 
  
 
@@ -276,7 +317,12 @@ export default function TeacherNation(){
                   </div>
                   </div>
                 ) : (
-                    showCitizenList ? (
+                    showCitizenList? (
+                        <div>
+                            job
+                            </div>
+ 
+                      ) : (
                         <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
                         <p>국민 목록 설정이 되어있지 않습니다.</p>
                         <p>국민 목록을 설정해주세요 ~ !</p>
@@ -285,11 +331,6 @@ export default function TeacherNation(){
                           <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
                         ) : null}
                       </div>
-                      ) : (
-                        <div>
-                          {/* 여기에 국민 목록 설정 컴포넌트를 렌더링 */}
-                          {/* 예: <CitizenList /> */}
-                        </div>
                       )
                 )}
             </div>
