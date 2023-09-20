@@ -228,7 +228,7 @@ export default function StudentMainPage() {
             </div>
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
-            <div>{jobMyList[0].name}</div>
+      
           
 
  
