@@ -18,6 +18,8 @@ export default function CreateNationPage() {
   const [school, setschool] = useState("");
   const [grade, setgrade] = useState("");
   const [classRoom, setclassRoom] = useState("");
+  const [code, setCode] = useState("");
+
   function formatDate(dateStr) {
     const date = new Date(dateStr);
     const year = date.getFullYear();
@@ -57,6 +59,10 @@ export default function CreateNationPage() {
   const classRoomHandler = (event) => {
     setclassRoom(event.currentTarget.value);
   };
+ 
+
+
+
   const create = () => {
     const token = userData.accessToken;
     if (!token) {
@@ -81,12 +87,13 @@ export default function CreateNationPage() {
       data: nationData,
     })
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.data); 
  
         navigate("/teacher/nationCreate", {
           state: {
-            code: nationData.code
-          },
+            code: response.data.data
+          }, 
+          
         });
       })
       .catch((err) => {
