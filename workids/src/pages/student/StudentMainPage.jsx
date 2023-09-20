@@ -10,6 +10,10 @@ export default function StudentMainPage() {
   const [state, setState] = useState(0);
   const [lawList, setLawList] = useState([]); //법 항목
   const [jobList, setJobList] = useState([]); //직업 항목
+  const [jobMyList, setMyJobList] = useState([]); //직업 항목
+  const index = jobList.findIndex(job => job.name === jobMyList[0].name);
+
+  
 
   useEffect(() => {
     const token = userData.accessToken;
@@ -60,46 +64,71 @@ export default function StudentMainPage() {
   useEffect(() => {
     const token = userData.accessToken;
     if (!token) {
-        navigate("/");
+      navigate("/");
     }
 
     axBase(token)({
-    method: "post",
-    url: "/law/list",
-    data: {
+      method: "post",
+      url: "/law/list",
+      data: {
         nationNum: userData.nationNum,
-    },
+      },
     })
-    .then((response) => {
+      .then((response) => {
         console.log(response.data.data);
         setLawList(response.data.data);
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         alert(err.response.data.message);
-    });
+      });
 
   }, []);
   //직업 항목 리스트 뽑아오기
   useEffect(() => {
     const token = userData.accessToken;
     if (!token) {
-        navigate("/");
+      navigate("/");
     }
 
     axBase(token)({
-    method: "post",
-    url: "/student/job/list",
-    data: {
+      method: "post",
+      url: "/student/job/list",
+      data: {
         nationNum: userData.nationNum,
-    },
+      },
     })
-    .then((response) => {
+      .then((response) => {
         console.log(response.data.data);
         setJobList(response.data.data);
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         alert(err.response.data.message);
-    });
+      });
+
+  }, []);
+
+  //내 직업 리스트 뽑아오기
+  useEffect(() => {
+    const token = userData.accessToken;
+    if (!token) {
+      navigate("/");
+    }
+
+    axBase(token)({
+      method: "post",
+      url: "/student/job/my/list",
+      data: {
+        nationNum: userData.nationNum,
+        nationStudentNum: userData.nationStudentNum
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        setMyJobList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
 
   }, []);
 
@@ -115,9 +144,8 @@ export default function StudentMainPage() {
     <div
       key={index}
       onClick={() => setState(index)}
-      className={`m-auto border border-dark border-3 w-50 mx-2 mt-3 text-center rounded-pill px-2 py-1 ${
-        isActive(index) ? "bg-warning text-white" : ""
-      }`}
+      className={`m-auto border border-dark border-3 w-50 mx-2 mt-3 text-center rounded-pill px-2 py-1 ${isActive(index) ? "bg-warning text-white" : ""
+        }`}
     >
       {data}
     </div>
@@ -158,6 +186,9 @@ export default function StudentMainPage() {
     navigate("/student/job");
   };
 
+
+  
+
   return (
     <div className="h-100">
       <StudentTopNav />
@@ -166,14 +197,14 @@ export default function StudentMainPage() {
           <div className="d-flex">{nationMap}</div>
           {state === 0 ? (
             <div className="margin-left-20 p-2">
-              <div className="p-2"><button style={{border:'none', backgroundColor:'transparent', float: 'right'}} onClick={navigateToLaw}>내 고지서 보러가기&gt;</button></div>
+              <div className="p-2"><button style={{ border: 'none', backgroundColor: 'transparent', float: 'right' }} onClick={navigateToLaw}>내 고지서 보러가기&gt;</button></div>
               {lawList.map((menu, index) => (
                 <div className="m-1">{menu.content}</div>
               ))}
             </div>
           ) : state === 1 ? (
             <div className="margin-left-20 p-2">
-              <div className="p-2"><button style={{border:'none', backgroundColor:'transparent', float: 'right'}} onClick={navigateToJob}>내 직업 보러가기&gt;</button></div>
+              <div className="p-2"><button style={{ border: 'none', backgroundColor: 'transparent', float: 'right' }} onClick={navigateToJob}>내 직업 보러가기&gt;</button></div>
               {jobList.map((menu, index) => (
                 <div className="m-1">{menu.name}</div>
               ))}
@@ -196,8 +227,13 @@ export default function StudentMainPage() {
             </div>
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
-            직업
-            <li>우유 가져오기</li>
+
+          {jobMyList.length > 0 && (
+  <div className="m-1">(내직업){jobMyList[0].name}</div>
+)}
+<div className="m-1">{jobList[index].jobToDoContent}</div>
+
+
           </div>
         </div>
       </div>
