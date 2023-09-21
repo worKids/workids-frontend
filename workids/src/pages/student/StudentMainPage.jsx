@@ -13,14 +13,14 @@ export default function StudentMainPage() {
   const [jobKindList, setJobKindList] = useState([]); //직업 항목
   const [studentJobList, setJobStudentList] = useState([]); //직업 항목
   const [jobMyList, setMyJobList] = useState([]); //직업 항목
-  
-  
 
+  // 총 자산
+  const [asset, setAsset] = useState(0);
 
- 
+  // 신용도
+  const [creditRating, setCreditRating] = useState(0);
 
-
-  
+  const token = userData.accessToken;
 
   useEffect(() => {
     const token = userData.accessToken;
@@ -163,8 +163,48 @@ export default function StudentMainPage() {
       });
 
   }, []);
- 
 
+    // 총 자산
+    useEffect(() => {
+        if (!token) {
+            navigate("/");
+        }
+
+        axBase(token)({
+            method: "post",
+            url: "/student/bank/asset",
+            data: {
+                nationStudentNum: userData.nationStudentNum,
+            },
+        })
+        .then((response) => {
+            setAsset(response.data.data.asset);
+        })
+        .catch((err) => {
+            alert(err.response.data.message);
+        });
+    })
+
+    // 신용도
+    useEffect(() => {
+    if (!token) {
+        navigate("/");
+    }
+
+    axBase(token)({
+        method: "post",
+        url: "/student/bank/credit-rating",
+        data: {
+            nationStudentNum: userData.nationStudentNum,
+        },
+    })
+    .then((response) => {
+        setCreditRating(response.data.data.creditRating);
+    })
+    .catch((err) => {
+        alert(err.response.data.message);
+    });
+    })
   
   const isActive = (index) => {
     if (state === index) {
@@ -249,27 +289,20 @@ export default function StudentMainPage() {
           <div className="d-flex" style={rightDivStyle}>
             <div
               className="w-50 border border-dark  border-3 me-2 text-center p-1"
-              style={borderRound}
-            >
-              자산
+              style={borderRound}>
+                <div>자산</div>
+                <div>{asset} 미소</div>
             </div>
             <div
               className="w-50 border border-dark  border-3 ms-2 text-center p-1"
-              style={borderRound}
-            >
-              신용도
+              style={borderRound}>
+                <div >신용도</div>
+                <div>{creditRating} 점</div>
             </div>
           </div>
           <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
          
         
-       
-                
-               
-                
-          
-
- 
 
           </div>
         </div>
