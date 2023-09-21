@@ -35,6 +35,13 @@ export default function TeacherCitizen() {
   const [aucList, setAucList] = useState([]);
   const [bankMainList, setBankMainList] = useState([]); // 주거래 계좌 목록
   const [bankDepositList, setBankDepositList] = useState([]); // 예금 계좌 목록
+  const divListStyle = {
+    borderRadius: "20px",
+    backgroundColor: "#FEE173",
+    border: "solid 5px #F6BE2C"
+}
+
+
 
 
 
@@ -339,8 +346,9 @@ export default function TeacherCitizen() {
 
   const divStyle = {
     width: "80%",
+    height: "80vh",
     borderRadius: "40px",
-    height: "80vh"
+    backgroundColor: "#FFFEEE",
   };
 
   //직업 메뉴의 탭들
@@ -587,10 +595,10 @@ export default function TeacherCitizen() {
       <td style={{ width: '20%', padding: '10px', fontSize: '20px' }}>
         {menu.citizenNumber}
       </td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.studentName}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.name}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{menu.asset}</td>
-      <td style={{ width: '20%', padding: '10px', fontSize: '17px' }}>{'\u00A0\u00A0\u00A0'}{menu.credit_rating}</td>
+      <td style={{ width: '20%',  fontSize: '20px' }}>{menu.studentName}</td>
+      <td style={{ width: '20%',  fontSize: '20px' }}>{'\u00A0\u00A0\u00A0'}{menu.name}</td>
+      <td style={{ width: '20%',  fontSize: '20px' }}>{menu.asset}</td>
+      <td style={{ width: '20%',  fontSize: '20px' }}>{'\u00A0\u00A0\u00A0'}{menu.credit_rating}</td>
     </tr>
   ));
 
@@ -600,9 +608,11 @@ export default function TeacherCitizen() {
   //신용도관리 출력화면
   const creditRatingItems = creditRatingList.map((menu, index) => (
     <tr key={index} style={{ borderTop: '2.5px solid black' }}>
-      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>{menu.studentName}</td>
-      <td style={{ width: '20%', padding: '2px', fontSize: '17px' }}>
+      <td style={{ width: '20%',  padding: '10px', fontSize: '20px' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%',    fontSize: '20px' }}>{menu.studentName}</td>
+      
+      <td style={{ width: '20%',  fontSize: '18px' }}>
+        
         <input
           type="number"
           min={0}
@@ -612,7 +622,7 @@ export default function TeacherCitizen() {
           onChange={(e) => handleCreditRatingChange(e, index)}
         />
       </td>
-      <td style={{ width: '20%', padding: '2px', fontSize: '15px' }}>
+      <td style={{ width: '20%', fontSize: '15px' }}>
         <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
       </td>
     </tr>
@@ -647,9 +657,11 @@ export default function TeacherCitizen() {
 
   return (
     <div style={divStyle} className="border border-dark border-3 p-3">
+      
       <div className="d-flex justify-content-between">
+        
         <div className="d-flex">{menu}</div>
-        <div>국민 관리</div>
+        
       </div>
 
       {state === 0 ? (
@@ -710,37 +722,52 @@ export default function TeacherCitizen() {
             </Modal.Body>
 
           </Modal>
-          <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '85%' }}>
+          <div className="container justify-content-md-center" style={{ width: '90%' }}>
+          <div className="container d-flex justify-content-end">
+                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
+                        </div>
+                        
+          <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+          <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%' }}>
             <thead>
               <tr>
-                <th style={{ width: '20%', fontSize: '21px', padding: '10px' }}>학급 번호</th>
-                <th style={{ width: '20%', fontSize: '21px', padding: '10px' }}>이름</th>
-                <th style={{ width: '20%', fontSize: '21px', padding: '10px' }}>직업</th>
-                <th style={{ width: '20%', fontSize: '21px', padding: '10px' }}>자산</th>
-                <th style={{ width: '20%', fontSize: '21px', padding: '10px' }}>신용도</th>
+                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>학급 번호</th>
+                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>이름</th>
+                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>직업</th>
+                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>자산</th>
+                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>신용도</th>
               </tr>
             </thead>
             <tbody>
               {citizenItems}
             </tbody>
           </table>
+          </div>
 
 
 
         </div>
+        </div>
       ) : state === 1 ? (
-        <div>
-          <div style={{ overflowX: 'auto', width: '80%', margin: '0 auto' }}>
-            <table style={{ width: '100%' }}>
+       
+          <div className="container justify-content-md-center" style={{ width: '90%' }}>
+          <div className="container d-flex justify-content-end">
+                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
+                        </div>
+                        
+          <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+          <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%' }}>
               <thead>
                 <tr>
-                  <th style={{ width: '20%', fontSize: '20px', padding: '10px' }}>학급 번호</th>
-                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}>이름</th>
-                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}>신용도</th>
-                  <th style={{ width: '40%', fontSize: '20px', padding: '10px' }}></th>
+                  <th style={{ width: '20%', fontSize: '22px'}}>학급 번호</th>
+                  <th style={{ width: '40%', fontSize: '22px'}}> &nbsp;&nbsp;이름 </th>
+                  <th style={{ width: '40%', fontSize: '22px'}}>신용도</th>
+                  <th style={{ width: '40%', fontSize: '22px'}}></th>
+                  <th style={{ width: '40%', fontSize: '22px'}}></th>
                 </tr>
               </thead>
               <tbody>
+                
                 {creditRatingItems}
               </tbody>
             </table>
