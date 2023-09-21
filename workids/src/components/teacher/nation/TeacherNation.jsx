@@ -66,12 +66,7 @@ export default function TeacherNation(){
         setShowCitizenList(true); // 버튼 클릭 시 상태 변경
         <TreacherCitizen/>
       };
-    
-    const navigateToCitizenList = () => {
-        //setShowCitizenList(false); // 버튼 클릭 시 상태 변경
-        navigate("/teacher/citizen/list");
-      };
-    
+     
     const navigateToCitizenList = () => {
         //setShowCitizenList(false); // 버튼 클릭 시 상태 변경
         navigate("/teacher/citizen/list");
