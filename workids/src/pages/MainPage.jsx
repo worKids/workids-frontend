@@ -21,7 +21,6 @@ export default function MainPage() {
   };
   const borderRound = {
     borderRadius: "40px",
-    backgroundColor: "white ",
   };
   const submitBtn = {
     borderRadius: "15px",
@@ -102,7 +101,7 @@ export default function MainPage() {
 
   return (
     <div className="h-100 w-100">
-      <div className="mainLogo w-50 m-auto mb-0"></div>
+      <div className="mainLogo w-50 m-auto"></div>
       <div className="h-75 d-flex justify-content-center align-items-center">
         <div
           className="border border-dark border-4 px-5 py-4 mb-5"

@@ -81,16 +81,16 @@ export default function NationPickPage() {
   const nationBtn =
     nationList !== null ? (
       nationList.map((menu, index) => (
-        <div
-          key={index}
-          className={`m-3 border border-dark  border-3 text-center hoverable p-3 bg-white rounded-pill sideNav `}
-          onClick={() => navigateToNation(index)}
-          style={{ position: "relative" }}
-        >
-          <div style={{ fontSize: "30px" }}>{menu.name} 나라</div>
-          <div className="nation-student" style={{ position: "absolute", bottom: 0, right: 70 }}>
-            국민 수: {menu.totalStudent} 명
-          </div>
+        <div		
+          key={index}		
+          className={`m-3 border border-dark  border-3 text-center hoverable p-3 rounded-pill sideNav `}		
+          onClick={() => navigateToNation(index)} style={{position: 'relative', backgroundColor:'#FFFEEE'}}
+        >		
+          <div style={{ fontSize: '30px' }}>{menu.name} 나라</div>		
+          <div className="nation-student" style={{position: 'absolute', bottom: 0, right: 70}}>		
+          국민 수: {menu.totalStudent} 명		
+          </div>		
+    
         </div>
       ))
     ) : (

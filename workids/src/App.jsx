@@ -22,6 +22,7 @@ import CreateNationPage from "./pages/CreateNationPage";
 import TeacherJoinResultPage from './pages/teacher/NationJoinResultPage';
 import TeacherNationCitizenPage from "./pages/teacher/TeacherNationCitizenPage"; 
 import StudentNationJoinPage from "./pages/student/StudentNationJoinPage";
+import TeacherCitizenListPage from "./pages/teacher/TeacherCitizenListPage";
 
 export default function App() {
   return (
@@ -48,7 +49,8 @@ export default function App() {
       <Route path="/teacher/nation/citizen" element={<TeacherMainPage />} />
       <Route path="/teacher/nation/main" element={<TeacherMainPage />} /> 
       <Route path="/teacher/citizenCreate" element={<TeacherNationCitizenPage />} />  
-      <Route path="/student/nation/join" element={<StudentNationJoinPage />} />
+      <Route path="/student/nation/join" element={<StudentNationJoinPage />} /> 
+      <Route path="/teacher/citizen/list" element={<TeacherCitizenListPage />} /> 
     </Routes>
   );
 }
