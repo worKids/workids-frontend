@@ -58,7 +58,7 @@ export default function NationPickPage() {
     navigate("/nation/create");
   };
 
-  const navigatNationeJoin = () => { 
+  const navigatNationeJoin = () => {
     navigate("/student/nation/join");
   };
 
@@ -68,6 +68,7 @@ export default function NationPickPage() {
       nationName: nationList[index].name,
       nationNum: nationList[index].nationNum,
       totalStudent: nationList[index].totalStudent,
+      moneyName: nationList[index].moneyName,
     };
     setUserData(updateUserData);
     console.log(userData);
@@ -105,11 +106,13 @@ export default function NationPickPage() {
             <div className="d-flex justify-content-between">
               <h4 className="ms-3 ">운영중인 나라</h4>
               <div className="me-4" onClick={navigateToCreate}>
-                <div className="hoverable" style={{ fontSize: "20px" }}>나라 설립하기 &gt;</div>
+                <div className="hoverable" style={{ fontSize: "20px" }}>
+                  나라 설립하기 &gt;
+                </div>
               </div>
             </div>
             <div className="scrollCss container overflow-auto" style={{ maxHeight: "70vh" }}>
-            {nationBtn}
+              {nationBtn}
             </div>
           </div>
         </div>
@@ -120,11 +123,13 @@ export default function NationPickPage() {
             <div className="d-flex justify-content-between">
               <h4 className="ms-3 ">참여중인 나라</h4>
               <div className="me-4" onClick={navigatNationeJoin}>
-                <div className="hoverable" style={{ fontSize: "20px" }}>나라 참여하기 &gt;</div>
+                <div className="hoverable" style={{ fontSize: "20px" }}>
+                  나라 참여하기 &gt;
+                </div>
               </div>
             </div>
-            <div className="scrollCss container overflow-auto" style={{ maxHeight: "70vh" }}>              
-            {nationBtn}
+            <div className="scrollCss container overflow-auto" style={{ maxHeight: "70vh" }}>
+              {nationBtn}
             </div>
           </div>
         </div>
