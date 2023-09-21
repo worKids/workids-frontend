@@ -9,18 +9,22 @@ import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 
-export default function TeacherLawUpdate({lawNum, content, fine}){
+export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [updateFine, setUpdateFine] = useState(fine);
     const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        setUpdateFine(fine);
+    }
 
     const onChangeFine = (e) => {
         setUpdateFine(e.target.value);
     };
+
 
     //법 수정
     const handleUpdateLaw = () => {
@@ -47,6 +51,9 @@ export default function TeacherLawUpdate({lawNum, content, fine}){
             .then((response) => {
                 alert("법 수정 완료");
                 setShow(false);
+                if (typeof onUpdate === "function") {
+                    onUpdate(); // 부모 컴포넌트로 알림
+                }
             })
             .catch((err) => {
                 alert(err.response.data.message);
@@ -74,7 +81,7 @@ export default function TeacherLawUpdate({lawNum, content, fine}){
                                 벌금 : 
                             </Form.Label>
                             <Col sm="6">
-                                <Form.Control type="text" onChange={onChangeFine} value={updateFine} placeholder="벌금 금액" />
+                                <Form.Control type="number" onChange={onChangeFine} value={updateFine} placeholder="벌금 금액" />
                             </Col>
                             <Col sm="3">미소</Col>
                         </Form.Group>
