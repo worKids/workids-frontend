@@ -10,6 +10,12 @@ export default function TeacherDepositBankList(){
     const [bankList, setBankList] = useState([]); // 주거래 계좌 목록
     const navigate = useNavigate();
 
+    const midStyle = {
+        height: "100%",
+        borderRadius: "30px",
+        backgroundColor: "#FED338",
+    };
+
     useEffect(() => {
         const token = userData.accessToken;
         
@@ -52,36 +58,37 @@ export default function TeacherDepositBankList(){
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.accountNumber}
                 </div>
-                <div className="col-3 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.productName}
                 </div>
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.balance}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.createdDate}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.endDate}
                 </div>
             </div>
+            <div className="border-top"></div> {/* 구분선 */}
         </div>
         ))
     )
 
     return (
-        <div>
-            <div>국민 주거래 계좌 가입 내역</div>
+        <div className="border border-dark  border-3 p-3" style={midStyle}>
+            {/* <div>국민 주거래 계좌 가입 내역</div> */}
             <div className="row m-2 text-center p-3 ">
                 <div className="col-1">학급번호</div>
                 <div className="col-1">이름</div>
                 <div className="col-2">계좌번호</div>
-                <div className="col-3">상품명</div>
-                <div className="col-2">잔액(미소)</div>
-                <div className="col-1">개설일</div>
-                <div className="col-1">만기일</div>
+                <div className="col-2">상품명</div>
+                <div className="col-2"><div>잔액</div><div>(미소)</div></div>
+                <div className="col-2">개설일</div>
+                <div className="col-2">만기일</div>
             </div>
-            <div className="container overflow-auto" style={{ height: "50vh" }}>
+            <div className="container overflow-auto" style={{height:"50vh", backgroundColor: '#FFEFD5', borderRadius: "20px"}}>
                 {showBankList}
             </div>
         </div>
