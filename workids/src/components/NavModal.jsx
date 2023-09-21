@@ -1,16 +1,26 @@
-import React from "react";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import React, { useEffect } from "react";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import { userState } from "../recoil/userAtoms";
 import "../pages/student/student.css";
 import "./teacher/Teacher.css";
 import { useNavigate } from "react-router";
 export default function NavModal() {
-  const userData = useRecoilValue(userState);
+  const [userData, setUserData] = useRecoilState(userState);
   const navigate = useNavigate();
   const recoilReset = useResetRecoilState(userState);
   const navigateToSelect = () => {
+    const updateState = {
+      ...userData,
+      nationNum: "",
+      nationName: "",
+      nationStudentNum: "",
+      moneyName: "",
+    };
+    setUserData(updateState);
+    console.log(userData);
     navigate("/select");
   };
+
   const logout = () => {
     recoilReset;
     navigate("/");
