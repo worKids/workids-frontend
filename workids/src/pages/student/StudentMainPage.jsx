@@ -13,9 +13,10 @@ export default function StudentMainPage() {
     const [lawList, setLawList] = useState([]);
 
     // 직업 항목
-    const [jobKindList, setJobKindList] = useState([]); //직업 항목
-    const [jobMyList, setMyJobList] = useState([]); //직업 항목
-    const [jobList, setJobList] = useState([]); //직업 항목
+    const [jobKindList, setJobKindList] = useState([]);
+
+    // 나라 정보
+    const [nationMainInfo, setNationMainInfo] = useState([]); 
 
     // 총 자산
     const [asset, setAsset] = useState(0);
@@ -23,29 +24,7 @@ export default function StudentMainPage() {
     // 신용도
     const [creditRating, setCreditRating] = useState(0);
 
-    // 나라 정보
-    const [nationMainInfo, setNationMainInfo] = useState([]); 
-
     const token = userData.accessToken;
-
-    useEffect(() => {
-        if (!token) {
-            navigate("/");
-        }
-        axBase(token)({
-            method: "post",
-            url: "/nation/list",
-            data: {
-                nationNum: userData.nationNum,
-            },
-        })
-        .then((response) => {
-            console.log(response.data.data);
-        })
-        .catch((err) => {
-            console.log(err.response.data.message);
-        });
-    }, []);
 
     useEffect(() => {
         if (!token) {
@@ -66,13 +45,15 @@ export default function StudentMainPage() {
                 nationStudentNum: response.data.data.nationStudentNum,
             };
             setUserData(updateUserData);
+            getAsset(response.data.data.nationStudentNum);
+            getCreditRating(response.data.data.nationStudentNum);
         })
         .catch((err) => {
             console.log(err.response.data.message);
         });
     }, []);
 
-    //법 항목 리스트 뽑아오기
+    //법 항목
     useEffect(() => {
         if (!token) {
             navigate("/");
@@ -94,29 +75,7 @@ export default function StudentMainPage() {
         });
     }, []);
 
-    //직업리스트 뽑아오기
-    useEffect(() => {
-        if (!token) {
-            navigate("/");
-        }
-
-        axBase(token)({
-            method: "post",
-            url: "/job/list",
-            data: {
-                nationNum: userData.nationNum,
-            },
-        })
-        .then((response) => {
-            console.log(response.data.data);
-            setJobList(response.data.data);
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
-    }, []);
-
-    //직업 항목 리스트 뽑아오기
+    //직업 항목
     useEffect(() => {
         if (!token) {
         navigate("/");
@@ -138,40 +97,35 @@ export default function StudentMainPage() {
         });
     }, []);
 
-    //내 직업 리스트 뽑아오기
+    // 나라 정보
     useEffect(() => {
         if (!token) {
             navigate("/");
         }
-
         axBase(token)({
             method: "post",
-            url: "/student/job/my/list",
+            url: "/teacher/nation",
             data: {
-                nationNum: userData.nationNum,
-                nationStudentNum: userData.nationStudentNum
+            num: userData.nationNum, 
             },
         })
         .then((response) => {
             console.log(response.data.data);
-            setMyJobList(response.data.data);
+            setNationMainInfo(response.data.data);
         })
         .catch((err) => {
-            alert(err.response.data.message);
+            console.log(err.response.data.message);
         });
     }, []);
 
     // 총 자산
-    useEffect(() => {
-        if (!token) {
-            navigate("/");
-        }
-
+    const getAsset = (nationStudentNum) => {
+        console.log("자산 출력 함수입니다");
         axBase(token)({
             method: "post",
             url: "/student/bank/asset",
             data: {
-                nationStudentNum: userData.nationStudentNum,
+                nationStudentNum: nationStudentNum,
             },
         })
         .then((response) => {
@@ -180,49 +134,25 @@ export default function StudentMainPage() {
         .catch((err) => {
             alert(err.response.data.message);
         });
-    }, [])
-
-    // 신용도
-    useEffect(() => {
-    if (!token) {
-        navigate("/");
     }
 
-    axBase(token)({
-        method: "post",
-        url: "/student/bank/credit-rating",
-        data: {
-            nationStudentNum: userData.nationStudentNum,
-        },
-    })
-    .then((response) => {
-        setCreditRating(response.data.data.creditRating);
-    })
-    .catch((err) => {
-        alert(err.response.data.message);
-    });
-    }, [])
-
-    // 나라 정보
-    useEffect(() => {
-        if (!token) {
-          navigate("/");
-        }
+    // 신용도
+    const getCreditRating = (nationStudentNum) => {
+        console.log("신용도 출력 함수입니다");
         axBase(token)({
-          method: "post",
-          url: "/teacher/nation",
-          data: {
-            num: userData.nationNum, 
-          },
+            method: "post",
+            url: "/student/bank/credit-rating",
+            data: {
+                nationStudentNum: nationStudentNum,
+            },
         })
-          .then((response) => {
-            console.log(response.data.data);
-            setNationMainInfo(response.data.data);
-          })
-          .catch((err) => {
-            console.log(err.response.data.message);
-          });
-    }, []);
+        .then((response) => {
+            setCreditRating(response.data.data.creditRating);
+        })
+        .catch((err) => {
+            alert(err.response.data.message);
+        });
+    }
 
     const isActive = (index) => {
         if (state === index) {
