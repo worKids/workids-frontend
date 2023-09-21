@@ -95,9 +95,3 @@
   border-style: solid;
   text-align: center;
 }
-
-/*col내용 길어질때*/
-.col-style{
-  white-space: "nowrap";
-  text-overflow: "ellipsis";
-}

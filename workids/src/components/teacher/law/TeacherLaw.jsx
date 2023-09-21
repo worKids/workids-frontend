@@ -28,6 +28,12 @@ export default function TeacherLaw(){
       });
     const {content, citizenNumber} = addLawStudent;
 
+    //내용 길어질때 col 속성
+    const colStyle = {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+    }
+
     const clickMenu = (idx) => {
         setState(idx);
         onReset();
@@ -123,10 +129,10 @@ export default function TeacherLaw(){
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
-        <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
+        <div key={index} className="row m-2 p-2 fs-4" style={{...colStyle,textAlign:'center'}}>
             <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
-            <div className="col-3">{menu.content}</div>
+            <div className="col-3"  style={{overflow:"hidden"}}>{menu.content}</div>
             <div className="col-2">{menu.fine}</div>
             <div className="col-3">{menu.createdDate}</div>
             <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum}/></div>
@@ -205,13 +211,13 @@ export default function TeacherLaw(){
 
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
-        <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
-            <div className="col-sm-1">{menu.citizenNumber}</div>
-            <div className="col-sm-1">{menu.studentName}</div>
-            <div className="col-sm-3">{menu.content}</div>
-            <div className="col-sm-3">{menu.penalty}</div>
-            <div className="col-sm-2">{menu.createdDate}</div>
-            <div className="col-sm-1">
+        <div key={index} className="row m-2 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
+            <div className="col-sm-1 col-style">{menu.citizenNumber}</div>
+            <div className="col-sm-1 col-style">{menu.studentName}</div>
+            <div className="col-sm-3 col-style" style={{overflow:"hidden"}}>{menu.content}</div>
+            <div className="col-sm-3 col-style" style={{overflow:"hidden"}}>{menu.penalty}</div>
+            <div className="col-sm-2 col-style">{menu.createdDate}</div>
+            <div className="col-sm-1 col-style">
                 <input
                 type="checkbox"
                 value ={menu.lawNationStudentNum}
@@ -327,16 +333,16 @@ export default function TeacherLaw(){
                     <div className="container justify-content-md-center" style={{width:'90%'}}>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>
                     <div className="overflow-auto m-3 p-4 scrollCss" style={{...divListStyle, maxHeight:'50vh' }}>
-                        <table style={{marginLeft:'auto', marginRight:'auto', width:'90%'}}>
+                        <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                         {lawList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
-                                    <td style={{ width: '20%'}}>법 내용 : </td>
-                                    <td style={{ width: '30%'}}>{menu.content}</td>
+                                    <td className="fs-4" style={{ width: '20%'}}>법 내용 : </td>
+                                    <td className="fs-4" style={{ width: '30%'}}>{menu.content}</td>
                                     {menu.type === 0 && (
                                         <>
-                                            <td style={{ width: '5%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
-                                            <td style={{ width: '5%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
+                                            <td className="fs-4" style={{ width: '5%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
+                                            <td className="fs-4" style={{ width: '5%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
                                             
                                         </>
                                     )}
@@ -349,14 +355,14 @@ export default function TeacherLaw(){
                                 </tr>
                                 {menu.type === 0 && (
                                     <tr key={`${index}_fine`}>
-                                        <td>벌금 : </td>
-                                        <td key={index}>{menu.fine}</td>
+                                        <td className="fs-4">벌금 : </td>
+                                        <td key={index} className="fs-4">{menu.fine}</td>
                                     </tr>
                                 )}
                                 {menu.type === 1 && (
                                     <tr key={`${index}_penalty`}>
-                                        <td>벌칙 : </td>
-                                        <td key={index}>{menu.penalty}</td>
+                                        <td className="fs-4">벌칙 : </td>
+                                        <td className="fs-4" key={index}>{menu.penalty}</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -375,7 +381,7 @@ export default function TeacherLaw(){
                         </div>
                         <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
-                            <div className="row m-3 p-1">
+                            <div className="row m-2 p-1 fs-3" style={colStyle}>
                                 <div className="col-1">번호</div>
                                 <div className="col-2">이름</div>
                                 <div className="col-3">법 내용</div>
@@ -383,7 +389,7 @@ export default function TeacherLaw(){
                                 <div className="col-3">부과일</div>
                                 <div className="col-1"></div>
                             </div>
-                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                            <div className="overflow-auto scrollCss" style={{height:'30vh'}}>
                                 {FineStudentItems}    
                             </div>
                         </div>
@@ -393,9 +399,9 @@ export default function TeacherLaw(){
                         <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(1)}
                         </div>
-                        <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+                        <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
-                            <div className="row m-3 p-1">
+                            <div className="row m-2 p-1 fs-3" style={colStyle}>
                                 <div className="col-sm-1">번호</div>
                                 <div className="col-sm-1">이름</div>
                                 <div className="col-sm-3">법 내용</div>
@@ -404,7 +410,7 @@ export default function TeacherLaw(){
                                 <div className="col-sm-1">체크</div>
                                 <div className="col-sm-1"></div>
                             </div>
-                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                            <div className="overflow-auto scrollCss" style={{height:'30vh'}}>
                                 {PenaltyStudentItems}   
                             </div> 
                         </div>
