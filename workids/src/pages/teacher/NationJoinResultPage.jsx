@@ -26,7 +26,7 @@ export default function NationPickPage() {
   };
 
   const navigateToCitizen = () => {
-    navigate("/teacher/citizenCreate");
+    navigate("/teacher/nation");
   };
 
   const navigateToMain = () => {
