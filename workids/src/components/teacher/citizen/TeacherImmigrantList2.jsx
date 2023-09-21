@@ -41,13 +41,13 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
     // 이민자관리 출력화면
     const immigrantItems2 = immigrantList2.map((menu, index) => (
         <tr key={index}>
-            <td>{menu.citizenNumber}</td>
-            <td>{menu.studentName}</td>
-            <td>{menu.name}</td>
-            <td>{menu.asset}</td>
-            <td>{menu.credit_rating}</td>
-            <td><TeacherImmigrantLeave citizenNumber={menu.citizenNumber} /></td>
-        </tr>
+        <td style={{ fontSize: '20px' }}>{menu.citizenNumber}</td>
+        <td style={{ fontSize: '20px' }}>{menu.studentName}</td>
+        <td style={{ fontSize: '20px' }}>{menu.name}</td>
+        <td style={{ fontSize: '20px' }}>{menu.asset}</td>
+        <td style={{ fontSize: '20px' }}>{menu.credit_rating}</td>
+        <td style={{ fontSize: '20px' }}><TeacherImmigrantLeave citizenNumber={menu.citizenNumber} /></td>
+    </tr>
     ));
 
     return (
@@ -61,11 +61,11 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
                 <table>
                     <thead>
                     <tr>
-                            <th style={{ width: "20%" }}>학급 번호</th>
-                            <th style={{ width: "20%" }}>이름</th>
-                            <th style={{ width: "20%" }}>직업</th>
-                            <th style={{ width: "20%" }}>자산</th>
-                            <th style={{ width: "20%" }}>신용도</th>
+                            <th style={{ width: "20%", fontSize: '24px' }}>학급 번호</th>
+                            <th style={{ width: "20%", fontSize: '24px' }}>이름</th>
+                            <th style={{ width: "20%", fontSize: '24px' }}>직업</th>
+                            <th style={{ width: "20%", fontSize: '24px' }}>자산</th>
+                            <th style={{ width: "20%", fontSize: '24px' }}>신용도</th>
                             <th></th>
                         </tr>
                     </thead>

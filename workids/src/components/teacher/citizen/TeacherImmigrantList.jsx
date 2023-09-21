@@ -83,38 +83,38 @@ export default function TeacherImmigrantList({ citizenNumber }) {
 
     const immigrantItems = immigrantList.map((menu, index) => (
         <tr key={index}>
-            <td>{menu.citizenNumber}</td>
-            <td>{menu.studentName}</td>
-            <td>
-                <select
-                    name="jobs"
-                    id="jobs"
-                    value={selectedJob}
-                    onChange={(e) => setSelectedJob(e.target.value)}
-                    style={{ width: '100px' }} // 원하는 넓이로 설정하세요
-                >
-                    <option value={selectedJob}>{selectedJob}</option>
-                    {jobList.map((job, index) => (
-                        <option key={index} value={job.name}>
-                            {job.name}
-                        </option>
-                    ))}
-                </select>
-            </td>
-            <td>
+            <td style={{ fontSize: '20px' }}>{menu.citizenNumber}</td>
+            <td style={{ fontSize: '20px' }}>{menu.studentName}</td>
+            <td style={{ fontSize: '15px' }}>
+    <select
+        name="jobs"
+        id="jobs"
+        value={selectedJob}
+        onChange={(e) => setSelectedJob(e.target.value)}
+        style={{ width: '100px', height: '20px' }} // 원하는 넓이와 높이로 설정하세요
+    >
+        <option value={selectedJob}>{selectedJob}</option>
+        {jobList.map((job, index) => (
+            <option key={index} value={job.name}>
+                {job.name}
+            </option>
+        ))}
+    </select>
+</td>
+            <td style={{ fontSize: '15px' }}>
                 <input
                     type="number"
                     value={asset}
                     onChange={handleAssetChange}
-                    style={{ width: '80px' }} // 원하는 넓이로 설정하세요
+                    style={{ width: '80px', height: '24px' }} // 원하는 넓이로 설정하세요
                 />
             </td>
-            <td>
+            <td style={{ fontSize: '15px' }}>
                 <input
                     type="number"
                     value={creditRating}
                     onChange={handleCreditRatingChange}
-                    style={{ width: '80px' }} // 넓이를 80px로 설정
+                    style={{ width: '80px', height: '24px' }} // 넓이를 80px로 설정
                 />
             </td>
             <td><TeacherImmigrantAcquire
@@ -127,20 +127,20 @@ export default function TeacherImmigrantList({ citizenNumber }) {
         </tr>
     ));
     return (
-        <div>
+        <div >
             <button onClick={handleShow}>학급번호로 조회</button>
             <div>
-                <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
+                <div style={{ marginTop: "60px" }}></div>
                 {show && (
                      <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
                     <table>
                         <thead>
                             <tr >
-                                <th style={{ width: "20%" }}>학급 번호</th>
-                                <th style={{ width: "20%" }}>이름</th>
-                                <th style={{ width: "20%" }}>직업</th>
-                                <th style={{ width: "20%" }}>자산</th>
-                                <th style={{ width: "20%" }}>신용도</th>
+                                <th style={{ width: "20%", fontSize: '24px' }}>학급 번호</th>
+                                <th style={{ width: "20%", fontSize: '24px' }}>이름</th>
+                                <th style={{ width: "20%", fontSize: '24px' }}>직업</th>
+                                <th style={{ width: "20%", fontSize: '24px' }}>자산</th>
+                                <th style={{ width: "20%", fontSize: '24px' }}>신용도</th>
                                 <th></th>
                             </tr>
                         </thead>
