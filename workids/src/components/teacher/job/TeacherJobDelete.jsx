@@ -40,23 +40,23 @@ export default function TeacherJobDelete({name}){
 
     return(
         <div>
-            <button onClick={handleShow}>삭제</button>
+           <div onClick={handleShow}  className="content-button">삭제</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>직업 삭제하기</Modal.Title>
+                    <Modal.Title className="info-label fs-3">직업 삭제하기</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <div>
+                <Modal.Body >
+                <div className="info-label fs-5 text-center">
                         정말로 삭제하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleDeleteJob()}>Yes</button>
-                    <button onClick={handleClose}>No</button>
+                <div onClick={handleDeleteJob} className="info-label fs-5 modal-button">Yes</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

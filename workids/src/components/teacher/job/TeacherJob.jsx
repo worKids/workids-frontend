@@ -16,7 +16,18 @@ export default function TeacherJob() {
     const [jobStudentList, setJobStudentList] = useState([]); //학생 직업 부여 항목
     const [jobKindList, setJobKindList] = useState([]); //직업 종류 항목
     const navigate = useNavigate();
-
+    const divListStyle = {
+        borderRadius: "20px",
+        backgroundColor: "#FEE173",
+        border: "solid 5px #F6BE2C"
+    }
+    const divStyle = {
+        width: "80%",
+        height: "80vh",
+        borderRadius: "40px",
+        backgroundColor: "#FFFEEE",
+    };
+    const numberOfJobList = jobList.length;
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -27,22 +38,20 @@ export default function TeacherJob() {
         fontSize: "18px",
         textAlign: "center",
         marginTop: "2vh",
-        backgroundColor: 'rgba(217, 217, 217, 0.5)',
-        border: "solid 5px gray"
+        borderRadius: "40px",
+        backgroundColor: '#FEE173',
+        border: "solid 5px #F6BE2C"
     }
 
 
-    const divStyle = {
-        width: "80%",
-        borderRadius: "40px",
-    };
+
 
     //직업 메뉴의 탭들
     const menu = jobMenu.map((menu, index) => (
         <div
             key={index}
             onClick={() => clickMenu(index)}
-            className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${state === index ? "bg-warning text-white" : ""
+            className={`menu-button ${state === index ? "bg-warning text-white" : ""
                 }`}
         >
             {menu}
@@ -132,9 +141,9 @@ export default function TeacherJob() {
 
         return (
             <tr style={{ borderTop: '3px solid black', padding: '10px' }}>
-                <td>{menu.citizenNumber}</td>
-                <td>{menu.studentName}</td>
-                <td>
+                <td style={{ fontSize: '20px' }}>{menu.citizenNumber}</td>
+                <td style={{ fontSize: '20px' }}>{menu.studentName}</td>
+                <td style={{ fontSize: '18px' }}>
                     <select
                         name="jobs"
                         id="jobs"
@@ -170,67 +179,85 @@ export default function TeacherJob() {
 
 
     return (
-        <div style={divStyle} className="border border-dark  border-3 p-3">
+        <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >
             <div className="d-flex justify-content-between">
                 <div className="d-flex">{menu}</div>
-                <div>직업 관리</div>
             </div>
 
 
             {state === 0 ? (
-                <div>
-
-                    <div style={{ overflowX: 'hidden', overflowY: 'auto', height: '60vh' }}>
-                        <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '70%' }}>
-                            {jobList.map((menu, index) => (
-                                <tbody key={index} style={{ fontSize: 'px', height: '15vh' }}>
-                                    <tr key={`${index}_name`} style={{ borderTop: '3px solid black', padding: '10px' }}>
-                                        <td style={{ width: '30%' }}>직업명</td>
-                                        <td style={{ width: '50%' }}>{menu.name}</td>
-                                        <td style={{ width: '20%' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                                <TeacherJobDelete name={menu.name} />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr key={`${index}_content`}>
-                                        <td>업무항목</td>
-                                        <td key={index}>{menu.jobToDoContent}</td>
-                                        <td></td> {/* 빈 칸을 만들어 TeacherJobDelete 버튼과 내용을 맞춥니다. */}
-                                    </tr>
-                                    <tr key={`${index}_salary`}>
-                                        <td>월급</td>
-                                        <td key={index}>{menu.salary}미소</td>
-                                        <td></td> {/* 빈 칸을 만들어 TeacherJobDelete 버튼과 내용을 맞춥니다. */}
-                                    </tr>
-                                </tbody>
-                            ))}
-                        </table>
+                numberOfJobList === 0 ? (
+                    <div className="h-100 d-flex justify-content-center align-items-center">
+                        <div>직업을 생성해주세요.</div>
+                        <div className="justify-content-end p-3">
+                            <TeacherJobCreate />
+                        </div>
                     </div>
+                ) : (
 
-                    <div className="container d-flex justify-content-end p-3">
-                        <TeacherJobCreate />
+
+                    <div className="container justify-content-md-center" style={{ width: '90%' }}>
+                        <div className="container d-flex justify-content-end">(단위:미소)</div>
+                        <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+
+                            <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>
+                                {jobList.map((menu, index) => (
+                                    <tbody key={index} style={{ fontSize: '20px', height: '15vh' }}>
+                                        <tr key={`${index}_content`} style={{ borderTop: '3px solid black', padding: '10px' }}>
+                                            <td style={{ width: '30%' }}>직업명 :</td>
+                                            <td style={{ width: '30%' }}>{menu.name}</td>
+                                            <>
+                                                <td></td>
+                                                <td>
+                                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                                        <TeacherJobDelete name={menu.name} />
+                                                    </div>
+                                                </td>
+                                            </>
+                                        </tr>
+                                        <tr key={`${index}_content`}>
+                                            <td>업무항목 :</td>
+                                            <td key={index}>{menu.jobToDoContent}</td>
+
+                                        </tr>
+                                        <tr key={`${index}_salary`}>
+                                            <td>월급 :</td>
+                                            <td key={index}>{menu.salary}</td>
+
+                                        </tr>
+                                    </tbody>
+                                ))}
+                            </table>
+                        </div>
+                        <div className="container d-flex justify-content-end">
+                            <TeacherJobCreate />
+                        </div>
                     </div>
-
-                </div>
-
+                )
             ) : (
                 <div>
+                    <div className="container justify-content-md-center" style={{ width: '90%' }}>
+                        <div className="container d-flex justify-content-end">
+                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
+                        </div>
+                        
+                        <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+                            <table style={{ width: '100%' }}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: '30%', fontSize: '22px' }}>학급 번호</th>
+                                        <th style={{ width: '40%', fontSize: '22px' }}>이름</th>
+                                        <th style={{ width: '40%', fontSize: '22px' }}>직업</th>
+                                        <th style={{ width: '40%', fontSize: '22px' }}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                    <div style={{ overflowX: 'auto', width: '80%', margin: '0 auto' }}>
-                        <table style={{ width: '100%' }}>
-                            <thead>
-                                <tr>
-                                    <th style={{ width: '20%', fontSize: '22px', textAlign: 'left' }}>학급 번호</th>
-                                    <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}>이름</th>
-                                    <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}>직업</th>
-                                    <th style={{ width: '40%', fontSize: '22px', textAlign: 'left' }}></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {JobStudentUpdateItems}
-                            </tbody>
-                        </table>
+                                    {JobStudentUpdateItems}
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             )}
