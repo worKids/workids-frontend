@@ -48,9 +48,56 @@
   border-right: none;
 }
 
+/*메뉴*/
+.menu-button{
+  font-size: 1.3rem;
+  margin: 0.5rem;
+  border: 1px solid #000;
+  border-color: #343a40;
+  border-width: 3px;
+  text-align: center;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 50rem;
+}
 
+/*수정, 삭제 메뉴 버튼*/
+.content-button{
+  font-size: 1.25rem;
+  background-color: #FFFEEE;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  border-width: 3px;
+  border-radius: 50rem;
+  border-color: #343a40;
+  border: 3px solid #000;
+  text-align: center;
+}
 
+/*modal 버튼*/
+.modal-button{
+  border-radius: 10rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  border: 2px solid #000;
+}
 
+/*추가 버튼*/
+.create-button{
+  font-size: 1.25rem;
+  background-color: #ffc107;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 50rem;
+  border-width: 3px;
+  border-color: #343a40;
+  border-style: solid;
+  text-align: center;
+}
 
-
-
+/*col내용 길어질때*/
+.col-style{
+  white-space: "nowrap";
+  text-overflow: "ellipsis";
+}

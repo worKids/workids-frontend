@@ -38,24 +38,24 @@ export default function TeacherLawDelete({lawNum}){
 
 
     return(
-        <div>
-            <div onClick={handleShow} className="fs-5 bg-warning px-3 rounded-pill border-3 border-dark border text-center">삭제</div>
+        <div >
+            <div onClick={handleShow} className="content-button">삭제</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 삭제하기</Modal.Title>
+                    <Modal.Title className="info-label fs-3">법 삭제하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="info-label fs-5 text-center">
                         정말로 삭제하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleDeleteLaw()}>Yes</button>
-                    <button onClick={handleClose}>No</button>
+                    <div onClick={handleDeleteLaw} className="info-label fs-5 modal-button">Yes</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

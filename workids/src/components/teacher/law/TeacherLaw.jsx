@@ -65,7 +65,7 @@ export default function TeacherLaw(){
         <div
           key={index}
           onClick={() => clickMenu(index)}
-          className={`m-2 border border-dark  border-3 text-center p-2 px-3 hoverable rounded-pill ${
+          className={`menu-button ${
             state === index ? "bg-warning text-white" : ""
           }`}
         >
@@ -335,8 +335,8 @@ export default function TeacherLaw(){
                                     <td style={{ width: '30%'}}>{menu.content}</td>
                                     {menu.type === 0 && (
                                         <>
-                                            <td style={{ width: '10%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
-                                            <td style={{ width: '10%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
+                                            <td style={{ width: '5%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
+                                            <td style={{ width: '5%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
                                             
                                         </>
                                     )}
