@@ -122,7 +122,7 @@ export default function TeacherLawCreate({onUpdate}){
                     <Modal.Title>법 제정하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form className="text-center">
                         {['radio'].map((type) => (
                             <div key={`inline-${type}`} className="mb-3">
                             <Form.Check
@@ -146,8 +146,8 @@ export default function TeacherLawCreate({onUpdate}){
                             </div>
                         ))}
                         {selectedTab === 'tab1' && (
-                            <div>
-                                <Form.Group as={Row} className="mb-3">
+                            <div className="fs-5">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 
                                     </Form.Label>
@@ -155,7 +155,7 @@ export default function TeacherLawCreate({onUpdate}){
                                         <Form.Control type="text" name="content" placeholder="부과 규칙" onChange={getAllInput} value={content}/>
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         벌금: 
                                     </Form.Label>
@@ -165,18 +165,18 @@ export default function TeacherLawCreate({onUpdate}){
                                     <Col sm="3">미소</Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button className="btn_close" variant="secondary" onClick={handleAddLaw}>
+                                    <div className="info-label fs-5 modal-button" onClick={handleAddLaw}>
                                         제정
-                                    </Button>
-                                    <Button className="btn_close" variant="secondary" onClick={handleClose}>
+                                    </div>
+                                    <div className="info-label fs-5 modal-button" onClick={handleClose}>
                                         닫기
-                                    </Button>
+                                    </div>
                                 </Modal.Footer>
                             </div>
                         )}
                         {selectedTab === 'tab2' && (
-                            <div>
-                                <Form.Group as={Row} className="mb-3" controlId="content">
+                            <div className="fs-5">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 
                                     </Form.Label>
@@ -184,7 +184,7 @@ export default function TeacherLawCreate({onUpdate}){
                                         <Form.Control type="text" name="content" placeholder="부과 규칙" onChange={getAllInput} value={content}/>
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="fine">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         벌칙: 
                                     </Form.Label>
@@ -193,12 +193,12 @@ export default function TeacherLawCreate({onUpdate}){
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button className="btn_close" variant="secondary" onClick={handleAddLaw}>
+                                    <div className="info-label fs-5 modal-button" onClick={handleAddLaw}>
                                         제정
-                                    </Button>
-                                    <Button className="btn_close" variant="secondary" onClick={handleClose}>
+                                    </div>
+                                    <div className="info-label fs-5 modal-button" onClick={handleClose}>
                                         닫기
-                                    </Button>
+                                    </div>
                                 </Modal.Footer>
                             </div>
                         )}
