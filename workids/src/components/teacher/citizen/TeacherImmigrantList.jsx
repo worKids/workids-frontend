@@ -127,9 +127,9 @@ export default function TeacherImmigrantList({ citizenNumber }) {
             <div>
                 <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
                 {show && (
-                    <table>
+                    <table style={{ backgroundColor: 'lightyellow' }}>
                         <thead>
-                            <tr>
+                            <tr style={{ backgroundColor: 'orange' }}>
                                 <th style={{ width: "20%" }}>학급 번호</th>
                                 <th style={{ width: "20%" }}>이름</th>
                                 <th style={{ width: "20%" }}>직업</th>

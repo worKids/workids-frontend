@@ -20,11 +20,7 @@ export default function TeacherCitizen() {
   const [citizenList, setCitizenList] = useState([]); //국민 항목
   const [creditRatingList, setCreditRatingList] = useState([]); //국민 항목
   const navigate = useNavigate();
-  const handleCreditRatingChange = (e, index) => {
-    const updatedCreditRatingList = [...creditRatingList];
-    updatedCreditRatingList[index].creditRating = e.target.value;
-    setCreditRatingList(updatedCreditRatingList);
-  };
+
   const [inputValue, setInputValue] = useState(""); // 입력한 값을 상태로 관리합니다.
   const [rankingList, setLankingList] = useState({ assetRanking: [], consumptionRanking: [], savingRanking: [], fineRanking: [] });
   const numberOfAsset = rankingList.assetRanking.length;
@@ -34,6 +30,276 @@ export default function TeacherCitizen() {
   const [selectedTab, setSelectedTab] = useState('tab1');
   const [selectedTab2, setSelectedTab2] = useState('tab1'); // 초기 탭 설정
   const [type, setType] = useState('t');
+  const [penaltyStudentList, setPenaltyStudentList] = useState([]); //벌칙 부여 항목
+  const [fineStudentList, setFineStudentList] = useState([]); //벌금 부여 항목
+  const [aucList, setAucList] = useState([]);
+  const [bankMainList, setBankMainList] = useState([]); // 주거래 계좌 목록
+  const [bankDepositList, setBankDepositList] = useState([]); // 예금 계좌 목록
+
+
+
+  const handleNumber = (citizenNumber) => {
+
+
+    const token = userData.accessToken;
+    if (!token) {
+      navigate("/");
+    }
+
+    // 주거래 계좌
+    axBase(token)({
+      method: "post",
+      url: "/student/bank/main/list",
+      data: {
+        nationStudentNum: citizenNumber,
+      },
+    })
+      .then((response) => {
+        setBankMainList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+    // 예금 계좌
+    axBase(token)({
+      method: "post",
+      url: "/student/bank/deposit/list",
+      data: {
+        nationStudentNum: citizenNumber,
+      },
+    })
+      .then((response) => {
+        setBankDepositList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+
+    //부과된 벌칙 리스트
+    axBase(token)({
+      method: "post",
+      url: "/student/law/penalty/list",
+      data: {
+        nationStudentNum: citizenNumber,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        setPenaltyStudentList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+    //부과된 벌금 리스트
+
+    axBase(token)({
+      method: "post",
+      url: "/student/law/fine/list",
+      data: {
+        nationStudentNum: citizenNumber,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        setFineStudentList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+    //부과된 부동산 리스트
+    axBase(token)({
+      method: "post",
+      url: "/student/auction/list",
+      data: {
+        nationNum: userData.nationNum,
+        nationStudentNum: 2,
+      },
+    })
+      .then((response) => {
+        console.log(response.data.data);
+        setAucList(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+
+  };
+
+  //주거래 리스트
+  const showMainBankList = (
+    (bankMainList.length === 0)
+      ?
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
+        주거래 계좌가 없습니다!
+      </div>
+      :
+      bankMainList.map((bank, index) => (
+
+        <div key={index}>
+          <div className="info-label row m-2 text-center p-2 ">
+            {/* <div className="col d-flex justify-content-center align-items-center">
+                {index + 1}
+            </div> */}
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.accountNumber}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.productName}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.balance}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.interestRate}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.createdDate}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.endDate}
+            </div>
+
+            <div className="col-2 d-flex justify-content-center align-items-center">
+            </div>
+          </div>
+        </div>
+      ))
+  )
+
+  // 예금 계좌
+  const showDepositBankList = (
+    (bankDepositList.length === 0)
+      ?
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
+        예금 계좌가 없습니다!
+      </div>
+      :
+      bankDepositList.map((bank, index) => (
+
+        <div key={index}>
+          <div className="info-label row m-2 text-center p-2 ">
+            {/* <div className="col d-flex justify-content-center align-items-center">
+              {index + 1}
+          </div> */}
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.accountNumber}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.productName}
+            </div>
+            <div className="col-1 d-flex justify-content-center align-items-center">
+              {bank.balance}
+            </div>
+            <div className="col-1 d-flex justify-content-center align-items-center">
+              {bank.interestRate}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.createdDate}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {bank.endDate}
+            </div>
+
+
+          </div>
+        </div>
+      ))
+  )
+
+
+  //부여된 벌칙 출력
+  const PenaltyItems =(
+    (penaltyStudentList.length === 0)
+    ?
+    <div className="info-label h-100 d-flex justify-content-center align-items-center">
+      벌칙 내역이 없습니다!
+    </div>
+    :
+  penaltyStudentList.map((item, index) => (
+
+
+    <div key={index} className="info-label row m-2 text-center p-2" >
+      <div className="col-2 p-3">{index + 1}</div>
+      <div className="col-2 p-3">{item.content}</div>
+      <div className="col-2 p-3">{item.penalty}</div>
+      <div className="col-2 p-3">{item.createdDate}</div>
+      {item.penaltyCompleteState === 0 && (
+        <div className="col-2 p-3">미수행</div>
+      )}
+      {item.penaltyCompleteState === 1 && (
+        <div className="col-2 p-3">수행</div>
+      )}
+      <hr></hr>
+    </div>
+
+  ))
+  )
+
+
+
+  //부여된 벌금 출력
+  const FineItems =(
+  (fineStudentList.length === 0)
+  ?
+  <div className="info-label h-100 d-flex justify-content-center align-items-center">
+    벌금 내역이 없습니다!
+  </div>
+  : fineStudentList.map((item, index) => (
+
+    <div key={index}  className="info-label row m-2 text-center p-2" >
+      <div className="col-3 p-4">{index + 1}</div>
+      <div className="col-3 p-4">{item.content}</div>
+      <div className="col-3 p-4">{item.fine}</div>
+      <div className="col-3 p-4">{item.createdDate}</div>
+      <hr></hr>
+    </div>
+  ))
+  )
+
+  //부여된 부동산 출력
+  const auctionList =
+    aucList !== null ? (
+      aucList.map((menu, index) => (
+        <div key={index}>
+          <div className="row text-center my-4 fs-5">
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {index + 1}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {menu.createdDate}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {menu.seatNumber}
+            </div>
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {menu.submitPrice}
+            </div>
+
+            {menu.auctionState === 0 ? (
+              <div className="col-2 d-flex justify-content-center align-items-center">진행 중</div>
+            ) : menu.resultType === 1 ? (
+              <div className="col-2 d-flex justify-content-center align-items-center">낙찰</div>
+            ) : (
+              <div className="col-2 d-flex justify-content-center align-items-center">미낙찰</div>
+            )}
+
+            <div className="col-2 d-flex justify-content-center align-items-center">
+              {menu.resultSeat}
+            </div>
+          </div>
+        </div>
+      ))
+    ) : (
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
+        생성된 경매가 없습니다!
+      </div>
+    );
+
+
 
 
   const divBlock = {
@@ -53,10 +319,17 @@ export default function TeacherCitizen() {
     }
   };
 
+  const handleCreditRatingChange = (e, index) => {
+    const updatedCreditRatingList = [...creditRatingList];
+    updatedCreditRatingList[index].creditRating = e.target.value;
+    setCreditRatingList(updatedCreditRatingList);
+  };
+
   const handleInputChange = (e) => {
     // 입력값이 변경될 때 상태를 업데이트합니다.
     setInputValue(e.target.value);
   };
+
 
 
   const clickMenu = (idx) => {
@@ -101,12 +374,12 @@ export default function TeacherCitizen() {
     }
     // 상세정보 가져오기
     axBase(token)({
-      
+
       method: "post",
       url: "/teacher/citizen/info/list",
       data: {
         nationNum: userData.nationNum,
-        
+
         citizenNumber: citizenNumber
       },
     })
@@ -155,26 +428,100 @@ export default function TeacherCitizen() {
 
       <div>
         <hr style={{ border: '2px solid #000' }} />
-        <p>자산 내용을 여기에 추가.</p>
+        {/* <p>자산 내용을 여기에 추가.</p> */}
+        <div>
+          <div className = "info-label">주거래 계좌</div>
+          <div className="row m-2 text-center p-2 ">
+            {/* <div className="col">번호</div> */}
+            <div className="info-label col-2">계좌번호</div>
+            <div className="info-label col-2">상품명</div>
+            <div className="info-label col-2"><div>잔액</div><div>(미소)</div></div>
+            <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
+            <div className="info-label col-2">개설일</div>
+            <div className="info-label col-2">만기일</div>
+      
+          </div>
+          <div className="container overflow-auto" style={{ height: "10vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+            {showMainBankList}
+          </div>
+        </div>
+        <div>
+        <div className = "info-label">예금 계좌</div>
+          <div className="row m-2 text-center p-2 ">
+            {/* <div className="col">번호</div> */}
+            <div className="info-label col-2">계좌번호</div>
+            <div className="info-label col-2">상품명</div>
+            <div className="info-label col-2"><div>잔액</div><div>(미소)</div></div>
+            <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
+            <div className="info-label col-2">개설일</div>
+            <div className="info-label col-2">만기일</div>
+   
+          </div>
+          <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+            {showDepositBankList}
+          </div>
+        </div>
+
+
 
       </div>
     ),
     tab2: (
       <div>
-        <hr style={{ border: '2px solid #000' }} />
-        <p>벌금 내용을 여기에 추가.</p>
+
+        <div>
+          <hr style={{ border: '2px solid #000' }} />
+          {/* <p>벌금 내용을 여기에 추가.</p> */}
+          <div className="info-label row m-2 text-center p-3 ">
+            <div className="col-3">No</div>
+            <div className="col-3">법 항목</div>
+            <div className="col-3">벌금</div>
+            <div className="col-3">부과일</div>
+          </div>
+          <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+            {FineItems}
+          </div>
+
+        </div>
+
       </div>
     ),
     tab3: (
+
       <div>
         <hr style={{ border: '2px solid #000' }} />
-        <p>벌칙 내용을 여기에 추가.</p>
+        {/* <p>벌칙 내용을 여기에 추가.</p> */}
+        <div className=" info-label row m-2 text-center p-3">
+          <div className="col-2">No</div> {/* 너비 1 */}
+          <div className="col-2">법 항목</div> {/* 너비 3 */}
+          <div className="col-2">벌칙</div> {/* 너비 2 */}
+          <div className="col-2">부과일</div> {/* 너비 2 */}
+          <div className="col-2">수행여부</div> {/* 너비 2 */}
+          
+        </div>
+        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+          {PenaltyItems}
+        </div>
+
+        
       </div>
     ),
     tab4: (
       <div>
         <hr style={{ border: '2px solid #000' }} />
-        <p>부동산 내용을 여기에 추가.</p>
+        {/* <p>부동산 내용을 여기에 추가.</p> */}
+        <div className="info-label row m-2 text-center p-3 ">
+          <div className="col-2">No</div>
+          <div className="col-2">경매 날짜</div>
+          <div className="col-2">신청번호</div>
+          <div className="col-2">금액</div>
+          <div className="col-2">결과</div>
+          <div className="col-2">배정된 번호</div>
+        </div>
+        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+          {auctionList}
+        </div>
+
       </div>
     ),
   };
@@ -236,7 +583,7 @@ export default function TeacherCitizen() {
 
   // 국민관리 출력화면
   const citizenItems = citizenList.map((menu, index) => (
-    <tr onClick={() => { handleShow(); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderTop: '2.5px solid black' }}>
+    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderTop: '2.5px solid black' }}>
       <td style={{ width: '20%', padding: '10px', fontSize: '20px' }}>
         {menu.citizenNumber}
       </td>
@@ -441,32 +788,32 @@ export default function TeacherCitizen() {
               <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
                 {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
                 <input
-                    type="number"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    style={{
-                      width: '160px', // 원하는 넓이로 조절
-                      marginRight: '10px',
-                    }}
-                  />
-                  <TeacherImmigrantList citizenNumber={inputValue} />
-              
+                  type="number"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  style={{
+                    width: '160px', // 원하는 넓이로 조절
+                    marginRight: '10px',
+                  }}
+                />
+                <TeacherImmigrantList citizenNumber={inputValue} />
+
               </div>
             ) : (
               <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
                 {/* 2번 라디오 버튼을 선택한 경우 보여질 내용 */}
                 <input
-                    type="number"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    style={{
-                      width: '160px', // 원하는 넓이로 조절
-                      marginRight: '10px',
-                    }}
-                  />
-                  <TeacherImmigrantList2 citizenNumber={inputValue} />
+                  type="number"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  style={{
+                    width: '160px', // 원하는 넓이로 조절
+                    marginRight: '10px',
+                  }}
+                />
+                <TeacherImmigrantList2 citizenNumber={inputValue} />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* 가운데 정렬 */}
-                
+
                 </div>
               </div>
             )}

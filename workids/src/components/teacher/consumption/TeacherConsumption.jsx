@@ -7,7 +7,7 @@ import TeacherConsumptionCreate from "./TeacherConsumptionCreate";
 import TeacherConsumptionUpdate from "./TeacherConsumptionUpdate";
 import TeacherConsumptionDelete from "./TeacherConusmptionDelete";
 import TeacherConsumptionProcess from "./TeacherConsumptionProcess";
-
+import "../../../index.css"
 export default function TeacherConsumption(){
     const consumptionMenu = ["소비 항목 조회", "국민 소비 관리"];
     const [state, setState] = useState(0);//버튼 클릭
@@ -15,6 +15,7 @@ export default function TeacherConsumption(){
     const [consumptionList, setConsumptionList] = useState([]); //소비 항목 리스트
     const [outStandingConsumptionList, setOutStandingConsumptionList] = useState([]); //소비-학생 미결재 리스트
     const [approvalConsumptionList, setApprovalConsumptionList] = useState([]); // 소비-학생 결재 리스트
+    const [check, setCheck] = useState(0);
     const navigate = useNavigate();
     const numberOfConsumption = consumptionList.length;
 
@@ -89,7 +90,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, [consumptionList]);
+    }, [check]);
 
     //소비-학생 미결재 리스트 가져오기
     useEffect(() => {
@@ -113,7 +114,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, [outStandingConsumptionList]);
+    }, [check]);
 
     //미결재 리스트 출력
     const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
@@ -149,7 +150,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, [approvalConsumptionList]);
+    }, []);
 
     //결재 리스트 출력
     const approvalItems = approvalConsumptionList.map((menu,index) => (
@@ -184,8 +185,8 @@ export default function TeacherConsumption(){
                     ):(
                     <div className="container justify-content-md-center" style={{height:'80%'}}>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>    
-                    <div className="overflow-auto m-3 p-4" style={{height:'80%' }}>
-                        <table style={{marginLeft:'auto', marginRight:'auto', width:'80%'}}>
+                    <div className="overflow-auto m-3 p-4 scrollCss" style={{height:'80%' }}>
+                        <table  style={{marginLeft:'auto', marginRight:'auto', width:'80%'}}>
                         {consumptionList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
@@ -221,7 +222,7 @@ export default function TeacherConsumption(){
                                 <div className="col-sm-3 p-1" style={colStyle}>승인일</div>
                                 <div className="col-sm-2 p-1" style={colStyle}></div>
                             </div>
-                            <div style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
+                            <div className="scrollCss" style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
                                 {approvalItems}
                             </div>
                         </div>
@@ -236,7 +237,7 @@ export default function TeacherConsumption(){
                                 <div className="col-sm-3 p-1" style={colStyle}>신청일</div>
                                 <div className="col-sm-2 p-1" style={colStyle}></div>
                             </div>
-                            <div style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
+                            <div className="scrollCss" style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
                                 {outStadndingItems}
                             </div>
                         </div>

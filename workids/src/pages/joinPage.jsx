@@ -23,7 +23,7 @@ export default function joinPage() {
     <div
       key={index}
       onClick={() => setTypeState(index)}
-      style={{ width: "45%" }}
+      style={{ width: "45%"}}
       className={`m-auto border border-dark border-3 mt-3 text-center rounded-pill px-5 py-1 ${
         isActive(index) ? "bg-warning text-white" : ""
       }`}

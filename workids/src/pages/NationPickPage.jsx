@@ -82,7 +82,7 @@ export default function NationPickPage() {
       nationList.map((menu, index) => (
         <div		
           key={index}		
-          className={`m-3 border border-dark  border-3 text-center p-3 bg-white rounded-pill sideNav `}		
+          className={`m-3 border border-dark  border-3 text-center hoverable p-3 bg-white rounded-pill sideNav `}		
           onClick={() => navigateToNation(index)} style={{position: 'relative'}}		
         >		
           <div style={{ fontSize: '30px' }}>{menu.name} 나라</div>		
@@ -105,10 +105,12 @@ export default function NationPickPage() {
             <div className="d-flex justify-content-between">
               <h4 className="ms-3 ">운영중인 나라</h4>
               <div className="me-4" onClick={navigateToCreate}>
-                <div style={{ fontSize: "20px" }}>나라 설립하기 &gt;</div>
+                <div className="hoverable" style={{ fontSize: "20px" }}>나라 설립하기 &gt;</div>
               </div>
             </div>
+            <div className="scrollCss container overflow-auto" style={{ maxHeight: "70vh" }}>
             {nationBtn}
+            </div>
           </div>
         </div>
       ) : (
@@ -118,10 +120,12 @@ export default function NationPickPage() {
             <div className="d-flex justify-content-between">
               <h4 className="ms-3 ">참여중인 나라</h4>
               <div className="me-4" onClick={navigatNationeJoin}>
-                <div style={{ fontSize: "20px" }}>나라 참여하기 &gt;</div>
+                <div className="hoverable" style={{ fontSize: "20px" }}>나라 참여하기 &gt;</div>
               </div>
             </div>
+            <div className="scrollCss container overflow-auto" style={{ maxHeight: "70vh" }}>              
             {nationBtn}
+            </div>
           </div>
         </div>
       )}

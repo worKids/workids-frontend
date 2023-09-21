@@ -105,7 +105,7 @@ export default function CreateNationPage() {
 
   return (
     <div className="container">
-      <div>
+      <div >
         <h3 className="d-flex justify-content-center p-4">나라 설립하기</h3>
 
         <div className="row justify-content-center">
@@ -115,7 +115,7 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={name}
@@ -128,7 +128,7 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={moneyName}
@@ -141,11 +141,12 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control border bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={taxRate}
               onChange={taxRateHandler}
+
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -161,7 +162,7 @@ export default function CreateNationPage() {
                 minDate={new Date()}
                 startDate={startDate}
                 endDate={endDate}
-                className="datePicker"
+                className="datePicker bg-white border-2 border-dark"
                 placeholderText={formatDate(new Date())}
               />
               <DatePicker
@@ -172,7 +173,7 @@ export default function CreateNationPage() {
                 minDate={new Date()}
                 startDate={startDate}
                 endDate={endDate}
-                className="datePicker1"
+                className="datePicker1 bg-white border-2 border-dark"
                 placeholderText={formatDate(new Date())}
               />
             </div>
@@ -181,9 +182,9 @@ export default function CreateNationPage() {
             <div htmlFor="name" className="col-2 d-flex align-items-center">
               월급 지급일
             </div>
-            <div className="col-2  d-flex justify-content-center">
+            <div className="col-2 d-flex justify-content-center">
               <select
-                className="form-select"
+                className="form-select scrollCss bg-white border-2 border-dark"
                 aria-label="select example"
                 value={payDay}
                 onChange={payDayHandler}
@@ -200,11 +201,12 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={school}
               onChange={schoolHandler}
+
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -213,11 +215,12 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={grade}
               onChange={gradeHandler}
+
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -226,7 +229,7 @@ export default function CreateNationPage() {
             </div>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-white border-2 border-dark"
               id="name"
               placeholder=""
               value={classRoom}
@@ -237,7 +240,7 @@ export default function CreateNationPage() {
 
         <div className="row justify-content-center my-3">
           <button
-            className="col-7 btn btn-warning btn-lg btn-block text-white"
+            className="col-7 btn btn-warning border-2 border-warning btn-lg btn-block text-white"
             type="submit"
             onClick={create}
           >

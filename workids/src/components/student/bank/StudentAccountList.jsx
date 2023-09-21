@@ -288,8 +288,11 @@ export default function StudentAccountList(){
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.category}
                 </div>
-                <div className="col-2 d-flex justify-content-center align-items-center">
-                    {(bank.type=="0") ? ("+"+bank.amount) : ("-"+bank.amount)}
+                {/* <div className={`col-2 d-flex justify-content-center align-items-center`}>
+                    {(bank.type === 0) ? ("+" + bank.amount) : ("-" + bank.amount)}
+                </div> */}
+                <div className={`col-2 d-flex justify-content-center align-items-center ${bank.type === 0 ? "text-primary" : "text-danger"}`}>
+                    {(bank.type === 0) ? ("+" + bank.amount) : ("-" + bank.amount)}
                 </div>
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.transactionDate}
@@ -307,7 +310,7 @@ export default function StudentAccountList(){
                 <div className="col">
                     <div style={{fontSize:'20px'}}>총 자산</div>
                 </div>
-                <div className="col-2 d-flex justify-content-end">
+                <div className="col-2 d-flex justify-content-end text-primary">
                     {asset} 미소
                 </div>
             </div>
