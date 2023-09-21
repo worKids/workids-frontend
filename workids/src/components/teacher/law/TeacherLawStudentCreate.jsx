@@ -40,8 +40,10 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum,
         })
         .then((response) => {
             alert("벌금 부여 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -68,7 +70,7 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum,
             alert("벌칙 부여 완료");
             setShow(false);
             if (typeof onUpdate === "function") {
-                onUpdate(); // 부모 컴포넌트로 알림
+                onUpdate(); 
             }
         })
         .catch((err) => {
@@ -79,27 +81,28 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum,
 
     return(
         <div>
-            <button type="button" onClick={handleShow} style={{fontSize:'15px'}}>부여하기</button>
+            <div onClick={handleShow} className="create-button p-1" style={{width:"13vh"}}>부여</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>학생에게 법 부여하기</Modal.Title>
+                    <Modal.Title className="fs-4">학생에게 법 부여하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="info-label fs-5 text-center">
                         법을 부여하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     {tabType ===0 ?(
-                        <button onClick={() => handleCreateFineStudent()}>Yes</button>
+                        <div onClick={() => handleCreateFineStudent()} className="info-label fs-5 modal-button">Yes</div>
                     ): (
-                        <button onClick={() => handleCreatePenaltyStudent()}>Yes</button>
+                        <div onClick={() => handleCreatePenaltyStudent()} className="info-label fs-5 modal-button">Yes</div>
                     )}
-                    <button onClick={handleClose}>No</button>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

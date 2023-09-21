@@ -31,7 +31,7 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, on
             alert("벌금 부여 취소 완료");
             setShow(false);
             if (typeof onUpdate === "function") {
-                onUpdate(); // 부모 컴포넌트로 알림
+                onUpdate(); 
             }
         })
         .catch((err) => {
@@ -68,27 +68,28 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, on
 
     return(
         <div>
-            <button onClick={handleShow}>취소</button>
+            <div onClick={handleShow} className="content-button" style={{width:"9vh"}}>취소</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 부여 취소하기</Modal.Title>
+                    <Modal.Title className="fs-4">법 부여 취소하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="info-label fs-5 text-center">
                         정말로 취소하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     {tabType ===0 ?(
-                        <button onClick={() => handleDeleteFineStudent()}>Yes</button>
+                        <div onClick={() => handleDeleteFineStudent()} className="info-label fs-5 modal-button">Yes</div>
                     ): (
-                        <button onClick={() => handleDeletePenaltyStudent()}>Yes</button>
+                        <div onClick={() => handleDeletePenaltyStudent()} className="info-label fs-5 modal-button">Yes</div>
                     )}
-                    <button onClick={handleClose}>No</button>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

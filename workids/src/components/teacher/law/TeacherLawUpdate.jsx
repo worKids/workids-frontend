@@ -67,29 +67,39 @@ export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
             <div onClick={handleShow} className="content-button">수정</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 벌금 수정하기</Modal.Title>
+                    <Modal.Title className="fs-4">법 벌금 수정하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
-                        <Form.Group as={Row} className="mb-3">
-                            <div>부과규칙 : {content}</div>
-                            <Form.Label column sm="2">
-                                벌금 : 
-                            </Form.Label>
-                            <Col sm="6">
-                                <Form.Control type="number" onChange={onChangeFine} value={updateFine} placeholder="벌금 금액" />
-                            </Col>
-                            <Col sm="3">미소</Col>
+                    <Form className="px-3">
+                        <Form.Group as={Row} className="mb-2 fs-5 p-1">
+                            <Row className="p-1">
+                                <Col sm="3">
+                                    부과규칙 : 
+                                </Col>
+                                <Col sm="5">
+                                    {content}
+                                </Col>
+                            </Row>    
+                            <Row className="p-1">
+                                <Col sm="3">
+                                    벌금 : 
+                                </Col>
+                                <Col sm="5">
+                                    <Form.Control type="number" onChange={onChangeFine} value={updateFine} placeholder="벌금 금액" />
+                                </Col>
+                                <Col sm="3">미소</Col>
+                            </Row>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleUpdateLaw()}>수정</button>
-                    <button onClick={handleClose}>취소</button>
+                    <div onClick={handleUpdateLaw} className="info-label fs-5 modal-button">수정</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
                 </Modal.Footer>
             </Modal>
         </div>

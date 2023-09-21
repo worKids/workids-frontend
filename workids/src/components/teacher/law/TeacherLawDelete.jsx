@@ -46,11 +46,12 @@ export default function TeacherLawDelete({lawNum, onUpdate}){
             <div onClick={handleShow} className="content-button">삭제</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title className="info-label fs-3">법 삭제하기</Modal.Title>
+                    <Modal.Title className="info-label fs-4">법 삭제하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="info-label fs-5 text-center">
