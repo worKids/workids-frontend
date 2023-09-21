@@ -15,7 +15,7 @@ export default function StudentJobList({ citizenNumber }) {
 
   //내 직업 출력
   const MyJobItems = myJobList.map((menu, index) => (
-    <tr key={`${index}_name`} style={{ borderTop: '3px solid black', borderBottom: '1px solid black', padding: '10px', lineHeight: '5 0px' }}>
+    <tr key={`${index}_name`} style={{ borderTop: '2px solid black', borderBottom: '1px solid black', padding: '10px', lineHeight: '5 0px' }}>
       <td style={{ fontSize: '20px' }}>{index + 1}</td>
       <td style={{ fontSize: '20px' }}>{menu.name}</td>
       <td style={{ fontSize: '20px' }}>{menu.salary}</td>
@@ -61,11 +61,11 @@ export default function StudentJobList({ citizenNumber }) {
       <table style={{ width: '100%' }}>
             <thead>
               <tr>
-              <th style={{ width: '20%', fontSize: '22px' }}>No.</th>
-              <th style={{ width: '20%', fontSize: '22px' }}>직업</th>
-              <th style={{ width: '20%', fontSize: '22px' }}>월급</th>
-              <th style={{ width: '20%', fontSize: '22px' }}>시작일</th>
-              <th style={{ width: '20%', fontSize: '22px' }}>종료일</th>
+              <th style={{ width: '20%', fontSize: '27px' }}>No.</th>
+              <th style={{ width: '20%', fontSize: '27px' }}>직업</th>
+              <th style={{ width: '20%', fontSize: '27px' }}>월급</th>
+              <th style={{ width: '20%', fontSize: '27px' }}>시작일</th>
+              <th style={{ width: '20%', fontSize: '27px' }}>종료일</th>
               </tr>
             </thead>
             <tbody>
