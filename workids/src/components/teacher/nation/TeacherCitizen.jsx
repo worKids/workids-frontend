@@ -11,19 +11,22 @@ import Button from 'react-bootstrap/Button';
 
 export default function StudentConsumptionCreate({consumptionNum}){
     const nationInfoMenu = ["나라 정보", "나라 정보 수정", "학급번호 연결"];
-    const [state, setState] = useState(0);//버튼 클릭 
+    const [state, setState] = useState(2);//버튼 클릭 
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
     const [citizenInfo, setCitizenInfo] = useState({
         nationNum:"",
-        name: "",
         citizenNumber:"",
-        birthData: "",
+        name: "", 
+        birthDate: "",
     });
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [citizenNumber, setCitizenNumber] = useState("");
+    const [name, setName] = useState("");
+    const [birthDate, setBirthDate] = useState(""); 
 
        
     const clickMenu = (idx) => {
@@ -55,44 +58,11 @@ export default function StudentConsumptionCreate({consumptionNum}){
           {menu}
         </div>
     ));
-    //소비항목 신청
-    const handleStudentConsumptionCreate = () => {
-        const token = userData.accessToken;
-        if (!token) {
-            navigate("/");
-        }
     
-        axBase(token)({
-            method: "post",
-            url: "/student/consumption",
-            data: {
-                consumptionNum:consumptionNum,
-                nationStudentNum: userData.nationStudentNum,
-            },
-        })
-        .then((response) => {
-            alert("소비 항목 신청 완료");
-            setShow(false)
-            window.location.reload();
-        })
-        .catch((err) => {
-            alert(err.response.data.message);
-        });
-    };
-
-    //input 받아오기
-    const getAllInput = (e) =>{
-        const {name, value} = e.target;
-        const nextInputs = {
-            ...addCitizenInfo,
-            [name] : value,
-        };
-
-        setCitizenInfo(nextInputs);
-    }
+ 
 
     const handleSaveCitizen = () => {
-        setStudents([...students, students]); 
+        //setStudents([...students, students]); 
         // 변경된 내용을 저장하는 로직을 추가
         const token = userData.accessToken;
         if (!token) {
@@ -104,18 +74,24 @@ export default function StudentConsumptionCreate({consumptionNum}){
             method: "post",
             url: "/teacher/citizen", // 변경 내용 저장 엔드포인트
             data: { 
-                // 변경된 내용을 서버로 전송
+                // 변경된 내용을 서버로 전송 - 학급번호, 이름, 생년월일
                 nationNum: userData.nationNum,
-                citizenNumber: students.citizenNumber,
-                name: students.studentName,
-                birthDate: students.birthdate, 
+                citizenNumber: citizenNumber, 
+                name: name, 
+                birthDate: birthDate,
             },
         })
-          .then((response) => {
-            console.log("변경된 내용이 성공적으로 저장되었습니다.");
-            alert("변경된 내용이 성공적으로 저장되었습니다.");
+          .then((response) => { 
+            alert("국민이 성공적으로 등록되었습니다.");  
+            navigate("/teacher/nation", {
+                state: {
+                  state: 3,
+                }, 
+                
+              });
           })
           .catch((err) => {
+            console.log(citizenNumber);
             console.log("변경된 내용 저장 중 오류가 발생했습니다.", err.response.data.message);
           });
       };
@@ -147,24 +123,42 @@ export default function StudentConsumptionCreate({consumptionNum}){
                         <Form.Label column sm="3">
                                     학급번호 :
                         </Form.Label>
-                        <Col sm="6">
-                            <Form.Control type="text" name="studentNumber" placeholder="학급번호" onChange={getAllInput} value={name}/>
+                        <Col sm="3">
+                            <Form.Control 
+                            type="text" 
+                            name="citizenNumber" 
+                            placeholder="학급번호" 
+                            onChange = {(e) => setCitizenNumber(e.target.value)}
+                            value={citizenNumber}/>
                         </Col> 
                     </Form.Group>
+
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="3">
                                     학생이름 :
                         </Form.Label>
-                        <Col sm="6">
-                            <Form.Control type="text" name="name" placeholder="학생이름" onChange={getAllInput} value={name}/>
+                        <Col sm="3">
+                            <Form.Control 
+                            type="text" 
+                            name="name" 
+                            placeholder="학생이름"   
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            />
                         </Col> 
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="3">
                                     생년월일 :
                         </Form.Label>
-                        <Col sm="6">
-                            <Form.Control type="text" name="birthDate" placeholder="생년월일" onChange={getAllInput} value={name}/>
+                        <Col sm="3">
+                            <Form.Control 
+                            type="text" 
+                            name="birthDate" 
+                            placeholder="생년월일" 
+                            onChange={(e) => setBirthDate(e.target.value)}
+                            value={birthDate}
+                            />
                         </Col> 
                     </Form.Group> 
 
@@ -172,7 +166,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
  
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleStudentConsumptionCreate()}>국민 등록하기</button>
+                    <button onClick={handleSaveCitizen}>국민 등록하기</button>
                     <button onClick={handleClose}>취소</button>
                 </Modal.Footer>
             </Modal>

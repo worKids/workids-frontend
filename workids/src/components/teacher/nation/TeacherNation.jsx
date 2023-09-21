@@ -2,17 +2,38 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
-import { axBase } from "../../../apis/axiosInstance";  
+import { axBase } from "../../../apis/axiosInstance"; 
+import NationInfo from "./NationInfo";   
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'; 
  
 export default function TeacherNation(){ 
     const nationInfoMenu = ["나라 정보", "나라 정보 수정", "학급번호 연결"];
     const [state, setState] = useState(0);//버튼 클릭
+    const [pageState, setPageState] = useState(0); // 페이지 상태를 저장하는 state
     const userData = useRecoilValue(userState);  
     const [nationInfo, setNationInfo] = useState([]); 
     const [citizenList, setCitizenList] = useState([]); 
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
     const [showCitizenList, setShowCitizenList] = useState(false);
 
+    const [citizenInfo, setCitizenInfo] = useState({
+        nationNum:"",
+        citizenNumber:"",
+        name: "", 
+        birthDate: "",
+    });
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [citizenNumber, setCitizenNumber] = useState("");
+    const [name, setName] = useState("");
+    const [birthDate, setBirthDate] = useState(""); 
+
+       
     const clickMenu = (idx) => {
         setState(idx);
         onReset();
@@ -43,6 +64,11 @@ export default function TeacherNation(){
     const navigateToCitizenCreate = () => {
         setShowCitizenList(true); // 버튼 클릭 시 상태 변경
         navigate("/teacher/citizenCreate");
+      };
+    
+    const navigateToCitizenList = () => {
+        //setShowCitizenList(false); // 버튼 클릭 시 상태 변경
+        navigate("/teacher/citizen/list");
       };
  
   
@@ -115,8 +141,9 @@ export default function TeacherNation(){
             });
 
     }, []);
-
-    const handleGetCitizen = () => {
+ 
+ 
+    useEffect(() => {
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
@@ -125,7 +152,7 @@ export default function TeacherNation(){
 
         axBase(token)({
             method: "post",
-            url: "/teacher/citizen/list",
+            url: "/teacher/nation/citizen",
             data: { 
                 num: userData.nationNum,
             },
@@ -138,22 +165,51 @@ export default function TeacherNation(){
                 alert(err.response.data.message);
             });
 
-    };
-
+    }, [pageState]);
+  
     //국민 목록 출력
     const CitizenItems = citizenList.map((item,index)=>(
 
-        <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"15px", textAlign:"center"}}>
-        <div className="col-1 p-2">{item.citizenNumber}</div>
+        <div key={index} className="row justify-content-md-center p-1" style={borderRound}>
+        <div className = "row"> 
+        <div className="col-4 p-2">{item.citizenNumber}</div>
         <div className="col-4 p-2">{item.studentName}</div>   
         <div className="col-4 p-2">{item.birthDate}</div>   
+        </div>
         <hr></hr>
         </div>
     ));
 
-
- 
-
+    const handleSaveCitizen = () => {
+        //setStudents([...students, students]); 
+        // 변경된 내용을 저장하는 로직을 추가
+        const token = userData.accessToken;
+        if (!token) {
+          navigate("/");
+          return;
+        }
+    
+        axBase(token)({
+            method: "post",
+            url: "/teacher/citizen", // 변경 내용 저장 엔드포인트
+            data: { 
+                // 변경된 내용을 서버로 전송 - 학급번호, 이름, 생년월일
+                nationNum: userData.nationNum,
+                citizenNumber: citizenNumber, 
+                name: name, 
+                birthDate: birthDate,
+            },
+        })
+          .then((response) => { 
+            alert("국민 등록 성공!");
+            handleClose(); // 국민 등록 성공 후 모달 닫기
+            setPageState(pageState+1); // pageState 변경  
+          })
+          .catch((err) => {  
+            console.log(err.response.data.message);
+            alert(err.response.data.message);
+          });
+      };
  
 
     return ( 
@@ -164,20 +220,9 @@ export default function TeacherNation(){
                     <div>나라 정보</div>
                 </div>
                 {state === 0 ? (
-                    <div className="d-flex justify-content-center align-items-center">
-                    <div> 
-                    <p>나라명: {nationInfo.name}</p>
-                    <p>화폐명: {nationInfo.moneyName}</p>
-                    <p>세율: {nationInfo.taxRate}</p>
-                    <p>월급지급일: {nationInfo.payDay}</p>
-                    <p>대통령명: {nationInfo.presidentName}</p>
-                    <p>나라운영상태: {nationInfo.state}</p>
-                    <p>운영시작일: {nationInfo.startDate}</p>
-                    <p>운영종료일: {nationInfo.endDate}</p>
-                    <p>참여코드: {nationInfo.code}</p>
-                    </div>
-                    </div>
-
+                    <div>
+                        <NationInfo/>
+                    </div> 
                 ) : state ===1? ( 
                     <div className="d-flex justify-content-center align-items-center">
                     <div>
@@ -308,7 +353,7 @@ export default function TeacherNation(){
                             </div>
                         </div> 
                     </div>
- 
+            
                     <div className="text-end"> {/* 오른쪽 정렬 */}
                     <button className="btn btn-secondary" onClick={handleSaveChanges}>
                       변경내용 저장
@@ -316,22 +361,92 @@ export default function TeacherNation(){
                     </div>
                   </div>
                   </div>
-                ) : (
-                    showCitizenList? (
-                        <div>
-                            job
-                            </div>
- 
-                      ) : (
+             
+                ) : ( 
+  
+                    (citizenList.length === 0)
+                    ?
                         <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
                         <p>국민 목록 설정이 되어있지 않습니다.</p>
                         <p>국민 목록을 설정해주세요 ~ !</p>
                         <p/>
                         {navigateToCitizenCreate ? (
-                          <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
-                        ) : null}
-                      </div>
-                      )
+                        <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
+                        ) : null} 
+                        </div>
+                    : 
+                        <div className="border border-dark  border-3 m-5 p-5 bg-white" style={borderRound}> 
+                            <div className = "row"> 
+                                <div className="col-4 p-2">학급 번호</div>
+                                <div className="col-4 p-2">학생 이름</div>   
+                                <div className="col-4 p-2">생년월일</div>  
+                            </div> 
+                                <hr></hr> 
+                                {CitizenItems}
+                                <p/>  
+                                <button className="btn btn-primary" onClick={handleShow} style={btn}>국민 추가</button>
+                                <Modal show={show} onHide={handleClose}
+                                aria-labelledby="contained-modal-title-vcenter"
+                                centered
+                                >
+                                    <Modal.Header>
+                                        <Modal.Title>국민 목록 설정하기</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Form>
+                                        <Form.Group as={Row} className="mb-3">
+                                            <Form.Label column sm="3">
+                                                        학급번호 :
+                                            </Form.Label>
+                                            <Col sm="3">
+                                                <Form.Control 
+                                                type="text" 
+                                                name="citizenNumber" 
+                                                placeholder="학급번호" 
+                                                onChange = {(e) => setCitizenNumber(e.target.value)}
+                                                value={citizenNumber}/>
+                                            </Col> 
+                                        </Form.Group>
+
+                                        <Form.Group as={Row} className="mb-3">
+                                            <Form.Label column sm="3">
+                                                        학생이름 :
+                                            </Form.Label>
+                                            <Col sm="3">
+                                                <Form.Control 
+                                                type="text" 
+                                                name="name" 
+                                                placeholder="학생이름"   
+                                                onChange={(e) => setName(e.target.value)}
+                                                value={name}
+                                                />
+                                            </Col> 
+                                        </Form.Group>
+                                        <Form.Group as={Row} className="mb-3">
+                                            <Form.Label column sm="3">
+                                                        생년월일 :
+                                            </Form.Label>
+                                            <Col sm="3">
+                                                <Form.Control 
+                                                type="text" 
+                                                name="birthDate" 
+                                                placeholder="생년월일" 
+                                                onChange={(e) => setBirthDate(e.target.value)}
+                                                value={birthDate}
+                                                />
+                                            </Col> 
+                                        </Form.Group> 
+
+                                        </Form>
+                    
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <button onClick={handleSaveCitizen}>국민 등록하기</button>
+                                        <button onClick={handleClose}>취소</button>
+                                    </Modal.Footer>
+                                </Modal>
+               
+                        </div>
                 )}
             </div>
     );
