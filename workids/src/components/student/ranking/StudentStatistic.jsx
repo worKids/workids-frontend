@@ -120,6 +120,7 @@ export default function StudentStatistic() {
         options: {
           chart: {
             type: "pie",
+            fontFamily: "KCC-Ganpan",
           },
           labels: asset.menu,
           title: {
@@ -133,6 +134,7 @@ export default function StudentStatistic() {
         options: {
           chart: {
             type: "pie",
+            fontFamily: "KCC-Ganpan",
           },
           labels: expend ? expend.menu : [],
           title: {
@@ -146,6 +148,7 @@ export default function StudentStatistic() {
         options: {
           chart: {
             type: "pie",
+            fontFamily: "KCC-Ganpan",
           },
           labels: income ? income.menu : [],
           title: {
@@ -158,6 +161,7 @@ export default function StudentStatistic() {
         series: incomeExend ? incomeExend.percent : [],
         options: {
           chart: {
+            fontFamily: "KCC-Ganpan",
             type: "pie",
           },
           labels: incomeExend ? incomeExend.menu : [],
@@ -171,6 +175,7 @@ export default function StudentStatistic() {
         chart: {
           height: 350,
           type: "line",
+
           dropShadow: {
             enabled: true,
             color: "#000",
@@ -193,6 +198,8 @@ export default function StudentStatistic() {
           chart: {
             height: 350,
             type: "line",
+            fontFamily: "KCC-Ganpan",
+
             dropShadow: {
               enabled: true,
               color: "#000",

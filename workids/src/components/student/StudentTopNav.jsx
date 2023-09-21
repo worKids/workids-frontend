@@ -11,16 +11,18 @@ export default function StudentTopNav() {
     height: "13%",
   };
   const navigateToSelect = () => {
-    navigate("/select");
+    if (window.location.pathname === "/select") {
+      navigate("/select");
+    } else {
+      navigate("/student/nation");
+    }
   };
   return (
     <div style={divStyle} className="fs-3 mx-4">
       <div className="d-flex justify-content-between">
         <div className="d-flex">
-          <div className=" logo" onClick={navigateToSelect}>
-          </div>
-          <div className="m-3">{userData.nationName}</div>
-          <div className="m-3">{userData.userName}</div>
+          <div className=" logo hoverable" onClick={navigateToSelect}></div>
+          <div className="m-3">{userData.nationName ? userData.nationName : ""}</div>
         </div>
         <div
           className="m-3 hoverable"

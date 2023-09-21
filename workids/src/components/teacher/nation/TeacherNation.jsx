@@ -6,9 +6,9 @@ import { axBase } from "../../../apis/axiosInstance";
 import NationInfo from "./NationInfo";   
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Col from 'react-bootstrap/Col'; 
 import Form from 'react-bootstrap/Form';  
-import TeacherCitizen from "./TeacherCitizen";  
+import TeacherCitizen from "./TeacherCitizen";    
  
 export default function TeacherNation(){ 
     const nationInfoMenu = [ "학급번호 연결", "나라 정보", "나라 정보 수정"];
@@ -65,6 +65,11 @@ export default function TeacherNation(){
     const navigateToCitizenCreate = () => {
         setShowCitizenList(true); // 버튼 클릭 시 상태 변경
         <TreacherCitizen/>
+      };
+    
+    const navigateToCitizenList = () => {
+        //setShowCitizenList(false); // 버튼 클릭 시 상태 변경
+        navigate("/teacher/citizen/list");
       };
     
     const navigateToCitizenList = () => {
@@ -179,7 +184,6 @@ export default function TeacherNation(){
         <button className="col-1 p-1" onClick={() => citizenDelete(index)} style={btn}>수정</button>
         <button className="col-1 p-1" onClick={() => citizenDelete(item.citizenNum)} style={btn}>삭제</button>
         </div>
-         
         <hr></hr>
         </div>
     ));
@@ -243,7 +247,7 @@ export default function TeacherNation(){
         });
     };
 
-// 삭제
+
  
 
     return ( 
