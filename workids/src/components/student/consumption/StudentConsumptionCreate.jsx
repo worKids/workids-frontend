@@ -30,8 +30,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
         })
         .then((response) => {
             alert("소비 항목 신청 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

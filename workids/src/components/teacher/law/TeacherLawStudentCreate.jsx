@@ -66,8 +66,7 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}
         })
         .then((response) => {
             alert("벌칙 부여 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

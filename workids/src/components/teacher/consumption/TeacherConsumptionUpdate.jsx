@@ -44,8 +44,7 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
             })
             .then((response) => {
                 alert("소비 금액 수정 완료");
-                setShow(false)
-                window.location.reload();
+                setShow(false);
             })
             .catch((err) => {
                 alert(err.response.data.message);

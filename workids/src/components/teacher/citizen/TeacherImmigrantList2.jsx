@@ -48,7 +48,10 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
 
     return (
         <div>
-            <button onClick={handleShow}>학급번호로 조회</button>
+                 <button onClick={handleShow}>학급번호로 조회</button>
+        <div>
+        <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
+           
             {show && (
                 <table>
                     <thead>
@@ -64,6 +67,7 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
                     <tbody>{immigrantItems2}</tbody>
                 </table>
             )}
+        </div>
         </div>
     );
 }

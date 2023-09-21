@@ -26,7 +26,7 @@ export default function NationPickPage() {
   };
 
   const navigateToCitizen = () => {
-    navigate("/nation/citizen");
+    navigate("/teacher/citizenCreate");
   };
 
   const navigateToMain = () => {
@@ -34,14 +34,14 @@ export default function NationPickPage() {
   };
 
   const location = useLocation();
-  const { code } = location.state || {}; // 데이터 읽기
-
+  const {code}  = location.state || {}; // 데이터 읽기
+ 
   return (
     <div>
     <TeacherTopNav />
     <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
-        <h3 className="ms-3 ">나라 설립을 환영합니다!</h3><br/>
-        <h3 className="ms-3 ">참여코드: </h3><br/>
+        <h3 className="ms-3 "> 나라 설립을 환영합니다!</h3><br/>
+        <h3 className="ms-3 ">참여코드: {code} </h3><br/>
 
         <h3 className="ms-3 ">참여 가능한 국민 목록을 설정하고</h3><br/>
         <h3 className="ms-3 ">참여코드를 통해 국민을 초대해보세요!</h3><br/>
@@ -60,6 +60,7 @@ export default function NationPickPage() {
 
   );
 }
+ 
 
  
  

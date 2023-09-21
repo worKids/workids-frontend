@@ -25,7 +25,16 @@ export default function StudentConsumptionCreate({consumptionNum}){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-       
+        //input 받아오기
+    const getAllInput = (e) =>{
+        const {name, value} = e.target;
+        const nextInputs = {
+            ...addConsumption,
+            [name] : value,
+        };
+
+        setAddConsumption(nextInputs);
+    }
     const clickMenu = (idx) => {
         setState(idx);
         onReset();
@@ -80,46 +89,6 @@ export default function StudentConsumptionCreate({consumptionNum}){
         });
     };
 
-    //input 받아오기
-    const getAllInput = (e) =>{
-        const {name, value} = e.target;
-        const nextInputs = {
-            ...addCitizenInfo,
-            [name] : value,
-        };
-
-        setCitizenInfo(nextInputs);
-    }
-
-    const handleSaveCitizen = () => {
-        setStudents([...students, students]); 
-        // 변경된 내용을 저장하는 로직을 추가
-        const token = userData.accessToken;
-        if (!token) {
-          navigate("/");
-          return;
-        }
-    
-        axBase(token)({
-            method: "post",
-            url: "/teacher/citizen", // 변경 내용 저장 엔드포인트
-            data: { 
-                // 변경된 내용을 서버로 전송
-                nationNum: userData.nationNum,
-                citizenNumber: students.citizenNumber,
-                name: students.studentName,
-                birthDate: students.birthdate, 
-            },
-        })
-          .then((response) => {
-            console.log("변경된 내용이 성공적으로 저장되었습니다.");
-            alert("변경된 내용이 성공적으로 저장되었습니다.");
-          })
-          .catch((err) => {
-            console.log("변경된 내용 저장 중 오류가 발생했습니다.", err.response.data.message);
-          });
-      };
-
     return(
 
         <div style={divStyle} className="border border-dark  border-3 p-3">
@@ -139,41 +108,28 @@ export default function StudentConsumptionCreate({consumptionNum}){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>국민 목록 설정하기</Modal.Title>
+                    <Modal.Title>소비 항목 신청하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="3">
-                                    학급번호 :
+                                    소비 항목 :
                         </Form.Label>
                         <Col sm="6">
-                            <Form.Control type="text" name="studentNumber" placeholder="학급번호" onChange={getAllInput} value={name}/>
-                        </Col> 
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm="3">
-                                    학생이름 :
-                        </Form.Label>
-                        <Col sm="6">
-                            <Form.Control type="text" name="name" placeholder="학생이름" onChange={getAllInput} value={name}/>
-                        </Col> 
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3">
-                        <Form.Label column sm="3">
-                                    생년월일 :
-                        </Form.Label>
-                        <Col sm="6">
-                            <Form.Control type="text" name="birthDate" placeholder="생년월일" onChange={getAllInput} value={name}/>
-                        </Col> 
-                    </Form.Group> 
+                            <Form.Control type="text" name="content" placeholder="소비 항목" onChange={getAllInput} value={content}/>
+                        </Col>
+                        </Form.Group>
+                    <div>
+                        해당 소비 항목을 신청하시겠습니까?
+                    </div>
 
                     </Form>
  
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleStudentConsumptionCreate()}>국민 등록하기</button>
-                    <button onClick={handleClose}>취소</button>
+                    <button onClick={() => handleStudentConsumptionCreate()}>Yes</button>
+                    <button onClick={handleClose}>No</button>
                 </Modal.Footer>
             </Modal>
         </div>

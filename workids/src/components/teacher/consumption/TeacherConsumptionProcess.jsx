@@ -42,8 +42,7 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
         })
         .then((response) => {
             alert("처리 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

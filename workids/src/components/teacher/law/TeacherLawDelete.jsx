@@ -29,8 +29,7 @@ export default function TeacherLawDelete({lawNum}){
         })
         .then((response) => {
             alert("법 삭제 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

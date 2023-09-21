@@ -17,14 +17,21 @@ export default function StudentConsumption(props) {
   const numberOfApprovalConsumptionList = approvalConsumptionList.length;
 
   const divStyle = {
-      width: "80%",
-      borderRadius: "40px",
-    };
-    const heightStyle = {
-      height: "85%",
-      borderRadius: "40px",
-      backgroundColor: 'rgba(254, 211, 56, 0.7)',
-    };
+    width: "80%",
+    borderRadius: "40px",
+  };
+  const heightStyle = {
+    height: "85%",
+    borderRadius: "40px",
+    backgroundColor: 'rgba(254, 225, 115, 1)',
+  };
+
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin : "5px"
+  }
 
   //내 소비 신청 내역 조회
   useEffect(() => {
@@ -82,7 +89,7 @@ export default function StudentConsumption(props) {
             alert(err.response.data.message);
         });
 
-  }, []);
+  }, [studentConsumptionList]);
 
   //소비 신청 내역 출력
   const StudentConsumptionItems = studentConsumptionList.map((item,index)=>(
@@ -158,7 +165,7 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -166,7 +173,7 @@ export default function StudentConsumption(props) {
                 <div className="col-3">금액</div>
                 <div className="col-3"></div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {ConsumptionItems}
               </div>
@@ -183,7 +190,7 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -193,7 +200,7 @@ export default function StudentConsumption(props) {
                 <div className="col-1"></div>
                 <div className="col-2">상태</div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {StudentConsumptionItems}
               </div>
@@ -210,7 +217,7 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -219,7 +226,7 @@ export default function StudentConsumption(props) {
                 <div className="col-3">신청일</div>
                 <div className="col-3">승인일</div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {ApprovalItems}
               </div>

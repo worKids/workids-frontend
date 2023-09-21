@@ -29,8 +29,7 @@ export default function StudentConsumptionDelete({consumptionNationStudentNum}){
         })
         .then((response) => {
             alert("신청 내역 취소 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

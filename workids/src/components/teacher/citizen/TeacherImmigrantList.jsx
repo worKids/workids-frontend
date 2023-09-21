@@ -78,51 +78,71 @@ export default function TeacherImmigrantList({ citizenNumber }) {
 
     const immigrantItems = immigrantList.map((menu, index) => (
         <tr key={index}>
-          <td>{menu.citizenNumber}</td>
-          <td>{menu.studentName}</td>
-          <td>
-            <select
-              name="jobs"
-              id="jobs"
-              value={selectedJob}
-              onChange={(e) => setSelectedJob(e.target.value)}
-            >
-              <option value={selectedJob}>{selectedJob}</option>
-              {jobList.map((job, index) => (
-                <option key={index} value={job.name}>
-                  {job.name}
-                </option>
-              ))}
-            </select>
-          </td>
-          <td><input type="number" value={asset} onChange={handleAssetChange} /></td>
-          <td><input type="number" value={creditRating} onChange={handleCreditRatingChange} /></td>
-          <td><TeacherImmigrantAcquire
-            citizenNumber={menu.citizenNumber}
-            name={selectedJob}
-            asset={asset}
-            creditRating={creditRating}
-          /></td>
+            <td>{menu.citizenNumber}</td>
+            <td>{menu.studentName}</td>
+            <td>
+                <select
+                    name="jobs"
+                    id="jobs"
+                    value={selectedJob}
+                    onChange={(e) => setSelectedJob(e.target.value)}
+                    style={{ width: '100px' }} // 원하는 넓이로 설정하세요
+                >
+                    <option value={selectedJob}>{selectedJob}</option>
+                    {jobList.map((job, index) => (
+                        <option key={index} value={job.name}>
+                            {job.name}
+                        </option>
+                    ))}
+                </select>
+            </td>
+            <td>
+                <input
+                    type="number"
+                    value={asset}
+                    onChange={handleAssetChange}
+                    style={{ width: '80px' }} // 원하는 넓이로 설정하세요
+                />
+            </td>
+            <td>
+                <input
+                    type="number"
+                    value={creditRating}
+                    onChange={handleCreditRatingChange}
+                    style={{ width: '80px' }} // 넓이를 80px로 설정
+                />
+            </td>
+            <td><TeacherImmigrantAcquire
+                citizenNumber={menu.citizenNumber}
+                name={selectedJob}
+                asset={asset}
+                creditRating={creditRating}
+
+            /></td>
         </tr>
-      ));
+    ));
     return (
         <div>
             <button onClick={handleShow}>학급번호로 조회</button>
-            {show && (
-                <table>
-                    <thead>
-                        <tr>
-                            <th style={{ width: "20%" }}>학급 번호</th>
-                            <th style={{ width: "20%" }}>이름</th>
-                            <th style={{ width: "20%" }}>직업</th>
-                            <th style={{ width: "20%" }}>자산</th>
-                            <th style={{ width: "20%" }}>신용도</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>{immigrantItems}</tbody>
-                </table>
-            )}
+            <div>
+                <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
+                {show && (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style={{ width: "20%" }}>학급 번호</th>
+                                <th style={{ width: "20%" }}>이름</th>
+                                <th style={{ width: "20%" }}>직업</th>
+                                <th style={{ width: "20%" }}>자산</th>
+                                <th style={{ width: "20%" }}>신용도</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>{immigrantItems}</tbody>
+                    </table>
+                )}
+            </div>
+
         </div>
     );
 }

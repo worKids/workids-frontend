@@ -57,6 +57,11 @@ export default function NationPickPage() {
   const navigateToCreate = () => {
     navigate("/nation/create");
   };
+
+  const navigatNationeJoin = () => { 
+    navigate("/student/nation/join");
+  };
+
   const navigateToNation = (index) => {
     const updateUserData = {
       ...userData,
@@ -75,12 +80,16 @@ export default function NationPickPage() {
   const nationBtn =
     nationList !== null ? (
       nationList.map((menu, index) => (
-        <div
-          key={index}
-          className={`m-3 border border-dark  border-3 text-center p-3 bg-white rounded-pill sideNav `}
-          onClick={() => navigateToNation(index)}
-        >
-          {menu.name}
+        <div		
+          key={index}		
+          className={`m-3 border border-dark  border-3 text-center p-3 bg-white rounded-pill sideNav `}		
+          onClick={() => navigateToNation(index)} style={{position: 'relative'}}		
+        >		
+          <div style={{ fontSize: '30px' }}>{menu.name} 나라</div>		
+          <div className="nation-student" style={{position: 'absolute', bottom: 0, right: 70}}>		
+          국민 수: {menu.totalStudent} 명		
+          </div>		
+    
         </div>
       ))
     ) : (
@@ -106,7 +115,12 @@ export default function NationPickPage() {
         <div>
           <StudentTopNav />
           <div className="border border-dark  border-3 m-4 p-3 bg-warning" style={borderRound}>
-            <h4 className="ms-3">운영중인 나라</h4>
+            <div className="d-flex justify-content-between">
+              <h4 className="ms-3 ">참여중인 나라</h4>
+              <div className="me-4" onClick={navigatNationeJoin}>
+                <div style={{ fontSize: "20px" }}>나라 참여하기 &gt;</div>
+              </div>
+            </div>
             {nationBtn}
           </div>
         </div>
