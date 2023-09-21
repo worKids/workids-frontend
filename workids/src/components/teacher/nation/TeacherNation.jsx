@@ -7,10 +7,11 @@ import NationInfo from "./NationInfo";
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form'; 
+import Form from 'react-bootstrap/Form';  
+import TeacherCitizen from "./TeacherCitizen";  
  
 export default function TeacherNation(){ 
-    const nationInfoMenu = ["나라 정보", "나라 정보 수정", "학급번호 연결"];
+    const nationInfoMenu = [ "학급번호 연결", "나라 정보", "나라 정보 수정"];
     const [state, setState] = useState(0);//버튼 클릭
     const [pageState, setPageState] = useState(0); // 페이지 상태를 저장하는 state
     const userData = useRecoilValue(userState);  
@@ -63,7 +64,7 @@ export default function TeacherNation(){
 
     const navigateToCitizenCreate = () => {
         setShowCitizenList(true); // 버튼 클릭 시 상태 변경
-        navigate("/teacher/citizenCreate");
+        <TreacherCitizen/>
       };
     
     const navigateToCitizenList = () => {
@@ -172,10 +173,13 @@ export default function TeacherNation(){
 
         <div key={index} className="row justify-content-md-center p-1" style={borderRound}>
         <div className = "row"> 
-        <div className="col-4 p-2">{item.citizenNumber}</div>
-        <div className="col-4 p-2">{item.studentName}</div>   
-        <div className="col-4 p-2">{item.birthDate}</div>   
+        <div className="col-3 p-3">{item.citizenNumber}</div>
+        <div className="col-3 p-3">{item.studentName}</div>   
+        <div className="col-3 p-3">{item.birthDate}</div>   
+        <button className="col-1 p-1" onClick={() => citizenDelete(index)} style={btn}>수정</button>
+        <button className="col-1 p-1" onClick={() => citizenDelete(item.citizenNum)} style={btn}>삭제</button>
         </div>
+         
         <hr></hr>
         </div>
     ));
@@ -210,6 +214,36 @@ export default function TeacherNation(){
             alert(err.response.data.message);
           });
       };
+
+    // 삭제
+    const citizenDelete = (citizenNum) => {
+        // 변경된 내용을 저장하는 로직을 추가
+        const token = userData.accessToken;
+        if (!token) {
+        navigate("/");
+        return;
+        }
+
+        axBase(token)({
+        method: "delete",
+        url: "/teacher/citizen",  
+        data: { 
+            // 변경된 내용을 서버로 전송
+            num: citizenNum, 
+        },
+        })
+        .then((response) => {
+            console.log("삭제 완료!");
+            alert("삭제 완료!");
+            handleClose(); // 국민 등록 성공 후 모달 닫기 
+            window.location.reload();
+        })
+        .catch((err) => {
+            console.log(err.response.data.message);
+        });
+    };
+
+// 삭제
  
 
     return ( 
@@ -219,11 +253,11 @@ export default function TeacherNation(){
                     <div className="d-flex">{menu}</div>
                     <div>나라 정보</div>
                 </div>
-                {state === 0 ? (
+                {state === 1 ? (
                     <div>
                         <NationInfo/>
                     </div> 
-                ) : state ===1? ( 
+                ) : state ===2? ( 
                     <div className="d-flex justify-content-center align-items-center">
                     <div>
                         {/* 나라 정보 수정 폼 */}
@@ -371,20 +405,84 @@ export default function TeacherNation(){
                         <p>국민 목록을 설정해주세요 ~ !</p>
                         <p/>
                         {navigateToCitizenCreate ? (
-                        <button className="btn btn-primary" onClick={navigateToCitizenCreate} style={btn}>국민 목록 설정하기</button>
-                        ) : null} 
+                        <div>
+                        <button className="btn btn-primary" onClick={handleShow} style={btn}>국민 목록 설정하기</button>
+                        <Modal show={show} onHide={handleClose}
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                        >
+                            <Modal.Header>
+                                <Modal.Title>국민 등록하기</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                <Form.Group as={Row} className="mb-3">
+                                    <Form.Label column sm="3">
+                                                학급번호 :
+                                    </Form.Label>
+                                    <Col sm="3">
+                                        <Form.Control 
+                                        type="text" 
+                                        name="citizenNumber" 
+                                        placeholder="학급번호" 
+                                        onChange = {(e) => setCitizenNumber(e.target.value)}
+                                        value={citizenNumber}/>
+                                    </Col> 
+                                </Form.Group>
+
+                                <Form.Group as={Row} className="mb-3">
+                                    <Form.Label column sm="3">
+                                                학생이름 :
+                                    </Form.Label>
+                                    <Col sm="3">
+                                        <Form.Control 
+                                        type="text" 
+                                        name="name" 
+                                        placeholder="학생이름"   
+                                        onChange={(e) => setName(e.target.value)}
+                                        value={name}
+                                        />
+                                    </Col> 
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3">
+                                    <Form.Label column sm="3">
+                                                생년월일 :
+                                    </Form.Label>
+                                    <Col sm="3">
+                                        <Form.Control 
+                                        type="text" 
+                                        name="birthDate" 
+                                        placeholder="생년월일" 
+                                        onChange={(e) => setBirthDate(e.target.value)}
+                                        value={birthDate}
+                                        />
+                                    </Col> 
+                                </Form.Group> 
+
+                                </Form>
+            
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <button onClick={handleSaveCitizen}>국민 등록하기</button>
+            
+                                <button onClick={handleClose}>취소</button>
+                            </Modal.Footer>
+                        </Modal>
+                        </div>
+                        
+                        ) : null}  
                         </div>
                     : 
                         <div className="border border-dark  border-3 m-5 p-5 bg-white" style={borderRound}> 
                             <div className = "row"> 
-                                <div className="col-4 p-2">학급 번호</div>
-                                <div className="col-4 p-2">학생 이름</div>   
-                                <div className="col-4 p-2">생년월일</div>  
+                                <div className="col-3 p-2">학급 번호</div>
+                                <div className="col-3 p-2">학생 이름</div>   
+                                <div className="col-3 p-2">생년월일</div>   
                             </div> 
                                 <hr></hr> 
                                 {CitizenItems}
                                 <p/>  
-                                <button className="btn btn-primary" onClick={handleShow} style={btn}>국민 추가</button>
+                                <button className="col-10 p-2" onClick={handleShow} style={btn}>국민 추가</button>
                                 <Modal show={show} onHide={handleClose}
                                 aria-labelledby="contained-modal-title-vcenter"
                                 centered
