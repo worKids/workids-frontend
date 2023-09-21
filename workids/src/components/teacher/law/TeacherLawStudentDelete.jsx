@@ -5,7 +5,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
+export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -29,8 +29,10 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
         })
         .then((response) => {
             alert("벌금 부여 취소 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); // 부모 컴포넌트로 알림
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -54,6 +56,9 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
         .then((response) => {
             alert("벌칙 부여 취소 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); // 부모 컴포넌트로 알림
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);

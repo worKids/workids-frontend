@@ -10,7 +10,7 @@ import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 
-export default function TeacherLawCreate(){
+export default function TeacherLawCreate({onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -28,9 +28,7 @@ export default function TeacherLawCreate(){
     const handleShow = () => {
         setShow(true);
         onResetFine();
-        onResetPenalty();
         setSelectedTab('tab1');
-        setCheck(check+1);
     }
 
     const getAllInput = (e) =>{
@@ -42,6 +40,7 @@ export default function TeacherLawCreate(){
 
         //객체를 새로운 상태로 쓰겠다. 
         setAddLaw(nextInputs);
+        console.log(addLaw);
     }
 
     //tab 누를때 입력된 내용 reset
@@ -60,7 +59,7 @@ export default function TeacherLawCreate(){
           nationNum: userData.nationNum,  
           content: "",
           type: 1,
-          fine: null,
+          fine: 0,
           penalty: "",
         })
     };
@@ -99,6 +98,9 @@ export default function TeacherLawCreate(){
             .then((response) => {
                 alert("법 등록 완료");
                 setShow(false);
+                if (typeof onUpdate === "function") {
+                    onUpdate(); 
+                }
             })
             .catch((err) => {
                 alert(err.response.data.message);
@@ -157,8 +159,8 @@ export default function TeacherLawCreate(){
                                     <Form.Label column sm="3">
                                         벌금: 
                                     </Form.Label>
-                                    <Col sm="3">
-                                        <Form.Control type="text" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
+                                    <Col sm="4">
+                                        <Form.Control type="number" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
                                     </Col>
                                     <Col sm="3">미소</Col>
                                 </Form.Group>

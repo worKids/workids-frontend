@@ -6,7 +6,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}){
+export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -67,6 +67,9 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum}
         .then((response) => {
             alert("벌칙 부여 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); // 부모 컴포넌트로 알림
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);

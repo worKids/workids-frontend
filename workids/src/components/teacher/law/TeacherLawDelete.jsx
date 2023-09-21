@@ -5,13 +5,14 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawDelete({lawNum}){
+export default function TeacherLawDelete({lawNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
 
     //법 삭제
     const handleDeleteLaw = () => {
@@ -30,6 +31,9 @@ export default function TeacherLawDelete({lawNum}){
         .then((response) => {
             alert("법 삭제 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
