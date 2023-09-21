@@ -295,7 +295,7 @@ export default function TeacherCitizen() {
       ))
     ) : (
       <div className="h-100 d-flex justify-content-center align-items-center">
-        생성된 경매가 없습니다.
+        생성된 경매가 없습니다!
       </div>
     );
 
