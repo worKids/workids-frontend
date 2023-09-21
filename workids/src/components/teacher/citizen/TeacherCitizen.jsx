@@ -622,7 +622,7 @@ export default function TeacherCitizen() {
           onChange={(e) => handleCreditRatingChange(e, index)}
         />
       </td>
-      <td style={{ width: '20%', fontSize: '15px' }}>
+      <td style={{ width: '10%', fontSize: '10px' }}>
         <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
       </td>
     </tr>
@@ -760,10 +760,10 @@ export default function TeacherCitizen() {
               <thead>
                 <tr>
                   <th style={{ width: '20%', fontSize: '22px'}}>학급 번호</th>
-                  <th style={{ width: '40%', fontSize: '22px'}}> &nbsp;&nbsp;이름 </th>
-                  <th style={{ width: '40%', fontSize: '22px'}}>신용도</th>
-                  <th style={{ width: '40%', fontSize: '22px'}}></th>
-                  <th style={{ width: '40%', fontSize: '22px'}}></th>
+                  <th style={{ width: '30%', fontSize: '22px'}}> &nbsp;&nbsp;이름 </th>
+                  <th style={{ width: '30%', fontSize: '22px'}}>신용도</th>
+                  <th style={{ width: '20%', fontSize: '22px'}}></th>
+              
                 </tr>
               </thead>
               <tbody>
