@@ -25,7 +25,13 @@ export default function TeacherLawCreate(){
     const {nationNum, content, type, fine, penalty} = addLaw;
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        onResetFine();
+        onResetPenalty();
+        setSelectedTab('tab1');
+        setCheck(check+1);
+    }
 
     const getAllInput = (e) =>{
         const {name, value} = e.target;
@@ -106,6 +112,7 @@ export default function TeacherLawCreate(){
             <div onClick={handleShow} className="create-button">추가</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
