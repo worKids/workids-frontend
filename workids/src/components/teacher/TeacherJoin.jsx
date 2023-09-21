@@ -49,7 +49,7 @@ export default function TeacherJoin() {
   return (
     <div>
       <div className="input-form-backgroud row ">
-        <div className="input-form col-md-12 mx-auto">
+        <div className="input-form col-md-12 mx-auto ">
           <div className="row justify-content-center">
             <div className="mb-3 col-9 ">
               <label htmlFor="name">아이디</label>
@@ -57,7 +57,7 @@ export default function TeacherJoin() {
                 type="text"
                 className="form-control"
                 id="name"
-                placeholder=""
+                placeholder="id"
                 value={id}
                 onChange={idHandler}
               />
@@ -67,9 +67,9 @@ export default function TeacherJoin() {
             <div className="mb-3 col-9 ">
               <label htmlFor="nickname">비밀번호</label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
-                placeholder=""
+                placeholder="password"
                 value={password}
                 onChange={passwordHandler}
               />
@@ -81,7 +81,7 @@ export default function TeacherJoin() {
               <input
                 type="text"
                 className="form-control"
-                placeholder=""
+                placeholder="ex) 홍길동"
                 value={name}
                 onChange={nameHandler}
               />
@@ -91,9 +91,9 @@ export default function TeacherJoin() {
             <div className="mb-3 col-9 ">
               <label htmlFor="nickname">이메일</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
-                placeholder=""
+                placeholder="ex)gildong@naver.com"
                 value={email}
                 onChange={emailHandler}
               />
@@ -105,7 +105,7 @@ export default function TeacherJoin() {
               <input
                 type="text"
                 className="form-control"
-                placeholder=""
+                placeholder="ex) 010-0000-0000"
                 value={phone}
                 onChange={phoneHandler}
               />

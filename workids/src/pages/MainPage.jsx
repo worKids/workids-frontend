@@ -21,8 +21,6 @@ export default function MainPage() {
   };
   const borderRound = {
     borderRadius: "40px",
-    
-  
   };
   const submitBtn = {
     borderRadius: "15px",
@@ -105,7 +103,10 @@ export default function MainPage() {
     <div className="h-100 w-100">
       <div className="mainLogo w-50 m-auto"></div>
       <div className="h-75 d-flex justify-content-center align-items-center">
-        <div className="border border-dark border-4 px-5 py-4 mb-5" style={{...borderRound, backgroundColor:"#FFFDDD"}}>
+        <div
+          className="border border-dark border-4 px-5 py-4 mb-5"
+          style={{ ...borderRound, backgroundColor: "#FFFDDD" }}
+        >
           <h3 className="d-flex justify-content-center">로그인</h3>
           <div className="d-flex justify-content-center">
             <div className="form-check mx-5 my-3">
@@ -152,13 +153,12 @@ export default function MainPage() {
               <div className="row">
                 <div>비밀번호</div>
                 <input
-                  type="text"
+                  type="password"
                   className="form-control bg-white border-2 border-dark"
                   placeholder="password"
                   aria-label="password"
                   onChange={handlePasswordChange}
                   style={inputColor}
-
                 />
               </div>
             </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentJoin() {
   const [id, setId] = useState("");
@@ -9,6 +10,7 @@ export default function StudentJoin() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const navigate = useNavigate();
   const idHandler = (event) => {
     setId(event.currentTarget.value);
   };
@@ -61,7 +63,7 @@ export default function StudentJoin() {
                   type="text"
                   className="form-control"
                   id="name"
-                  placeholder=""
+                  placeholder="id"
                   value={id}
                   onChange={idHandler}
                 />
@@ -71,9 +73,9 @@ export default function StudentJoin() {
               <div className="mb-3 col-9 ">
                 <label htmlFor="nickname">비밀번호</label>
                 <input
-                  type="text"
+                  type="password"
                   className="form-control"
-                  placeholder=""
+                  placeholder="password"
                   value={password}
                   onChange={passwordHandler}
                 />
@@ -85,7 +87,7 @@ export default function StudentJoin() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder=""
+                  placeholder="ex) 홍길동"
                   value={name}
                   onChange={nameHandler}
                 />
@@ -97,7 +99,7 @@ export default function StudentJoin() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder=""
+                  placeholder="101111-3111111"
                   value={registNumber}
                   onChange={registerNumberHandler}
                 />
@@ -107,9 +109,9 @@ export default function StudentJoin() {
               <div className="mb-3 col-9 ">
                 <label htmlFor="nickname">이메일</label>
                 <input
-                  type="text"
+                  type="email"
                   className="form-control"
-                  placeholder=""
+                  placeholder="gildong@naver.com"
                   value={email}
                   onChange={emailHandler}
                 />
@@ -121,7 +123,7 @@ export default function StudentJoin() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder=""
+                  placeholder="ex) 010-0000-0000"
                   value={phone}
                   onChange={phoneHandler}
                 />
