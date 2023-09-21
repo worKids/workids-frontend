@@ -57,7 +57,7 @@ export default function TeacherLawUpdate({lawNum, content, fine}){
     
     return(
         <div>
-            <div onClick={handleShow} className="fs-5 bg-warning px-3 rounded-pill border-3 border-dark border text-center">수정</div>
+            <div onClick={handleShow} className="content-button">수정</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"

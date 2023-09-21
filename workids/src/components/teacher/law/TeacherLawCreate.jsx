@@ -103,7 +103,7 @@ export default function TeacherLawCreate(){
     
     return(
         <div>
-            <div onClick={handleShow} className="fs-5 bg-warning px-3 rounded-pill border-3 border-dark border text-center">추가</div>
+            <div onClick={handleShow} className="create-button">추가</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
