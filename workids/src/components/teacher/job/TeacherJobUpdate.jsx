@@ -41,23 +41,23 @@ export default function TeacherJobUpdate({citizenNumber, name}){
 
     return(
         <div>
-            <button onClick={handleShow}>수정</button>
+            <button onClick={handleShow} className="content-button">수정</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>직업 수정하기</Modal.Title>
+                    <Modal.Title class = "info-label">직업 수정하기</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body  className="info-label fs-5 text-center">
                     <div>
                         정말로 수정하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleUpdateJob()}>Yes</button>
-                    <button onClick={handleClose}>No</button>
+                    <button onClick={() => handleUpdateJob()}  className="info-label fs-5 modal-button">Yes</button>
+                    <button onClick={handleClose}  className="info-label fs-5 modal-button">No</button>
                 </Modal.Footer>
             </Modal>
         </div>
