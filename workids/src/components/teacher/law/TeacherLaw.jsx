@@ -86,7 +86,7 @@ export default function TeacherLaw(){
             alert(err.response.data.message);
         });
 
-    }, []);
+    }, [lawList]);
 
     //벌금-학생 항목 리스트 뽑아오기
     useEffect(() => {
@@ -110,7 +110,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, []);
+    }, [fineStudentList]);
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
@@ -147,7 +147,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, []);
+    }, [penaltyStudentList]);
 
     //수행여부 (check) 하기
     function CompletePenalty(penaltyCompleteState, lawNationStudentNum) {
