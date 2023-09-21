@@ -46,8 +46,7 @@ export default function TeacherLawUpdate({lawNum, content, fine}){
             })
             .then((response) => {
                 alert("법 수정 완료");
-                setShow(false)
-                window.location.reload();
+                setShow(false);
             })
             .catch((err) => {
                 alert(err.response.data.message);

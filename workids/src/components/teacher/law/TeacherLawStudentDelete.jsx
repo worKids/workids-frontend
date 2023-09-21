@@ -53,8 +53,7 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
         })
         .then((response) => {
             alert("벌칙 부여 취소 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
         })
         .catch((err) => {
             alert(err.response.data.message);

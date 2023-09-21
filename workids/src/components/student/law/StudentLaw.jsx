@@ -24,6 +24,13 @@ export default function StudentLaw(props) {
       backgroundColor: 'rgba(254, 211, 56, 0.7)',
   };
 
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin : "5px"
+  }
+
   //법 항목 리스트 뽑아오기
   useEffect(() => {
       const token = userData.accessToken;
@@ -46,7 +53,7 @@ export default function StudentLaw(props) {
           alert(err.response.data.message);
       });
 
-  }, []);
+  }, [lawList]);
 
   //법 항목 출력
   const LawItems = lawList.map((item,index)=>(
@@ -87,7 +94,7 @@ export default function StudentLaw(props) {
             alert(err.response.data.message);
         });
 
-  }, []);
+  }, [fineStudentList]);
 
   //부여된 벌금 출력
   const FineItems = fineStudentList.map((item,index)=>(
@@ -123,7 +130,7 @@ export default function StudentLaw(props) {
             alert(err.response.data.message);
         });
 
-  }, []);
+  }, [penaltyStudentList]);
 
   //부여된 벌칙 출력
   const PenaltyItems = penaltyStudentList.map((item,index)=>(
@@ -154,7 +161,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -162,7 +169,7 @@ export default function StudentLaw(props) {
                 <div className="col-3">부과내용</div>
                 <div className="col-3">제정일</div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {LawItems}
               </div>
@@ -179,7 +186,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-2">No.</div>
@@ -187,7 +194,7 @@ export default function StudentLaw(props) {
                 <div className="col-2">벌금</div>
                 <div className="col-3">부과일</div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {FineItems}
               </div>
@@ -204,7 +211,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -213,7 +220,7 @@ export default function StudentLaw(props) {
                 <div className="col-2">부과일</div>
                 <div className="col-3">수행여부</div>
               </div>
-              <hr className="border border-dark border-3"></hr>
+              <div style={hrStyle}></div>
               <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
                 {PenaltyItems}
               </div>
