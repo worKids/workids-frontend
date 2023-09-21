@@ -8,21 +8,21 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-export default function TeacherConsumptionUpdate({consumptionNum, content, amount}){
+export default function TeacherConsumptionUpdate({consumptionNum, content, amount, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [updateAmount, setUpdateAmount] = useState(amount);
     const navigate = useNavigate();
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {setUpdateAmount(amount); setShow(true);}
 
     const onChangeAmount = (e) => {
         setUpdateAmount(e.target.value);
     };
 
     //소비 금액 수정
-    const handleUpdateLaw = () => {
+    const handleUpdateConsumption = () => {
         if(updateAmount== amount){
             alert("지정된 금액과 같으므로 수정할 수 없습니다.");
         } else{
@@ -45,6 +45,9 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
             .then((response) => {
                 alert("소비 금액 수정 완료");
                 setShow(false);
+                if (typeof onUpdate === "function") {
+                    onUpdate(); 
+                }
             })
             .catch((err) => {
                 alert(err.response.data.message);
@@ -54,32 +57,34 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
 
     return(
         <div>
-            <button onClick={handleShow}>수정</button>
+            <div onClick={handleShow} className="content-button">수정</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>소비 금액 수정하기</Modal.Title>
+                    <Modal.Title className="fs-4">소비 금액 수정하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
-                        <Form.Group as={Row} className="mb-3">
-                            <div>소비 항목 : {content}</div>
-                            <Form.Label column sm="2">
-                                금액 : 
-                            </Form.Label>
-                            <Col sm="6">
-                                <Form.Control type="text" onChange={onChangeAmount} value={updateAmount} placeholder="소비 금액" />
-                            </Col>
-                            <Col sm="3">미소</Col>
+                    <Form className="px-3">
+                        <Form.Group as={Row} className="mb-3 fs-5 p-1">
+                            <Row className="p-1">
+                                <Col sm="3">
+                                    금액 : 
+                                </Col>
+                                <Col sm="5">
+                                    <Form.Control type="number" onChange={onChangeAmount} value={updateAmount} placeholder="소비 금액" />
+                                </Col>
+                                <Col sm="3">미소</Col>
+                            </Row>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleUpdateLaw()}>수정</button>
-                    <button onClick={handleClose}>취소</button>
+                    <div onClick={handleUpdateConsumption} className="info-label fs-5 modal-button">수정</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
                 </Modal.Footer>
             </Modal>
         </div>
