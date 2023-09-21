@@ -16,7 +16,10 @@ export default function TeacherAuctionList() {
     setAuctionNum(num);
     setShowModal(true);
   };
-
+  const divStyle = {
+    borderRadius: "40px",
+    backgroundColor: "#FEE173",
+  };
   const closeModal = () => {
     setShowModal(false);
   };
@@ -83,7 +86,7 @@ export default function TeacherAuctionList() {
     aucList !== null ? (
       aucList.map((menu, index) => (
         <div key={index}>
-          <div className="row m-2 text-center p-3 ">
+          <div className="row my-3 text-center px-3">
             <div className="col-2 d-flex justify-content-center align-items-center">
               {index + 1}
             </div>
@@ -101,23 +104,30 @@ export default function TeacherAuctionList() {
             </div>
             {menu.auctionState === 0 ? (
               <div className="col-2 d-flex justify-content-between">
-                <div className="btn border px-4" onClick={() => endAuction(menu.auctionNum)}>
+                <div
+                  className="btn bg-white border-3 border-dark border px-3"
+                  onClick={() => endAuction(menu.auctionNum)}
+                >
                   종료
                 </div>
-                <div className="btn border px-4" onClick={() => deleteAuction(menu.auctionNum)}>
+                <div
+                  className="btn bg-white border-3 border-dark border px-3"
+                  onClick={() => deleteAuction(menu.auctionNum)}
+                >
                   삭제
                 </div>
               </div>
             ) : menu.auctionState === 1 ? (
-              <div className="col-2 btn border">
+              <div className="col-2 btn bg-white border-3 border-dark border">
                 <div onClick={() => openModal(menu.auctionNum)}>낙찰 내역 조회</div>
               </div>
             ) : menu.auctionState === 2 ? (
-              <div className="col-2 btn border">
+              <div className="col-2 btn bg-white border-3 border-dark border">
                 <div>취소됨</div>
               </div>
             ) : null}
           </div>
+          <hr></hr>
         </div>
       ))
     ) : (
@@ -126,15 +136,16 @@ export default function TeacherAuctionList() {
       </div>
     );
   return (
-    <div>
+    <div className="fs-5 border border-3 border-dark" style={{ ...divStyle, height: "65vh" }}>
       <div>
-        <div className="row  m-2 text-center p-3 ">
+        <div className="row  m-2 text-center p-3 fs-5">
           <div className="col-2">번호</div>
           <div className="col-6">경매 날짜</div>
           <div className="col-2">경매 상태</div>
           <div className="col-2">조회</div>
         </div>
-        <div className="container overflow-auto" style={{ height: "50vh" }}>
+        {/* <hr style={{borderTop: "3px solid #000000"}} /> */}
+        <div className="container overflow-auto  scrollCss" style={{ ...divStyle, height:"48vh" }}>
           {auctionList}
         </div>
       </div>

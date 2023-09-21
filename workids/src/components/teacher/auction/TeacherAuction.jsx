@@ -15,6 +15,7 @@ export default function TeacherAuction() {
     width: "80%",
     height: "80vh",
     borderRadius: "40px",
+    backgroundColor: "#FFFEEE",
   };
 
   // 부동산 페이지의 경매 내역, 경매 생성 버튼을 map으로 만들어주는 것.
@@ -24,9 +25,7 @@ export default function TeacherAuction() {
     <div
       key={index}
       onClick={() => clickMenu(index)}
-      className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
-        state === index ? "bg-warning text-white" : ""
-      }`}
+      className={`menu-button ${state === index ? "bg-warning text-white" : ""}`}
     >
       {menu}
     </div>
@@ -37,10 +36,9 @@ export default function TeacherAuction() {
     setState(num);
   };
   return (
-    <div style={divStyle} className="border border-dark  border-3 p-3">
+    <div style={divStyle} className="border border-dark mt-4 border-3 p-3">
       <div className="d-flex justify-content-between">
         <div className="d-flex">{menu}</div>
-        <div>부동산 관리</div>
       </div>
       {state === 0 ? (
         <div>
