@@ -245,10 +245,10 @@ export default function TeacherJob() {
                             <table style={{ width: '100%' }}>
                                 <thead>
                                     <tr>
-                                        <th style={{ width: '30%', fontSize: '22px' }}>학급 번호</th>
-                                        <th style={{ width: '40%', fontSize: '22px' }}>이름</th>
-                                        <th style={{ width: '40%', fontSize: '22px' }}>직업</th>
-                                        <th style={{ width: '40%', fontSize: '22px' }}></th>
+                                        <th style={{ width: '20%', fontSize: '22px' }}>학급 번호</th>
+                                        <th style={{ width: '30%', fontSize: '22px' }}>이름</th>
+                                        <th style={{ width: '30%', fontSize: '22px' }}>직업</th>
+                                        <th style={{ width: '20%', fontSize: '22px' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
