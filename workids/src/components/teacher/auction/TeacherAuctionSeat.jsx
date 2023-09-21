@@ -124,36 +124,39 @@ export default function AuctionSeat({ updateData }) {
           />
         </div>
         <div className="d-flex m-3 justify-content-center">
-          <label>행 :</label>
+          <label className="d-flex align-items-center">행 :</label>
           <input
+            type="number"
             className="mx-2 "
             value={rows}
             onChange={(e) => setRows(e.target.value)}
             style={widthStyle}
           />
 
-          <label>열 :</label>
+          <label className="d-flex align-items-center">열 :</label>
           <input
+            type="number"
             className="mx-2 "
             value={cols}
             onChange={(e) => setCols(e.target.value)}
             style={widthStyle}
           />
 
-          <label>자리 수 :</label>
+          <label className="d-flex align-items-center">자리 수 :</label>
           <input
+            type="number"
             className="mx-2 "
             value={totalseat}
             onChange={(e) => setTotalSeat(e.target.value)}
             style={widthStyle}
           />
 
-          <button onClick={generateSeat} style={divStyle}>
+          <button onClick={generateSeat} className="content-button" style={divStyle}>
             생성
           </button>
         </div>
         <div className="d-flex justify-content-center my-3">
-          <button style={divStyle} onClick={createAuction}>
+          <button style={divStyle} className="content-button" onClick={createAuction}>
             경매 생성하기
           </button>
         </div>

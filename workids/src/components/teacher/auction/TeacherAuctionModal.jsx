@@ -30,7 +30,10 @@ export default function TeacherAuctionModal(props) {
   }, [search]);
   const auctionList = detail.map((menu, index) => (
     <div key={index}>
-      <div className="row m-2 text-center p-3 ">
+      <div
+        className={`row m-2 text-center p-3 `}
+        style={{ backgroundColor: index % 2 === 0 ? "#FFFEEE" : "white" }}
+      >
         <div className="col-2">{menu.citizenNum}</div>
         <div className="col-4">{menu.name}</div>
         <div className="col-2">
