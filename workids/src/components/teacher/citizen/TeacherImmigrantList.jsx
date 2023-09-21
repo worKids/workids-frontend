@@ -11,6 +11,11 @@ export default function TeacherImmigrantList({ citizenNumber }) {
     const [jobList, setJobList] = useState([]); //직업 항목
 
     const handleClose = () => setShow(false);
+    const divListStyle = {
+        borderRadius: "20px",
+        backgroundColor: "#FEE173",
+        border: "solid 5px #F6BE2C"
+    }
 
     // 학급번호로 조회 버튼 클릭 이벤트 핸들러
     const handleShow = () => {
@@ -127,9 +132,10 @@ export default function TeacherImmigrantList({ citizenNumber }) {
             <div>
                 <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
                 {show && (
-                    <table style={{ backgroundColor: 'lightyellow' }}>
+                     <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+                    <table>
                         <thead>
-                            <tr style={{ backgroundColor: 'orange' }}>
+                            <tr >
                                 <th style={{ width: "20%" }}>학급 번호</th>
                                 <th style={{ width: "20%" }}>이름</th>
                                 <th style={{ width: "20%" }}>직업</th>
@@ -140,6 +146,7 @@ export default function TeacherImmigrantList({ citizenNumber }) {
                         </thead>
                         <tbody>{immigrantItems}</tbody>
                     </table>
+                    </div>
                 )}
             </div>
 
