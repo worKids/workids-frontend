@@ -21,6 +21,8 @@ export default function MainPage() {
   };
   const borderRound = {
     borderRadius: "40px",
+    
+  
   };
   const submitBtn = {
     borderRadius: "15px",
@@ -33,6 +35,10 @@ export default function MainPage() {
     color: "white",
     width: "fit-content",
     right: "0",
+  };
+
+  const inputColor = {
+    backgroundColor: "#EEEEEE",
   };
 
   const login = () => {
@@ -97,10 +103,10 @@ export default function MainPage() {
 
   return (
     <div className="h-100 w-100">
-      <div className="mainLogo w-50 m-auto mb-0"></div>
-      <div className="h-75 d-flex justify-content-center align-items-end">
-        <div className="border border-dark  border-6 p-5 mb-5" style={borderRound}>
-          <h3 className="d-flex justify-content-center mt-1">로그인</h3>
+      <div className="mainLogo w-50 m-auto"></div>
+      <div className="h-75 d-flex justify-content-center align-items-center">
+        <div className="border border-dark border-4 px-5 py-4 mb-5" style={{...borderRound, backgroundColor:"#FFFDDD"}}>
+          <h3 className="d-flex justify-content-center">로그인</h3>
           <div className="d-flex justify-content-center">
             <div className="form-check mx-5 my-3">
               <input
@@ -136,35 +142,37 @@ export default function MainPage() {
                 <div>아이디</div>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control bg-white border-2 border-dark"
                   placeholder="id"
                   aria-label="id"
                   onChange={handleUserIdChange}
+                  style={inputColor}
                 />
               </div>
               <div className="row">
                 <div>비밀번호</div>
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control bg-white border-2 border-dark"
                   placeholder="password"
                   aria-label="password"
                   onChange={handlePasswordChange}
+                  style={inputColor}
+
                 />
               </div>
             </div>
             <div
-              className="btn col-3 d-flex justify-content-center align-items-center border border-dark  border-2 ms-3 mt-4"
+              className="btn col-3 d-flex justify-content-center align-items-center border border-warning  border-2 ms-3 mt-4"
               style={submitBtn}
               onClick={login}
             >
               로그인
             </div>
           </div>
-          <div className="row">
-            <div></div>
+          <div className="row d-flex justify-content-center">
             <div
-              className="btn mt-3 p-1 d-flex justify-content-end text-center border border-dark border-2 "
+              className="btn mt-3 px-4  d-flex justify-content-end text-center border border-warning border-2 "
               style={joinBtn}
               onClick={navigateToJoin}
             >

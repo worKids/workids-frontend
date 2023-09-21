@@ -23,6 +23,12 @@ export default function TeacherBankList(){
         setShowModal(false);
         window.location.reload(); // 추가된 은행 상품도 가져오기 위해 새로고침
     }
+
+    const midStyle = {
+        height: "60%",
+        borderRadius: "30px",
+        backgroundColor: "#FED338",
+    };
     
     const navigate = useNavigate();
 
@@ -83,7 +89,7 @@ export default function TeacherBankList(){
         bankInUseList.map((bank, index) => (
         
         <div key={index}>
-            <div className="row m-2 text-center p-3 ">
+            <div className="row m-2 text-center p-2 ">
                 <div className="col-1 d-flex justify-content-center align-items-center">
                     {index + 1}
                 </div>
@@ -91,22 +97,22 @@ export default function TeacherBankList(){
                     {bank.productType == 0 ? <div>주거래</div>
                     : bank.productType == 1 ? <div>예금</div> : null }
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.productName}
                 </div>
-                <div className="col-3 d-flex justify-content-center align-items-center">
+                {/* <div className="col-3 d-flex justify-content-center align-items-center">
                     {bank.productContent}
-                </div>
+                </div> */}
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {index !== 0 ? bank.productPeriod : <div>나라 운영 기간</div>}
                 </div>
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.interestRate}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.createdDate}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {index !== 0 && (
                     <div className="btn border px-4" onClick={() => deleteBank(bank.productNum)}>
                         삭제
@@ -114,6 +120,10 @@ export default function TeacherBankList(){
                     )}
                 </div>
             </div>
+            <div className="row m-2 text-justify p-2 ">
+                <div className="col offset-1">{bank.productContent}</div>  
+            </div>
+            <div className="border-top"></div> {/* 구분선 */}
         </div>
         ))
     )
@@ -129,7 +139,7 @@ export default function TeacherBankList(){
         bankUnUseList.map((bank, index) => (
 
         <div key={index}>
-            <div className="row m-2 text-center p-3 ">
+            <div className="row m-2 text-center p-2 ">
                 <div className="col-1 d-flex justify-content-center align-items-center">
                     {index + 1}
                 </div>
@@ -137,31 +147,36 @@ export default function TeacherBankList(){
                     {bank.productType == 0 ? <div>주거래</div>
                     : bank.productType == 1 ? <div>예금</div> : null }
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.productName}
                 </div>
-                <div className="col-3 d-flex justify-content-center align-items-center">
+                {/* <div className="col-3 d-flex justify-content-center align-items-center">
                     {bank.productContent}
-                </div>
+                </div> */}
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.productPeriod}
                 </div>
                 <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.interestRate}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.createdDate}
                 </div>
-                <div className="col-1 d-flex justify-content-center align-items-center">
+                <div className="col-2 d-flex justify-content-center align-items-center">
                     {bank.endDate != null ? bank.endDate : null }
                 </div>
             </div>
+            <div className="row m-2 text-justify p-2 ">
+                <div className="col offset-1">{bank.productContent}</div>  
+            </div>
+            <div className="border-top"></div> {/* 구분선 */}
         </div>
         ))
     )
 
     return (
         <div>
+        <div className="border border-dark  border-3 p-3" style={midStyle}>
             <div>
                 <div className="row">
                     <div className="col">
@@ -171,16 +186,16 @@ export default function TeacherBankList(){
                         <div className="btn border" onClick={() => openModal()}>상품 추가</div>
                     </div>
                 </div>
-                <div className="row m-2 text-center p-3 ">
-                    <div className="col-1">번호</div>
+                <div className="row m-2 text-center p-2 ">
+                    <div className="col-1">No</div>
                     <div className="col-1">유형</div>
-                    <div className="col-1">상품명</div>
-                    <div className="col-3">상품 설명</div>
+                    <div className="col-2">상품명</div>
+                    {/* <div className="col-3">상품 설명</div> */}
                     <div className="col-2">상품 가입 기간(주)</div>
                     <div className="col-2">만기 이자율(%)</div>
-                    <div className="col-1">생성일</div>
-                    <div className="col-1">삭제</div>
-                    <div className="container overflow-auto" style={{ height: "50vh" }}>
+                    <div className="col-2">생성일</div>
+                    <div className="col-2"></div>
+                    <div className="container overflow-auto" style={{height:"30vh", backgroundColor: '#FFEFD5', borderRadius: "20px"}}>
                         {showInUseBankList}
                     </div>
                 </div>
@@ -188,20 +203,21 @@ export default function TeacherBankList(){
             <div className="border-top"></div> {/* 구분선 */}
             <div>
                 <div>판매종료한 상품</div>
-                <div className="row m-2 text-center p-3 ">
-                    <div className="col-1">번호</div>
+                <div className="row m-2 text-center p-2 ">
+                    <div className="col-1">No</div>
                     <div className="col-1">유형</div>
-                    <div className="col-1">상품명</div>
-                    <div className="col-3">상품 설명</div>
+                    <div className="col-2">상품명</div>
+                    {/* <div className="col-3">상품 설명</div> */}
                     <div className="col-2">상품 가입 기간(주)</div>
                     <div className="col-2">만기 이자율(%)</div>
-                    <div className="col-1">생성일</div>
-                    <div className="col-1">종료일</div>
+                    <div className="col-2">생성일</div>
+                    <div className="col-2">종료일</div>
                 </div>
-                <div className="container overflow-auto" style={{ height: "50vh" }}>
+                <div className="container overflow-auto" style={{height:"30vh", backgroundColor: '#FFEFD5', borderRadius: "20px"}}>
                     {showUnUseBankList}
                 </div>
             </div>
+        </div>
             <Modal
                 show={showModal}
                 onHide={closeModal}

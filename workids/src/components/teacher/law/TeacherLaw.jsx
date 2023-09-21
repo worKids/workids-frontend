@@ -39,16 +39,25 @@ export default function TeacherLaw(){
     const divStyle = {
         width: "80%",
         height: "80vh",
-        borderRadius: "40px"
+        borderRadius: "40px",
+        backgroundColor:"#FFFEEE",
     };
+
+    const divListStyle = {
+        borderRadius:"20px",
+        backgroundColor: "#FEE173",
+        border: "solid 5px #F6BE2C"
+    }
 
     const divLawStudentList = {
         width: "90%",
         fontSize: "18px",
         textAlign: "center",
         marginTop: "2vh",
-        backgroundColor: 'rgba(217, 217, 217, 0.5)',
-        border: "solid 5px gray"
+        borderRadius:"40px",
+        backgroundColor: '#FEE173',
+        border: "solid 5px #F6BE2C"
+        
     }
 
     //법 메뉴의 탭들
@@ -56,7 +65,7 @@ export default function TeacherLaw(){
         <div
           key={index}
           onClick={() => clickMenu(index)}
-          className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
+          className={`m-2 border border-dark  border-3 text-center p-2 px-3 hoverable rounded-pill ${
             state === index ? "bg-warning text-white" : ""
           }`}
         >
@@ -86,7 +95,7 @@ export default function TeacherLaw(){
             alert(err.response.data.message);
         });
 
-    }, [lawList]);
+    }, []);
 
     //벌금-학생 항목 리스트 뽑아오기
     useEffect(() => {
@@ -110,7 +119,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, [fineStudentList]);
+    }, []);
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
@@ -147,7 +156,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, [penaltyStudentList]);
+    }, []);
 
     //수행여부 (check) 하기
     function CompletePenalty(penaltyCompleteState, lawNationStudentNum) {
@@ -301,10 +310,9 @@ export default function TeacherLaw(){
     //학생에게 법 
 
     return (
-        <div style={divStyle} className="border border-dark  border-3 p-3">
+        <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >
                 <div className="d-flex justify-content-between">
                     <div className="d-flex">{menu}</div>
-                    <div>법 관리</div>
                 </div>
                 {state === 0 ? (
                     
@@ -317,18 +325,18 @@ export default function TeacherLaw(){
                         </div>
                     ) :(
                     <div className="container justify-content-md-center" style={{width:'90%'}}>
-                    <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
-                    <div className="overflow-auto m-3 p-4" style={{height:'50vh' }}>
+                    <div className="container d-flex justify-content-end">(단위:미소)</div>
+                    <div className="overflow-auto m-3 p-4 scrollCss" style={{...divListStyle, maxHeight:'50vh' }}>
                         <table style={{marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                         {lawList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
-                                    <td style={{ width: '30%'}}>법 내용</td>
-                                    <td style={{ width: '50%'}}>{menu.content}</td>
+                                    <td style={{ width: '20%'}}>법 내용 : </td>
+                                    <td style={{ width: '30%'}}>{menu.content}</td>
                                     {menu.type === 0 && (
                                         <>
-                                            <td><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
-                                            <td><TeacherLawDelete lawNum={menu.lawNum} /></td>
+                                            <td style={{ width: '10%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
+                                            <td style={{ width: '10%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
                                             
                                         </>
                                     )}
@@ -341,13 +349,13 @@ export default function TeacherLaw(){
                                 </tr>
                                 {menu.type === 0 && (
                                     <tr key={`${index}_fine`}>
-                                        <td>벌금</td>
+                                        <td>벌금 : </td>
                                         <td key={index}>{menu.fine}</td>
                                     </tr>
                                 )}
                                 {menu.type === 1 && (
                                     <tr key={`${index}_penalty`}>
-                                        <td>벌칙</td>
+                                        <td>벌칙 : </td>
                                         <td key={index}>{menu.penalty}</td>
                                     </tr>
                                 )}
@@ -355,7 +363,7 @@ export default function TeacherLaw(){
                         ))}
                     </table>
                         </div>
-                        <div className="container d-flex justify-content-end p-3">
+                        <div className="container d-flex justify-content-end">
                             <TeacherLawCreate />
                         </div>
                     </div>
@@ -365,7 +373,7 @@ export default function TeacherLaw(){
                         <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(0)}
                         </div>
-                        <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+                        <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
                             <div className="row m-3 p-1">
                                 <div className="col-1">번호</div>

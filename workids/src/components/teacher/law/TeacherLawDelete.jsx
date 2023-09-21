@@ -39,7 +39,7 @@ export default function TeacherLawDelete({lawNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>삭제</button>
+            <div onClick={handleShow} className="fs-5 bg-warning px-3 rounded-pill border-3 border-dark border text-center">삭제</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
