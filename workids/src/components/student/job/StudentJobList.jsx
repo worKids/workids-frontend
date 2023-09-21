@@ -7,6 +7,18 @@ export default function StudentJobList({ citizenNumber }) {
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useRecoilState(userState);
   const [jobList, setJobList] = useState([]); //직업 항목
+  const divListStyle = {
+    borderRadius: "20px",
+    backgroundColor: "#FEE173",
+    border: "solid 5px #F6BE2C"
+  }
+
+  const divStyle = {
+    width: "80%",
+    height: "80vh",
+    borderRadius: "40px",
+    backgroundColor: "#FFFEEE",
+  };
 
   //직업리스트 뽑아오기
   useEffect(() => {
@@ -36,30 +48,38 @@ export default function StudentJobList({ citizenNumber }) {
   return (
     <div className="p-3">
       <div className="d-flex justify-content-between align-items-center"></div>
-      <div style={{ overflowY: 'auto', maxHeight: '400px' }}>
+      <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '60vh' }}>
+        <div className="row p-1" style={{ fontSize: "30px", textAlign: "left" }}>
+          <div className="col-1 offset-2">No.</div>
+          <div className="col-2"></div>
+
+          <div className="col-3">상세 정보</div>
+        </div>
         {/* 스크롤 가능한 컨테이너 */}
-        <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '50%' }}>
+        <table style={{ marginLeft: 'auto', marginRight: '10px', width: '90%' }}>
           {jobList.map((menu, index) => (
-            <tbody key={index} style={{ fontSize: 'px', height: '15vh' }}>
-              <tr key={`${index}_row`} style={{ borderTop: '3px solid black', padding: '10px' }}>
-                <td style={{ width: '30%' }}>No. {index + 1}</td>
-                <td style={{ width: '30%' }}>직업명</td>
-                <td style={{ width: '40%' }}>{menu.name}</td>
-              </tr>
-              <tr key={`${index}_content`}>
-                <td style={{ width: '30%' }}></td>
-                <td>업무항목</td>
-                <td key={index}>{menu.jobToDoContent}</td>
-              </tr>
-              <tr key={`${index}_salary`}>
-                <td style={{ width: '30%' }}></td>
-                <td>월급</td>
-                <td key={index}>{menu.salary}미소</td>
-              </tr>
-            </tbody>
+
+
+<tbody key={index} style={{ fontSize: '20px', height: '15vh' }}>
+  <tr key={`${index}_content`} style={{ borderTop: '3px solid black', padding: '10px' }}>
+    <td className="col-3 pr-0" rowSpan="3" style={{ borderTop: 'none', padding: '0' }}>
+      {index + 1}
+    </td>
+    <td  style={{ width: '30%' }}>직업명 :</td>
+    <td  style={{ width: '30%' }}>{menu.name}</td>
+  </tr>
+  <tr key={`${index}_content`}>
+  <td  style={{ width: '30%' }}>업무항목 :</td>
+  <td  style={{ width: '30%' }}>{menu.jobToDoContent}</td>
+  </tr>
+  <tr key={`${index}_salary`}>
+    <td className="col-5 pr-0">월급 :</td>
+    <td className="col-5" key={index}>{menu.salary}</td>
+  </tr>
+</tbody>
           ))}
         </table>
       </div>
     </div>
   );
-          }
+}
