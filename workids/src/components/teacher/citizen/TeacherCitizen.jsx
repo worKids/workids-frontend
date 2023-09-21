@@ -133,14 +133,14 @@ export default function TeacherCitizen() {
   const showMainBankList = (
     (bankMainList.length === 0)
       ?
-      <div className="h-100 d-flex justify-content-center align-items-center">
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
         주거래 계좌가 없습니다!
       </div>
       :
       bankMainList.map((bank, index) => (
 
         <div key={index}>
-          <div className="row m-2 text-center p-2 ">
+          <div className="info-label row m-2 text-center p-2 ">
             {/* <div className="col d-flex justify-content-center align-items-center">
                 {index + 1}
             </div> */}
@@ -150,10 +150,10 @@ export default function TeacherCitizen() {
             <div className="col-2 d-flex justify-content-center align-items-center">
               {bank.productName}
             </div>
-            <div className="col-1 d-flex justify-content-center align-items-center">
+            <div className="col-2 d-flex justify-content-center align-items-center">
               {bank.balance}
             </div>
-            <div className="col-1 d-flex justify-content-center align-items-center">
+            <div className="col-2 d-flex justify-content-center align-items-center">
               {bank.interestRate}
             </div>
             <div className="col-2 d-flex justify-content-center align-items-center">
@@ -163,7 +163,7 @@ export default function TeacherCitizen() {
               {bank.endDate}
             </div>
 
-            <div className="col-1 d-flex justify-content-center align-items-center">
+            <div className="col-2 d-flex justify-content-center align-items-center">
             </div>
           </div>
         </div>
@@ -174,14 +174,14 @@ export default function TeacherCitizen() {
   const showDepositBankList = (
     (bankDepositList.length === 0)
       ?
-      <div className="h-100 d-flex justify-content-center align-items-center">
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
         예금 계좌가 없습니다!
       </div>
       :
       bankDepositList.map((bank, index) => (
 
         <div key={index}>
-          <div className="row m-2 text-center p-2 ">
+          <div className="info-label row m-2 text-center p-2 ">
             {/* <div className="col d-flex justify-content-center align-items-center">
               {index + 1}
           </div> */}
@@ -215,23 +215,23 @@ export default function TeacherCitizen() {
   const PenaltyItems =(
     (penaltyStudentList.length === 0)
     ?
-    <div className="h-100 d-flex justify-content-center align-items-center">
+    <div className="info-label h-100 d-flex justify-content-center align-items-center">
       벌칙 내역이 없습니다!
     </div>
     :
   penaltyStudentList.map((item, index) => (
 
 
-    <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "25px", textAlign: "center" }}>
-      <div className="col-1 p-2">{index + 1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-3 p-2">{item.penalty}</div>
-      <div className="col-2 p-2">{item.createdDate}</div>
+    <div key={index} className="info-label row m-2 text-center p-2" >
+      <div className="col-2 p-3">{index + 1}</div>
+      <div className="col-2 p-3">{item.content}</div>
+      <div className="col-2 p-3">{item.penalty}</div>
+      <div className="col-2 p-3">{item.createdDate}</div>
       {item.penaltyCompleteState === 0 && (
-        <div className="col-3 p-2">미수행</div>
+        <div className="col-2 p-3">미수행</div>
       )}
       {item.penaltyCompleteState === 1 && (
-        <div className="col-3 p-2">수행</div>
+        <div className="col-2 p-3">수행</div>
       )}
       <hr></hr>
     </div>
@@ -245,16 +245,16 @@ export default function TeacherCitizen() {
   const FineItems =(
   (fineStudentList.length === 0)
   ?
-  <div className="h-100 d-flex justify-content-center align-items-center">
+  <div className="info-label h-100 d-flex justify-content-center align-items-center">
     벌금 내역이 없습니다!
   </div>
   : fineStudentList.map((item, index) => (
 
-    <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "25px", textAlign: "center" }}>
-      <div className="col-2 p-2">{index + 1}</div>
-      <div className="col-4 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.fine}</div>
-      <div className="col-3 p-2">{item.createdDate}</div>
+    <div key={index}  className="info-label row m-2 text-center p-2" >
+      <div className="col-3 p-4">{index + 1}</div>
+      <div className="col-3 p-4">{item.content}</div>
+      <div className="col-3 p-4">{item.fine}</div>
+      <div className="col-3 p-4">{item.createdDate}</div>
       <hr></hr>
     </div>
   ))
@@ -294,7 +294,7 @@ export default function TeacherCitizen() {
         </div>
       ))
     ) : (
-      <div className="h-100 d-flex justify-content-center align-items-center">
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
         생성된 경매가 없습니다!
       </div>
     );
@@ -430,34 +430,32 @@ export default function TeacherCitizen() {
         <hr style={{ border: '2px solid #000' }} />
         {/* <p>자산 내용을 여기에 추가.</p> */}
         <div>
-          <div>주거래 계좌</div>
+          <div className = "info-label">주거래 계좌</div>
           <div className="row m-2 text-center p-2 ">
             {/* <div className="col">번호</div> */}
-            <div className="col-2">계좌번호</div>
-            <div className="col-2">상품명</div>
-            <div className="col-1"><div>잔액</div><div>(미소)</div></div>
-            <div className="col-1"><div>이자율</div><div>(%)</div></div>
-            <div className="col-2">개설일</div>
-            <div className="col-2">만기일</div>
-            <div className="col-1"></div>
-            <div className="col-1"></div>
+            <div className="info-label col-2">계좌번호</div>
+            <div className="info-label col-2">상품명</div>
+            <div className="info-label col-2"><div>잔액</div><div>(미소)</div></div>
+            <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
+            <div className="info-label col-2">개설일</div>
+            <div className="info-label col-2">만기일</div>
+      
           </div>
           <div className="container overflow-auto" style={{ height: "10vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {showMainBankList}
           </div>
         </div>
         <div>
-          <div>예금 계좌</div>
+        <div className = "info-label">예금 계좌</div>
           <div className="row m-2 text-center p-2 ">
             {/* <div className="col">번호</div> */}
-            <div className="col-2">계좌번호</div>
-            <div className="col-2">상품명</div>
-            <div className="col-1"><div>잔액</div><div>(미소)</div></div>
-            <div className="col-1"><div>이자율</div><div>(%)</div></div>
-            <div className="col-2">개설일</div>
-            <div className="col-2">만기일</div>
-            <div className="col-1"></div>
-            <div className="col-1"></div>
+            <div className="info-label col-2">계좌번호</div>
+            <div className="info-label col-2">상품명</div>
+            <div className="info-label col-2"><div>잔액</div><div>(미소)</div></div>
+            <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
+            <div className="info-label col-2">개설일</div>
+            <div className="info-label col-2">만기일</div>
+   
           </div>
           <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {showDepositBankList}
@@ -474,13 +472,13 @@ export default function TeacherCitizen() {
         <div>
           <hr style={{ border: '2px solid #000' }} />
           {/* <p>벌금 내용을 여기에 추가.</p> */}
-          <div className="row m-2 text-center p-3 ">
-            <div className="col-2">No</div>
-            <div className="col-2">법 항목</div>
-            <div className="col-2">벌금</div>
-            <div className="col-2">부과일</div>
+          <div className="info-label row m-2 text-center p-3 ">
+            <div className="col-3">No</div>
+            <div className="col-3">법 항목</div>
+            <div className="col-3">벌금</div>
+            <div className="col-3">부과일</div>
           </div>
-          <div style={{ overflowX: 'hidden', overflowY: 'auto', height: '48vh' }}>
+          <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {FineItems}
           </div>
 
@@ -493,24 +491,26 @@ export default function TeacherCitizen() {
       <div>
         <hr style={{ border: '2px solid #000' }} />
         {/* <p>벌칙 내용을 여기에 추가.</p> */}
-        <div className="row m-2 text-center p-3">
-          <div className="col-1">No</div> {/* 너비 1 */}
-          <div className="col-3">법 항목</div> {/* 너비 3 */}
+        <div className=" info-label row m-2 text-center p-3">
+          <div className="col-2">No</div> {/* 너비 1 */}
+          <div className="col-2">법 항목</div> {/* 너비 3 */}
           <div className="col-2">벌칙</div> {/* 너비 2 */}
           <div className="col-2">부과일</div> {/* 너비 2 */}
           <div className="col-2">수행여부</div> {/* 너비 2 */}
+          
         </div>
-
-        <div className="container overflow-auto" style={{ height: "60vh" }}>
+        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
           {PenaltyItems}
         </div>
+
+        
       </div>
     ),
     tab4: (
       <div>
         <hr style={{ border: '2px solid #000' }} />
         {/* <p>부동산 내용을 여기에 추가.</p> */}
-        <div className="row m-2 text-center p-3 ">
+        <div className="info-label row m-2 text-center p-3 ">
           <div className="col-2">No</div>
           <div className="col-2">경매 날짜</div>
           <div className="col-2">신청번호</div>
@@ -518,7 +518,7 @@ export default function TeacherCitizen() {
           <div className="col-2">결과</div>
           <div className="col-2">배정된 번호</div>
         </div>
-        <div className="container overflow-auto" style={{ height: "60vh" }}>
+        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
           {auctionList}
         </div>
 
