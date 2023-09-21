@@ -12,4 +12,7 @@
   font-style: normal;
   width: 100vw;
   height: 100vh;
+  background-image: url(./assets/mainPage.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
