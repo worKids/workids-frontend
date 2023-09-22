@@ -20,6 +20,14 @@
   background-repeat: no-repeat;
 }
 
+.flag{
+  background-image: url(../../assets/flag.png);
+  background-position: center;
+  background-size: contain;
+  width: 4vw;
+  background-repeat: no-repeat;
+}
+
 .info-label {
   font-family: 'Your-Preferred-Font', "KCC-Ganpan"; /* 원하는 글꼴 설정 */
   font-size: 16px; /* 원하는 글꼴 크기 설정 */

@@ -75,7 +75,7 @@ export default function TeacherLawCreate({onUpdate}){
     };
 
     const handleAddLaw = () => {
-        if((addLaw.content=="" || addLaw.fine==null) &&  (addLaw.content=="" || addLaw.penalty=="")){
+        if((addLaw.content=="" || addLaw.fine==null || addLaw.fine==0) &&  (addLaw.content=="" || addLaw.penalty=="")){
             alert("빈칸을 모두 채워주세요. (벌금은 0이 될 수 없습니다.)");
         }else{
             const token = userData.accessToken;

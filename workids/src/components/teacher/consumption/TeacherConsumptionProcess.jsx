@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-export default function TeacherConsumptionProcess({consumptionNationStudentNum, state}){
+export default function TeacherConsumptionProcess({consumptionNationStudentNum, state, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [updateState, setUpdateState] = useState(state);
@@ -43,6 +43,9 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
         .then((response) => {
             alert("처리 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -51,7 +54,7 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
 
     return(
         <div>
-            <button style={{width:'40px', height:'25px', fontSize:'13px'}} onClick={handleShow}>처리</button>
+            <div onClick={handleShow} className="content-button fs-6" style={{width:"8vh", height:"4vh"}}>처리</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
@@ -92,8 +95,8 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleConsumptionProcess()}>확인</button>
-                    <button onClick={handleClose}>취소</button>
+                    <div onClick={handleConsumptionProcess} className="info-label fs-5 modal-button">확인</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
                 </Modal.Footer>
             </Modal>    
         </div>

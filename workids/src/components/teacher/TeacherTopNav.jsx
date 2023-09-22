@@ -23,7 +23,10 @@ export default function TeacherTopNav() {
       <div className="d-flex justify-content-between">
         <div className="d-flex">
           <div className="logo hoverable" onClick={navigateToSelect}></div>
-          <div className="m-3">{userData.nationName ? userData.nationName : ""}</div>
+          <div className="flag"></div>
+          <div className="m-3" >
+            {userData.nationName ? userData.nationName : ""}
+          </div>
         </div>
         <div
           className="m-3 fs-3 hoverable"
