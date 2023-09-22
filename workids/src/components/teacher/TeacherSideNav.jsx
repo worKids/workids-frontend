@@ -28,7 +28,7 @@ export default function TeacherSideNav() {
     <div
       key={index}
       onClick={() => navigateTo(index)}
-      className={`my-4 border border-dark hoverable border-3 text-center p-3 rounded-pill sideNav ${
+      className={`my-3 border border-dark hoverable border-3 text-center p-3 rounded-pill sideNav ${
         isActive(index) ? "bg-warning text-white" : ""
       }`}style={{backgroundColor:"#FFFEEE"}}
     >
