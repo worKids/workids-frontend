@@ -34,11 +34,10 @@ export default function TeacherConsumption(){
         backgroundColor:"#FFFEEE",
     };
 
-    const divListStyle = {
-        borderRadius:"20px",
+    const divStyle2 = {
+        borderRadius: "40px",
         backgroundColor: "#FEE173",
-        border: "solid 5px #F6BE2C"
-    }
+      };
 
     const firstBlock ={
         float: "left",
@@ -46,9 +45,22 @@ export default function TeacherConsumption(){
         paddingTop: "3vh",
         borderRadius: "40px",
         width: "48%",
-        height: "80%",
-        backgroundColor: "#FEE173",
-        border: "solid 5px #F6BE2C"
+        height: "90%",
+        backgroundColor: "#E1F1F5",
+        border: "solid 5px #BFE0FF"
+    }
+
+    const hrStyle = {
+        width: "100%",
+        height: "3px",
+        backgroundColor: "black",
+        margin : "5px"
+    }
+
+    const divListStyle = {
+        borderRadius: "40px",
+        backgroundColor: "#fffeee",
+        height: "85%"
     }
 
     const secondBlock ={
@@ -57,7 +69,7 @@ export default function TeacherConsumption(){
         paddingTop: "3vh",
         borderRadius: "40px",
         width: "47%",
-        height: "80%",
+        height: "90%",
         backgroundColor: '#D9D9D9',
         border: "solid 5px #B6B6B6"
     }
@@ -178,6 +190,7 @@ export default function TeacherConsumption(){
             </div>
     ));
 
+
     return(
         <div style={divStyle} className="border border-dark mt-4 border-3 p-3">
                 <div className="d-flex justify-content-between">
@@ -195,34 +208,37 @@ export default function TeacherConsumption(){
                         </div>
                     </div>
                     ):(
-                    <div className="container justify-content-md-center" style={{width:'90%'}}>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>   
-                    <div className="overflow-auto m-3 p-4 scrollCss" style={{...divListStyle, maxHeight:'50vh' }}>
+                    <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
+                        <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-                        {consumptionList.map((menu, index) => (
-                            <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
-                                <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
-                                    <td className="fs-4" style={{ width: '20%' }}>소비 항목</td>
-                                    <td className="fs-4" style={{ width: '30%' }}>{menu.content}</td>
-                                    <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionUpdate consumptionNum={menu.consumptionNum} content={menu.content} amount={menu.amount} onUpdate={handleUpdateCheck}/></td>
-                                    <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionDelete consumptionNum={menu.consumptionNum} onUpdate={handleUpdateCheck}/></td>
-                                </tr>
-                                <tr key={`${index}_amount`}>
-                                    <td className="fs-4">금액</td>
-                                    <td className="fs-4" key={index}>{menu.amount}</td>
-                                </tr>
-                            </tbody>
-                        ))}
-                    </table>
-                        </div>
-                        <div className="ontainer d-flex justify-content-end">
-                            <TeacherConsumptionCreate onUpdate={handleUpdateCheck}/>
+                            {consumptionList.map((menu, index) => (
+                                <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
+                                    <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
+                                        <td className="fs-4" style={{ width: '20%' }}>소비 항목</td>
+                                        <td className="fs-4" style={{ width: '30%' }}>{menu.content}</td>
+                                        <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionUpdate consumptionNum={menu.consumptionNum} content={menu.content} amount={menu.amount} onUpdate={handleUpdateCheck}/></td>
+                                        <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionDelete consumptionNum={menu.consumptionNum} onUpdate={handleUpdateCheck}/></td>
+                                    </tr>
+                                    <tr key={`${index}_amount`}>
+                                        <td className="fs-4">금액</td>
+                                        <td className="fs-4" key={index}>{menu.amount}</td>
+                                    </tr>
+                                </tbody>
+                            ))}
+                        </table>
                         </div>
                     </div>
+                    <div className="ontainer d-flex justify-content-end p-2">
+                        <TeacherConsumptionCreate onUpdate={handleUpdateCheck}/>
+                    </div>
+                </div>
                     )
                 ):(
                     //두번째 탭 메뉴
                     <>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={firstBlock} className="container justify-content-md-center">
                             <h3 style={{textAlign:'center'}}>결재 완료</h3>
@@ -233,6 +249,7 @@ export default function TeacherConsumption(){
                                 <div className="col-sm-1 p-1" style={colStyle}>금액</div>
                                 <div className="col-sm-3 p-1" style={colStyle}>승인일</div>
                                 <div className="col-sm-2 p-1" style={colStyle}></div>
+                                <div style={hrStyle}></div>
                             </div>
                             <div className="scrollCss" style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
                                 {approvalItems}
@@ -241,6 +258,7 @@ export default function TeacherConsumption(){
                     
                         <div style={secondBlock} className="container justify-content-md-center">
                             <h3 style={{textAlign:'center'}}>미결재</h3>
+                            
                             <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>
                                 <div className="col-sm-1 p-1" style={colStyle}>번호</div>
                                 <div className="col-sm-2 p-1" style={colStyle}>이름</div>
@@ -248,10 +266,12 @@ export default function TeacherConsumption(){
                                 <div className="col-sm-1 p-1" style={colStyle}>금액</div>
                                 <div className="col-sm-3 p-1" style={colStyle}>신청일</div>
                                 <div className="col-sm-2 p-1" style={colStyle}></div>
+                                <div style={hrStyle}></div>
                             </div>
                             <div className="scrollCss" style={{height:'70%', overflowX:"hidden", overflowY:"auto"}}>
                                 {outStadndingItems}
                             </div>
+                        </div>
                         </div>
                         </>
                 )}
