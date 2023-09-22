@@ -96,30 +96,31 @@ export default function TeacherDepositBankList() {
     );
 
   return (
-    <div className="border border-dark  border-3 p-3" style={divStyle}>
-      {/* <div>국민 예금 계좌 가입 내역</div> */}
-      <div className="row m-2 text-center p-3 fs-5">
-        <div className="col-1">번호</div>
-        <div className="col-1">이름</div>
-        <div className="col-2">계좌번호</div>
-        <div className="col-2">상품명</div>
-        <div className="col-1">
-          <div>잔액</div>
-          <div>(미소)</div>
+    <div>
+        <div className="container d-flex justify-content-end">(단위:미소)</div>
+        <div className="border border-dark  border-3 p-3" style={divStyle}>
+        <div className="row m-2 text-center p-3 fs-5">
+            <div className="col-1">번호</div>
+            <div className="col-1">이름</div>
+            <div className="col-2">계좌번호</div>
+            <div className="col-2">상품명</div>
+            <div className="col-1">
+            <div>잔액</div>
+            </div>
+            <div className="col-1">
+            <div>이자율</div>
+            <div>(%)</div>
+            </div>
+            <div className="col-2">개설일</div>
+            <div className="col-2">만기일</div>
         </div>
-        <div className="col-1">
-          <div>이자율</div>
-          <div>(%)</div>
+        <div
+            className="container overflow-auto scrollCss fs-5"
+            style={{ ...divStyle, height: "42vh", maxHeight: "42vh" }}
+        >
+            {showBankList}
         </div>
-        <div className="col-2">개설일</div>
-        <div className="col-2">만기일</div>
-      </div>
-      <div
-        className="container overflow-auto scrollCss fs-5"
-        style={{ ...divStyle, height: "46vh", maxHeight: "46vh" }}
-      >
-        {showBankList}
-      </div>
+        </div>
     </div>
   );
 }

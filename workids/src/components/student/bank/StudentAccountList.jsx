@@ -313,6 +313,7 @@ export default function StudentAccountList(){
                 <div className="col-2 d-flex justify-content-end text-primary">
                     {asset} 미소
                 </div>
+                <div className="container d-flex justify-content-end">(단위:미소)</div>
             </div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div>
@@ -321,7 +322,7 @@ export default function StudentAccountList(){
                         {/* <div className="col">번호</div> */}
                         <div className="col-2">계좌번호</div>
                         <div className="col-2">상품명</div>
-                        <div className="col-1"><div>잔액</div><div>(미소)</div></div>
+                        <div className="col-1"><div>잔액</div></div>
                         <div className="col-1"><div>이자율</div><div>(%)</div></div>
                         <div className="col-2">개설일</div>
                         <div className="col-2">만기일</div>
@@ -338,14 +339,14 @@ export default function StudentAccountList(){
                         {/* <div className="col">번호</div> */}
                         <div className="col-2">계좌번호</div>
                         <div className="col-2">상품명</div>
-                        <div className="col-1"><div>잔액</div><div>(미소)</div></div>
+                        <div className="col-1"><div>잔액</div></div>
                         <div className="col-1"><div>이자율</div><div>(%)</div></div>
                         <div className="col-2">개설일</div>
                         <div className="col-2">만기일</div>
                         <div className="col-1"></div>
                         <div className="col-1"></div>
                     </div>
-                    <div className="container overflow-auto" style={{height:"30vh", backgroundColor: '#FFEFD5', borderRadius: "20px"}}>
+                    <div className="container overflow-auto" style={{height:"27vh", backgroundColor: '#FFEFD5', borderRadius: "20px"}}>
                         {showDepositBankList}
                     </div>
                 </div>
@@ -354,15 +355,16 @@ export default function StudentAccountList(){
         :
         <div>
             <div style={{fontSize:'20px'}}>{transactionAccountNumber} 계좌 거래내역</div>
+            <div className="container d-flex justify-content-end">(단위:미소)</div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div className="row m-2 text-center p-3 ">
-                    <div className="col-2">No</div>
+                    <div className="col-2">No.</div>
                     <div className="col-4">내역</div>
                     <div className="col-2">종류</div>
-                    <div className="col-2">금액(미소)</div>
+                    <div className="col-2">금액</div>
                     <div className="col-2">거래일</div>
                 </div>
-                <div className="container overflow-auto" style={{ height: "60vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+                <div className="container overflow-auto" style={{ height: "55vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
                     {showTransactionList}
                 </div>
             </div>
