@@ -71,7 +71,7 @@ export default function NationPickPage() {
       moneyName: nationList[index].moneyName,
     };
     setUserData(updateUserData);
-    console.log(userData);
+    console.log("선택 페이지", userData);
     if (userData.userType === "teacher") {
       navigate("/teacher/nation/main");
     } else {
@@ -81,16 +81,16 @@ export default function NationPickPage() {
   const nationBtn =
     nationList !== null ? (
       nationList.map((menu, index) => (
-        <div		
-          key={index}		
-          className={`m-3 border border-dark  border-3 text-center hoverable p-3 rounded-pill sideNav `}		
-          onClick={() => navigateToNation(index)} style={{position: 'relative', backgroundColor:'#FFFEEE'}}
-        >		
-          <div style={{ fontSize: '30px' }}>{menu.name} 나라</div>		
-          <div className="nation-student" style={{position: 'absolute', bottom: 0, right: 70}}>		
-          국민 수: {menu.totalStudent} 명		
-          </div>		
-    
+        <div
+          key={index}
+          className={`m-3 border border-dark  border-3 text-center hoverable p-3 rounded-pill sideNav `}
+          onClick={() => navigateToNation(index)}
+          style={{ position: "relative", backgroundColor: "#FFFEEE" }}
+        >
+          <div style={{ fontSize: "30px" }}>{menu.name} 나라</div>
+          <div className="nation-student" style={{ position: "absolute", bottom: 0, right: 70 }}>
+            국민 수: {menu.totalStudent} 명
+          </div>
         </div>
       ))
     ) : (

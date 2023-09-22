@@ -13,16 +13,25 @@ export default function StudentRank(props) {
   };
 
   return (
-    <div className="border border-dark  border-3 p-3 h-100" style={divStyle}>
+    <div
+      className="border border-dark  border-3 p-3 h-100"
+      style={{ ...divStyle, backgroundColor: "#ffc107" }}
+    >
       {props.state === 0 ? (
         <div className="h-100">
-          <div className="border border-dark  border-3 p-5" style={heightStyle}>
+          <div
+            className="border border-dark  border-3 p-5"
+            style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
+          >
             <StudentRanking />
           </div>
         </div>
       ) : (
         <div className="h-100">
-          <div className="border border-dark  border-3 p-3" style={heightStyle}>
+          <div
+            className="border border-dark  border-3 p-3"
+            style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
+          >
             <StudentStatistic />
           </div>
         </div>
