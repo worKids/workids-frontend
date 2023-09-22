@@ -51,10 +51,10 @@ export default function TeacherLawDelete({lawNum, onUpdate}){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title className="info-label fs-4">법 삭제하기</Modal.Title>
+                    <Modal.Title className="fs-4">법 삭제하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="info-label fs-5 text-center">
+                    <div className="fs-5 text-center">
                         정말로 삭제하시겠습니까?
                     </div>
                 </Modal.Body>

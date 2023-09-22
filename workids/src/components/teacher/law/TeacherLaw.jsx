@@ -54,7 +54,7 @@ export default function TeacherLaw(){
         height: "5px",
         backgroundColor: "black",
         margin : "4px"
-      }
+    }
 
     const divStyle = {
         width: "80%",
@@ -66,7 +66,7 @@ export default function TeacherLaw(){
     const divStyle2 = {
         borderRadius: "40px",
         backgroundColor: "#FEE173",
-      };
+    };
 
     const divLawStudentList = {
         width: "90%",
