@@ -276,7 +276,9 @@ export default function TeacherLaw(){
         setSelectLawNum(0);
 
         const selectElement = document.querySelector('select[name="content"]');
-        selectElement.value = "부과 규칙";
+        if(selectElement !== null){
+            selectElement.value = "부과 규칙";
+        }
     };
 
     //벌금-벌칙 부여하는 부분

@@ -208,7 +208,7 @@ export default function TeacherBankList() {
                 </div>
               </div>
               <div className="row m-2 text-center p-3 fs-5">
-                <div className="col-1">No</div>
+                <div className="col-1">No.</div>
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
                 {/* <div className="col-3">상품 설명</div> */}
@@ -227,7 +227,7 @@ export default function TeacherBankList() {
           ) : (
             <div>
               <div className="row m-2 mt-5 text-center p-3 fs-5 d-flex align-itmes-end">
-                <div className="col-1">No</div>
+                <div className="col-1">No.</div>
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
                 {/* <div className="col-3">상품 설명</div> */}
