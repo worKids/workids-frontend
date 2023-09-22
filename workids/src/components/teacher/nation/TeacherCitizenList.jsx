@@ -124,7 +124,7 @@ export default function TeacherNation(){
     //국민 목록 출력
     const CitizenItems = citizenList.map((item,index)=>(
 
-        <div key={index} className="row justify-content-md-center p-1" style={borderRound}>
+        <div key={index} className="row justify-content-md-center p-1 overflow-auto" style={borderRound}>
         <div className = "row"> 
         <div className="col-4 p-2">{item.citizenNumber}</div>
         <div className="col-4 p-2">{item.studentName}</div>   

@@ -44,8 +44,10 @@ export default function TeacherNation(){
       };
 
     const divStyle = {
-    width: "80%",
-    borderRadius: "40px",
+        width: "80%",
+        height: "80vh",
+        borderRadius: "40px",
+        backgroundColor:"#FFFEEE",
     };
 
     const borderRound = {
@@ -59,6 +61,25 @@ export default function TeacherNation(){
         color: 'black',
         marginRight: '10px'
     };
+
+    const divStyle2 = {
+        borderRadius: "40px",
+        backgroundColor: "#FEE173",
+    };
+
+    const divListStyle = {
+        borderRadius: "40px",
+        backgroundColor: "#fffeee",
+        height: "85%"
+    }
+
+    const hrStyle = {
+        width: "100%",
+        height: "5px",
+        backgroundColor: "black",
+        margin : "4px"
+    }
+
 
  
 
@@ -77,7 +98,7 @@ export default function TeacherNation(){
         <div
           key={index}
           onClick={() => clickMenu(index)}
-          className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
+          className={`menu-button ${
             state === index ? "bg-warning text-white" : ""
           }`}
         >
@@ -171,12 +192,12 @@ export default function TeacherNation(){
     //국민 목록 출력
     const CitizenItems = citizenList.map((item,index)=>(
 
-        <div key={index} className="row justify-content-md-center p-1" style={borderRound}>
+        <div key={index} className="row justify-content-md-center fs-4" style={{borderRound}}>
         <div className = "row"> 
-        <div className="col-3 p-3">{item.citizenNumber}</div>
-        <div className="col-3 p-3">{item.studentName}</div>   
-        <div className="col-3 p-3">{item.birthDate}</div>    
-        <button className="col-1 p-1" onClick={() => citizenDelete(item.citizenNum)} style={btn}>삭제</button>
+        <div className="col-3 p-2">{item.citizenNumber}</div>
+        <div className="col-3 p-2">{item.studentName}</div>   
+        <div className="col-3 p-2">{item.birthDate}</div>    
+        <div className="col-2 p-2 content-button text-center fs-5" onClick={() => citizenDelete(item.citizenNum)} style={{ marginLeft:"5vh", width:"13vh", height:"6vh"}}>삭제</div>
         </div>
         <hr></hr>
         </div>
@@ -241,67 +262,65 @@ export default function TeacherNation(){
         });
     };
 
-
- 
-
     return ( 
   
-        <div style={divStyle} className="border border-dark  border-3 p-3">
+        <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >
                 <div className="d-flex justify-content-between">
                     <div className="d-flex">{menu}</div>
-                    <div>나라 정보</div>
                 </div>
                 {state === 1 ? (
-                    <div>
-                        <NationInfo/>
-                    </div> 
+
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }} >
+                            <NationInfo/>
+                    </div>
+
                 ) : state ===2? ( 
-                    <div className="d-flex justify-content-center align-items-center">
-                    <div>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh"}}>
+                    <div style={{width:"70%",marginLeft:"20vh"}} >
                         {/* 나라 정보 수정 폼 */}
-                        <div className="row">
-                            <div className="col-md-6"> 
-                            <div className="mb-4">
+                        <div className="row fs-4 d-flex justify-content-center" style={{height:"53vh"}}>
+                            <div className="col-md-4"> 
+                            <div className="mb-2">
                                 <label htmlFor="nationName" className="form-label"> 
                                 나라명:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="moneyName" className="form-label">
                                 화폐명:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="taxRate" className="form-label">
                                 세율:
                                 </label>
                             </div> 
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="payDay" className="form-label">
                                 월급지급일:
                                 </label>
                             </div> 
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="presidentName" className="form-label">
                                 대통령명:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="state" className="form-label">
                                 나라운영상태:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="startDate" className="form-label">
                                 운영 시작일:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="endDate" className="form-label">
                                 운영 종료일:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="code" className="form-label">
                                 참여코드:
                                 </label>
@@ -384,14 +403,13 @@ export default function TeacherNation(){
                                 {nationInfo.code}
                             </div>
                         </div> 
+                        
                     </div>
-            
-                    <div className="text-end"> {/* 오른쪽 정렬 */}
-                    <button className="btn btn-secondary" onClick={handleSaveChanges}>
-                      변경내용 저장
-                    </button>
-                    </div>
+
                   </div>
+                  <div className="container d-flex justify-content-end p-3">
+                        <div onClick={handleSaveChanges} className="create-button p-1">변경내용 저장</div>
+                    </div>
                   </div>
              
                 ) : ( 
@@ -406,11 +424,12 @@ export default function TeacherNation(){
                         <div>
                         <button className="btn btn-primary" onClick={handleShow} style={btn}>국민 목록 설정하기</button>
                         <Modal show={show} onHide={handleClose}
+                        style={{ fontFamily: "KCC-Ganpan" }}
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
                         >
                             <Modal.Header>
-                                <Modal.Title>국민 등록하기</Modal.Title>
+                                <Modal.Title className="fs-4">국민 등록하기</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <Form>
@@ -461,9 +480,8 @@ export default function TeacherNation(){
             
                             </Modal.Body>
                             <Modal.Footer>
-                                <button onClick={handleSaveCitizen}>국민 등록하기</button>
-            
-                                <button onClick={handleClose}>취소</button>
+                                <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button">등록</div>
+                                <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
                             </Modal.Footer>
                         </Modal>
                         </div>
@@ -471,78 +489,87 @@ export default function TeacherNation(){
                         ) : null}  
                         </div>
                     : 
-                        <div className="border border-dark  border-3 m-5 p-5 bg-white" style={borderRound}> 
-                            <div className = "row"> 
-                                <div className="col-3 p-2">학급 번호</div>
-                                <div className="col-3 p-2">학생 이름</div>   
-                                <div className="col-3 p-2">생년월일</div>   
-                            </div> 
-                                <hr></hr> 
-                                {CitizenItems}
-                                <p/>  
-                                <button className="col-10 p-2" onClick={handleShow} style={btn}>국민 추가</button>
+                        <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }} >
+                            <div className=" text-center border border-dark  border-3 p-3" style={{...divListStyle }}>
+                                <div className="row px-2 fs-4">
+                                    <div className="col-3 p-2">학급 번호</div>
+                                    <div className="col-3 p-2">학생 이름</div>
+                                    <div className="col-3 p-2">생년월일</div>
+                                    <div className="col-2 p-2"></div>
+                                    <div style={hrStyle}></div>
+                                </div>
+                                <div className="text-center scrollCss " style={{ height: '35vh', overflowX:'hidden', overflowY:'auto'}}>
+                                    {CitizenItems}
+                                </div>
+                                <p />
+                    
                                 <Modal show={show} onHide={handleClose}
-                                aria-labelledby="contained-modal-title-vcenter"
-                                centered
+                                    style={{ fontFamily: "KCC-Ganpan" }}
+                                    aria-labelledby="contained-modal-title-vcenter"
+                                    centered
                                 >
                                     <Modal.Header>
-                                        <Modal.Title>국민 목록 설정하기</Modal.Title>
+                                        <Modal.Title className="fs-4">국민 목록 설정하기</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <Form>
-                                        <Form.Group as={Row} className="mb-3">
-                                            <Form.Label column sm="3">
-                                                        학급번호 :
-                                            </Form.Label>
-                                            <Col sm="3">
-                                                <Form.Control 
-                                                type="text" 
-                                                name="citizenNumber" 
-                                                placeholder="학급번호" 
-                                                onChange = {(e) => setCitizenNumber(e.target.value)}
-                                                value={citizenNumber}/>
-                                            </Col> 
-                                        </Form.Group>
+                                        <Form className="text-center">
+                                            <Form.Group as={Row} className="mb-3">
+                                                <Form.Label column sm="3">
+                                                    학급번호 :
+                                                </Form.Label>
+                                                <Col sm="3">
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="citizenNumber"
+                                                        placeholder="학급번호"
+                                                        onChange={(e) => setCitizenNumber(e.target.value)}
+                                                        value={citizenNumber} />
+                                                </Col>
+                                            </Form.Group>
 
-                                        <Form.Group as={Row} className="mb-3">
-                                            <Form.Label column sm="3">
-                                                        학생이름 :
-                                            </Form.Label>
-                                            <Col sm="3">
-                                                <Form.Control 
-                                                type="text" 
-                                                name="name" 
-                                                placeholder="학생이름"   
-                                                onChange={(e) => setName(e.target.value)}
-                                                value={name}
-                                                />
-                                            </Col> 
-                                        </Form.Group>
-                                        <Form.Group as={Row} className="mb-3">
-                                            <Form.Label column sm="3">
-                                                        생년월일 :
-                                            </Form.Label>
-                                            <Col sm="3">
-                                                <Form.Control 
-                                                type="text" 
-                                                name="birthDate" 
-                                                placeholder="생년월일" 
-                                                onChange={(e) => setBirthDate(e.target.value)}
-                                                value={birthDate}
-                                                />
-                                            </Col> 
-                                        </Form.Group> 
+                                            <Form.Group as={Row} className="mb-3">
+                                                <Form.Label column sm="3">
+                                                    학생이름 :
+                                                </Form.Label>
+                                                <Col sm="3">
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="name"
+                                                        placeholder="학생이름"
+                                                        onChange={(e) => setName(e.target.value)}
+                                                        value={name} />
+                                                </Col>
+                                            </Form.Group>
+                                            <Form.Group as={Row} className="mb-3">
+                                                <Form.Label column sm="3">
+                                                    생년월일 :
+                                                </Form.Label>
+                                                <Col sm="3">
+                                                    <Form.Control
+                                                        type="text"
+                                                        name="birthDate"
+                                                        placeholder="생년월일"
+                                                        onChange={(e) => setBirthDate(e.target.value)}
+                                                        value={birthDate} />
+                                                </Col>
+                                            </Form.Group>
 
                                         </Form>
-                    
+
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <button onClick={handleSaveCitizen}>국민 등록하기</button>
-                                        <button onClick={handleClose}>취소</button>
+                                        <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button">등록</div>
+                                        <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
                                     </Modal.Footer>
                                 </Modal>
-               
-                        </div>
+                                </div>
+                                <div className="container d-flex justify-content-end p-3">
+                                    <div onClick={handleShow} className="create-button p-2" >국민 추가</div>
+                                </div>
+                                
+                            </div>
+                        
+                        
                 )}
             </div>
     );

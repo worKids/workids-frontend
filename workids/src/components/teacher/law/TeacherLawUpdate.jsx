@@ -98,8 +98,8 @@ export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div onClick={handleUpdateLaw} className="info-label fs-5 modal-button">수정</div>
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
+                    <div onClick={handleUpdateLaw} className="fs-5 modal-button">수정</div>
+                    <div onClick={handleClose} className="fs-5 modal-button">취소</div>
                 </Modal.Footer>
             </Modal>
         </div>
