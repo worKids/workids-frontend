@@ -175,8 +175,7 @@ export default function TeacherNation(){
         <div className = "row"> 
         <div className="col-3 p-3">{item.citizenNumber}</div>
         <div className="col-3 p-3">{item.studentName}</div>   
-        <div className="col-3 p-3">{item.birthDate}</div>   
-        <button className="col-1 p-1" onClick={() => citizenDelete(index)} style={btn}>수정</button>
+        <div className="col-3 p-3">{item.birthDate}</div>    
         <button className="col-1 p-1" onClick={() => citizenDelete(item.citizenNum)} style={btn}>삭제</button>
         </div>
         <hr></hr>

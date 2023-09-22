@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState} from "recoil"; 
 import { userState } from "../recoil/userAtoms";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import { axBase } from "../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 export default function CreateNationPage() {
   const navigate = useNavigate();
-  const userData = useRecoilValue(userState);
+  const [userData, setUserData] = useRecoilState(userState); 
   const [name, setName] = useState("");
   const [moneyName, setmoneyName] = useState("");
   const [taxRate, setTaxRate] = useState("");
@@ -64,7 +64,7 @@ export default function CreateNationPage() {
     const token = userData.accessToken;
     if (!token) {
       return;
-    }
+    } 
     const nationData = {
       teacherNum: userData.userNumber,
       name: name,
@@ -85,15 +85,26 @@ export default function CreateNationPage() {
     })
       .then((response) => {
         console.log(response.data.data);
+        console.log("data",response.data.data); 
+        const updateNationData = {
+          ...userData, 
+          nationNum: response.data.data.nationNum,
+          nationName: response.data.data.name, 
+          code: response.data.data.code,
+          moneyName: response.data.data.moneyName,
+        }; 
+        setUserData(updateNationData)
+
 
         navigate("/teacher/nationCreate", {
           state: {
-            code: response.data.data,
+            code: response.data.data.code,
           },
         });
       })
       .catch((err) => {
         console.log(err.response.data.message);
+        
       });
 
     console.log(nationData);
