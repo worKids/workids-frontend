@@ -10,6 +10,13 @@ export default function TeacherNation(){
     const [nationInfo, setNationInfo] = useState([]);  
     const navigate = useNavigate();
     const [showCitizenList, setShowCitizenList] = useState(false);
+
+    const divListStyle = {
+        borderRadius: "40px",
+        backgroundColor: "#fffeee",
+        height: "85%"
+    }
+
  
     useEffect(() => {
         const token = userData.accessToken;
@@ -36,21 +43,31 @@ export default function TeacherNation(){
 
     }, []);
  
- 
 
     return(
-        <div className="d-flex justify-content-center align-items-center">
-        <div> 
-        <p>나라명: {nationInfo.name}</p>
-        <p>화폐명: {nationInfo.moneyName}</p>
-        <p>세율: {nationInfo.taxRate}</p>
-        <p>월급지급일: {nationInfo.payDay}</p>
-        <p>대통령명: {nationInfo.presidentName}</p>
-        <p>나라운영상태: {nationInfo.state}</p>
-        <p>운영시작일: {nationInfo.startDate}</p>
-        <p>운영종료일: {nationInfo.endDate}</p>
-        <p>참여코드: {nationInfo.code}</p>
-        </div>
+        
+        <div className="text-center border border-dark  border-3 p-3" style={{...divListStyle }}>
+            <div className="container">
+                <div className="row fs-2 p-2 m-2 justify-content-center">
+                    <div className="col-3 ">{nationInfo.name} 나라</div>
+                    <div className="col-3 ">{nationInfo.presidentName} 대통령</div>
+                </div>
+                <div className="row fs-3 p-2 justify-content-center " style={{textAlign:"left"}}>
+                    <div className="col-4 ">화폐명: {nationInfo.moneyName}</div>
+                    <div className="col-4 ">세율: {nationInfo.taxRate}%</div>
+                </div>
+                <div className="row fs-3 p-2  justify-content-center"  style={{textAlign:"left"}}>
+                    <div className="col-4 ">월급 지급일: 월 {nationInfo.payDay}일</div>
+                    <div className="col-4 ">나라 운영 상태: {nationInfo.state === 0 ? "운영 대기" : nationInfo.state === 1 ? "운영 중" : "종료"}</div>
+                </div>
+                <div className="row fs-3 p-2 justify-content-center"  style={{textAlign:"left"}}>
+                    <div className="col-4 ">시작일: {nationInfo.startDate}</div>
+                    <div className="col-4">종료일: {nationInfo.endDate}</div>
+                </div>
+                <div className="row fs-3 p-3 m-2 justify-content-center" >
+                    <div className="col-8 text-center">참여코드: {nationInfo.code}</div>
+                </div>
+            </div>
         </div>
     );
 }
