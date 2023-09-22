@@ -20,6 +20,14 @@
   background-repeat: no-repeat;
 }
 
+.flag{
+  background-image: url(../../assets/flag.png);
+  background-position: center;
+  background-size: contain;
+  width: 4vw;
+  background-repeat: no-repeat;
+}
+
 .info-label {
   font-family: 'Your-Preferred-Font', "KCC-Ganpan"; /* 원하는 글꼴 설정 */
   font-size: 16px; /* 원하는 글꼴 크기 설정 */
@@ -66,8 +74,8 @@
 .content-button{
   font-size: 1.25rem;
   background-color: #FFFEEE;
-  padding-left: 1.2rem;
-  padding-right: 1.2rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   border-width: 3px;
   border-radius: 50rem;
   border-color: #343a40;
@@ -94,10 +102,4 @@
   border-color: #343a40;
   border-style: solid;
   text-align: center;
-}
-
-/*col내용 길어질때*/
-.col-style{
-  white-space: "nowrap";
-  text-overflow: "ellipsis";
 }

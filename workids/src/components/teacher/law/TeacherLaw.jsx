@@ -27,6 +27,19 @@ export default function TeacherLaw(){
         citizenNumber: null,
       });
     const {content, citizenNumber} = addLawStudent;
+    const [updateCheck, setUpdateCheck] = useState(0);
+
+     // updateCheck 상태를 변경하는 함수
+    const handleUpdateCheck = () => {
+        setUpdateCheck((updateCheck + 1) % 2);
+        onReset();
+    };
+
+    //내용 길어질때 col 속성
+    const colStyle = {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+    }
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -95,7 +108,7 @@ export default function TeacherLaw(){
             alert(err.response.data.message);
         });
 
-    }, []);
+    }, [updateCheck]);
 
     //벌금-학생 항목 리스트 뽑아오기
     useEffect(() => {
@@ -119,17 +132,17 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, []);
+    }, [updateCheck]);
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
-        <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
+        <div key={index} className="row m-2 p-2 fs-4" style={{...colStyle,textAlign:'center'}}>
             <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
-            <div className="col-3">{menu.content}</div>
+            <div className="col-3"  style={{overflow:"hidden"}}>{menu.content}</div>
             <div className="col-2">{menu.fine}</div>
             <div className="col-3">{menu.createdDate}</div>
-            <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum}/></div>
+            <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
         </div>
     ));
     
@@ -156,7 +169,7 @@ export default function TeacherLaw(){
                 alert(err.response.data.message);
             });
 
-    }, []);
+    }, [updateCheck]);
 
     //수행여부 (check) 하기
     function CompletePenalty(penaltyCompleteState, lawNationStudentNum) {
@@ -205,11 +218,11 @@ export default function TeacherLaw(){
 
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
-        <div key={index} className="row m-3 p-1" style={{textAlign:'center'}}>
+        <div key={index} className="row m-2 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-sm-1">{menu.citizenNumber}</div>
             <div className="col-sm-1">{menu.studentName}</div>
-            <div className="col-sm-3">{menu.content}</div>
-            <div className="col-sm-3">{menu.penalty}</div>
+            <div className="col-sm-3" style={{overflow:"hidden"}}>{menu.content}</div>
+            <div className="col-sm-3" style={{overflow:"hidden"}}>{menu.penalty}</div>
             <div className="col-sm-2">{menu.createdDate}</div>
             <div className="col-sm-1">
                 <input
@@ -217,9 +230,10 @@ export default function TeacherLaw(){
                 value ={menu.lawNationStudentNum}
                 checked={checkedItems.includes(menu.lawNationStudentNum)}
                 onChange={() => handleCheckboxChange(menu.lawNationStudentNum)}
+                style={{width:"2vh", height:"2vh"}}
                 />  
             </div>
-            <div className="col-sm-1"><TeacherLawStudentDelete tabType={1} lawNationStudentNum={menu.lawNationStudentNum}/></div>
+            <div className="col-sm-1"><TeacherLawStudentDelete tabType={1} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
         </div>
     ));
 
@@ -233,6 +247,9 @@ export default function TeacherLaw(){
 
         //객체를 새로운 상태로 쓰겠다. 
         setAddLawStudent(nextInputs);
+        if (name === "content" && value === null) {
+            onReset();
+        }
 
         const selectedOption = e.target.selectedOptions[0];
         setSelectLawNum(selectedOption.getAttribute("data-lawnum"));
@@ -257,6 +274,9 @@ export default function TeacherLaw(){
             citizenNumber: null,
         })
         setSelectLawNum(0);
+
+        const selectElement = document.querySelector('select[name="content"]');
+        selectElement.value = "부과 규칙";
     };
 
     //벌금-벌칙 부여하는 부분
@@ -268,8 +288,8 @@ export default function TeacherLaw(){
                 </Form.Label>
                 <Col md="9">
                     {tabType === 0 ? (
-                        <Form.Select onChange={getSelectInput} name="content">
-                            <option>부과 규칙</option>
+                        <Form.Select onChange={getSelectInput} name="content" defaultValue={null}>
+                            <option value={null}>부과 규칙</option>
                             {lawList.map((item, index) => (
                                 item.type === 0 && (
                                     <option key={index} value={item.content} data-lawnum={item.lawNum}>
@@ -297,10 +317,10 @@ export default function TeacherLaw(){
                     학급 번호:
                 </Form.Label>
                 <Col md="7">
-                    <Form.Control type="text" name="citizenNumber" placeholder="학급번호" value={citizenNumber || ''} onChange={getTextInput} />
+                    <Form.Control type="number" name="citizenNumber" placeholder="학급번호" value={citizenNumber || ''} onChange={getTextInput} />
                 </Col>
                 <Col md="2">
-                    <TeacherLawStudentCreate tabType={tabType} citizenNumber={citizenNumber} lawNum={selectLawNum} />
+                    <TeacherLawStudentCreate tabType={tabType} citizenNumber={citizenNumber} lawNum={selectLawNum} onUpdate={handleUpdateCheck} />
                 </Col>
             </Form.Group>
         </Form>
@@ -320,43 +340,43 @@ export default function TeacherLaw(){
                         <div className="h-100 d-flex justify-content-center align-items-center">
                             <div>법을 제정해주세요.</div>
                             <div className="justify-content-end p-3">
-                                <TeacherLawCreate />
+                                <TeacherLawCreate onUpdate={handleUpdateCheck}/>
                             </div>
                         </div>
                     ) :(
                     <div className="container justify-content-md-center" style={{width:'90%'}}>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>
                     <div className="overflow-auto m-3 p-4 scrollCss" style={{...divListStyle, maxHeight:'50vh' }}>
-                        <table style={{marginLeft:'auto', marginRight:'auto', width:'90%'}}>
+                        <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                         {lawList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
-                                    <td style={{ width: '20%'}}>법 내용 : </td>
-                                    <td style={{ width: '30%'}}>{menu.content}</td>
+                                    <td className="fs-4" style={{ width: '20%'}}>법 내용 : </td>
+                                    <td className="fs-4" style={{ width: '30%'}}>{menu.content}</td>
                                     {menu.type === 0 && (
                                         <>
-                                            <td style={{ width: '5%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine}  /></td>
-                                            <td style={{ width: '5%'}}><TeacherLawDelete lawNum={menu.lawNum} /></td>
+                                            <td className="fs-4" style={{ width: '5%'}}><TeacherLawUpdate lawNum={menu.lawNum} content={menu.content} fine={menu.fine} onUpdate={handleUpdateCheck} /></td>
+                                            <td className="fs-4" style={{ width: '5%'}}><TeacherLawDelete lawNum={menu.lawNum} onUpdate={handleUpdateCheck}/></td>
                                             
                                         </>
                                     )}
                                     {menu.type === 1 && (
                                         <>
                                             <td></td>
-                                            <td><TeacherLawDelete lawNum={menu.lawNum}/></td>
+                                            <td><TeacherLawDelete lawNum={menu.lawNum} onUpdate={handleUpdateCheck}/></td>
                                         </>
                                     )}
                                 </tr>
                                 {menu.type === 0 && (
                                     <tr key={`${index}_fine`}>
-                                        <td>벌금 : </td>
-                                        <td key={index}>{menu.fine}</td>
+                                        <td className="fs-4">벌금 : </td>
+                                        <td key={index} className="fs-4">{menu.fine}</td>
                                     </tr>
                                 )}
                                 {menu.type === 1 && (
                                     <tr key={`${index}_penalty`}>
-                                        <td>벌칙 : </td>
-                                        <td key={index}>{menu.penalty}</td>
+                                        <td className="fs-4">벌칙 : </td>
+                                        <td className="fs-4" key={index}>{menu.penalty}</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -364,7 +384,7 @@ export default function TeacherLaw(){
                     </table>
                         </div>
                         <div className="container d-flex justify-content-end">
-                            <TeacherLawCreate />
+                            <TeacherLawCreate onUpdate={handleUpdateCheck}/>
                         </div>
                     </div>
                     )
@@ -375,7 +395,7 @@ export default function TeacherLaw(){
                         </div>
                         <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
-                            <div className="row m-3 p-1">
+                            <div className="row m-2 p-1 fs-4" style={colStyle}>
                                 <div className="col-1">번호</div>
                                 <div className="col-2">이름</div>
                                 <div className="col-3">법 내용</div>
@@ -383,7 +403,7 @@ export default function TeacherLaw(){
                                 <div className="col-3">부과일</div>
                                 <div className="col-1"></div>
                             </div>
-                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                            <div className="overflow-auto scrollCss" style={{height:'30vh'}}>
                                 {FineStudentItems}    
                             </div>
                         </div>
@@ -393,9 +413,9 @@ export default function TeacherLaw(){
                         <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(1)}
                         </div>
-                        <div className="container d-flex justify-content-end">(금액 단위:미소)</div>
+                        <div className="container d-flex justify-content-end">(단위:미소)</div>
                         <div style={divLawStudentList} className="container justify-content-md-center ">
-                            <div className="row m-3 p-1">
+                            <div className="row m-2 p-1 fs-4" style={colStyle}>
                                 <div className="col-sm-1">번호</div>
                                 <div className="col-sm-1">이름</div>
                                 <div className="col-sm-3">법 내용</div>
@@ -404,7 +424,7 @@ export default function TeacherLaw(){
                                 <div className="col-sm-1">체크</div>
                                 <div className="col-sm-1"></div>
                             </div>
-                            <div style={{overflowX:'hidden', overflowY:'auto', height:'30vh' }}>
+                            <div className="overflow-auto scrollCss" style={{height:'30vh'}}>
                                 {PenaltyStudentItems}   
                             </div> 
                         </div>

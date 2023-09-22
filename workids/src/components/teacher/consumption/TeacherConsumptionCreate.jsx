@@ -10,18 +10,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 
-export default function TeacherConsumptionCreate(){
+export default function TeacherConsumptionCreate({onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
     const [addConsumption, setAddConsumption] = useState({
         content: "",
-        amount: 0,
+        amount: null,
     });
     const {content,amount} = addConsumption;
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {onReset(); setShow(true);}
 
     //input 받아오기
     const getAllInput = (e) =>{
@@ -37,14 +37,14 @@ export default function TeacherConsumptionCreate(){
     const onReset = () => {
         setAddConsumption({
             content: "",
-            amount: 0,
+            amount: null,
         })
     };
 
     const handleAddConsumption = () => {
         //content, amount 빈칸이면 alert창 띄우기
-        if(addConsumption.content=="" || addConsumption.amount==0){
-            alert("항목 추가 내용을 모두 적어주세요.");
+        if(addConsumption.content=="" || addConsumption.amount==null || addConsumption.amount==0){
+            alert("항목 추가 내용을 모두 적어주세요.(금액은 0이 될 수 없습니다.)");
         } else{
             const token = userData.accessToken;
             if (!token) {
@@ -64,6 +64,9 @@ export default function TeacherConsumptionCreate(){
             .then((response) => {
                 alert("소비 항목 등록 완료");
                 setShow(false);
+                if (typeof onUpdate === "function") {
+                    onUpdate(); 
+                }
             })
             .catch((err) => {
                 alert(err.response.data.message);
@@ -73,9 +76,10 @@ export default function TeacherConsumptionCreate(){
 
     return(
         <div>
-            <button onClick={handleShow}>추가</button>
+            <div onClick={handleShow} className="create-button">추가</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
@@ -86,7 +90,7 @@ export default function TeacherConsumptionCreate(){
                 <Modal.Body>
                     <Form>
                         <div>
-                            <Form.Group as={Row} className="mb-3">
+                            <Form.Group as={Row} className="mb-2 fs-5 px-2">
                                 <Form.Label column sm="3">
                                     소비 항목 :
                                 </Form.Label>
@@ -94,22 +98,22 @@ export default function TeacherConsumptionCreate(){
                                     <Form.Control type="text" name="content" placeholder="소비 항목" onChange={getAllInput} value={content}/>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row} className="mb-3">
+                            <Form.Group as={Row} className="mb-3 fs-5 px-2">
                                 <Form.Label column sm="3">
                                     금액 : 
                                 </Form.Label>
                                 <Col sm="3">
-                                    <Form.Control type="text" name="amount" placeholder="금액" onChange={getAllInput} value={amount}/>
+                                    <Form.Control type="number" name="amount" placeholder="금액" onChange={getAllInput} value={amount || ''}/>
                                 </Col>
                                 <Col sm="3">미소</Col>
                             </Form.Group>
                             <Modal.Footer>
-                                <Button className="btn_close" variant="secondary" onClick={handleAddConsumption}>
+                                <div className="info-label fs-5 modal-button" onClick={handleAddConsumption}>
                                     추가
-                                </Button>
-                                <Button className="btn_close" variant="secondary" onClick={handleClose}>
+                                </div>
+                                <div className="info-label fs-5 modal-button" onClick={handleClose}>
                                     닫기
-                                </Button>
+                                </div>
                             </Modal.Footer>
                         </div>
                     </Form>

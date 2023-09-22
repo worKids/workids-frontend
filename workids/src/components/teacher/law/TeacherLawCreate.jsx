@@ -10,7 +10,7 @@ import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
 
-export default function TeacherLawCreate(){
+export default function TeacherLawCreate({onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -25,7 +25,11 @@ export default function TeacherLawCreate(){
     const {nationNum, content, type, fine, penalty} = addLaw;
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        onResetFine();
+        setSelectedTab('tab1');
+    }
 
     const getAllInput = (e) =>{
         const {name, value} = e.target;
@@ -36,6 +40,7 @@ export default function TeacherLawCreate(){
 
         //객체를 새로운 상태로 쓰겠다. 
         setAddLaw(nextInputs);
+        console.log(addLaw);
     }
 
     //tab 누를때 입력된 내용 reset
@@ -54,7 +59,7 @@ export default function TeacherLawCreate(){
           nationNum: userData.nationNum,  
           content: "",
           type: 1,
-          fine: null,
+          fine: 0,
           penalty: "",
         })
     };
@@ -70,7 +75,7 @@ export default function TeacherLawCreate(){
     };
 
     const handleAddLaw = () => {
-        if((addLaw.content=="" || addLaw.fine==null) &&  (addLaw.content=="" || addLaw.penalty=="")){
+        if((addLaw.content=="" || addLaw.fine==null || addLaw.fine==0) &&  (addLaw.content=="" || addLaw.penalty=="")){
             alert("빈칸을 모두 채워주세요. (벌금은 0이 될 수 없습니다.)");
         }else{
             const token = userData.accessToken;
@@ -93,6 +98,9 @@ export default function TeacherLawCreate(){
             .then((response) => {
                 alert("법 등록 완료");
                 setShow(false);
+                if (typeof onUpdate === "function") {
+                    onUpdate(); 
+                }
             })
             .catch((err) => {
                 alert(err.response.data.message);
@@ -106,6 +114,7 @@ export default function TeacherLawCreate(){
             <div onClick={handleShow} className="create-button">추가</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
@@ -113,7 +122,7 @@ export default function TeacherLawCreate(){
                     <Modal.Title>법 제정하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form className="text-center">
                         {['radio'].map((type) => (
                             <div key={`inline-${type}`} className="mb-3">
                             <Form.Check
@@ -137,8 +146,8 @@ export default function TeacherLawCreate(){
                             </div>
                         ))}
                         {selectedTab === 'tab1' && (
-                            <div>
-                                <Form.Group as={Row} className="mb-3">
+                            <div className="fs-5">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 
                                     </Form.Label>
@@ -146,28 +155,28 @@ export default function TeacherLawCreate(){
                                         <Form.Control type="text" name="content" placeholder="부과 규칙" onChange={getAllInput} value={content}/>
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         벌금: 
                                     </Form.Label>
-                                    <Col sm="3">
-                                        <Form.Control type="text" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
+                                    <Col sm="4">
+                                        <Form.Control type="number" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
                                     </Col>
                                     <Col sm="3">미소</Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button className="btn_close" variant="secondary" onClick={handleAddLaw}>
+                                    <div className="info-label fs-5 modal-button" onClick={handleAddLaw}>
                                         제정
-                                    </Button>
-                                    <Button className="btn_close" variant="secondary" onClick={handleClose}>
+                                    </div>
+                                    <div className="info-label fs-5 modal-button" onClick={handleClose}>
                                         닫기
-                                    </Button>
+                                    </div>
                                 </Modal.Footer>
                             </div>
                         )}
                         {selectedTab === 'tab2' && (
-                            <div>
-                                <Form.Group as={Row} className="mb-3" controlId="content">
+                            <div className="fs-5">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         부과 규칙 : 
                                     </Form.Label>
@@ -175,7 +184,7 @@ export default function TeacherLawCreate(){
                                         <Form.Control type="text" name="content" placeholder="부과 규칙" onChange={getAllInput} value={content}/>
                                     </Col>
                                 </Form.Group>
-                                <Form.Group as={Row} className="mb-3" controlId="fine">
+                                <Form.Group as={Row} className="mb-2 px-2">
                                     <Form.Label column sm="3">
                                         벌칙: 
                                     </Form.Label>
@@ -184,12 +193,12 @@ export default function TeacherLawCreate(){
                                     </Col>
                                 </Form.Group>
                                 <Modal.Footer>
-                                    <Button className="btn_close" variant="secondary" onClick={handleAddLaw}>
+                                    <div className="info-label fs-5 modal-button" onClick={handleAddLaw}>
                                         제정
-                                    </Button>
-                                    <Button className="btn_close" variant="secondary" onClick={handleClose}>
+                                    </div>
+                                    <div className="info-label fs-5 modal-button" onClick={handleClose}>
                                         닫기
-                                    </Button>
+                                    </div>
                                 </Modal.Footer>
                             </div>
                         )}

@@ -7,7 +7,7 @@ import TeacherConsumptionCreate from "./TeacherConsumptionCreate";
 import TeacherConsumptionUpdate from "./TeacherConsumptionUpdate";
 import TeacherConsumptionDelete from "./TeacherConusmptionDelete";
 import TeacherConsumptionProcess from "./TeacherConsumptionProcess";
-import "../../../index.css"
+
 export default function TeacherConsumption(){
     const consumptionMenu = ["소비 항목 조회", "국민 소비 관리"];
     const [state, setState] = useState(0);//버튼 클릭
@@ -15,9 +15,13 @@ export default function TeacherConsumption(){
     const [consumptionList, setConsumptionList] = useState([]); //소비 항목 리스트
     const [outStandingConsumptionList, setOutStandingConsumptionList] = useState([]); //소비-학생 미결재 리스트
     const [approvalConsumptionList, setApprovalConsumptionList] = useState([]); // 소비-학생 결재 리스트
-    const [check, setCheck] = useState(0);
     const navigate = useNavigate();
     const numberOfConsumption = consumptionList.length;
+    const [updateCheck, setUpdateCheck] = useState(0);
+
+    const handleUpdateCheck = () => {
+        setUpdateCheck((updateCheck + 1) % 2);
+    };
 
     const clickMenu = (idx) => {
         setState(idx);
@@ -26,8 +30,15 @@ export default function TeacherConsumption(){
     const divStyle = {
         width: "80%",
         height: "80vh",
-        borderRadius: "40px"
+        borderRadius: "40px",
+        backgroundColor:"#FFFEEE",
     };
+
+    const divListStyle = {
+        borderRadius:"20px",
+        backgroundColor: "#FEE173",
+        border: "solid 5px #F6BE2C"
+    }
 
     const firstBlock ={
         float: "left",
@@ -36,7 +47,8 @@ export default function TeacherConsumption(){
         borderRadius: "40px",
         width: "48%",
         height: "80%",
-        backgroundColor: 'rgba(254, 211, 56, 0.7)'
+        backgroundColor: "#FEE173",
+        border: "solid 5px #F6BE2C"
     }
 
     const secondBlock ={
@@ -46,7 +58,8 @@ export default function TeacherConsumption(){
         borderRadius: "40px",
         width: "47%",
         height: "80%",
-        backgroundColor: 'rgba(217, 217, 217, 0.5)'
+        backgroundColor: '#D9D9D9',
+        border: "solid 5px #B6B6B6"
     }
 
     //내용 길어질때 col 속성
@@ -60,7 +73,7 @@ export default function TeacherConsumption(){
         <div
           key={index}
           onClick={() => clickMenu(index)}
-          className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
+          className={`menu-button ${
             state === index ? "bg-warning text-white" : ""
           }`}
         >
@@ -90,7 +103,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, [check]);
+    }, [updateCheck]);
 
     //소비-학생 미결재 리스트 가져오기
     useEffect(() => {
@@ -114,7 +127,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, [check]);
+    }, [updateCheck]);
 
     //미결재 리스트 출력
     const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
@@ -124,7 +137,7 @@ export default function TeacherConsumption(){
             <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
             <div className="col-sm-1 p-2" style={colStyle}>{menu.amount}</div>
             <div className="col-sm-3 p-2" style={colStyle}>{menu.createdDate}</div>
-            <div className="col-sm-2 p-2" style={colStyle}><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state}/></div>
+            <div className="col-sm-2 p-2" style={colStyle}><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state} onUpdate={handleUpdateCheck}/></div>
         </div>
     ));
 
@@ -150,7 +163,7 @@ export default function TeacherConsumption(){
                 alert(err.response.data.message);
             });
     
-    }, []);
+    }, [updateCheck]);
 
     //결재 리스트 출력
     const approvalItems = approvalConsumptionList.map((menu,index) => (
@@ -166,10 +179,9 @@ export default function TeacherConsumption(){
     ));
 
     return(
-        <div style={divStyle} className="border border-dark  border-3 p-3">
+        <div style={divStyle} className="border border-dark mt-4 border-3 p-3">
                 <div className="d-flex justify-content-between">
                     <div className="d-flex">{menu}</div>
-                    <div>소비 관리</div>
                 </div>
                 {state === 0 ?(
                     //첫번째 탭 메뉴
@@ -179,32 +191,32 @@ export default function TeacherConsumption(){
                             소비 항목을 생성해주세요.
                         </div>
                         <div className="justify-content-end p-3">
-                            <TeacherConsumptionCreate />
+                            <TeacherConsumptionCreate onUpdate={handleUpdateCheck}/>
                         </div>
                     </div>
                     ):(
-                    <div className="container justify-content-md-center" style={{height:'80%'}}>
-                    <div className="container d-flex justify-content-end">(단위:미소)</div>    
-                    <div className="overflow-auto m-3 p-4 scrollCss" style={{height:'80%' }}>
-                        <table  style={{marginLeft:'auto', marginRight:'auto', width:'80%'}}>
+                    <div className="container justify-content-md-center" style={{width:'90%'}}>
+                    <div className="container d-flex justify-content-end">(단위:미소)</div>   
+                    <div className="overflow-auto m-3 p-4 scrollCss" style={{...divListStyle, maxHeight:'50vh' }}>
+                        <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                         {consumptionList.map((menu, index) => (
                             <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                 <tr key={`${index}_content`} style={{borderTop: '3px solid black', padding:'10px'}}>
-                                    <td style={{ width: '30%' }}>소비 항목</td>
-                                    <td style={{ width: '50%' }}>{menu.content}</td>
-                                    <td><TeacherConsumptionUpdate consumptionNum={menu.consumptionNum} content={menu.content} amount={menu.amount}/></td>
-                                    <td><TeacherConsumptionDelete consumptionNum={menu.consumptionNum}/></td>
+                                    <td className="fs-4" style={{ width: '20%' }}>소비 항목</td>
+                                    <td className="fs-4" style={{ width: '30%' }}>{menu.content}</td>
+                                    <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionUpdate consumptionNum={menu.consumptionNum} content={menu.content} amount={menu.amount} onUpdate={handleUpdateCheck}/></td>
+                                    <td className="fs-4"  style={{ width: '5%'}}><TeacherConsumptionDelete consumptionNum={menu.consumptionNum} onUpdate={handleUpdateCheck}/></td>
                                 </tr>
                                 <tr key={`${index}_amount`}>
-                                    <td>금액</td>
-                                    <td key={index}>{menu.amount}</td>
+                                    <td className="fs-4">금액</td>
+                                    <td className="fs-4" key={index}>{menu.amount}</td>
                                 </tr>
                             </tbody>
                         ))}
                     </table>
                         </div>
-                        <div className="container d-flex justify-content-end p-3">
-                            <TeacherConsumptionCreate />
+                        <div className="ontainer d-flex justify-content-end">
+                            <TeacherConsumptionCreate onUpdate={handleUpdateCheck}/>
                         </div>
                     </div>
                     )
@@ -212,7 +224,7 @@ export default function TeacherConsumption(){
                     //두번째 탭 메뉴
                     <>
                     <div className="container d-flex justify-content-end">(단위:미소)</div>
-                        <div style={firstBlock} className="container justify-content-md-center border border-dark  border-3">
+                        <div style={firstBlock} className="container justify-content-md-center">
                             <h3 style={{textAlign:'center'}}>결재 완료</h3>
                             <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>
                                 <div className="col-sm-1 p-1" style={colStyle}>번호</div>
@@ -227,7 +239,7 @@ export default function TeacherConsumption(){
                             </div>
                         </div>
                     
-                        <div style={secondBlock} className="container justify-content-md-center border border-dark  border-3">
+                        <div style={secondBlock} className="container justify-content-md-center">
                             <h3 style={{textAlign:'center'}}>미결재</h3>
                             <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>
                                 <div className="col-sm-1 p-1" style={colStyle}>번호</div>

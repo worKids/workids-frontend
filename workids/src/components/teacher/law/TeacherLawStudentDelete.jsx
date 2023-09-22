@@ -5,7 +5,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
+export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -29,8 +29,10 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
         })
         .then((response) => {
             alert("벌금 부여 취소 완료");
-            setShow(false)
-            window.location.reload();
+            setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -54,6 +56,9 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
         .then((response) => {
             alert("벌칙 부여 취소 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); // 부모 컴포넌트로 알림
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -63,27 +68,28 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>취소</button>
+            <div onClick={handleShow} className="content-button" style={{width:"9vh"}}>취소</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>법 부여 취소하기</Modal.Title>
+                    <Modal.Title className="fs-4">법 부여 취소하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="info-label fs-5 text-center">
                         정말로 취소하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     {tabType ===0 ?(
-                        <button onClick={() => handleDeleteFineStudent()}>Yes</button>
+                        <div onClick={() => handleDeleteFineStudent()} className="info-label fs-5 modal-button">Yes</div>
                     ): (
-                        <button onClick={() => handleDeletePenaltyStudent()}>Yes</button>
+                        <div onClick={() => handleDeletePenaltyStudent()} className="info-label fs-5 modal-button">Yes</div>
                     )}
-                    <button onClick={handleClose}>No</button>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

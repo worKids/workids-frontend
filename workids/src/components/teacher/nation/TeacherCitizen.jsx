@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'; 
 
-export default function StudentConsumptionCreate({consumptionNum}){
-    const nationInfoMenu = ["나라 정보", "나라 정보 수정", "학급번호 연결"];
+export default function StudentConsumptionCreate({consumptionNum}){ 
+    const nationInfoMenu = ["학급번호 연결", "나라 정보", "나라 정보 수정"]; 
     const [state, setState] = useState(2);//버튼 클릭 
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
@@ -104,7 +103,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
             <div className="d-flex">{menu}</div>
 
             </div>
-
+ 
         <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
         
         <div>
@@ -115,7 +114,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>국민 목록 설정하기</Modal.Title>
+                    <Modal.Title>국민 등록하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -166,7 +165,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
  
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={handleSaveCitizen}>국민 등록하기</button>
+                    <button onClick={handleSaveCitizen}>국민 등록하기</button> 
                     <button onClick={handleClose}>취소</button>
                 </Modal.Footer>
             </Modal>

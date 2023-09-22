@@ -19,6 +19,7 @@ export const userState = atom({
     nationName: "",
     nationStudentNum: "", // 나라학생 번호
     code: "", // 나라 코드
+    moneyName: "", // 나라 화폐
   },
   effects_UNSTABLE: [persistAtom],
 });

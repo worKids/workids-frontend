@@ -59,9 +59,6 @@ export default function CreateNationPage() {
   const classRoomHandler = (event) => {
     setclassRoom(event.currentTarget.value);
   };
- 
-
-
 
   const create = () => {
     const token = userData.accessToken;
@@ -87,13 +84,12 @@ export default function CreateNationPage() {
       data: nationData,
     })
       .then((response) => {
-        console.log(response.data.data); 
- 
+        console.log(response.data.data);
+
         navigate("/teacher/nationCreate", {
           state: {
-            code: response.data.data
-          }, 
-          
+            code: response.data.data,
+          },
         });
       })
       .catch((err) => {
@@ -105,7 +101,7 @@ export default function CreateNationPage() {
 
   return (
     <div className="container">
-      <div >
+      <div>
         <h3 className="d-flex justify-content-center p-4">나라 설립하기</h3>
 
         <div className="row justify-content-center">
@@ -117,7 +113,7 @@ export default function CreateNationPage() {
               type="text"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="ex) 삼다수"
               value={name}
               onChange={nameHandler}
             />
@@ -130,7 +126,7 @@ export default function CreateNationPage() {
               type="text"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="ex) 미소"
               value={moneyName}
               onChange={moneyNameHandler}
             />
@@ -140,13 +136,12 @@ export default function CreateNationPage() {
               세율
             </div>
             <input
-              type="text"
+              type="number"
               className="form-control border bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="20%"
               value={taxRate}
               onChange={taxRateHandler}
-
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -203,10 +198,9 @@ export default function CreateNationPage() {
               type="text"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="ex) OO초"
               value={school}
               onChange={schoolHandler}
-
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -214,13 +208,12 @@ export default function CreateNationPage() {
               학년
             </div>
             <input
-              type="text"
+              type="number"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="ex) 5학년"
               value={grade}
               onChange={gradeHandler}
-
             />
           </div>
           <div className="mb-4 col-7 d-flex">
@@ -228,10 +221,10 @@ export default function CreateNationPage() {
               반
             </div>
             <input
-              type="text"
+              type="number"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder=""
+              placeholder="ex) 3반"
               value={classRoom}
               onChange={classRoomHandler}
             />
