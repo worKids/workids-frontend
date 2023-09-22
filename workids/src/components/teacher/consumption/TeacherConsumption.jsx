@@ -209,7 +209,7 @@ export default function TeacherConsumption(){
                     </div>
                     ):(
                     <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
-                    <div className="container d-flex justify-content-end">(단위:미소)</div>   
+                    <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>   
                     <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
@@ -239,7 +239,7 @@ export default function TeacherConsumption(){
                     //두번째 탭 메뉴
                     <>
                     <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
-                    <div className="container d-flex justify-content-end">(단위:미소)</div>
+                    <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                         <div style={firstBlock} className="container justify-content-md-center">
                             <h3 style={{textAlign:'center'}}>결재 완료</h3>
                             <div className="row justify-content-md-center p-1" style={{ fontSize: "20px", textAlign: "center" }}>

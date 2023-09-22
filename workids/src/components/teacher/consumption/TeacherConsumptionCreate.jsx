@@ -105,7 +105,7 @@ export default function TeacherConsumptionCreate({onUpdate}){
                                 <Col sm="3">
                                     <Form.Control type="number" name="amount" placeholder="금액" onChange={getAllInput} value={amount || ''}/>
                                 </Col>
-                                <Col sm="3">미소</Col>
+                                <Col sm="3">{userData.moneyName}</Col>
                             </Form.Group>
                             <Modal.Footer>
                                 <div className="info-label fs-5 modal-button" onClick={handleAddConsumption}>

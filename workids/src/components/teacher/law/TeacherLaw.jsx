@@ -358,7 +358,7 @@ export default function TeacherLaw(){
                         </div>
                     ) :(
                     <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
-                    <div className="container d-flex justify-content-end">(단위:미소)</div>
+                    <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                     <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
@@ -408,7 +408,7 @@ export default function TeacherLaw(){
                         <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(0)}
                         </div>
-                        <div className="container d-flex justify-content-end">(단위:미소)</div>
+                        <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                         <div style={divLawStudentList} className="container justify-content-md-center border border-dark  border-3 ">
                             <div className="row m-2 p-1 fs-4" style={colStyle}>
                                 <div className="col-1">번호</div>
@@ -429,7 +429,7 @@ export default function TeacherLaw(){
                         <div className="container justify-content-md-center" style={{width:'60%', height:'30%', marginTop:'1vh'}}>
                             {AddLawStudent(1)}
                         </div>
-                        <div className="container d-flex justify-content-end">(단위:미소)</div>
+                        <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                         <div style={divLawStudentList} className="container justify-content-md-center border border-dark  border-3 ">
                             <div className="row m-1 p-1 fs-4" style={colStyle}>
                                 <div className="col-sm-1">번호</div>

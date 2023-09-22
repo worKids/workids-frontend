@@ -77,7 +77,7 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
                                 <Col sm="5">
                                     <Form.Control type="number" onChange={onChangeAmount} value={updateAmount} placeholder="소비 금액" />
                                 </Col>
-                                <Col sm="3">미소</Col>
+                                <Col sm="3">{userData.moneyName}</Col>
                             </Row>
                         </Form.Group>
                     </Form>

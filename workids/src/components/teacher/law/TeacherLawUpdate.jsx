@@ -92,7 +92,7 @@ export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
                                 <Col sm="5">
                                     <Form.Control type="number" onChange={onChangeFine} value={updateFine} placeholder="벌금 금액" />
                                 </Col>
-                                <Col sm="3">미소</Col>
+                                <Col sm="3">{userData.moneyName}</Col>
                             </Row>
                         </Form.Group>
                     </Form>
