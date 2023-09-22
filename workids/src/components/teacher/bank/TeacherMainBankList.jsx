@@ -80,7 +80,7 @@ export default function TeacherDepositBankList() {
 
   return (
     <div>
-        <div className="container d-flex justify-content-end">(단위:미소)</div>
+        <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
         <div className="border border-dark  border-3 p-3 fs-5" style={divStyle}>
         <div className="row m-2 text-center p-3 ">
             <div className="col-1">번호</div>
