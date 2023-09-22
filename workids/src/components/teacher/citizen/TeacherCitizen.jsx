@@ -509,7 +509,7 @@ export default function TeacherCitizen() {
             <div className="col-3">벌금</div>
             <div className="col-3">부과일</div>
           </div>
-          <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+          <div className="container overflow-auto" style={{ height: "52vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {FineItems}
           </div>
 
@@ -530,7 +530,7 @@ export default function TeacherCitizen() {
           <div className="col-2">수행여부</div> {/* 너비 2 */}
 
         </div>
-        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+        <div className="container overflow-auto" style={{ height: "52vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
           {PenaltyItems}
         </div>
 
@@ -549,7 +549,7 @@ export default function TeacherCitizen() {
           <div className="col-2">결과</div>
           <div className="col-2">배정된 번호</div>
         </div>
-        <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+        <div className="container overflow-auto" style={{ height: "52vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
           {auctionList}
         </div>
 
@@ -745,7 +745,7 @@ export default function TeacherCitizen() {
 
 
                <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
-               <div className="container d-flex justify-content-end">(단위:미소)</div>
+               <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
         <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                          <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
@@ -773,7 +773,7 @@ export default function TeacherCitizen() {
       ) : state === 1 ? (
 
         <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
-        <div className="container d-flex justify-content-end">(단위:미소)</div>
+        <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
         <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
@@ -898,7 +898,7 @@ export default function TeacherCitizen() {
                 />
               </div>
             ))}
-            <div className="container d-flex justify-content-end" style={{ fontSize: "13px" }}>(단위:미소)</div>
+            <div className="container d-flex justify-content-end" style={{ fontSize: "13px" }}>(단위:{userData.moneyName})</div>
             <div className="container d-flex" style={{ height: "100%" }}>
 
               <div style={divBlock} className="m-2">
