@@ -311,9 +311,9 @@ export default function StudentAccountList(){
                     <div style={{fontSize:'20px'}}>총 자산</div>
                 </div>
                 <div className="col-2 d-flex justify-content-end text-primary">
-                    {asset} 미소
+                    {asset} {userData.moneyName}
                 </div>
-                <div className="container d-flex justify-content-end">(단위:미소)</div>
+                <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             </div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div>
@@ -355,7 +355,7 @@ export default function StudentAccountList(){
         :
         <div>
             <div style={{fontSize:'20px'}}>{transactionAccountNumber} 계좌 거래내역</div>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div className="row m-2 text-center p-3 ">
                     <div className="col-2">No.</div>
