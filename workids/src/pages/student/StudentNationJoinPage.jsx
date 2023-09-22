@@ -64,9 +64,6 @@ export default function StudentNationJoinPage() {
     setCitizenNumber(e.target.value);
   };
  
-
-  const location = useLocation(); 
- 
   return (
     <div>
     <StudentTopNav />
@@ -82,7 +79,7 @@ export default function StudentNationJoinPage() {
 
         <div className="ms-3 "> 학급번호:            
             <input
-              type="text"
+              type="number"
               value={citizenNumber}
               onChange={handleChangeCitizensNumber}
             /> 

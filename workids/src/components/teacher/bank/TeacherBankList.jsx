@@ -238,7 +238,7 @@ export default function TeacherBankList() {
               </div>
 
               <div
-                className="containeroverflow-auto scrollCss"
+                className="container overflow-auto scrollCss"
                 style={{ ...divStyle, height: "41vh", maxHeight: "41vh" }}
               >
                 {showUnUseBankList}

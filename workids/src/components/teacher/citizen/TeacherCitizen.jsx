@@ -123,7 +123,7 @@ export default function TeacherCitizen() {
       url: "/student/auction/list",
       data: {
         nationNum: userData.nationNum,
-        nationStudentNum: 2,
+        nationStudentNum: citizenNumber,
       },
     })
       .then((response) => {
