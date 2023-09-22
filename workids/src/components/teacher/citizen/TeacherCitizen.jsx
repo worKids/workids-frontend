@@ -465,7 +465,7 @@ export default function TeacherCitizen() {
             <div className="info-label col-2">만기일</div>
    
           </div>
-          <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
+          <div className="container overflow-auto" style={{ height: "25vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {showDepositBankList}
           </div>
         </div>

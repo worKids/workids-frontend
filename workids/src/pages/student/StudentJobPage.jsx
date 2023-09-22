@@ -28,13 +28,14 @@ export default function StudentJobPage() {
     };
     const navbar = navbarMenu.map((menu, index) => (
         <div
-        key={index}
-        onClick={() => navigateMenu(index)}
-        className={`my-3 border border-dark  border-3 text-center p-3 rounded-pill sideNav ${
-            isActive(index) ? "bg-warning text-white" : ""
-        }`}
+            key={index}
+            onClick={() => navigateMenu(index)}
+            className={`my-3 border border-dark border-3 text-center p-3 rounded-pill sideNav ${
+                isActive(index) ? "bg-warning text-white" : ""
+            }`}
+            style={{ backgroundColor: 'white' }} // 배경색을 흰색으로 설정
         >
-        {menu}
+            {menu}
         </div>
     ));
     return (
@@ -45,9 +46,9 @@ export default function StudentJobPage() {
             {navbar}
             <div className="d-flex justify-content-center ">
                 <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
-                <div className="border border-dark  border-3 text-center p-3 rounded-pill">
-                    무슨 직업을 가질까?
-                </div>
+                <div className="border border-dark border-3 text-center p-3 rounded-pill" style={{ backgroundColor: 'white' }}>
+    무슨 직업을 가질까?
+</div>
                 <div className="bibi" onClick={navigateToMain}></div>
                 </div>
             </div>

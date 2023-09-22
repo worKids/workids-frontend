@@ -84,45 +84,41 @@ export default function TeacherJobCreate(){
             centered
             >
                 <Modal.Header>
-                    <Modal.Title>직업 추가</Modal.Title>
+                    <Modal.Title  className="info-label fs-3">직업 추가</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                     
                         <div>
-                            <Form.Group as={Row} className="mb-3">
-                                <Form.Label column sm="3">
-                                    직업명 : 
-                                </Form.Label>
+                            <Form.Group as={Row} className="mb-2 info-label">
+                            <Form.Label column sm="3" style={{ fontSize: '20px' }}>
+    직업명 :
+</Form.Label>
                                 <Col sm="6">
                                     <Form.Control type="text" name="name" placeholder="직업명" onChange={getAllInput} value={name}/>
                                 </Col>
                             </Form.Group>
                           
-                            <Form.Group as={Row} className="mb-3">
-                                <Form.Label column sm="3">
+                            <Form.Group as={Row} className="mb-2 info-label">
+                            <Form.Label column sm="3" style={{ fontSize: '20px' }}>
                                     업무항목 : 
                                 </Form.Label>
                                 <Col sm="6">
                                     <Form.Control type="text" name="content" placeholder="업무항목" onChange={getAllInput} value={content}/>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row} className="mb-3">
-                                <Form.Label column sm="3">
+                            <Form.Group as={Row} className="mb-2 info-label">
+                            <Form.Label column sm="3" style={{ fontSize: '20px' }}>
                                     월급: 
                                 </Form.Label>
                                 <Col sm="3">
                                     <Form.Control type="text" name="salary" placeholder="월급 금액" onChange={getAllInput} value={salary}/>
                                 </Col>
-                                <Col sm="3">미소</Col>
+                                <Col sm="3"></Col>
                             </Form.Group>
                             <Modal.Footer>
-                                <Button className="btn_close" variant="secondary" onClick={handleAddJob}>
-                                    확인
-                                </Button>
-                                <Button className="btn_close" variant="secondary" onClick={handleClose}>
-                                    취소
-                                </Button>
+                            <div onClick={handleAddJob} className="info-label fs-5 modal-button">Yes</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
                             </Modal.Footer>
                         </div>
                         
