@@ -9,6 +9,7 @@ import TeacherCreditRatingUpdate from "./TeacherCreditRatingUpdate";
 import TeacherImmigrantList from "./TeacherImmigrantList";
 import TeacherImmigrantList2 from "./TeacherImmigrantList2";
 import TeacherCitizenInfo from "./TeacherCitizenInfo";
+import immigrantItems from './TeacherImmigrantList';
 
 
 export default function TeacherCitizen() {
@@ -20,8 +21,16 @@ export default function TeacherCitizen() {
   const [citizenList, setCitizenList] = useState([]); //국민 항목
   const [creditRatingList, setCreditRatingList] = useState([]); //국민 항목
   const navigate = useNavigate();
+  const divStudentList = {
+    width: "90%",
+    fontSize: "18px",
+    textAlign: "center",
+    borderRadius:"40px",
+    backgroundColor: '#FEE173',
+    height: "38.5vh"
+}
 
-  const [inputValue, setInputValue] = useState(""); // 입력한 값을 상태로 관리합니다.
+  const [inputValue, setInputValue] = useState("0"); // 입력한 값을 상태로 관리합니다.
   const [rankingList, setLankingList] = useState({ assetRanking: [], consumptionRanking: [], savingRanking: [], fineRanking: [] });
   const numberOfAsset = rankingList.assetRanking.length;
   const numberOfConsumption = rankingList.consumptionRanking.length;
@@ -35,12 +44,26 @@ export default function TeacherCitizen() {
   const [aucList, setAucList] = useState([]);
   const [bankMainList, setBankMainList] = useState([]); // 주거래 계좌 목록
   const [bankDepositList, setBankDepositList] = useState([]); // 예금 계좌 목록
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin : "4px"
+  }
   const divListStyle = {
-    borderRadius: "20px",
-    backgroundColor: "#FEE173",
-    border: "solid 5px #F6BE2C"
+    borderRadius: "40px",
+    backgroundColor: "#fffeee",
+    height: "85%"
 }
-
+  const divvStyle = {
+    borderRadius: "40px",
+    backgroundColor: "#FEE173",
+  };
+  
+  const colStyle = {
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+}
 
 
 
@@ -219,52 +242,52 @@ export default function TeacherCitizen() {
 
 
   //부여된 벌칙 출력
-  const PenaltyItems =(
+  const PenaltyItems = (
     (penaltyStudentList.length === 0)
-    ?
-    <div className="info-label h-100 d-flex justify-content-center align-items-center">
-      벌칙 내역이 없습니다!
-    </div>
-    :
-  penaltyStudentList.map((item, index) => (
+      ?
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
+        벌칙 내역이 없습니다!
+      </div>
+      :
+      penaltyStudentList.map((item, index) => (
 
 
-    <div key={index} className="info-label row m-2 text-center p-2" >
-      <div className="col-2 p-3">{index + 1}</div>
-      <div className="col-2 p-3">{item.content}</div>
-      <div className="col-2 p-3">{item.penalty}</div>
-      <div className="col-2 p-3">{item.createdDate}</div>
-      {item.penaltyCompleteState === 0 && (
-        <div className="col-2 p-3">미수행</div>
-      )}
-      {item.penaltyCompleteState === 1 && (
-        <div className="col-2 p-3">수행</div>
-      )}
-      <hr></hr>
-    </div>
+        <div key={index} className="info-label row m-2 text-center p-2" >
+          <div className="col-2 p-3">{index + 1}</div>
+          <div className="col-2 p-3">{item.content}</div>
+          <div className="col-2 p-3">{item.penalty}</div>
+          <div className="col-2 p-3">{item.createdDate}</div>
+          {item.penaltyCompleteState === 0 && (
+            <div className="col-2 p-3">미수행</div>
+          )}
+          {item.penaltyCompleteState === 1 && (
+            <div className="col-2 p-3">수행</div>
+          )}
+          <hr></hr>
+        </div>
 
-  ))
+      ))
   )
 
 
 
   //부여된 벌금 출력
-  const FineItems =(
-  (fineStudentList.length === 0)
-  ?
-  <div className="info-label h-100 d-flex justify-content-center align-items-center">
-    벌금 내역이 없습니다!
-  </div>
-  : fineStudentList.map((item, index) => (
+  const FineItems = (
+    (fineStudentList.length === 0)
+      ?
+      <div className="info-label h-100 d-flex justify-content-center align-items-center">
+        벌금 내역이 없습니다!
+      </div>
+      : fineStudentList.map((item, index) => (
 
-    <div key={index}  className="info-label row m-2 text-center p-2" >
-      <div className="col-3 p-4">{index + 1}</div>
-      <div className="col-3 p-4">{item.content}</div>
-      <div className="col-3 p-4">{item.fine}</div>
-      <div className="col-3 p-4">{item.createdDate}</div>
-      <hr></hr>
-    </div>
-  ))
+        <div key={index} className="info-label row m-2 text-center p-2" >
+          <div className="col-3 p-4">{index + 1}</div>
+          <div className="col-3 p-4">{item.content}</div>
+          <div className="col-3 p-4">{item.fine}</div>
+          <div className="col-3 p-4">{item.createdDate}</div>
+          <hr></hr>
+        </div>
+      ))
   )
 
   //부여된 부동산 출력
@@ -356,7 +379,7 @@ export default function TeacherCitizen() {
     <div
       key={index}
       onClick={() => clickMenu(index)}
-      className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${state === index ? "bg-warning text-white" : ""
+      className={`menu-button ${state === index ? "bg-warning text-white" : ""
         }`}
     >
       {menu}
@@ -438,7 +461,7 @@ export default function TeacherCitizen() {
         <hr style={{ border: '2px solid #000' }} />
         {/* <p>자산 내용을 여기에 추가.</p> */}
         <div>
-          <div className = "info-label">주거래 계좌</div>
+          <div className="info-label">주거래 계좌</div>
           <div className="row m-2 text-center p-2 ">
             {/* <div className="col">번호</div> */}
             <div className="info-label col-2">계좌번호</div>
@@ -447,14 +470,14 @@ export default function TeacherCitizen() {
             <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
             <div className="info-label col-2">개설일</div>
             <div className="info-label col-2">만기일</div>
-      
+
           </div>
           <div className="container overflow-auto" style={{ height: "10vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {showMainBankList}
           </div>
         </div>
         <div>
-        <div className = "info-label">예금 계좌</div>
+          <div className="info-label">예금 계좌</div>
           <div className="row m-2 text-center p-2 ">
             {/* <div className="col">번호</div> */}
             <div className="info-label col-2">계좌번호</div>
@@ -463,7 +486,7 @@ export default function TeacherCitizen() {
             <div className="info-label col-2"><div>이자율</div><div>(%)</div></div>
             <div className="info-label col-2">개설일</div>
             <div className="info-label col-2">만기일</div>
-   
+
           </div>
           <div className="container overflow-auto" style={{ height: "25vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
             {showDepositBankList}
@@ -505,13 +528,13 @@ export default function TeacherCitizen() {
           <div className="col-2">벌칙</div> {/* 너비 2 */}
           <div className="col-2">부과일</div> {/* 너비 2 */}
           <div className="col-2">수행여부</div> {/* 너비 2 */}
-          
+
         </div>
         <div className="container overflow-auto" style={{ height: "30vh", backgroundColor: '#FFEFD5', borderRadius: "20px" }}>
           {PenaltyItems}
         </div>
 
-        
+
       </div>
     ),
     tab4: (
@@ -591,14 +614,12 @@ export default function TeacherCitizen() {
 
   // 국민관리 출력화면
   const citizenItems = citizenList.map((menu, index) => (
-    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderTop: '2.5px solid black' }}>
-      <td style={{ width: '20%', padding: '10px', fontSize: '20px' }}>
-        {menu.citizenNumber}
-      </td>
-      <td style={{ width: '20%',  fontSize: '20px' }}>{menu.studentName}</td>
-      <td style={{ width: '20%',  fontSize: '20px' }}>{'\u00A0\u00A0\u00A0'}{menu.name}</td>
-      <td style={{ width: '20%',  fontSize: '20px' }}>{menu.asset}</td>
-      <td style={{ width: '20%',  fontSize: '20px' }}>{'\u00A0\u00A0\u00A0'}{menu.credit_rating}</td>
+    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderTop: '3px solid black' }}>
+      <td style={{ width: '20%',fontSize: '23px' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.studentName}</td>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.name}</td>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.asset}</td>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.credit_rating}</td>
     </tr>
   ));
 
@@ -607,12 +628,12 @@ export default function TeacherCitizen() {
 
   //신용도관리 출력화면
   const creditRatingItems = creditRatingList.map((menu, index) => (
-    <tr key={index} style={{ borderTop: '2.5px solid black' }}>
-      <td style={{ width: '20%',  padding: '10px', fontSize: '20px' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%',    fontSize: '20px' }}>{menu.studentName}</td>
-      
-      <td style={{ width: '20%',  fontSize: '18px' }}>
-        
+    <tr key={index} style={{ borderTop: '3px solid black' }}>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%', fontSize: '23px' }}>{menu.studentName}</td>
+
+      <td style={{ width: '20%', fontSize: '21px' }}>
+
         <input
           type="number"
           min={0}
@@ -656,12 +677,10 @@ export default function TeacherCitizen() {
 
 
   return (
-    <div style={divStyle} className="border border-dark border-3 p-3">
-      
+    <div style={divStyle} className="border border-dark mt-4 border-3 p-3" > {/*가장 바깥쪽 DIV*/}
+
       <div className="d-flex justify-content-between">
-        
-        <div className="d-flex">{menu}</div>
-        
+        <div className="d-flex">{menu}</div>                              {/*메뉴탭*/}
       </div>
 
       {state === 0 ? (
@@ -722,57 +741,58 @@ export default function TeacherCitizen() {
             </Modal.Body>
 
           </Modal>
-          <div className="container justify-content-md-center" style={{ width: '90%' }}>
-          <div className="container d-flex justify-content-end">
-                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
-                        </div>
-                        
-          <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
-          <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%' }}>
-            <thead>
-              <tr>
-                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>학급 번호</th>
-                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>이름</th>
-                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>직업</th>
-                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>자산</th>
-                <th style={{ width: '20%', fontSize: '22px', padding: '10px' }}>신용도</th>
-              </tr>
-            </thead>
-            <tbody>
-              {citizenItems}
-            </tbody>
-          </table>
-          </div>
+        
 
 
+               <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
+               <div className="container d-flex justify-content-end">(단위:미소)</div>
+        <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
+                         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
-        </div>
-        </div>
+                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
+                  <thead>
+                    <tr>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>번호</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>이름</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>직업</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>자산</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>신용도</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {citizenItems}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+</div>
+
+          
+        
       ) : state === 1 ? (
-       
-          <div className="container justify-content-md-center" style={{ width: '90%' }}>
-          <div className="container d-flex justify-content-end">
-                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
-                        </div>
-                        
-          <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
-          <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '100%' }}>
+
+        <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
+        <div className="container d-flex justify-content-end">(단위:미소)</div>
+        <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
+        <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
+        <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
               <thead>
                 <tr>
-                  <th style={{ width: '20%', fontSize: '22px'}}>학급 번호</th>
-                  <th style={{ width: '30%', fontSize: '22px'}}> &nbsp;&nbsp;이름 </th>
-                  <th style={{ width: '30%', fontSize: '22px'}}>신용도</th>
-                  <th style={{ width: '20%', fontSize: '22px'}}></th>
-              
+                  <th style={{ width: '20%', fontSize: '27px' }}>번호</th>
+                  <th style={{ width: '30%', fontSize: '27px' }}> 이름 </th>
+                  <th style={{ width: '30%', fontSize: '27px' }}>신용도</th>
+                  <th style={{ width: '20%', fontSize: '27px' }}></th>
+
                 </tr>
               </thead>
               <tbody>
-                
+
                 {creditRatingItems}
               </tbody>
             </table>
           </div>
-
+        </div>
         </div>
       ) : state === 2 ? (
 
@@ -812,37 +832,40 @@ export default function TeacherCitizen() {
 
 
             {radioValue === 'option1' ? (
-              <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
-                {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
-                <input
-                  type="number"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  style={{
-                    width: '160px', // 원하는 넓이로 조절
-                    marginRight: '10px',
-                  }}
-                />
-                <TeacherImmigrantList citizenNumber={inputValue} />
+              
+             <div style={{ marginTop: '20px', textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
+             {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
+             <input
+                 type="number"
+                 value={inputValue}
+                 onChange={handleInputChange}
+                 style={{
+                     width: '160px', // 원하는 넓이로 조절
+                     marginRight: '10px',
+                 }}
+             />
+             <TeacherImmigrantList citizenNumber={inputValue} />
+            
+            
+         </div>
 
-              </div>
+          
             ) : (
-              <div style={{ marginTop: '20px' }}> {/* 위로 10px만큼 내리기 */}
-                {/* 2번 라디오 버튼을 선택한 경우 보여질 내용 */}
-                <input
-                  type="number"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  style={{
-                    width: '160px', // 원하는 넓이로 조절
-                    marginRight: '10px',
-                  }}
-                />
-                <TeacherImmigrantList2 citizenNumber={inputValue} />
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}> {/* 가운데 정렬 */}
-
-                </div>
-              </div>
+              <div style={{ marginTop: '20px', textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
+             {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
+             <input
+                 type="number"
+                 value={inputValue}
+                 onChange={handleInputChange}
+                 style={{
+                     width: '160px', // 원하는 넓이로 조절
+                     marginRight: '10px',
+                 }}
+             />
+             <TeacherImmigrantList2 citizenNumber={inputValue} />
+            
+         </div>
+              
             )}
 
 

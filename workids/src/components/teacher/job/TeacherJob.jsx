@@ -17,16 +17,26 @@ export default function TeacherJob() {
     const [jobKindList, setJobKindList] = useState([]); //직업 종류 항목
     const navigate = useNavigate();
     const divListStyle = {
-        borderRadius: "20px",
-        backgroundColor: "#FEE173",
-        border: "solid 5px #F6BE2C"
+        borderRadius: "40px",
+        backgroundColor: "#fffeee",
+        height: "85%"
+    }
+    const colStyle = {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
     }
     const divStyle = {
         width: "80%",
         height: "80vh",
         borderRadius: "40px",
         backgroundColor: "#FFFEEE",
-    };
+      };
+
+    const divvStyle = {
+        borderRadius: "40px",
+        backgroundColor: "#FEE173",
+      };
+
     const numberOfJobList = jobList.length;
 
     const clickMenu = (idx) => {
@@ -141,9 +151,9 @@ export default function TeacherJob() {
 
         return (
             <tr style={{ borderTop: '3px solid black', padding: '10px' }}>
-                <td style={{ fontSize: '20px' }}>{menu.citizenNumber}</td>
-                <td style={{ fontSize: '20px' }}>{menu.studentName}</td>
-                <td style={{ fontSize: '18px' }}>
+                <td style={{ fontSize: '24px' }}>{menu.citizenNumber}</td>
+                <td style={{ fontSize: '24px' }}>{menu.studentName}</td>
+                <td style={{ fontSize: '20px' }}>
                     <select
                         name="jobs"
                         id="jobs"
@@ -179,9 +189,9 @@ export default function TeacherJob() {
 
 
     return (
-        <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >
+        <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >   {/*가장 바깥쪽 DIV*/}
             <div className="d-flex justify-content-between">
-                <div className="d-flex">{menu}</div>
+                <div className="d-flex">{menu}</div>                              {/*메뉴탭*/}
             </div>
 
 
@@ -196,59 +206,66 @@ export default function TeacherJob() {
                 ) : (
 
 
-                    <div className="container justify-content-md-center" style={{ width: '90%' }}>
-                        <div className="container d-flex justify-content-end">(단위:미소)</div>
-                        <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
+                         <div className="container d-flex justify-content-end">(단위:미소)</div>
+                         <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
+                         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
-                            <table style={{ marginLeft: 'auto', marginRight: 'auto', width: '90%' }}>
+                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                                 {jobList.map((menu, index) => (
-                                    <tbody key={index} style={{ fontSize: '20px', height: '15vh' }}>
+                                   <tbody key={index} style={{fontSize:'20px', height:'15vh'}}>
                                         <tr key={`${index}_content`} style={{ borderTop: '3px solid black', padding: '10px' }}>
-                                            <td style={{ width: '30%' }}>직업명 :</td>
-                                            <td style={{ width: '30%' }}>{menu.name}</td>
-                                            <>
-                                                <td></td>
+                                            
+                                        <td className="fs-4" style={{ width: '20%'}}>직업명 :</td>
+                                        <td></td>
+                                        <td className="fs-4" style={{ width: '30%'}}>{menu.name}</td>
+                                            
                                                 <td>
                                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                                                         <TeacherJobDelete name={menu.name} />
                                                     </div>
                                                 </td>
-                                            </>
+                                            
                                         </tr>
                                         <tr key={`${index}_content`}>
-                                            <td>업무항목 :</td>
-                                            <td key={index}>{menu.jobToDoContent}</td>
+                                       
+                                        <td className="fs-4" style={{ width: '40%'}}>업무항목 :</td>
+                                        <td></td>
+                                        <td key={index} className="fs-4">{menu.jobToDoContent}</td>
 
                                         </tr>
                                         <tr key={`${index}_salary`}>
-                                            <td>월급 :</td>
-                                            <td key={index}>{menu.salary}</td>
+                                        
+                                        <td className="fs-4" style={{ width: '20%'}}>월급 :</td>
+                                        <td></td>
+                                        <td key={index} className="fs-4">{menu.salary}</td>
 
                                         </tr>
                                     </tbody>
                                 ))}
                             </table>
-                        </div>
-                        <div className="container d-flex justify-content-end">
+                       
+                        
+                    </div>
+                    </div>
+                    <div className="container d-flex justify-content-end p-2">
                             <TeacherJobCreate />
                         </div>
                     </div>
                 )
             ) : (
                 <div>
-                    <div className="container justify-content-md-center" style={{ width: '90%' }}>
-                        <div className="container d-flex justify-content-end">
-                            &nbsp; {/* 이 부분에 공백을 추가합니다 */}
-                        </div>
-                        
-                        <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
-                            <table style={{ width: '100%' }}>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
+                    <div className="container d-flex justify-content-end">(단위:미소)</div>
+                    <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
+                    <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
+                           <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
                                 <thead>
                                     <tr>
-                                        <th style={{ width: '20%', fontSize: '22px' }}>학급 번호</th>
-                                        <th style={{ width: '30%', fontSize: '22px' }}>이름</th>
-                                        <th style={{ width: '30%', fontSize: '22px' }}>직업</th>
-                                        <th style={{ width: '20%', fontSize: '22px' }}></th>
+                                        <th style={{ width: '20%', fontSize: '28px' }}>번호</th>
+                                        <th style={{ width: '20%', fontSize: '28px' }}>이름</th>
+                                        <th style={{ width: '20%', fontSize: '28px' }}>직업</th>
+                                        <th style={{ width: '10%', fontSize: '28px' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -259,6 +276,7 @@ export default function TeacherJob() {
                             </table>
                         </div>
                     </div>
+                </div>
                 </div>
             )}
         </div>

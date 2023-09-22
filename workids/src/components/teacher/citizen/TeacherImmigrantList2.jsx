@@ -8,12 +8,52 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const [immigrantList2, setImmigrantList2] = useState([]); // 국민 항목
-    const divListStyle = {
-        borderRadius: "20px",
-        backgroundColor: "#FEE173",
-        border: "solid 5px #F6BE2C"
+    
+    const divStudentList = {
+        width: "90%",
+        fontSize: "18px",
+        textAlign: "center",
+        borderRadius:"40px",
+        backgroundColor: '#FEE173',
+        height: "38.5vh"
     }
+    const colStyle = {
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+    }
+    const hrStyle = {
+        width: "100%",
+        height: "5px",
+        backgroundColor: "black",
+        margin : "4px"
+      }
     const handleClose = () => setShow(false);
+
+    useEffect(() => {
+        handleXShow();
+    }, []);
+
+    const handleXShow = () => {
+        const token = userData.accessToken;
+        if (!token) {
+            navigate("/");
+            return;
+        }
+
+        axBase(token)
+            .post("/teacher/citizen/immigrant", {
+                nationNum: userData.nationNum,
+                citizenNumber: 0,
+            })
+            .then((response) => {
+                console.log(response.data.data);
+                setImmigrantList2(response.data.data);
+                setShow(true); // 조회 결과가 있으면 테이블을 보여주도록 설정
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            });
+    };
 
     // 학급번호로 조회 버튼 클릭 이벤트 핸들러
     const handleShow = () => {
@@ -40,40 +80,39 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
 
     // 이민자관리 출력화면
     const immigrantItems2 = immigrantList2.map((menu, index) => (
-        <tr key={index}>
-        <td style={{ fontSize: '20px' }}>{menu.citizenNumber}</td>
-        <td style={{ fontSize: '20px' }}>{menu.studentName}</td>
-        <td style={{ fontSize: '20px' }}>{menu.name}</td>
-        <td style={{ fontSize: '20px' }}>{menu.asset}</td>
-        <td style={{ fontSize: '20px' }}>{menu.credit_rating}</td>
-        <td style={{ fontSize: '20px' }}><TeacherImmigrantLeave citizenNumber={menu.citizenNumber} /></td>
-    </tr>
+        <div key={index} style={{ display: 'flex', fontSize: '20px', marginBottom: '10px' }}>
+    <div style={{ flex: 1 }}>{menu.citizenNumber}</div>
+    <div style={{ flex: 1 }}>{menu.studentName}</div>
+    <div style={{ flex: 1 }}>{menu.name}</div>
+    <div style={{ flex: 1 }}>{menu.asset}</div>
+    <div style={{ flex: 1 }}>{menu.credit_rating}</div>
+    <div style={{ flex: 1 }}><TeacherImmigrantLeave citizenNumber={menu.citizenNumber} /></div>
+</div>
     ));
 
     return (
+        <div >
+        <button onClick={handleShow}>학급번호로 조회</button>
         <div>
-                 <button onClick={handleShow}>학급번호로 조회</button>
-        <div>
-        <div style={{ marginTop: "60px" }}></div> {/* 아래쪽으로 20px만큼 공간을 추가합니다. */}
-           
+            <div style={{ marginTop: "60px" }}></div>
             {show && (
-                 <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '50vh' }}>
-                <table>
-                    <thead>
-                    <tr>
-                            <th style={{ width: "20%", fontSize: '24px' }}>학급 번호</th>
-                            <th style={{ width: "20%", fontSize: '24px' }}>이름</th>
-                            <th style={{ width: "20%", fontSize: '24px' }}>직업</th>
-                            <th style={{ width: "20%", fontSize: '24px' }}>자산</th>
-                            <th style={{ width: "20%", fontSize: '24px' }}>신용도</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>{immigrantItems2}</tbody>
-                </table>
+                <div style={divStudentList} className="container justify-content-md-center border border-dark  border-3 ">
+                <div className="row m-2 p-1 fs-4" style={colStyle}>
+                    <div className="col-2">번호</div>
+                    <div className="col-2">이름</div>
+                    <div className="col-2 ">직업</div>
+                    <div className="col-2">자산</div>
+                    <div className="col-2">신용도</div>
+                    <div className="col-1"></div>
+                    <div style={hrStyle}></div>
+                </div>
+                <div className="overflow-auto scrollCss" style={{height:'28vh'}}>
+                    {immigrantItems2} 
+                </div>
                 </div>
             )}
         </div>
-        </div>
+
+    </div>
     );
 }
