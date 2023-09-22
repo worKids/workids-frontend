@@ -207,7 +207,7 @@ export default function TeacherJob() {
 
 
                     <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
-                         <div className="container d-flex justify-content-end">(단위:미소)</div>
+                         <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                          <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                          <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
@@ -256,7 +256,7 @@ export default function TeacherJob() {
             ) : (
                 <div>
                     <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
-                    <div className="container d-flex justify-content-end">(단위:미소)</div>
+                    <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                     <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                     <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
                            <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
