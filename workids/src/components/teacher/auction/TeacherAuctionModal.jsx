@@ -95,7 +95,7 @@ export default function TeacherAuctionModal(props) {
             </label>
           </div>
         </div>
-        <div className="d-flex align-items-center me-5">단위 : (미소)</div>
+        <div className="d-flex align-items-center me-5">단위 : ({userData.moneyName})</div>
       </div>
       <div className="row  m-2 text-center p-3 ">
         <div className="col-2">학급 번호</div>

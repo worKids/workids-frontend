@@ -117,6 +117,7 @@ export default function StudentStatistic() {
       console.log("2실행");
       const assetUpdate = {
         series: asset.percent,
+
         options: {
           chart: {
             type: "pie",
@@ -126,6 +127,19 @@ export default function StudentStatistic() {
           title: {
             text: "자산 비율",
             align: "center",
+            style: {
+              fontSize: "18px",
+            },
+          },
+          theme: {
+            mode: "light",
+            palette: "palette6",
+            monochrome: {
+              enabled: false,
+              color: "#255aee",
+              shadeTo: "light",
+              shadeIntensity: 0.65,
+            },
           },
         },
       };
@@ -140,6 +154,19 @@ export default function StudentStatistic() {
           title: {
             text: "소비 비율",
             align: "center",
+            style: {
+              fontSize: "18px",
+            },
+          },
+          theme: {
+            mode: "light",
+            palette: "palette1",
+            monochrome: {
+              enabled: false,
+              color: "#255aee",
+              shadeTo: "light",
+              shadeIntensity: 0.65,
+            },
           },
         },
       };
@@ -154,6 +181,19 @@ export default function StudentStatistic() {
           title: {
             text: "수입 비율",
             align: "center",
+            style: {
+              fontSize: "18px",
+            },
+          },
+          theme: {
+            mode: "light",
+            palette: "palette3",
+            monochrome: {
+              enabled: false,
+              color: "#255aee",
+              shadeTo: "light",
+              shadeIntensity: 0.65,
+            },
           },
         },
       };
@@ -168,6 +208,19 @@ export default function StudentStatistic() {
           title: {
             text: "수입 지출 비율",
             align: "center",
+            style: {
+              fontSize: "18px",
+            },
+          },
+          theme: {
+            mode: "light",
+            palette: "palette4",
+            monochrome: {
+              enabled: false,
+              color: "#255aee",
+              shadeTo: "light",
+              shadeIntensity: 0.65,
+            },
           },
         },
       };
@@ -222,6 +275,9 @@ export default function StudentStatistic() {
           title: {
             text: "월별 수익 지출 내역",
             align: "center",
+            style: {
+              fontSize: "18px",
+            },
           },
           grid: {
             borderColor: "#e7e7e7",
@@ -237,17 +293,26 @@ export default function StudentStatistic() {
             categories: monthly ? monthly.month : [],
             title: {
               text: "Month",
+              style: {
+                fontSize: "16px",
+              },
             },
           },
           yaxis: {
             title: {
               text: "금액",
+              style: {
+                fontSize: "16px",
+              },
             },
           },
           legend: {
             position: "top",
             horizontalAlign: "right",
             floating: true,
+
+            fontSize: "16px",
+
             offsetY: -25,
             offsetX: -5,
           },
@@ -263,13 +328,20 @@ export default function StudentStatistic() {
     }
   }, [loading, asset]);
 
+  const divBlock = {
+    borderRadius: "25px",
+  };
+
   return (
     <div className="h-100">
       {loading2 ? (
         <div>로딩 중</div>
       ) : (
         <div className="h-100">
-          <div className="d-flex justify-content-center border" style={{ height: "40%" }}>
+          <div
+            className="d-flex justify-content-center border"
+            style={{ ...divBlock, height: "40%" }}
+          >
             <div className="m-auto">
               {asset ? (
                 <div>
@@ -330,12 +402,12 @@ export default function StudentStatistic() {
             </div>
           </div>
           <div className="h-50">
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-4">
               <Chart
                 options={monthlyState.options}
                 series={monthlyState.series}
                 type="line"
-                width={1000}
+                width={1200}
                 height={300}
               />
             </div>

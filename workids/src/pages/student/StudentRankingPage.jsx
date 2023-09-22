@@ -46,10 +46,10 @@ export default function StudentRankingPage() {
           {navbar}
           <div className="d-flex justify-content-center ">
             <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
-              <div className="border border-dark  border-3 text-center p-3 rounded-pill">
-                여긴 랭킹임
+              <div className="border border-dark bg-white border-3 text-center p-3 rounded-pill">
+                여긴... 랭킹..이야...
               </div>
-              <div className="ccoli" onClick={navigateToMain}></div>
+              <div className="ccoli m-auto" onClick={navigateToMain}></div>
             </div>
           </div>
         </div>

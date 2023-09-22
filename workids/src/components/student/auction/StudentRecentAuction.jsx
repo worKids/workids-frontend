@@ -99,7 +99,7 @@ export default function StudentRecentAuction() {
     borderRadius: "40px",
   };
   return (
-    <div>
+    <div className="fs-5">
       <h4 className="mx-3">{createDate} 경매</h4>
       {auctionNum === "" ? (
         <div>최근 경매가 존재하지 않습니다.</div>
@@ -116,7 +116,7 @@ export default function StudentRecentAuction() {
                   {row.map((seat, colIndex) => (
                     <div
                       key={colIndex}
-                      className={`btn d-flex w-25 justify-content-center mx-3 mt-1 border border-dark ${
+                      className={`btn d-flex w-25 justify-content-center mx-3 mt-1  fs-5 border border-dark ${
                         selectSeat === seat
                           ? "bg-warning text-white"
                           : selectSeat === ""
@@ -132,11 +132,12 @@ export default function StudentRecentAuction() {
               ))}
             </div>
           </div>
-          <div className="w-75 m-auto border border-dark  border-3 mt-3" style={divStyle}>
+          <div className="w-75 m-auto border border-dark  border-3 mt-5" style={divStyle}>
             <div className="my-3">
               <div className="d-flex justify-content-center">
                 <div className="mx-2">부동산 번호 :</div>
                 <input
+                  type="number"
                   className="text-center"
                   value={selectSeat}
                   onChange={(e) => setSelectSeat(e.target.value)}
@@ -145,6 +146,7 @@ export default function StudentRecentAuction() {
               <div className="d-flex justify-content-center">
                 <div className="mx-3">입찰 금액 :</div>
                 <input
+                  type="number"
                   className="text-center"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}

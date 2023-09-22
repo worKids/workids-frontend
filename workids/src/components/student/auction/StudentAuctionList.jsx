@@ -34,7 +34,7 @@ export default function StudentAuctionList() {
     aucList !== null ? (
       aucList.map((menu, index) => (
         <div key={index}>
-          <div className="row text-center my-4 fs-5">
+          <div className="row text-center my-4 fs-4">
             <div className="col-2 d-flex justify-content-center align-items-center">
               {index + 1}
             </div>
@@ -60,6 +60,7 @@ export default function StudentAuctionList() {
               {menu.resultSeat}
             </div>
           </div>
+          <hr />
         </div>
       ))
     ) : (
@@ -71,7 +72,7 @@ export default function StudentAuctionList() {
   return (
     <div>
       <div>
-        <div className="row  m-2 text-center  fs-4">
+        <div className="row  m-2 text-center  fs-3">
           <div className="col-2">번호</div>
           <div className="col-2">경매 날짜</div>
           <div className="col-2">신청번호</div>

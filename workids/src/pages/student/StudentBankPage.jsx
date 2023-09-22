@@ -21,7 +21,7 @@ export default function StudentBankPage() {
 
   const navigate = useNavigate();
   const navigateToMain = () => {
-    navigate("/student");
+    navigate("/student/nation");
   };
   const navigateMenu = (index) => {
     setState(index);
@@ -45,10 +45,10 @@ export default function StudentBankPage() {
           {navbar}
           <div className="d-flex justify-content-center ">
             <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
-              <div className="border border-dark  border-3 text-center p-3 rounded-pill">
-                KB 국민은행입니다~!
+              <div className="border border-dark bg-white border-3 text-center p-3 rounded-pill">
+                무엇을 도와드릴까요!!
               </div>
-              <div className="ageo" onClick={navigateToMain}></div>
+              <div className="ageo m-auto" onClick={navigateToMain}></div>
             </div>
           </div>
         </div>

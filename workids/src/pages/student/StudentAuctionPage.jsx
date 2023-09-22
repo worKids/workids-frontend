@@ -45,10 +45,10 @@ export default function StudentAuctionPage() {
           {navbar}
           <div className="d-flex justify-content-center ">
             <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
-              <div className="border border-dark  border-3 text-center p-3 rounded-pill">
-                여긴 부동산임
+              <div className="border border-dark  border-3 bg-white text-center p-3 rounded-pill">
+                컴온 YO!♪ 여↗긴↘ 부동산임YO!♪
               </div>
-              <div className="lamu" onClick={navigateToMain}></div>
+              <div className="lamu m-auto" onClick={navigateToMain}></div>
             </div>
           </div>
         </div>
