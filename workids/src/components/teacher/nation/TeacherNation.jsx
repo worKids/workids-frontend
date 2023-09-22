@@ -62,6 +62,25 @@ export default function TeacherNation(){
         marginRight: '10px'
     };
 
+    const divStyle2 = {
+        borderRadius: "40px",
+        backgroundColor: "#FEE173",
+    };
+
+    const divListStyle = {
+        borderRadius: "40px",
+        backgroundColor: "#fffeee",
+        height: "85%"
+    }
+
+    const hrStyle = {
+        width: "100%",
+        height: "5px",
+        backgroundColor: "black",
+        margin : "4px"
+    }
+
+
  
 
     const navigateToCitizenCreate = () => {
@@ -178,7 +197,7 @@ export default function TeacherNation(){
         <div className="col-3 p-2">{item.citizenNumber}</div>
         <div className="col-3 p-2">{item.studentName}</div>   
         <div className="col-3 p-2">{item.birthDate}</div>    
-        <div className="col-2 p-2 content-button text-center fs-5" onClick={() => citizenDelete(item.citizenNum)} style={{width:"13vh", height:"6vh"}}>삭제</div>
+        <div className="col-2 p-2 content-button text-center fs-5" onClick={() => citizenDelete(item.citizenNum)} style={{ marginLeft:"5vh", width:"13vh", height:"6vh"}}>삭제</div>
         </div>
         <hr></hr>
         </div>
@@ -243,26 +262,6 @@ export default function TeacherNation(){
         });
     };
 
-
- 
-    const divStyle2 = {
-        borderRadius: "40px",
-        backgroundColor: "#FEE173",
-    };
-
-    const divListStyle = {
-        borderRadius: "40px",
-        backgroundColor: "#fffeee",
-        height: "85%"
-    }
-
-    const hrStyle = {
-        width: "100%",
-        height: "5px",
-        backgroundColor: "black",
-        margin : "4px"
-    }
-
     return ( 
   
         <div style={divStyle} className="border border-dark mt-4 border-3 p-3" >
@@ -270,56 +269,58 @@ export default function TeacherNation(){
                     <div className="d-flex">{menu}</div>
                 </div>
                 {state === 1 ? (
-                    <div>
-                        <NationInfo/>
-                    </div> 
+
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }} >
+                            <NationInfo/>
+                    </div>
+
                 ) : state ===2? ( 
-                    <div className="d-flex justify-content-center align-items-center">
-                    <div>
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh"}}>
+                    <div style={{width:"70%",marginLeft:"20vh"}} >
                         {/* 나라 정보 수정 폼 */}
-                        <div className="row">
-                            <div className="col-md-6"> 
-                            <div className="mb-4">
+                        <div className="row fs-4 d-flex justify-content-center" style={{height:"53vh"}}>
+                            <div className="col-md-4"> 
+                            <div className="mb-2">
                                 <label htmlFor="nationName" className="form-label"> 
                                 나라명:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="moneyName" className="form-label">
                                 화폐명:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="taxRate" className="form-label">
                                 세율:
                                 </label>
                             </div> 
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="payDay" className="form-label">
                                 월급지급일:
                                 </label>
                             </div> 
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="presidentName" className="form-label">
                                 대통령명:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="state" className="form-label">
                                 나라운영상태:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="startDate" className="form-label">
                                 운영 시작일:
                                 </label>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-2">
                                 <label htmlFor="endDate" className="form-label">
                                 운영 종료일:
                                 </label>
                             </div>
-                            <div className="mb-4">
+                            <div className="mb-2">
                                 <label htmlFor="code" className="form-label">
                                 참여코드:
                                 </label>
@@ -402,14 +403,13 @@ export default function TeacherNation(){
                                 {nationInfo.code}
                             </div>
                         </div> 
+                        
                     </div>
-            
-                    <div className="text-end"> {/* 오른쪽 정렬 */}
-                    <button className="btn btn-secondary" onClick={handleSaveChanges}>
-                      변경내용 저장
-                    </button>
-                    </div>
+
                   </div>
+                  <div className="container d-flex justify-content-end p-3">
+                        <div onClick={handleSaveChanges} className="create-button p-1">변경내용 저장</div>
+                    </div>
                   </div>
              
                 ) : ( 
@@ -564,7 +564,7 @@ export default function TeacherNation(){
                                 </Modal>
                                 </div>
                                 <div className="container d-flex justify-content-end p-3">
-                                    <div onClick={handleShow} className="create-button " style={{width:"19vh", height:"6vh"}}>국민 추가</div>
+                                    <div onClick={handleShow} className="create-button p-2" >국민 추가</div>
                                 </div>
                                 
                             </div>
