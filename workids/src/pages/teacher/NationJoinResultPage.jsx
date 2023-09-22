@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
-import TeacherTopNav from "../../components/teacher/TeacherTopNav";
-import StudentTopNav from "../../components/student/StudentTopNav";
-import { axBase } from "../../apis/axiosInstance";
+import TeacherTopNav from "../../components/teacher/TeacherTopNav"; 
 import { useLocation } from 'react-router-dom';
 
-export default function NationPickPage() {
-  const [userData, setUserData] = useRecoilState(userState);
-  const [nationList, setNationList] = useState([]);
+export default function NationPickPage() { 
+
   const navigate = useNavigate();
 
 
@@ -35,7 +32,8 @@ export default function NationPickPage() {
 
   const location = useLocation();
   const {code}  = location.state || {}; // 데이터 읽기
- 
+
+
   return (
     <div>
     <TeacherTopNav />
