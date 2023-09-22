@@ -26,7 +26,7 @@ export default function TeacherTopNav() {
           {userData.nationNum && (
             <div className="flag"></div>
           )}
-          <div className="m-3" >
+          <div className="my-3" >
             {userData.nationName ? userData.nationName : ""}
           </div>
         </div>
