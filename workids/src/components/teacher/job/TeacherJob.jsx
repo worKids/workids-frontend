@@ -202,7 +202,9 @@ export default function TeacherJob() {
           >
             {" "}
             {/*중간탭*/}
-            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
+            <div className="container d-flex justify-content-end invisible">
+              (단위:{userData.moneyName})
+            </div>
             <div className=" border border-dark  border-3 p-3" style={{ ...divListStyle }}>
               <div className="overflow-auto m-3 p-4 scrollCss " style={{ maxHeight: "45vh" }}>
                 <table
@@ -270,10 +272,12 @@ export default function TeacherJob() {
           >
             {" "}
             {/*중간탭*/}
-            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
+            <div className="container d-flex justify-content-end invisible">
+              (단위:{userData.moneyName})
+            </div>
             <div className=" border border-dark  border-3 p-3" style={{ ...divListStyle }}>
-              <div className="overflow-auto m-3 p-4 scrollCss " style={{ maxHeight: "45vh" }}>
-                <div style={{ ...colStyle, marginLeft: "auto", marginRight: "auto", width: "90%" }}>
+              <div className=" m-3 p-4 ">
+                <div style={colStyle}>
                   <div style={{ borderBottom: "5px solid black" }}>
                     <div className="d-flex row">
                       <div className="col-1 text-center" style={{ fontSize: "28px" }}>
@@ -288,7 +292,9 @@ export default function TeacherJob() {
                       <div className="col-3 text-center" style={{ fontSize: "28px" }}></div>
                     </div>
                   </div>
-                  <div style={{ height: "45vh" }}>{JobStudentUpdateItems}</div>
+                  <div className="container overflow-auto scrollCss " style={{ height: "37vh" }}>
+                    {JobStudentUpdateItems}
+                  </div>
                 </div>
               </div>
             </div>
