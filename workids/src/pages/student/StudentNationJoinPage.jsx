@@ -21,13 +21,6 @@ export default function StudentNationJoinPage() {
     textAlign: 'center',
   };
 
-  const btn = {
-    borderRadius: "30px", 
-    backgroundColor: 'white', 
-    color: 'black',
-    marginRight: '10px'
-  };
-
   // 참가 가능 여부 확인
   const checkCitizen = () => {
     console.log(userData.userNumber);
@@ -67,26 +60,31 @@ export default function StudentNationJoinPage() {
   return (
     <div>
     <StudentTopNav />
-    <div className="border border-dark  border-3 m-5 p-5 bg-warning" style={borderRound}> 
-         
-        <div className="ms-3 ">참여코드:         
-          <input
-              type="text"
-              value={participationCode}
-              onChange={handleChangeParticipationCode}
-            /> 
-        </div><br/>
+    <div className="border border-dark  border-3 m-5 p-5 " style={{...borderRound, backgroundColor: "#FFFEEE" }}> 
+        <div className="row fs-4 p-2 justify-content-center" >
+          <div className="col-2">참여코드: </div>
+          <div className="col-3">
+            <input
+                type="text"
+                value={participationCode}
+                onChange={handleChangeParticipationCode}
+              /> 
+            </div>
+        </div>
 
-        <div className="ms-3 "> 학급번호:            
+        <div className="row fs-4 p-3 justify-content-center">
+          <div className="col-2"> 학급번호: </div>
+          <div className="col-3">
             <input
               type="number"
               value={citizenNumber}
               onChange={handleChangeCitizensNumber}
             /> 
-          </div><br/>
+          </div>
+        </div>  
  
       {/* 버튼 1 */}
-      <button className="btn btn-primary" onClick={checkCitizen} style={btn}>참여 가능 여부 확인</button>
+      <button className="create-button px-3 py-1" style={{marginTop:"3vh"}} onClick={checkCitizen}>참여 가능 여부 확인</button>
  
           
     </div>

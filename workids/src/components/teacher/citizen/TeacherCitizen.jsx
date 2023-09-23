@@ -884,9 +884,9 @@ const heightStyle = {
       ) : (
         <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>
           <Form style={{ height: "90%" }}>
-            <div className="container d-flex justify-content-end" style={{ fontSize: "11px" }}>*자산왕은 항상 전체 기간 기준입니다.</div>
+            <div className="container d-flex justify-content-end" style={{ fontSize: "14px" }}>*자산왕은 항상 전체 기간 기준입니다.</div>
             {['radio'].map((type) => (
-              <div key={`inline-${type}`} style={{ textAlign: "left", fontSize: "14px" }}>
+              <div key={`inline-${type}`} style={{ textAlign: "left", fontSize: "15px" }}>
                 <Form.Check
                   inline
                   label="전체 랭킹"
@@ -908,9 +908,9 @@ const heightStyle = {
               </div>
             ))}
             <div className="container d-flex justify-content-end" style={{ fontSize: "13px" }}>(단위:{userData.moneyName})</div>
-            <div className="container d-flex" style={{ height: "100%" }}>
+            <div className="container d-flex" style={{ height: "97%" }}>
 
-              <div style={divBlock} className="m-2">
+              <div style={divBlock} className="m-1">
                 <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>자산왕</div>
                 <div className="row justify-content-md-center">
                   {numberOfAsset === 0 ? (
@@ -920,9 +920,9 @@ const heightStyle = {
                   ) : (
                     <div>
                       <div className="row justify-content-md-center" style={{ fontSize: "20px", textAlign: "center" }}>
-                        <div className="col-sm-3 p-1 m-1">등수</div>
-                        <div className="col-sm-4 p-1 m-1">이름</div>
-                        <div className="col-sm-3 p-1 m-1">총액</div>
+                        <div className="col-sm-3 p-1 ">등수</div>
+                        <div className="col-sm-4 p-1 ">이름</div>
+                        <div className="col-sm-3 p-1 ">총액</div>
                       </div>
                       {rankingList.assetRanking.map((item, index) => (
                         <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
@@ -936,7 +936,7 @@ const heightStyle = {
                 </div>
               </div>
 
-              <div style={divBlock} className="m-2">
+              <div style={divBlock} className="m-1">
                 <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>소비왕</div>
                 <div className="row justify-content-md-center">
                   {numberOfConsumption === 0 ? (
@@ -946,9 +946,9 @@ const heightStyle = {
                   ) : (
                     <div>
                       <div className="row justify-content-md-center" style={{ fontSize: "20px", textAlign: "center" }}>
-                        <div className="col-sm-3 p-1 m-1">등수</div>
-                        <div className="col-sm-4 p-1 m-1">이름</div>
-                        <div className="col-sm-3 p-1 m-1">총액</div>
+                        <div className="col-sm-3 p-1 ">등수</div>
+                        <div className="col-sm-4 p-1 ">이름</div>
+                        <div className="col-sm-3 p-1 ">총액</div>
                       </div>
                       {rankingList.consumptionRanking.map((item, index) => (
                         <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
@@ -962,7 +962,7 @@ const heightStyle = {
                 </div>
               </div>
 
-              <div style={divBlock} className="m-2">
+              <div style={divBlock} className="m-1">
                 <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>저축왕</div>
                 <div className="row justify-content-md-center">
                   {numberOfSaving === 0 ? (
@@ -972,9 +972,9 @@ const heightStyle = {
                   ) : (
                     <div>
                       <div className="row justify-content-md-center" style={{ fontSize: "20px", textAlign: "center" }}>
-                        <div className="col-sm-3 p-1 m-1">등수</div>
-                        <div className="col-sm-4 p-1 m-1">이름</div>
-                        <div className="col-sm-3 p-1 m-1">총액</div>
+                        <div className="col-sm-3 p-1 ">등수</div>
+                        <div className="col-sm-4 p-1 ">이름</div>
+                        <div className="col-sm-3 p-1 ">총액</div>
                       </div>
                       {rankingList.savingRanking.map((item, index) => (
                         <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
@@ -988,7 +988,7 @@ const heightStyle = {
                 </div>
               </div>
 
-              <div style={divBlock} className="m-2">
+              <div style={divBlock} className="m-1">
                 <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>벌금왕</div>
                 <div className="row justify-content-md-center">
                   {numberOfFine === 0 ? (
@@ -998,9 +998,9 @@ const heightStyle = {
                   ) : (
                     <div>
                       <div className="row justify-content-md-center" style={{ fontSize: "20px", textAlign: "center" }}>
-                        <div className="col-sm-3 p-1 m-1">등수</div>
-                        <div className="col-sm-4 p-1 m-1">이름</div>
-                        <div className="col-sm-3 p-1 m-1">총액</div>
+                        <div className="col-sm-3 p-1 ">등수</div>
+                        <div className="col-sm-4 p-1 ">이름</div>
+                        <div className="col-sm-3 p-1 ">총액</div>
                       </div>
                       {rankingList.fineRanking.map((item, index) => (
                         <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>

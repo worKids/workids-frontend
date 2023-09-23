@@ -221,13 +221,13 @@ export default function StudentMainPage() {
           {state === 0 ? (
             <div className="p-2">
               <div
-                className="hoverable d-flex justify-content-end"
+                className="hoverable d-flex justify-content-end fs-6"
                 style={{ border: "none", backgroundColor: "transparent" }}
                 onClick={navigateToLaw}
               >
                 내 고지서 보러가기 &gt;
               </div>
-              <div className="overflow-auto scrollCss" style={{ height: "25vh" }}>
+              <div className="overflow-auto scrollCss" style={{ height: "23vh" }}>
                 {lawList.map((menu, index) => (
                   <div key={index} className="mx-4 my-1">
                     {menu.content}
@@ -238,13 +238,13 @@ export default function StudentMainPage() {
           ) : state === 1 ? (
             <div className="p-2">
               <div
-                className="hoverable d-flex justify-content-end"
+                className="hoverable d-flex justify-content-end fs-6"
                 style={{ border: "none", backgroundColor: "transparent", float: "right" }}
                 onClick={navigateToJob}
               >
                 내 직업 보러가기 &gt;
               </div>
-              <div className="overflow-auto scrollCss" style={{ height: "25vh" }}>
+              <div className="overflow-auto scrollCss" style={{ height: "23vh" }}>
                 {jobKindList.map((menu, index) => (
                   <div key={index} className="mx-4 m-1">
                     {menu.name}
@@ -277,21 +277,23 @@ export default function StudentMainPage() {
             className="border border-dark  border-3 mt-3 m-1 p-1"
             style={{ ...rightBottomDiv, backgroundColor: "#FFFEEE" }}
           >
-            <div>
-              <div className="text-center fs-3">{userData.nationName} 나라</div>
-              <div className="d-flex justify-content-around mt-2">
+            <div className="container">
+              <div className="text-center fs-3 justify-content-center">
+                    <div>{userData.nationName} 나라 </div>
+              </div>
+              <div className="d-flex justify-content-around mt-2 fs-5">
                 <div>대통령 : {nationMainInfo.presidentName}</div>
                 <div>국민 수 : {nationMainInfo.totalCitizen} 명</div>
               </div>
-              <div className="d-flex justify-content-around my-1">
+              <div className="d-flex justify-content-around my-1 fs-5">
                 <div> 화폐 명: {nationMainInfo.moneyName} </div>
                 <div>세율 : {nationMainInfo.taxRate}%</div>
               </div>
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around fs-5">
                 <div> 운영시작일 : {nationMainInfo.startDate}</div>
                 <div></div>
               </div>
-              <div className="d-flex justify-content-around my-1">
+              <div className="d-flex justify-content-around my-1 fs-5">
                 <div> 운영종료일 : {nationMainInfo.endDate}</div>
                 <div></div>
               </div>
