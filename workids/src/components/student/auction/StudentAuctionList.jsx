@@ -72,7 +72,7 @@ export default function StudentAuctionList() {
   return (
     <div>
       <div>
-        <div className="row  m-2 text-center  fs-3">
+        <div className="row m-2 text-center fs-3">
           <div className="col-2">번호</div>
           <div className="col-2">경매 날짜</div>
           <div className="col-2">신청번호</div>

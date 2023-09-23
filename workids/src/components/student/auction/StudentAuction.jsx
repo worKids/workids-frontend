@@ -32,7 +32,7 @@ export default function StudentAuction(props) {
           <div className="mx-3 my-2 fs-3">경매 내역 보기</div>
 
           <div
-            className="border border-dark  border-3 p-5"
+            className="border border-dark  border-3 p-4"
             style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
           >
             <StudentAuctionList />
