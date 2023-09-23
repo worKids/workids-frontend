@@ -15,6 +15,11 @@ export default function StudentConsumption(props) {
   const numberOfConsumptionList = consumptionList.length;
   const numberOfStudentConsumptionList = studentConsumptionList.length;
   const numberOfApprovalConsumptionList = approvalConsumptionList.length;
+  const [updateCheck, setUpdateCheck] = useState(0);
+
+  const handleUpdateCheck = () => {
+    setUpdateCheck((updateCheck + 1) % 2);
+  };
 
   const divStyle = {
     width: "80%",
@@ -60,19 +65,19 @@ export default function StudentConsumption(props) {
         .catch((err) => {
             alert(err.response.data.message);
         });
-  }, []);
+  }, [updateCheck]);
 
   //소비 항목 출력
   const ConsumptionItems = consumptionList.map((item,index)=>(
-    <>
-    <div key={index} className="row d-flex justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+    <div key={index} >
+    <div className="row d-flex justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
       <div className="col-2 ">{index + 1}</div>
       <div className="col-4 " style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
       <div className="col-3 ">{item.amount}</div>
-      <div className="col-2 "><StudentConsumptionCreate consumptionNum={item.consumptionNum} /></div>
+      <div className="col-2 "><StudentConsumptionCreate consumptionNum={item.consumptionNum} onUpdate={handleUpdateCheck} /></div>
     </div>
     <hr></hr>
-    </>
+    </div>
   ));
 
   //소비 신청 내역 조회
@@ -97,18 +102,18 @@ export default function StudentConsumption(props) {
             alert(err.response.data.message);
         });
 
-  }, [studentConsumptionList]);
+  }, [updateCheck]);
 
   //소비 신청 내역 출력
   const StudentConsumptionItems = studentConsumptionList.map((item,index)=>(
-    <>
-    <div key={index} className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+    <div key={index} >
+    <div  className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
       <div className="col-1 ">{index + 1}</div>
       <div className="col-3 " style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
       <div className="col-2 ">{item.amount}</div>
-      <div className="col-2 " style={{ ...colStyle, overflow: 'hidden' }}>{item.createdDate}</div>
+      <div className="col-2 " style={{ ...colStyle }}>{item.createdDate}</div>
       {item.state === 0 ? (
-        <div className="col-1 "><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum} /></div>
+        <div className="col-1 "><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum} onUpdate={handleUpdateCheck} /></div>
       ) : (
         <div className="col-1 "></div>
       )}
@@ -126,7 +131,7 @@ export default function StudentConsumption(props) {
       )}
     </div>
     <hr></hr>
-    </>
+    </div>
   ));
 
   //소비 승인 완료 내역 조회
@@ -150,12 +155,12 @@ export default function StudentConsumption(props) {
         .catch((err) => {
             alert(err.response.data.message);
         });
-  }, []);
+  }, [updateCheck]);
 
   //소비 승인 완료 항목 출력
   const ApprovalItems = approvalConsumptionList.map((item,index)=>(
-    <>
-    <div key={index} className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+    <div key={index} >
+    <div className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
       <div className="col-1">{index + 1}</div>
       <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
       <div className="col-2">{item.amount}</div>
@@ -163,7 +168,7 @@ export default function StudentConsumption(props) {
       <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.updatedDate}</div>
     </div>
     <hr></hr>
-    </>
+    </div>
   ));
 
   return (

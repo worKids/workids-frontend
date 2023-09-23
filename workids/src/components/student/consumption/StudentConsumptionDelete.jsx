@@ -5,7 +5,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function StudentConsumptionDelete({consumptionNationStudentNum}){
+export default function StudentConsumptionDelete({consumptionNationStudentNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -30,6 +30,9 @@ export default function StudentConsumptionDelete({consumptionNationStudentNum}){
         .then((response) => {
             alert("신청 내역 취소 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
