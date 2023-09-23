@@ -336,7 +336,7 @@ export default function TeacherCitizen() {
     display: "inline-block",
     borderRadius: "25px",
     width: "25%",
-    backgroundColor: 'rgba(217, 217, 217, 0.5)'
+    backgroundColor: '#fffeee'
   }
 
   const handleTabChange = (e) => {
@@ -800,8 +800,8 @@ export default function TeacherCitizen() {
 
         <div>
           <div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <div style={{ marginRight: '40px', marginTop: '20px' }}> {/* marginTop 추가 */}
+            <div className="d-flex alignItems-center px-3">
+              <div style={{ marginRight: '10px', marginTop: '20px' }}> {/* marginTop 추가 */}
                 <input
                   type="radio"
                   id="option1"
@@ -809,13 +809,13 @@ export default function TeacherCitizen() {
                   checked={radioValue === 'option1'}
                   onChange={handleRadioChange}
                   style={{
-                    width: '30px',
-                    height: '30px',
+                    width: '10px',
+                    height: '10px',
                   }}
                 />
-                <label htmlFor="option1" style={{ fontSize: '35px' }}>국적취득신고</label>
+                <label htmlFor="option1" className="px-2" style={{ fontSize: '20px' }}>국적취득신고</label>
               </div>
-              <div style={{ marginRight: '40px', marginTop: '20px' }}> {/* marginTop 추가 */}
+              <div style={{marginTop: '20px' }}> {/* marginTop 추가 */}
                 <input
                   type="radio"
                   id="option2"
@@ -823,50 +823,59 @@ export default function TeacherCitizen() {
                   checked={radioValue === 'option2'}
                   onChange={handleRadioChange}
                   style={{
-                    width: '30px',
-                    height: '30px',
+                    width: '10px',
+                    height: '10px',
                   }}
                 />
-                <label htmlFor="option1" style={{ fontSize: '35px' }}>국적이탈신고</label>
+                <label htmlFor="option1" className="px-2" style={{ fontSize: '20px' }}>국적이탈신고</label>
               </div>
             </div>
 
 
 
             {radioValue === 'option1' ? (
-              
-             <div style={{ marginTop: '20px', textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
-             {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
-             <input
-                 type="number"
-                 value={inputValue}
-                 onChange={handleInputChange}
-                 style={{
-                     width: '160px', // 원하는 넓이로 조절
-                     marginRight: '10px',
-                 }}
-             />
-             <TeacherImmigrantList citizenNumber={inputValue} />
-            
-            
-         </div>
+            <div>  
+              <div className="d-flex justify-content-center align-items-center my-2">
+                <div className="fs-4 p-2 mx-5">학급 번호 :</div>
+                <div style={{ textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
+                  {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
+                  <input
+                      type="number"
+                      value={inputValue}
+                      onChange={handleInputChange}
+                      style={{
+                          width: '160px', // 원하는 넓이로 조절
+                      }}
+                  />
+                </div>
+              </div>
+              <div>
+              <TeacherImmigrantList citizenNumber={inputValue} />
+              </div>
+            </div>
 
           
             ) : (
-              <div style={{ marginTop: '20px', textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
-             {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
-             <input
-                 type="number"
-                 value={inputValue}
-                 onChange={handleInputChange}
-                 style={{
-                     width: '160px', // 원하는 넓이로 조절
-                     marginRight: '10px',
-                 }}
-             />
-             <TeacherImmigrantList2 citizenNumber={inputValue} />
-            
-         </div>
+
+          <div>  
+          <div className="d-flex justify-content-center align-items-center my-2">
+            <div className="fs-4 p-2 mx-5">학급 번호 :</div>
+            <div style={{ textAlign: 'center' }}> {/* 위로 10px만큼 내리기 및 오른쪽 정렬 */}
+              {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
+              <input
+                  type="number"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  style={{
+                      width: '160px', // 원하는 넓이로 조절
+                  }}
+              />
+            </div>
+          </div>
+          <div>
+          <TeacherImmigrantList2 citizenNumber={inputValue} />
+          </div>
+          </div>
               
             )}
 
@@ -875,7 +884,7 @@ export default function TeacherCitizen() {
           </div>
         </div>
       ) : (
-        <div style={{ height: "80%" }}>
+        <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>
           <Form style={{ height: "90%" }}>
             <div className="container d-flex justify-content-end" style={{ fontSize: "11px" }}>*자산왕은 항상 전체 기간 기준입니다.</div>
             {['radio'].map((type) => (

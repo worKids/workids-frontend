@@ -92,9 +92,11 @@ export default function TeacherImmigrantList2({ citizenNumber }) {
 
     return (
         <div >
-        <button onClick={handleShow}>학급번호로 조회</button>
+        <div className="container d-flex justify-content-md-center align-items-center">
+            <button onClick={handleShow} className="create-button" style={{width:"17vh"}}>국민 조회</button>
+        </div>
         <div>
-            <div style={{ marginTop: "60px" }}></div>
+            <div className="my-4"></div>
             {show && (
                 <div style={divStudentList} className="container justify-content-md-center border border-dark  border-3 ">
                 <div className="row m-2 p-1 fs-4" style={colStyle}>
