@@ -19,11 +19,12 @@ export default function StudentConsumption(props) {
   const divStyle = {
     width: "80%",
     borderRadius: "40px",
+    backgroundColor: "#ffc107"
   };
   const heightStyle = {
     height: "85%",
     borderRadius: "40px",
-    backgroundColor: 'rgba(254, 225, 115, 1)',
+    backgroundColor: '#FFFEEE',
   };
 
   const hrStyle = {
@@ -31,6 +32,11 @@ export default function StudentConsumption(props) {
     height: "5px",
     backgroundColor: "black",
     margin : "5px"
+  }
+
+  const colStyle = {
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
   }
 
   //내 소비 신청 내역 조회
@@ -58,13 +64,15 @@ export default function StudentConsumption(props) {
 
   //소비 항목 출력
   const ConsumptionItems = consumptionList.map((item,index)=>(
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-4 p-2">{item.content}</div>
-      <div className="col-3 p-2">{item.amount}</div> 
-      <div className="col-3 p-2"><StudentConsumptionCreate consumptionNum={item.consumptionNum}/></div>
-      <hr></hr>
+    <>
+    <div key={index} className="row d-flex justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-2 ">{index + 1}</div>
+      <div className="col-4 " style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
+      <div className="col-3 ">{item.amount}</div>
+      <div className="col-2 "><StudentConsumptionCreate consumptionNum={item.consumptionNum} /></div>
     </div>
+    <hr></hr>
+    </>
   ));
 
   //소비 신청 내역 조회
@@ -93,30 +101,32 @@ export default function StudentConsumption(props) {
 
   //소비 신청 내역 출력
   const StudentConsumptionItems = studentConsumptionList.map((item,index)=>(
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.amount}</div>
-      <div className="col-2 p-2">{item.createdDate}</div>
-      {item.state===0 ?(
-        <div className="col-1 p-2"><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum}/></div>
-      ):(
-        <div className="col-1 p-2"></div>
+    <>
+    <div key={index} className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-1 ">{index + 1}</div>
+      <div className="col-3 " style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
+      <div className="col-2 ">{item.amount}</div>
+      <div className="col-2 " style={{ ...colStyle, overflow: 'hidden' }}>{item.createdDate}</div>
+      {item.state === 0 ? (
+        <div className="col-1 "><StudentConsumptionDelete consumptionNationStudentNum={item.consumptionNationStudentNum} /></div>
+      ) : (
+        <div className="col-1 "></div>
       )}
-      {item.state===0 &&(
-        <div className="col-2 p-2">대기중</div>
+      {item.state === 0 && (
+        <div className="col-2 ">대기중</div>
       )}
-      {item.state===1 &&(
-        <div className="col-2 p-2">승인됨</div>
+      {item.state === 1 && (
+        <div className="col-2">승인됨</div>
       )}
-      {item.state===2 &&(
-        <div className="col-2 p-2">거절됨</div>
+      {item.state === 2 && (
+        <div className="col-2">거절됨</div>
       )}
-      {item.state===3 &&(
-        <div className="col-2 p-2">취소됨</div>
+      {item.state === 3 && (
+        <div className="col-2">취소됨</div>
       )}
-      <hr></hr>
     </div>
+    <hr></hr>
+    </>
   ));
 
   //소비 승인 완료 내역 조회
@@ -144,14 +154,16 @@ export default function StudentConsumption(props) {
 
   //소비 승인 완료 항목 출력
   const ApprovalItems = approvalConsumptionList.map((item,index)=>(
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.amount}</div>
-      <div className="col-3 p-2">{item.createdDate}</div>
-      <div className="col-3 p-2">{item.updatedDate}</div>
-      <hr></hr>
+    <>
+    <div key={index} className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-1">{index + 1}</div>
+      <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
+      <div className="col-2">{item.amount}</div>
+      <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.createdDate}</div>
+      <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.updatedDate}</div>
     </div>
+    <hr></hr>
+    </>
   ));
 
   return (
@@ -165,16 +177,16 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
-              <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
-                <div className="col-1">No.</div>
+              <div className="row justify-content-md-center p-" style={{ fontSize: "30px", textAlign: "center" }}>
+                <div className="col-2">No.</div>
                 <div className="col-4">소비 항목</div>
                 <div className="col-3">금액</div>
-                <div className="col-3"></div>
+                <div className="col-2"></div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {ConsumptionItems}
               </div>
             </div>
@@ -190,7 +202,7 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -201,7 +213,7 @@ export default function StudentConsumption(props) {
                 <div className="col-2">상태</div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {StudentConsumptionItems}
               </div>
             </div>
@@ -217,7 +229,7 @@ export default function StudentConsumption(props) {
             </div>
           ) : (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -227,7 +239,7 @@ export default function StudentConsumption(props) {
                 <div className="col-3">승인일</div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {ApprovalItems}
               </div>
             </div>

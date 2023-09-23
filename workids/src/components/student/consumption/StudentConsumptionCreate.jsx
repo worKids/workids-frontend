@@ -39,7 +39,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>신청</button>
+            <div onClick={handleShow} className="create-button" style={{width:"10vh"}}>신청</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"

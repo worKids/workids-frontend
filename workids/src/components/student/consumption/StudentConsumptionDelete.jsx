@@ -38,7 +38,7 @@ export default function StudentConsumptionDelete({consumptionNationStudentNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>취소</button>
+            <div onClick={handleShow} className="create-button" style={{width:"10vh"}}>취소</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
