@@ -46,12 +46,13 @@ export default function TeacherJobCreate(){
       };
 
     const handleAddJob = () => {
+        
         const token = userData.accessToken;
         if (!token) {
             navigate("/");
             onResetJob();
         }
-    
+        
         // 직업 리스트 뽑아오기
         axBase(token)({
             method: "post",
@@ -72,6 +73,7 @@ export default function TeacherJobCreate(){
         .catch((err) => {
             alert(err.response.data.message);
         });
+   
     };
     
     
