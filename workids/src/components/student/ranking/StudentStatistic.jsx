@@ -407,7 +407,7 @@ export default function StudentStatistic() {
                 options={monthlyState.options}
                 series={monthlyState.series}
                 type="line"
-                width={1200}
+                width={1000}
                 height={300}
               />
             </div>
