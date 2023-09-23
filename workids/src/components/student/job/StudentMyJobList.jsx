@@ -32,12 +32,13 @@ export default function StudentJobList({ citizenNumber }) {
 
   //내 직업 출력
   const MyJobItems = myJobList.map((menu, index) => (
-    <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+    <div className="row justify-content-md-center p-1" style={{ fontSize: "25px", textAlign: "center" }}>
       <div className="col-2">{index + 1}</div>
       <div className="col-2">{menu.name}</div>
       <div className="col-2">{menu.salary}</div>
       <div className="col-2">{menu.createDate}</div>
       <div className="col-2">{menu.updateDate}</div>
+      <div><hr></hr></div>
     </div>
   ));
 
