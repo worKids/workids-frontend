@@ -239,7 +239,7 @@ export default function StudentMainPage() {
             <div className="p-2">
               <div
                 className="hoverable d-flex justify-content-end fs-6"
-                style={{ border: "none", backgroundColor: "transparent", float: "right" }}
+                style={{ border: "none", backgroundColor: "transparent"}}
                 onClick={navigateToJob}
               >
                 내 직업 보러가기 &gt;

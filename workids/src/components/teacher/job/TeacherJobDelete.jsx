@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherJobDelete({ name }) {
+export default function TeacherJobDelete({ name , onUpdate}) {
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useRecoilState(userState);
 
@@ -29,6 +29,9 @@ export default function TeacherJobDelete({ name }) {
       .then((response) => {
         alert("직업 삭제 완료");
         handleClose();
+        if (typeof onUpdate === "function") {
+          onUpdate(); 
+        }
       })
       .catch((err) => {
         alert(err.response.data.message);

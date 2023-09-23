@@ -8,13 +8,13 @@ import { useRecoilState } from "recoil";
 import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 
-export default function TeacherJobCreate() {
+export default function TeacherJobCreate({onUpdate}) {
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useRecoilState(userState);
   const [addJob, setAddJob] = useState({
     nationNum: userData.nationNum,
     name: "",
-    salary: 0,
+    salary: null,
     state: 0,
     content: "",
   });
@@ -38,7 +38,7 @@ export default function TeacherJobCreate() {
     setAddJob({
       nationNum: userData.nationNum,
       name: "",
-      salary: 0,
+      salary: null,
       state: 0,
       content: "",
     });
@@ -71,6 +71,9 @@ export default function TeacherJobCreate() {
         alert("직업 등록 완료");
         handleClose();
         onResetJob();
+        if (typeof onUpdate === "function") {
+          onUpdate(); 
+      }
       })
       .catch((err) => {
         alert(err.response.data.message);
@@ -134,7 +137,7 @@ export default function TeacherJobCreate() {
                     name="salary"
                     placeholder="월급 금액"
                     onChange={getAllInput}
-                    value={salary}
+                    value={salary || ''}
                   />
                 </Col>
                 <Col sm="3"></Col>

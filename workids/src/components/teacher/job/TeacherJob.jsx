@@ -16,6 +16,13 @@ export default function TeacherJob() {
   const [jobStudentList, setJobStudentList] = useState([]); //학생 직업 부여 항목
   const [jobKindList, setJobKindList] = useState([]); //직업 종류 항목
   const navigate = useNavigate();
+  const [updateCheck, setUpdateCheck] = useState(0);
+
+    // updateCheck 상태를 변경하는 함수
+  const handleUpdateCheck = () => {
+      setUpdateCheck((updateCheck + 1) % 2);
+      onReset();
+  };
   const divListStyle = {
     borderRadius: "40px",
     backgroundColor: "#fffeee",
@@ -85,7 +92,7 @@ export default function TeacherJob() {
       .catch((err) => {
         alert(err.response.data.message);
       });
-  }, []);
+  }, [updateCheck]);
 
   //학생- 직업 리스트 뽑아오기
   useEffect(() => {
@@ -108,7 +115,7 @@ export default function TeacherJob() {
       .catch((err) => {
         alert(err.response.data.message);
       });
-  }, []);
+  }, [updateCheck]);
 
   //직업 종류뽑아오기
   useEffect(() => {
@@ -131,7 +138,7 @@ export default function TeacherJob() {
       .catch((err) => {
         alert(err.response.data.message);
       });
-  }, []);
+  }, [updateCheck]);
 
   //직업수정 출력화면
   function JobStudentUpdateItem({ menu, jobList }) {
@@ -166,9 +173,9 @@ export default function TeacherJob() {
         </div>
         <div className="col-3  d-flex justify-content-center">
           {menu.name === null ? (
-            <TeacherJobInsert citizenNumber={menu.citizenNumber} name={selectedJob} />
+            <TeacherJobInsert citizenNumber={menu.citizenNumber} name={selectedJob} onUpdate={handleUpdateCheck} />
           ) : (
-            <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} />
+            <TeacherJobUpdate citizenNumber={menu.citizenNumber} name={selectedJob} onUpdate={handleUpdateCheck} />
           )}
         </div>
       </div>
@@ -177,7 +184,7 @@ export default function TeacherJob() {
 
   // JobStudentUpdateItems 배열을 사용하여 컴포넌트 렌더링
   const JobStudentUpdateItems = jobStudentList.map((menu, index) => (
-    <JobStudentUpdateItem key={index} menu={menu} jobList={jobList} />
+    <JobStudentUpdateItem key={index} menu={menu} jobList={jobList} onUpdate={handleUpdateCheck} />
   ));
 
   return (
@@ -192,7 +199,7 @@ export default function TeacherJob() {
           <div className="h-100 d-flex justify-content-center align-items-center">
             <div>직업을 생성해주세요.</div>
             <div className="justify-content-end p-3">
-              <TeacherJobCreate />
+              <TeacherJobCreate onUpdate={handleUpdateCheck}/>
             </div>
           </div>
         ) : (
@@ -232,7 +239,7 @@ export default function TeacherJob() {
                               justifyContent: "flex-end",
                             }}
                           >
-                            <TeacherJobDelete name={menu.name} />
+                            <TeacherJobDelete name={menu.name} onUpdate={handleUpdateCheck}/>
                           </div>
                         </td>
                       </tr>
@@ -260,7 +267,7 @@ export default function TeacherJob() {
               </div>
             </div>
             <div className="container d-flex justify-content-end p-2">
-              <TeacherJobCreate />
+              <TeacherJobCreate onUpdate={handleUpdateCheck}/>
             </div>
           </div>
         )
