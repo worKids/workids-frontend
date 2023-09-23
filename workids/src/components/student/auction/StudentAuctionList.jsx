@@ -50,6 +50,8 @@ export default function StudentAuctionList() {
 
             {menu.auctionState === 0 ? (
               <div className="col-2 d-flex justify-content-center align-items-center">진행 중</div>
+            ) : menu.resultType === 0 ? (
+              <div className="col-2 d-flex justify-content-center align-items-center">미참여</div>
             ) : menu.resultType === 1 ? (
               <div className="col-2 d-flex justify-content-center align-items-center">낙찰</div>
             ) : (

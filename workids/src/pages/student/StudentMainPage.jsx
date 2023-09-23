@@ -167,7 +167,7 @@ export default function StudentMainPage() {
     <div
       key={index}
       onClick={() => setState(index)}
-      className={`m-auto border border-dark border-3 w-50 mx-2 mt-3 text-center rounded-pill px-2 py-1 ${
+      className={`m-auto border hoverable border-dark border-3 w-50 mx-2 mt-3 text-center rounded-pill px-2 py-1 ${
         isActive(index) ? "bg-warning text-white" : "bg-white"
       }`}
     >
