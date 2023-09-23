@@ -10,10 +10,11 @@ export default function TeacherDepositBankList() {
   const [bankList, setBankList] = useState([]); // 예금 계좌 목록
   const navigate = useNavigate();
 
-  const midStyle = {
-    height: "100%",
-    borderRadius: "30px",
-    backgroundColor: "#FED338",
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin: "4px",
   };
 
   const divStyle = {
@@ -89,7 +90,7 @@ export default function TeacherDepositBankList() {
                 {bank.endDate}
               </div>
             </div>
-            <div className="border-top"></div> {/* 구분선 */}
+            <hr></hr>
           </div>
         );
       })
@@ -97,30 +98,33 @@ export default function TeacherDepositBankList() {
 
   return (
     <div>
+      <div
+        className="border border-dark  border-3 p-3 fs-5"
+        style={{ ...divStyle, height: "65vh" }}
+      >
         <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
-        <div className="border border-dark  border-3 p-3" style={divStyle}>
         <div className="row m-2 text-center p-3 fs-5">
-            <div className="col-1">번호</div>
-            <div className="col-1">이름</div>
-            <div className="col-2">계좌번호</div>
-            <div className="col-2">상품명</div>
-            <div className="col-1">
+          <div className="col-1">No.</div>
+          <div className="col-1">이름</div>
+          <div className="col-2">계좌번호</div>
+          <div className="col-2">상품명</div>
+          <div className="col-1">
             <div>잔액</div>
-            </div>
-            <div className="col-1">
+          </div>
+          <div className="col-1">
             <div>이자율</div>
-            <div>(%)</div>
-            </div>
-            <div className="col-2">개설일</div>
-            <div className="col-2">만기일</div>
+          </div>
+          <div className="col-2">개설일</div>
+          <div className="col-2">만기일</div>
         </div>
+        <div style={hrStyle}></div>
         <div
-            className="container overflow-auto scrollCss fs-5"
-            style={{ ...divStyle, height: "42vh", maxHeight: "42vh" }}
+          className="container overflow-auto scrollCss fs-5"
+          style={{ ...divStyle, height: "42vh", maxHeight: "42vh" }}
         >
-            {showBankList}
+          {showBankList}
         </div>
-        </div>
+      </div>
     </div>
   );
 }

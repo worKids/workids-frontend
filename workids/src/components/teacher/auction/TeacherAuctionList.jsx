@@ -23,7 +23,12 @@ export default function TeacherAuctionList() {
   const closeModal = () => {
     setShowModal(false);
   };
-
+  const hrStyle = {
+    width: "99%",
+    height: "5px",
+    backgroundColor: "black",
+    margin: "4px",
+  };
   const navigate = useNavigate();
   useEffect(() => {
     const token = userData.accessToken;
@@ -137,18 +142,18 @@ export default function TeacherAuctionList() {
     );
   return (
     <div className="fs-5 border border-3 border-dark" style={{ ...divStyle, height: "65vh" }}>
-      <div>
-        <div className="row  m-2 text-center p-3 fs-5">
-          <div className="col-2">번호</div>
-          <div className="col-6">경매 날짜</div>
-          <div className="col-2">경매 상태</div>
-          <div className="col-2">조회</div>
-        </div>
-        {/* <hr style={{borderTop: "3px solid #000000"}} /> */}
-        <div className="container overflow-auto  scrollCss" style={{ ...divStyle, height:"48vh" }}>
-          {auctionList}
-        </div>
+      <div className="row  m-2 text-center p-3 fs-5">
+        <div className="col-2">No.</div>
+        <div className="col-6">경매 날짜</div>
+        <div className="col-2">경매 상태</div>
+        <div className="col-2">조회</div>
       </div>
+      <div className="me-5" style={hrStyle}></div>
+      {/* <hr style={{borderTop: "3px solid #000000"}} /> */}
+      <div className="container overflow-auto  scrollCss" style={{ ...divStyle, height: "48vh" }}>
+        {auctionList}
+      </div>
+
       <Modal
         show={showModal}
         onHide={closeModal}

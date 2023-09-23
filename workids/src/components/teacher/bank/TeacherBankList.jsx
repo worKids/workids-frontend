@@ -25,13 +25,21 @@ export default function TeacherBankList() {
   };
 
   const closeModal = () => {
-    setCheck(check + 1);
     setShowModal(false);
-    window.location.reload(); // 추가된 은행 상품도 가져오기 위해 새로고침
+  };
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin: "4px",
   };
   const divStyle = {
     borderRadius: "40px",
     backgroundColor: "#FEE173",
+  };
+  const divStyle2 = {
+    borderRadius: "40px",
+    backgroundColor: "#FFFEEE",
   };
 
   const navigate = useNavigate();
@@ -85,7 +93,7 @@ export default function TeacherBankList() {
   // 판매중인 은행 상품
   const showInUseBankList =
     bankInUseList.length === 0 ? (
-      <div className="h-100 d-flex justify-content-center align-items-center fs-5">
+      <div className="h-100 d-flex justify-content-center align-items-center ">
         은행 상품을 추가해보세요!
       </div>
     ) : (
@@ -119,7 +127,7 @@ export default function TeacherBankList() {
             </div>
             <div className="col-2 d-flex justify-content-center align-items-center">
               {index !== 0 && (
-                <div className="btn border px-4" onClick={() => deleteBank(bank.productNum)}>
+                <div className="create-button" onClick={() => deleteBank(bank.productNum)}>
                   삭제
                 </div>
               )}
@@ -142,7 +150,7 @@ export default function TeacherBankList() {
     ) : (
       bankUnUseList.map((bank, index) => (
         <div key={index}>
-          <div className="row mx-2 text-center px-2 fs-5">
+          <div className="row text-center">
             <div className="col-1 d-flex justify-content-center align-items-center">
               {index + 1}
             </div>
@@ -186,6 +194,7 @@ export default function TeacherBankList() {
       className={`fs-5 mx-4 border border-3 border-dark rounded-pill px-3 ${
         state === index ? "bg-warning text-white" : ""
       }`}
+      style={{ backgroundColor: "#FFFEEE" }}
     >
       {menu}
     </div>
@@ -199,15 +208,19 @@ export default function TeacherBankList() {
           </div>
           {state === 0 ? (
             <div>
-              <div className="row">
-                <div className="col"></div>
-                <div className="col-2 d-flex justify-content-end">
-                  <div className="btn border" onClick={() => openModal()}>
-                    상품 추가
-                  </div>
+              <div className="d-flex justify-content-end">
+                <div
+                  className="fs-5 mx-4 border border-3 border-dark rounded-pill px-3"
+                  onClick={() => openModal()}
+                  style={{ backgroundColor: "#FFFEEE" }}
+                >
+                  상품 추가
                 </div>
               </div>
-              <div className="row m-2 text-center p-3 fs-5">
+              <div
+                className="row m-2 text-center p-3 fs-5 border border-3 border-dark"
+                style={{ ...divStyle2 }}
+              >
                 <div className="col-1">No.</div>
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
@@ -216,9 +229,10 @@ export default function TeacherBankList() {
                 <div className="col-2">만기 이자율(%)</div>
                 <div className="col-2">생성일</div>
                 <div className="col-2"></div>
+                <div style={hrStyle}></div>
                 <div
                   className="container overflow-auto scrollCss"
-                  style={{ ...divStyle, height: "41vh", maxHeight: "41vh" }}
+                  style={{ height: "41vh", maxHeight: "41vh" }}
                 >
                   {showInUseBankList}
                 </div>
@@ -226,7 +240,19 @@ export default function TeacherBankList() {
             </div>
           ) : (
             <div>
-              <div className="row m-2 mt-5 text-center p-3 fs-5 d-flex align-itmes-end">
+              <div className="d-flex justify-content-end">
+                <div
+                  className="invisible fs-5 mx-4 border border-3 border-dark rounded-pill px-3"
+                  onClick={() => openModal()}
+                  style={{ backgroundColor: "#FFFEEE" }}
+                >
+                  상품 추가
+                </div>
+              </div>
+              <div
+                className="row m-2 text-center border border-3 border-dark p-3 fs-5 "
+                style={{ ...divStyle2 }}
+              >
                 <div className="col-1">No.</div>
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
@@ -235,13 +261,13 @@ export default function TeacherBankList() {
                 <div className="col-2">만기 이자율(%)</div>
                 <div className="col-2">생성일</div>
                 <div className="col-2">종료일</div>
-              </div>
-
-              <div
-                className="container overflow-auto scrollCss"
-                style={{ ...divStyle, height: "41vh", maxHeight: "41vh" }}
-              >
-                {showUnUseBankList}
+                <div style={hrStyle}></div>
+                <div
+                  className="container overflow-auto scrollCss"
+                  style={{ height: "41vh", maxHeight: "41vh" }}
+                >
+                  {showUnUseBankList}
+                </div>
               </div>
             </div>
           )}
@@ -261,13 +287,8 @@ export default function TeacherBankList() {
               height: "55vh",
             }}
           >
-            <TeacherBankModal onModalClose={closeModal} />
+            <TeacherBankModal onModalClose={closeModal} check={check} setCheck={setCheck} />
           </Modal.Body>
-          <Modal.Footer>
-            {/* <Button variant="secondary" onClick={() => closeModal()}>
-                    닫기
-                </Button> */}
-          </Modal.Footer>
         </Modal>
       </div>
     </div>
