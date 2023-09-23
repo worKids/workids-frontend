@@ -43,6 +43,13 @@ export default function TeacherNation(){
 
     }, []);
  
+    const hrStyle = {
+        width: "100%",
+        height: "3px",
+        backgroundColor: "black",
+        margin : "5px"
+    }
+
 
     return(
         
@@ -52,6 +59,7 @@ export default function TeacherNation(){
                     <div className="col-3 ">{nationInfo.name} 나라</div>
                     <div className="col-3 ">{nationInfo.presidentName} 대통령</div>
                 </div>
+                <div style={hrStyle}></div>
                 <div className="row fs-3 p-2 justify-content-center " style={{textAlign:"left"}}>
                     <div className="col-4 ">화폐명: {nationInfo.moneyName}</div>
                     <div className="col-4 ">세율: {nationInfo.taxRate}%</div>
@@ -64,6 +72,7 @@ export default function TeacherNation(){
                     <div className="col-4 ">시작일: {nationInfo.startDate}</div>
                     <div className="col-4">종료일: {nationInfo.endDate}</div>
                 </div>
+                <div style={hrStyle}></div>
                 <div className="row fs-3 p-3 m-2 justify-content-center" >
                     <div className="col-8 text-center">참여코드: {nationInfo.code}</div>
                 </div>

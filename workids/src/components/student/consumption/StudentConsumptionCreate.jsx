@@ -5,7 +5,7 @@ import { userState } from "../../../recoil/userAtoms";
 import { axBase } from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-export default function StudentConsumptionCreate({consumptionNum}){
+export default function StudentConsumptionCreate({consumptionNum, onUpdate}){
     const [show, setShow] = useState(false);
     const [userData, setUserData] = useRecoilState(userState);
     const navigate = useNavigate();
@@ -31,6 +31,9 @@ export default function StudentConsumptionCreate({consumptionNum}){
         .then((response) => {
             alert("소비 항목 신청 완료");
             setShow(false);
+            if (typeof onUpdate === "function") {
+                onUpdate(); 
+            }
         })
         .catch((err) => {
             alert(err.response.data.message);
@@ -39,7 +42,7 @@ export default function StudentConsumptionCreate({consumptionNum}){
 
     return(
         <div>
-            <button onClick={handleShow}>신청</button>
+            <div onClick={handleShow} className="create-button" style={{width:"10vh"}}>신청</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
