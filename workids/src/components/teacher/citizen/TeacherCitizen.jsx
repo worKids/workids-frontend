@@ -295,7 +295,7 @@ export default function TeacherCitizen() {
     aucList !== null ? (
       aucList.map((menu, index) => (
         <div key={index}>
-          <div className="row text-center my-4 fs-5">
+          <div className="info-label row text-center my-4 fs-5">
             <div className="col-2 d-flex justify-content-center align-items-center">
               {index + 1}
             </div>
