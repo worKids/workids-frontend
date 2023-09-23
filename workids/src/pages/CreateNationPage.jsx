@@ -149,13 +149,13 @@ export default function CreateNationPage() {
           </div>
           <div className="mb-4 col-7 d-flex">
             <div htmlFor="name" className="col-2 d-flex align-items-center">
-              세율
+              세율 (%)
             </div>
             <input
               type="number"
               className="form-control border bg-white border-2 border-dark"
               id="name"
-              placeholder="20%"
+              placeholder="ex) 20%"
               value={taxRate}
               onChange={taxRateHandler}
             />
@@ -214,7 +214,7 @@ export default function CreateNationPage() {
               type="number"
               className="form-control bg-white border-2 border-dark"
               id="name"
-              placeholder="ex) 100"
+              placeholder="ex) 100미소"
               value={balance}
               onChange={balanceHandler}
             />
