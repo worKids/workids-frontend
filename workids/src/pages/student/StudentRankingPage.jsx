@@ -33,7 +33,9 @@ export default function StudentRankingPage() {
       onClick={() => navigateMenu(index)}
       className={`my-3 border border-dark  border-3 text-center p-3 rounded-pill sideNav ${
         isActive(index) ? "bg-warning text-white" : ""
-      }`}
+      }
+      `}
+      style={{ backgroundColor: "#FFFEEE" }}
     >
       {menu}
     </div>

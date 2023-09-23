@@ -20,7 +20,7 @@ export default function StudentRank(props) {
       {props.state === 0 ? (
         <div className="h-100">
           <div
-            className="border border-dark  border-3 p-5"
+            className="border border-dark  border-3 p-4"
             style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
           >
             <StudentRanking />
