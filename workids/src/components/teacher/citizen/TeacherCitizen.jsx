@@ -636,9 +636,9 @@ const heightStyle = {
   const creditRatingItems = creditRatingList.map((menu, index) => (
     <div key={index} className="row justify-content-md-center" style={{ fontSize: "25px", textAlign: "center" }}>
    <div className="col-2">{menu.citizenNumber}</div>
-   <div className="col-2">{menu.studentName}</div>
+   <div className="col-3">{menu.studentName}</div>
 
-   <div className="col-2">
+   <div className="col-3">
     <input
       type="number"
       min={0}
@@ -648,7 +648,7 @@ const heightStyle = {
       onChange={(e) => handleCreditRatingChange(e, index)}
     />
   </div>
-  <div className="col-2">
+  <div className="col-3">
     <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
   </div>
   <div><hr></hr></div>
@@ -760,8 +760,9 @@ const heightStyle = {
                 <div className="col-2">자산</div>
                 <div className="col-2">신용도</div>
               </div>
+              
               <div style={hrStyle}></div>
-              <div className="scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
+              <div className="my-3 scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
 
                 {citizenItems}
               </div>
@@ -782,12 +783,12 @@ const heightStyle = {
              
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-2">번호</div>
-                  <div className="col-2">이름</div>
-                  <div className="col-2">신용도</div>
-                  <div className="col-2"></div>
+                  <div className="col-3">이름</div>
+                  <div className="col-3">신용도</div>
+                  <div className="col-3"></div>
                 </div>
                 <div style={hrStyle}></div>
-                <div className="scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
+                <div className="my-3 scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
                   {creditRatingItems}
                 </div>
               </div>
