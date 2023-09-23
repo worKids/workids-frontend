@@ -47,7 +47,7 @@ export default function StudentAuctionPage() {
           <div className="d-flex justify-content-center ">
             <div className="mb-5" style={{ position: "absolute", bottom: 0 }}>
               <div className="border border-dark  border-3 bg-white text-center p-3 rounded-pill">
-                컴온 YO!♪ 여↗긴↘ 부동산임YO!♪
+                컴온 YO!♪ 여↗긴↘ 부동산YO!♪
               </div>
               <div className="lamu m-auto hoverable" onClick={navigateToMain}></div>
             </div>
