@@ -6,7 +6,7 @@ import StudentRank from "../../components/student/ranking/StudentRank";
 
 export default function StudentRankingPage() {
   const [state, setState] = useState(0);
-  const navbarMenu = ["진행중인 경매", "경매 내역 보기"];
+  const navbarMenu = ["나라 랭킹 보기", "내 통계 보기"];
   const divStyle = {
     width: "15%",
   };

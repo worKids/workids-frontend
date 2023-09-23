@@ -62,7 +62,7 @@ export default function StudentRanking() {
   return (
     <div style={{height:"100%"}}>
       <Form style={{height:"90%"}}> 
-        <div className="container d-flex justify-content-end" style={{fontSize:"11px"}}>*자산왕은 항상 전체 기간 기준입니다.</div>
+        <div className="container d-flex justify-content-end" style={{fontSize:"13px"}}>*자산왕은 항상 전체 기간 기준입니다.</div>
         {['radio'].map((type) => (
             <div key={`inline-${type}`} style={{textAlign:"left", fontSize:"14px"}}>
             <Form.Check
@@ -85,7 +85,7 @@ export default function StudentRanking() {
             />
             </div>   
         ))}
-    <div className="container d-flex justify-content-end" style={{ fontSize: "13px"}}>(단위:미소)</div>    
+    <div className="container d-flex justify-content-end" style={{ fontSize: "13px"}}>(단위:{userData.moneyName})</div>    
         <div className="container d-flex" style={{height:"100%"}}>
 
           <div style={divBlock} className="m-2">
