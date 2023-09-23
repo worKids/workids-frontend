@@ -4,6 +4,8 @@ import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
 import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function StudentBankList(){
     const userData = useRecoilValue(userState);
@@ -170,6 +172,9 @@ export default function StudentBankList(){
         </div>
         :
         <div>
+            <div>
+                <FontAwesomeIcon icon={faChevronLeft} onClick={() => setSubPage(0)} />뒤로 가기
+            </div>
             <div style={{fontSize:'20px'}}>상품 가입하기</div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div className="row m-2 text-center p-3 ">

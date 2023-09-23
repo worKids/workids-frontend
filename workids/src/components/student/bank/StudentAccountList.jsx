@@ -4,6 +4,8 @@ import { userState } from "../../../recoil/userAtoms";
 import { useNavigate } from "react-router-dom";
 import { axBase } from "../../../apis/axiosInstance";
 import { Modal, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function StudentAccountList(){
     const userData = useRecoilValue(userState);
@@ -307,14 +309,11 @@ export default function StudentAccountList(){
         ?
         <div>
             <div className="row">
-                <div className="col">
-                    <div style={{fontSize:'20px'}}>총 자산</div>
+                <div className="col d-flex justify-content-end">
+                    총 자산: {asset} {userData.moneyName}
                 </div>
-                <div className="col-2 d-flex justify-content-end text-primary">
-                    {asset} {userData.moneyName}
-                </div>
-                <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             </div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div>
                     <div>주거래 계좌</div>
@@ -354,7 +353,14 @@ export default function StudentAccountList(){
         </div>
         :
         <div>
-            <div style={{fontSize:'20px'}}>{transactionAccountNumber} 계좌 거래내역</div>
+            <div>
+                <FontAwesomeIcon icon={faChevronLeft} onClick={() => setSubPage(0)} />뒤로 가기
+            </div>
+            <div className="row justify-content-start" style={{fontSize:'20px'}}>
+                <div className="col">
+                    {transactionAccountNumber} 계좌 거래내역
+                </div>
+            </div>
             <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={midStyle}>
                 <div className="row m-2 text-center p-3 ">
