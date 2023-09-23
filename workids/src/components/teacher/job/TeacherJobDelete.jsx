@@ -40,7 +40,7 @@ export default function TeacherJobDelete({name}){
 
     return(
         <div>
-           <div onClick={handleShow}  className="content-button">삭제</div>
+           <div onClick={handleShow}  className="create-button hoverable">삭제</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"

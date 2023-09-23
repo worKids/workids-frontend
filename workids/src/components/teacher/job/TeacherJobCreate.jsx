@@ -81,7 +81,7 @@ export default function TeacherJobCreate() {
 
     return (
         <div>
-            <div onClick={handleShow} className="create-button">추가</div>
+            <div onClick={handleShow} className="create-button hoverable">추가</div>
 
             <Modal show={show} onHide={handleClose}
                 aria-labelledby="contained-modal-title-vcenter"
