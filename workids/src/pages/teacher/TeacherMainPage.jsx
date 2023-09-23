@@ -134,7 +134,7 @@ export default function TeacherMainPage() {
               style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
               <div>
-                <div className="fs-2 mb-4" style={{ textAlign: "center", gridColumn: "span 2" }}>
+                <div className="fs-3 mb-4" style={{ textAlign: "center", gridColumn: "span 2" }}>
                   {userData.nationName} 나라
                 </div>
                 <div className="d-flex justify-content-around">
@@ -160,7 +160,7 @@ export default function TeacherMainPage() {
               </div>
             </div>
             <div
-              className="border border-dark border-3 m-3 p-4 fs-4 text-center"
+              className="border border-dark border-3 m-3 p-3 fs-4 text-center"
               style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
               국민 수: {nationMainInfo.totalCitizen} 명
