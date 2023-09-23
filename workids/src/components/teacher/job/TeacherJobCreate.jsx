@@ -69,6 +69,7 @@ export default function TeacherJobCreate() {
             .then((response) => {
                 alert("직업 등록 완료");
                 handleClose();
+                onResetJob();
 
             })
             .catch((err) => {
