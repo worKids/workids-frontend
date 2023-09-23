@@ -162,7 +162,7 @@ export default function TeacherLawCreate({onUpdate}){
                                     <Col sm="4">
                                         <Form.Control type="number" name="fine" placeholder="벌금 금액" onChange={getAllInput} value={fine || ''}/>
                                     </Col>
-                                    <Col sm="3">미소</Col>
+                                    <Col sm="3">{userData.moneyName}</Col>
                                 </Form.Group>
                                 <Modal.Footer>
                                     <div className="info-label fs-5 modal-button" onClick={handleAddLaw}>

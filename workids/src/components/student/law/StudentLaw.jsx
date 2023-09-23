@@ -15,14 +15,21 @@ export default function StudentLaw(props) {
   const numberOfPenaltyList = penaltyStudentList.length;
 
   const divStyle = {
-      width: "80%",
-      borderRadius: "40px",
+    width: "80%",
+    borderRadius: "40px",
+    backgroundColor: "#ffc107"
   };
   const heightStyle = {
-      height: "85%",
-      borderRadius: "40px",
-      backgroundColor: 'rgba(254, 211, 56, 0.7)',
+    height: "85%",
+    borderRadius: "40px",
+    backgroundColor: '#FFFEEE',
   };
+
+  const colStyle = {
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+  }
+
 
   const hrStyle = {
     width: "100%",
@@ -53,7 +60,7 @@ export default function StudentLaw(props) {
           alert(err.response.data.message);
       });
 
-  }, [lawList]);
+  }, []);
 
   //법 항목 출력
   const LawItems = lawList.map((item,index)=>(
@@ -94,17 +101,19 @@ export default function StudentLaw(props) {
             alert(err.response.data.message);
         });
 
-  }, [fineStudentList]);
+  }, []);
 
   //부여된 벌금 출력
   const FineItems = fineStudentList.map((item,index)=>(
 
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-2 p-2">{index+1}</div>
-      <div className="col-4 p-2">{item.content}</div>
-      <div className="col-2 p-2">{item.fine}</div>
-      <div className="col-3 p-2">{item.createdDate}</div>
-      <hr></hr>
+    <div key={index}>
+    <div className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-2">{index + 1}</div>
+      <div className="col-4">{item.content}</div>
+      <div className="col-2">{item.fine}</div>
+      <div className="col-3">{item.createdDate}</div>
+    </div>
+    <hr></hr>
     </div>
   ));
 
@@ -130,23 +139,25 @@ export default function StudentLaw(props) {
             alert(err.response.data.message);
         });
 
-  }, [penaltyStudentList]);
+  }, []);
 
   //부여된 벌칙 출력
   const PenaltyItems = penaltyStudentList.map((item,index)=>(
 
-    <div key={index} className="row justify-content-md-center p-1" style={{fontSize:"25px", textAlign:"center"}}>
-      <div className="col-1 p-2">{index+1}</div>
-      <div className="col-3 p-2">{item.content}</div>
-      <div className="col-3 p-2">{item.penalty}</div>
-      <div className="col-2 p-2">{item.createdDate}</div>
-      {item.penaltyCompleteState===0 && (
-        <div className="col-3 p-2">미수행</div>
+    <div key={index}>
+    <div className="row justify-content-md-center p-1 align-items-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-1">{index + 1}</div>
+      <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.content}</div>
+      <div className="col-3" style={{ ...colStyle, overflow: 'hidden' }}>{item.penalty}</div>
+      <div className="col-2" style={{ ...colStyle }}>{item.createdDate}</div>
+      {item.penaltyCompleteState === 0 && (
+        <div className="col-3">미수행</div>
       )}
-      {item.penaltyCompleteState===1 && (
-        <div className="col-3 p-2">수행</div>
+      {item.penaltyCompleteState === 1 && (
+        <div className="col-3">수행</div>
       )}
-      <hr></hr>
+    </div>
+    <hr></hr>
     </div>
   ));
 
@@ -161,7 +172,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -170,7 +181,7 @@ export default function StudentLaw(props) {
                 <div className="col-3">제정일</div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {LawItems}
               </div>
             </div>
@@ -186,7 +197,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-2">No.</div>
@@ -195,7 +206,7 @@ export default function StudentLaw(props) {
                 <div className="col-3">부과일</div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {FineItems}
               </div>
             </div>
@@ -211,7 +222,7 @@ export default function StudentLaw(props) {
             </div>
           ): (
             <>
-            <div className="container d-flex justify-content-end">(단위:미소)</div>
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
             <div className="border border-dark  border-3 p-3" style={heightStyle}>
               <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
                 <div className="col-1">No.</div>
@@ -221,7 +232,7 @@ export default function StudentLaw(props) {
                 <div className="col-3">수행여부</div>
               </div>
               <div style={hrStyle}></div>
-              <div style={{overflowX:'hidden', overflowY:'auto', height:'48vh' }}>
+              <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'50vh'}}>
                 {PenaltyItems}
               </div>
             </div>
