@@ -168,7 +168,7 @@ export default function StudentMainPage() {
       key={index}
       onClick={() => setState(index)}
       className={`m-auto border border-dark border-3 w-50 mx-2 mt-3 text-center rounded-pill px-2 py-1 ${
-        isActive(index) ? "bg-warning text-white" : ""
+        isActive(index) ? "bg-warning text-white" : "bg-white"
       }`}
     >
       {data}
@@ -212,40 +212,45 @@ export default function StudentMainPage() {
   return (
     <div className="h-100">
       <StudentTopNav />
-      <div className="d-flex justify-content-between m-3" style={mainNav}>
-        <div className="w-50 border border-dark  border-3 mx-5 my-3 p-1" style={borderRound}>
+      <div className="d-flex justify-content-between mx-3 mt-0 fs-4" style={mainNav}>
+        <div
+          className="w-50 border border-dark  border-3 mx-5 my-3 p-1"
+          style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
+        >
           <div className="d-flex">{nationMap}</div>
           {state === 0 ? (
-            <div className="margin-left-20 p-2">
-              <div className="p-2">
-                <button
-                  style={{ border: "none", backgroundColor: "transparent", float: "right" }}
-                  onClick={navigateToLaw}
-                >
-                  내 고지서 보러가기&gt;
-                </button>
+            <div className="p-2">
+              <div
+                className="hoverable d-flex justify-content-end"
+                style={{ border: "none", backgroundColor: "transparent" }}
+                onClick={navigateToLaw}
+              >
+                내 고지서 보러가기 &gt;
               </div>
-              {lawList.map((menu, index) => (
-                <div key={index} className="m-1">
-                  {menu.content}
-                </div>
-              ))}
+              <div className="overflow-auto scrollCss" style={{ height: "25vh" }}>
+                {lawList.map((menu, index) => (
+                  <div key={index} className="mx-4 my-1">
+                    {menu.content}
+                  </div>
+                ))}
+              </div>
             </div>
           ) : state === 1 ? (
-            <div className="margin-left-20 p-2">
-              <div className="p-2">
-                <button
-                  style={{ border: "none", backgroundColor: "transparent", float: "right" }}
-                  onClick={navigateToJob}
-                >
-                  내 직업 보러가기&gt;
-                </button>
+            <div className="p-2">
+              <div
+                className="hoverable d-flex justify-content-end"
+                style={{ border: "none", backgroundColor: "transparent", float: "right" }}
+                onClick={navigateToJob}
+              >
+                내 직업 보러가기 &gt;
               </div>
-              {jobKindList.map((menu, index) => (
-                <div key={index} className="m-1">
-                  {menu.name}
-                </div>
-              ))}
+              <div className="overflow-auto scrollCss" style={{ height: "25vh" }}>
+                {jobKindList.map((menu, index) => (
+                  <div key={index} className="mx-4 m-1">
+                    {menu.name}
+                  </div>
+                ))}
+              </div>
             </div>
           ) : null}
         </div>
@@ -253,7 +258,7 @@ export default function StudentMainPage() {
           <div className="d-flex" style={rightDivStyle}>
             <div
               className="w-50 border border-dark  border-3 me-2 text-center p-1"
-              style={borderRound}
+              style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
               <div>자산</div>
               <div>
@@ -262,32 +267,30 @@ export default function StudentMainPage() {
             </div>
             <div
               className="w-50 border border-dark  border-3 ms-2 text-center p-1"
-              style={borderRound}
+              style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
               <div>신용도</div>
               <div>{creditRating} 점</div>
             </div>
           </div>
-          <div className="border border-dark  border-3  m-1 p-3" style={rightBottomDiv}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateRows: "2fr 1fr 1fr",
-                gridTemplateColumns: "1fr 4fr",
-                gap: "10px",
-              }}
-            >
-              <div style={{ fontSize: "25px", textAlign: "center", gridColumn: "span 2" }}>
-                {userData.nationName} 나라
+          <div
+            className="border border-dark  border-3 mt-3 m-1 p-3"
+            style={{ ...rightBottomDiv, backgroundColor: "#FFFEEE" }}
+          >
+            <div>
+              <div className="text-center fs-2">{userData.nationName} 나라</div>
+              <div className="d-flex justify-content-around mt-2">
+                <div>대통령 : {nationMainInfo.presidentName}</div>
+                <div>국민 수 : {nationMainInfo.totalCitizen} 명</div>
               </div>
-              <div> 화폐명: </div>
-              <div> {nationMainInfo.moneyName} </div>
-              <div> 세율: </div>
-              <div> {nationMainInfo.taxRate} % </div>
-              <div> 운영시작일: </div>
-              <div> {nationMainInfo.startDate} </div>
-              <div> 운영종료일: </div>
-              <div> {nationMainInfo.endDate} </div>
+              <div className="d-flex justify-content-around my-1">
+                <div> 화폐 명: {nationMainInfo.moneyName} </div>
+                <div>세율 : {nationMainInfo.taxRate}%</div>
+              </div>
+              <div className="d-flex justify-content-around">
+                <div> 운영시작일 : {nationMainInfo.startDate} </div>
+                <div> 운영종료일 : {nationMainInfo.endDate} </div>
+              </div>
             </div>
           </div>
         </div>
@@ -312,7 +315,10 @@ export default function StudentMainPage() {
           <div className="m-auto lamu"></div>
         </div>
         <div className="btn" onClick={navigateToRanking}>
-          <div className="border border-dark bg-white border-3 text-center p-3 rounded-pill">
+          <div
+            className="border border-dark bg-white
+           border-3 text-center p-3 rounded-pill"
+          >
             여긴... 랭킹..이야...
           </div>{" "}
           <div className="ccoli m-auto"></div>
