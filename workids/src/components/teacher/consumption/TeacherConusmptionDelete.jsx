@@ -41,7 +41,7 @@ export default function TeacherConsumptionDelete({consumptionNum, onUpdate}){
 
     return(
         <div>
-            <div onClick={handleShow} className="content-button">삭제</div>
+            <div onClick={handleShow} className="create-button px-1 hoverable">삭제</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -57,8 +57,8 @@ export default function TeacherConsumptionDelete({consumptionNum, onUpdate}){
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div onClick={handleDeleteConsumption} className="info-label fs-5 modal-button">Yes</div>
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
+                    <div onClick={handleDeleteConsumption} className="info-label fs-5 modal-button hoverable">Yes</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

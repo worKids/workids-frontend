@@ -95,8 +95,8 @@
 .create-button{
   font-size: 1.25rem;
   background-color: #ffc107;
-  padding-left: 1.0rem;
-  padding-right: 1.0rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
   border-radius: 50rem;
   border-width: 3px;
   border-color: #343a40;

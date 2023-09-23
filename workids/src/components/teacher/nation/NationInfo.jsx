@@ -14,7 +14,8 @@ export default function TeacherNation(){
     const divListStyle = {
         borderRadius: "40px",
         backgroundColor: "#fffeee",
-        height: "85%"
+        height: "90%",
+        width: "80%"
     }
 
  
@@ -55,21 +56,21 @@ export default function TeacherNation(){
         
         <div className="text-center border border-dark  border-3 p-3" style={{...divListStyle }}>
             <div className="container">
-                <div className="row fs-2 p-2 m-2 justify-content-center">
-                    <div className="col-3 ">{nationInfo.name} 나라</div>
-                    <div className="col-3 ">{nationInfo.presidentName} 대통령</div>
+                <div className="row fs-3 p-2 m-2 justify-content-center">
+                    <div className="col-3">{nationInfo.name} 나라 </div><div className="flag"></div>
+                    <div className="col-4 ">{nationInfo.presidentName} 대통령</div>
                 </div>
                 <div style={hrStyle}></div>
-                <div className="row fs-3 p-2 justify-content-center " style={{textAlign:"left"}}>
-                    <div className="col-4 ">화폐명: {nationInfo.moneyName}</div>
+                <div className="row fs-4 p-2 justify-content-center " style={{textAlign:"left", marginTop:"4vh"}}>
+                    <div className="col-5 ">화폐명: {nationInfo.moneyName}</div>
                     <div className="col-4 ">세율: {nationInfo.taxRate}%</div>
                 </div>
-                <div className="row fs-3 p-2  justify-content-center"  style={{textAlign:"left"}}>
-                    <div className="col-4 ">월급 지급일: 월 {nationInfo.payDay}일</div>
+                <div className="row fs-4 p-2  justify-content-center"  style={{textAlign:"left"}}>
+                    <div className="col-5 ">월급 지급일: 월 {nationInfo.payDay}일 12시</div>
                     <div className="col-4 ">나라 운영 상태: {nationInfo.state === 0 ? "운영 대기" : nationInfo.state === 1 ? "운영 중" : "종료"}</div>
                 </div>
-                <div className="row fs-3 p-2 justify-content-center"  style={{textAlign:"left"}}>
-                    <div className="col-4 ">시작일: {nationInfo.startDate}</div>
+                <div className="row fs-4 p-2 justify-content-center"  style={{textAlign:"left", marginBottom:"4vh"}}>
+                    <div className="col-5 ">시작일: {nationInfo.startDate}</div>
                     <div className="col-4">종료일: {nationInfo.endDate}</div>
                 </div>
                 <div style={hrStyle}></div>

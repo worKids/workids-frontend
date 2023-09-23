@@ -56,7 +56,7 @@ export default function TeacherNation(){
           key={index}
           onClick={() => clickMenu(index)}
           className={`m-2 border border-dark  border-3 text-center p-3 rounded-pill ${
-            state === index ? "bg-warning text-white" : ""
+            state === index ? "bg-warning text-white hoverable" : "hoverable"
           }`}
         >
           {menu}

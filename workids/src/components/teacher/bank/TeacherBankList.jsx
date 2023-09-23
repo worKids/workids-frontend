@@ -127,7 +127,7 @@ export default function TeacherBankList() {
             </div>
             <div className="col-2 d-flex justify-content-center align-items-center">
               {index !== 0 && (
-                <div className="create-button" onClick={() => deleteBank(bank.productNum)}>
+                <div className="create-button hoverable" onClick={() => deleteBank(bank.productNum)}>
                   삭제
                 </div>
               )}
@@ -191,8 +191,8 @@ export default function TeacherBankList() {
     <div
       key={index}
       onClick={() => clickMenu(index)}
-      className={`fs-5 mx-4 border border-3 border-dark rounded-pill px-3 ${
-        state === index ? "bg-warning text-white" : ""
+      className={`fs-5 mx-2 border border-3 border-dark rounded-pill px-3 ${
+        state === index ? "bg-warning text-white hoverable" : "hoverable"
       }`}
       style={{ backgroundColor: "#FFFEEE" }}
     >
@@ -210,7 +210,7 @@ export default function TeacherBankList() {
             <div>
               <div className="d-flex justify-content-end">
                 <div
-                  className="fs-5 mx-4 border border-3 border-dark rounded-pill px-3"
+                  className="fs-5 mx-4 border border-3 border-dark rounded-pill px-3 hoverable"
                   onClick={() => openModal()}
                   style={{ backgroundColor: "#FFFEEE" }}
                 >
@@ -225,14 +225,14 @@ export default function TeacherBankList() {
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
                 {/* <div className="col-3">상품 설명</div> */}
-                <div className="col-2">상품 가입 기간(주)</div>
+                <div className="col-2">상품 기간(주)</div>
                 <div className="col-2">만기 이자율(%)</div>
                 <div className="col-2">생성일</div>
                 <div className="col-2"></div>
                 <div style={hrStyle}></div>
                 <div
                   className="container overflow-auto scrollCss"
-                  style={{ height: "41vh", maxHeight: "41vh" }}
+                  style={{ height: "38vh", maxHeight: "38vh" }}
                 >
                   {showInUseBankList}
                 </div>
@@ -257,14 +257,14 @@ export default function TeacherBankList() {
                 <div className="col-1">유형</div>
                 <div className="col-2">상품명</div>
                 {/* <div className="col-3">상품 설명</div> */}
-                <div className="col-2">상품 가입 기간(주)</div>
+                <div className="col-2">상품 기간(주)</div>
                 <div className="col-2">만기 이자율(%)</div>
                 <div className="col-2">생성일</div>
                 <div className="col-2">종료일</div>
                 <div style={hrStyle}></div>
                 <div
                   className="container overflow-auto scrollCss"
-                  style={{ height: "41vh", maxHeight: "41vh" }}
+                  style={{ height: "38vh", maxHeight: "38vh" }}
                 >
                   {showUnUseBankList}
                 </div>
@@ -279,7 +279,7 @@ export default function TeacherBankList() {
           className="modal-lg"
           style={{ fontFamily: "KCC-Ganpan" }}
         >
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>예금 상품 추가</Modal.Title>
           </Modal.Header>
           <Modal.Body

@@ -68,7 +68,7 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, on
 
     return(
         <div>
-            <div onClick={handleShow} className="content-button" style={{width:"9vh"}}>취소</div>
+            <div onClick={handleShow} className="create-button hoverable" style={{width:"9vh"}}>취소</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -85,11 +85,11 @@ export default function TeacherLawStudentDelete({tabType,lawNationStudentNum, on
                 </Modal.Body>
                 <Modal.Footer>
                     {tabType ===0 ?(
-                        <div onClick={() => handleDeleteFineStudent()} className="info-label fs-5 modal-button">Yes</div>
+                        <div onClick={() => handleDeleteFineStudent()} className="info-label fs-5 modal-button hoverable">Yes</div>
                     ): (
-                        <div onClick={() => handleDeletePenaltyStudent()} className="info-label fs-5 modal-button">Yes</div>
+                        <div onClick={() => handleDeletePenaltyStudent()} className="info-label fs-5 modal-button hoverable">Yes</div>
                     )}
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">No</div>
                 </Modal.Footer>
             </Modal>
         </div>

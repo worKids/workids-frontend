@@ -57,7 +57,7 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
 
     return(
         <div>
-            <div onClick={handleShow} className="content-button">수정</div>
+            <div onClick={handleShow} className="create-button px-1 hoverable">수정</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -83,8 +83,8 @@ export default function TeacherConsumptionUpdate({consumptionNum, content, amoun
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div onClick={handleUpdateConsumption} className="info-label fs-5 modal-button">수정</div>
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
+                    <div onClick={handleUpdateConsumption} className="info-label fs-5 modal-button hoverable">수정</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">취소</div>
                 </Modal.Footer>
             </Modal>
         </div>

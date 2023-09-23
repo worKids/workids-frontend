@@ -54,7 +54,7 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
 
     return(
         <div>
-            <div onClick={handleShow} className="content-button fs-6" style={{width:"8vh", height:"4vh"}}>처리</div>
+            <div onClick={handleShow} className="content-button fs-6 hoverable" style={{width:"8vh", height:"4vh"}}>처리</div>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"
@@ -95,8 +95,8 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div onClick={handleConsumptionProcess} className="info-label fs-5 modal-button">확인</div>
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
+                    <div onClick={handleConsumptionProcess} className="info-label fs-5 modal-button hoverable">확인</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">취소</div>
                 </Modal.Footer>
             </Modal>    
         </div>

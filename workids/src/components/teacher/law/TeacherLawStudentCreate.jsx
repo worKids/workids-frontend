@@ -81,7 +81,7 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum,
 
     return(
         <div>
-            <div onClick={handleShow} className="create-button p-1" style={{width:"13vh"}}>부여</div>
+            <div onClick={handleShow} className="content-button px-3 " >부여</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -98,11 +98,11 @@ export default function TeacherLawStudentCreate({tabType, citizenNumber, lawNum,
                 </Modal.Body>
                 <Modal.Footer>
                     {tabType ===0 ?(
-                        <div onClick={() => handleCreateFineStudent()} className="info-label fs-5 modal-button">Yes</div>
+                        <div onClick={() => handleCreateFineStudent()} className="info-label fs-5 modal-button hoverable">Yes</div>
                     ): (
-                        <div onClick={() => handleCreatePenaltyStudent()} className="info-label fs-5 modal-button">Yes</div>
+                        <div onClick={() => handleCreatePenaltyStudent()} className="info-label fs-5 modal-button hoverable">Yes</div>
                     )}
-                    <div onClick={handleClose} className="info-label fs-5 modal-button">No</div>
+                    <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">No</div>
                 </Modal.Footer>
             </Modal>
         </div>
