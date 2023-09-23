@@ -14,7 +14,7 @@ export default function StudentAuction(props) {
 
   return (
     <div
-      className="border border-dark  border-3 p-3 h-100"
+      className="border border-dark border-3 p-3 h-100"
       style={{ ...divStyle, backgroundColor: "#ffc107" }}
     >
       {props.state === 0 ? (

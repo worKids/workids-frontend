@@ -274,11 +274,11 @@ export default function StudentMainPage() {
             </div>
           </div>
           <div
-            className="border border-dark  border-3 mt-3 m-1 p-3"
+            className="border border-dark  border-3 mt-3 m-1 p-1"
             style={{ ...rightBottomDiv, backgroundColor: "#FFFEEE" }}
           >
             <div>
-              <div className="text-center fs-2">{userData.nationName} 나라</div>
+              <div className="text-center fs-3">{userData.nationName} 나라</div>
               <div className="d-flex justify-content-around mt-2">
                 <div>대통령 : {nationMainInfo.presidentName}</div>
                 <div>국민 수 : {nationMainInfo.totalCitizen} 명</div>
@@ -288,8 +288,12 @@ export default function StudentMainPage() {
                 <div>세율 : {nationMainInfo.taxRate}%</div>
               </div>
               <div className="d-flex justify-content-around">
-                <div> 운영시작일 : {nationMainInfo.startDate} </div>
-                <div> 운영종료일 : {nationMainInfo.endDate} </div>
+                <div> 운영시작일 : {nationMainInfo.startDate}</div>
+                <div></div>
+              </div>
+              <div className="d-flex justify-content-around my-1">
+                <div> 운영종료일 : {nationMainInfo.endDate}</div>
+                <div></div>
               </div>
             </div>
           </div>

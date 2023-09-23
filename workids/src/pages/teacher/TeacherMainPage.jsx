@@ -20,9 +20,6 @@ export default function TeacherMainPage() {
     borderRadius: "40px",
     maxHeight: "27vh",
   };
-  const infoMargin = {
-    marginRight: "30px",
-  };
 
   const [activeTab, setActiveTab] = useState(1);
   const [isDisabled, setIsDisabled] = useState(true); // 버튼 비활성화 상태
@@ -126,7 +123,7 @@ export default function TeacherMainPage() {
   ));
 
   return (
-    <div className="h-100">
+    <div className="h-100 fs-4">
       <TeacherTopNav />
       <div className="d-flex h-75">
         <TeacherSideNav />
@@ -136,13 +133,13 @@ export default function TeacherMainPage() {
               className="border border-dark border-3 m-3 p-3"
               style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
-              <div className="fs-5">
-                <div className="fs-3 mb-2" style={{ textAlign: "center", gridColumn: "span 2" }}>
+              <div>
+                <div className="fs-2 mb-4" style={{ textAlign: "center", gridColumn: "span 2" }}>
                   {userData.nationName} 나라
                 </div>
                 <div className="d-flex justify-content-around">
                   <div className="d-flex">
-                    <div> 화폐명 </div>
+                    <div> 화폐 명 </div>
                     <div className="mx-2">:</div>
                     <div> {nationMainInfo.moneyName} </div>
                   </div>
@@ -152,13 +149,13 @@ export default function TeacherMainPage() {
                     <div> {nationMainInfo.taxRate} % </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-around">
-                  <div> 운영시작일: </div>
-                  <div> {nationMainInfo.startDate} </div>
+                <div className="d-flex mt-1 justify-content-around">
+                  <div> 운영시작일: {nationMainInfo.startDate} </div>
+                  <div>  </div>
                 </div>
                 <div className="d-flex justify-content-around">
-                  <div> 운영종료일: </div>
-                  <div> {nationMainInfo.endDate} </div>
+                  <div> 운영종료일: {nationMainInfo.endDate}</div>
+                  <div>  </div>
                 </div>
               </div>
             </div>
