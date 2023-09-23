@@ -15,10 +15,9 @@ export default function StudentAuction(props) {
     border: "solid 5px #F6BE2C"
 }
 const divStyle = {
-    width: "80%",
-    height: "80vh",
-    borderRadius: "40px",
-    backgroundColor: "#FFFEEE",
+  width: "80%",
+  borderRadius: "40px",
+  backgroundColor: "#ffc107"
 };
 
   return (
@@ -29,17 +28,17 @@ const divStyle = {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">전체 직업 조회하기</div>
           
-              <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
-            <StudentJobList />
           
-        </div>
+       
+            <StudentJobList />
+      
         </div>
       ) : (
         <div className="h-100">
-          <div className="mx-3 mt-2 fs-3">내 직업 조회하기</div>
-          <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+          <div className="mx-3 mt-2 fs-3">내 직업 조회하기 </div>
+         
             <StudentMyJobList />
-          </div>
+         
         </div>
       )}
     </div>
