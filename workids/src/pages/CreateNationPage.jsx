@@ -15,6 +15,7 @@ export default function CreateNationPage() {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [payDay, setpayDay] = useState("선택");
+  const [balance, setBalance] = useState("");
   const [school, setschool] = useState("");
   const [grade, setgrade] = useState("");
   const [classRoom, setclassRoom] = useState("");
@@ -50,6 +51,9 @@ export default function CreateNationPage() {
   const payDayHandler = (event) => {
     setpayDay(event.currentTarget.value);
   };
+  const balanceHandler = (event) => {
+    setBalance(event.currentTarget.value);
+  };
   const schoolHandler = (event) => {
     setschool(event.currentTarget.value);
   };
@@ -77,6 +81,7 @@ export default function CreateNationPage() {
       school: school,
       grade: grade,
       classRoom: classRoom,
+      balance: balance,
     };
     axBase(token)({
       method: "post",
@@ -200,6 +205,19 @@ export default function CreateNationPage() {
               </select>
             </div>
             <div></div>
+          </div>
+          <div className="mb-4 col-7 d-flex">
+            <div htmlFor="name" className="col-2 d-flex align-items-center">
+              초기 지원금
+            </div>
+            <input
+              type="number"
+              className="form-control bg-white border-2 border-dark"
+              id="name"
+              placeholder="ex) 100"
+              value={balance}
+              onChange={balanceHandler}
+            />
           </div>
           <div className="mb-4 col-7 d-flex">
             <div htmlFor="name" className="col-2 d-flex align-items-center">
