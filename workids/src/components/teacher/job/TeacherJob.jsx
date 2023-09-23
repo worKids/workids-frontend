@@ -43,15 +43,15 @@ export default function TeacherJob() {
     setState(idx);
   };
 
-  const divJobStudentList = {
-    width: "90%",
-    fontSize: "18px",
-    textAlign: "center",
-    marginTop: "2vh",
-    borderRadius: "40px",
-    backgroundColor: "#FEE173",
-    border: "solid 5px #F6BE2C",
-  };
+  // const divJobStudentList = {
+  //   width: "90%",
+  //   fontSize: "18px",
+  //   textAlign: "center",
+  //   marginTop: "2vh",
+  //   borderRadius: "40px",
+  //   backgroundColor: "#FEE173",
+  //   border: "solid 5px #F6BE2C",
+  // };
 
   //직업 메뉴의 탭들
   const menu = jobMenu.map((menu, index) => (
@@ -300,6 +300,7 @@ export default function TeacherJob() {
             </div>
           </div>
         </div>
+        // 제발
       )}
     </div>
   );
