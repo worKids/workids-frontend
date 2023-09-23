@@ -8,7 +8,7 @@ export default function StudentAuction(props) {
     borderRadius: "40px",
   };
   const heightStyle = {
-    height: "100%",
+    height: "90%",
     borderRadius: "40px",
   };
 
@@ -19,6 +19,7 @@ export default function StudentAuction(props) {
     >
       {props.state === 0 ? (
         <div className="h-100">
+          <div className="mx-3 my-2 fs-3">진행중인 경매</div>
           <div
             className="border border-dark  border-3 p-3"
             style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
@@ -28,6 +29,8 @@ export default function StudentAuction(props) {
         </div>
       ) : (
         <div className="h-100">
+          <div className="mx-3 my-2 fs-3">경매 내역 보기</div>
+
           <div
             className="border border-dark  border-3 p-5"
             style={{ ...heightStyle, backgroundColor: "#FFFEEE" }}
