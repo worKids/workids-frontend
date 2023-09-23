@@ -79,7 +79,7 @@ export default function TeacherJobCreate() {
 
   return (
     <div>
-      <div onClick={handleShow} className="create-button hoverable">
+      <div onClick={handleShow} className="content-button hoverable px-3">
         추가
       </div>
 
