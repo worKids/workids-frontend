@@ -76,7 +76,7 @@ export default function TeacherConsumptionCreate({onUpdate}){
 
     return(
         <div>
-            <div onClick={handleShow} className="create-button">추가</div>
+            <div onClick={handleShow} className="content-button hoverable px-3">추가</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -108,10 +108,10 @@ export default function TeacherConsumptionCreate({onUpdate}){
                                 <Col sm="3">{userData.moneyName}</Col>
                             </Form.Group>
                             <Modal.Footer>
-                                <div className="info-label fs-5 modal-button" onClick={handleAddConsumption}>
+                                <div className="info-label fs-5 modal-button hoverable" onClick={handleAddConsumption}>
                                     추가
                                 </div>
-                                <div className="info-label fs-5 modal-button" onClick={handleClose}>
+                                <div className="info-label fs-5 modal-button hoverable" onClick={handleClose}>
                                     닫기
                                 </div>
                             </Modal.Footer>

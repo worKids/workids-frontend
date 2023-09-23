@@ -90,7 +90,7 @@ export default function TeacherLaw(){
           key={index}
           onClick={() => clickMenu(index)}
           className={`menu-button ${
-            state === index ? "bg-warning text-white" : ""
+            state === index ? "bg-warning text-white hoverable" : "hoverable"
           }`}
         >
           {menu}

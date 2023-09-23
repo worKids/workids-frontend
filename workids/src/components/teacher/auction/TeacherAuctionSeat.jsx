@@ -152,12 +152,12 @@ export default function AuctionSeat({ updateData }) {
           />
 
           <button onClick={generateSeat} className="content-button" style={divStyle}>
-            생성
+            자리 생성
           </button>
         </div>
         <div className="d-flex justify-content-center my-3">
-          <button style={divStyle} className="content-button" onClick={createAuction}>
-            경매 생성하기
+          <button style={divStyle} className="create-button" onClick={createAuction}>
+            경매 생성
           </button>
         </div>
       </div>

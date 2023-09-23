@@ -74,7 +74,7 @@ export default function TeacherDepositBankList() {
               {bank.endDate}
             </div>
           </div>
-          <div className="border-top"></div> {/* 구분선 */}
+          <hr></hr>
         </div>
       ))
     );
@@ -85,8 +85,8 @@ export default function TeacherDepositBankList() {
         className="border border-dark  border-3 p-3 fs-5"
         style={{ ...divStyle, height: "65Vh" }}
       >
-        <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
-        <div className="row m-2 text-center p-3 ">
+        <div className="container d-flex justify-content-end" style={{fontSize:"15px"}}>(단위:{userData.moneyName})</div>
+        <div className="row m-2 text-center px-3 ">
           <div className="col-1">No.</div>
           <div className="col-1">이름</div>
           <div className="col-2">계좌번호</div>

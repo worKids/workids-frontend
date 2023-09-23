@@ -96,9 +96,7 @@ export default function TeacherBankModal(props) {
       </Form.Group>
 
       <div className="d-flex justify-content-end">
-        <Button variant="secondary" onClick={createBank}>
-          확인
-        </Button>
+        <div onClick={createBank} className="fs-5 modal-button hoverable">확인</div>
       </div>
     </Form>
   );

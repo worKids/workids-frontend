@@ -25,7 +25,7 @@ export default function TeacherAuction() {
     <div
       key={index}
       onClick={() => clickMenu(index)}
-      className={`menu-button ${state === index ? "bg-warning text-white" : ""}`}
+      className={`menu-button ${state === index ? "bg-warning text-white hoverable" : "hoverable"}`}
     >
       {menu}
     </div>

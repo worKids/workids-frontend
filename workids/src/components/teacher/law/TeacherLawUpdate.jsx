@@ -64,7 +64,7 @@ export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
     
     return(
         <div>
-            <div onClick={handleShow} className="content-button">수정</div>
+            <div onClick={handleShow} className="create-button hoverable px-1">수정</div>
 
             <Modal show={show} onHide={handleClose}
             style={{ fontFamily: "KCC-Ganpan" }}
@@ -98,8 +98,8 @@ export default function TeacherLawUpdate({lawNum, content, fine, onUpdate}){
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div onClick={handleUpdateLaw} className="fs-5 modal-button">수정</div>
-                    <div onClick={handleClose} className="fs-5 modal-button">취소</div>
+                    <div onClick={handleUpdateLaw} className="fs-5 modal-button hoverable">수정</div>
+                    <div onClick={handleClose} className="fs-5 modal-button hoverable">취소</div>
                 </Modal.Footer>
             </Modal>
         </div>

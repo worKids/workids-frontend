@@ -99,7 +99,7 @@ export default function TeacherNation(){
           key={index}
           onClick={() => clickMenu(index)}
           className={`menu-button ${
-            state === index ? "bg-warning text-white" : ""
+            state === index ? "bg-warning text-white hoverable" : "hoverable"
           }`}
         >
           {menu}
@@ -196,8 +196,8 @@ export default function TeacherNation(){
         <div className = "row"> 
         <div className="col-3 p-2">{item.citizenNumber}</div>
         <div className="col-3 p-2">{item.studentName}</div>   
-        <div className="col-3 p-2">{item.birthDate}</div>    
-        <div className="col-2 p-2 content-button text-center fs-5" onClick={() => citizenDelete(item.citizenNum)} style={{ marginLeft:"5vh", width:"13vh", height:"6vh"}}>삭제</div>
+        <div className="col-4 p-2">{item.birthDate}</div>     
+        <div className="col-1 p-2 create-button hoverable" onClick={() => citizenDelete(item.citizenNum)} style={{fontSize:"17px", height:"6vh"}}>삭제</div>
         </div>
         <hr></hr>
         </div>
@@ -270,7 +270,7 @@ export default function TeacherNation(){
                 </div>
                 {state === 1 ? (
 
-                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }} >
+                    <div className="border border-dark  border-3 p-3 d-flex justify-content-center align-items-center" style={{ ...divStyle2, height: "65vh" }} >
                             <NationInfo/>
                     </div>
 
@@ -408,7 +408,7 @@ export default function TeacherNation(){
 
                   </div>
                   <div className="container d-flex justify-content-end p-3">
-                        <div onClick={handleSaveChanges} className="create-button p-1">변경내용 저장</div>
+                        <div onClick={handleSaveChanges} className="content-button px-3 hoverable">변경</div>
                     </div>
                   </div>
              
@@ -422,7 +422,7 @@ export default function TeacherNation(){
                         <p/>
                         {navigateToCitizenCreate ? (
                         <div>
-                        <button className="btn btn-primary" onClick={handleShow} style={btn}>국민 목록 설정하기</button>
+                        <button className="btn btn-primary hoverable" onClick={handleShow} style={btn}>국민 목록 설정하기</button>
                         <Modal show={show} onHide={handleClose}
                         style={{ fontFamily: "KCC-Ganpan" }}
                         aria-labelledby="contained-modal-title-vcenter"
@@ -480,8 +480,8 @@ export default function TeacherNation(){
             
                             </Modal.Body>
                             <Modal.Footer>
-                                <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button">등록</div>
-                                <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
+                                <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button hoverable">등록</div>
+                                <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">취소</div>
                             </Modal.Footer>
                         </Modal>
                         </div>
@@ -494,8 +494,8 @@ export default function TeacherNation(){
                                 <div className="row px-2 fs-4">
                                     <div className="col-3 p-2">학급 번호</div>
                                     <div className="col-3 p-2">학생 이름</div>
-                                    <div className="col-3 p-2">생년월일</div>
-                                    <div className="col-2 p-2"></div>
+                                    <div className="col-4 p-2">생년월일</div>
+                                    <div className="col-1 p-2"></div>
                                     <div style={hrStyle}></div>
                                 </div>
                                 <div className="text-center scrollCss " style={{ height: '35vh', overflowX:'hidden', overflowY:'auto'}}>
@@ -558,13 +558,13 @@ export default function TeacherNation(){
 
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button">등록</div>
-                                        <div onClick={handleClose} className="info-label fs-5 modal-button">취소</div>
+                                        <div onClick={handleSaveCitizen} className="info-label fs-5 modal-button hoverable">등록</div>
+                                        <div onClick={handleClose} className="info-label fs-5 modal-button hoverable">취소</div>
                                     </Modal.Footer>
                                 </Modal>
                                 </div>
                                 <div className="container d-flex justify-content-end p-3">
-                                    <div onClick={handleShow} className="create-button p-2" >국민 추가</div>
+                                    <div onClick={handleShow} className="content-button px-2 py-1 hoverable" >국민 추가</div>
                                 </div>
                                 
                             </div>

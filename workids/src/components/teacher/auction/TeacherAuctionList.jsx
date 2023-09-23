@@ -172,9 +172,9 @@ export default function TeacherAuctionList() {
           <TeacherAuctionModal state={auctionNum} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            닫기
-          </Button>
+          <div className="info-label fs-5 modal-button hoverable" onClick={closeModal}>
+              닫기
+          </div>
         </Modal.Footer>
       </Modal>
     </div>
