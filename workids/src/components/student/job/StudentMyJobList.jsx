@@ -11,19 +11,36 @@ export default function StudentJobList({ citizenNumber }) {
     borderRadius: "20px",
     backgroundColor: "#FEE173",
     border: "solid 5px #F6BE2C"
-}
+  }
+
+  const heightStyle = {
+    height: "85%",
+    borderRadius: "40px",
+    backgroundColor: '#FFFEEE',
+  };
+  const divStyle = {
+    width: "80%",
+    borderRadius: "40px",
+    backgroundColor: "#ffc107"
+  };
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin : "5px"
+  }
 
   //내 직업 출력
   const MyJobItems = myJobList.map((menu, index) => (
-    <tr key={`${index}_name`} style={{ borderTop: '2px solid black', borderBottom: '1px solid black', padding: '10px', lineHeight: '5 0px' }}>
-      <td style={{ fontSize: '20px' }}>{index + 1}</td>
-      <td style={{ fontSize: '20px' }}>{menu.name}</td>
-      <td style={{ fontSize: '20px' }}>{menu.salary}</td>
-      <td style={{ fontSize: '20px' }}>{menu.createDate}</td>
-      <td style={{ fontSize: '20px' }}>{menu.updateDate}</td>
-    </tr>
+    <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+      <div className="col-2">{index + 1}</div>
+      <div className="col-2">{menu.name}</div>
+      <div className="col-2">{menu.salary}</div>
+      <div className="col-2">{menu.createDate}</div>
+      <div className="col-2">{menu.updateDate}</div>
+    </div>
   ));
-    
+
 
 
 
@@ -54,32 +71,26 @@ export default function StudentJobList({ citizenNumber }) {
 
 
   return (
-    <div className="p-3">
-      
-      <div className="d-flex justify-content-between align-items-center"></div>
-      <div className="overflow-auto m-3 p-4 scrollCss" style={{ ...divListStyle, maxHeight: '60vh' }}>
-      <table style={{ width: '100%' }}>
-            <thead>
-              <tr>
-              <th style={{ width: '20%', fontSize: '27px' }}>No.</th>
-              <th style={{ width: '20%', fontSize: '27px' }}>직업</th>
-              <th style={{ width: '20%', fontSize: '27px' }}>월급</th>
-              <th style={{ width: '20%', fontSize: '27px' }}>시작일</th>
-              <th style={{ width: '20%', fontSize: '27px' }}>종료일</th>
-              </tr>
-            </thead>
-            <tbody>
-              {MyJobItems}
-            </tbody>
-            
-          </table>
-        
+    <div>
+
+<div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
+<div className="border border-dark  border-3 p-3" style={heightStyle}>
+<div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+         
+          <div className="col-2">No.</div>
+          <div className="col-2">직업</div>
+          <div className="col-2">월급</div>
+          <div className="col-2">시작일</div>
+          <div className="col-2">종료일</div>
+          </div>
+          <div style={hrStyle}></div>
+          <div className="scrollCss" style={{overflowX:'hidden', overflowY:'auto', height:'55vh'}}>
+                {MyJobItems}
+              </div>
+        </div>
+
       </div>
-
-
-
-      {/* <hr> 요소를 테이블 밖에서 사용하세요 */}
-    </div>
+      
   );
 }
 
