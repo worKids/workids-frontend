@@ -78,7 +78,7 @@ export default function StudentAuctionList() {
           <div className="col-2">신청번호</div>
           <div className="col-2">금액</div>
           <div className="col-2">결과</div>
-          <div className="col-2">배정된 번호</div>
+          <div className="col-2">배정번호</div>
         </div>
         <div className="container overflow-auto" style={{ height: "60vh" }}>
           {auctionList}

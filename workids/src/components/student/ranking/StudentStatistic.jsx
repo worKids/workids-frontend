@@ -339,7 +339,7 @@ export default function StudentStatistic() {
       ) : (
         <div className="h-100">
           <div
-            className="d-flex justify-content-center border"
+            className="d-flex justify-content-center me-2"
             style={{ ...divBlock, height: "40%" }}
           >
             <div className="m-auto">
@@ -349,7 +349,7 @@ export default function StudentStatistic() {
                     options={assetState.options}
                     series={assetState.series}
                     type="pie"
-                    width="300"
+                    width="275"
                   />
                 </div>
               ) : (
@@ -363,7 +363,7 @@ export default function StudentStatistic() {
                     options={expendState.options}
                     series={expendState.series}
                     type="pie"
-                    width="300"
+                    width="275"
                   />
                 </div>
               ) : (
@@ -377,7 +377,7 @@ export default function StudentStatistic() {
                     options={incomeState.options}
                     series={incomeState.series}
                     type="pie"
-                    width="300"
+                    width="275"
                   />
                 </div>
               ) : (
@@ -393,7 +393,7 @@ export default function StudentStatistic() {
                     options={incomeExpendState.options}
                     series={incomeExpendState.series}
                     type="pie"
-                    width="300"
+                    width="275"
                   />
                 </div>
               ) : (
