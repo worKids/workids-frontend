@@ -29,6 +29,11 @@ export default function TeacherCitizen() {
     backgroundColor: '#FEE173',
     height: "38.5vh"
 }
+const heightStyle = {
+  height: "85%",
+  borderRadius: "40px",
+  backgroundColor: '#FFFEEE',
+};
 
   const [inputValue, setInputValue] = useState("0"); // 입력한 값을 상태로 관리합니다.
   const [rankingList, setLankingList] = useState({ assetRanking: [], consumptionRanking: [], savingRanking: [], fineRanking: [] });
@@ -614,13 +619,14 @@ export default function TeacherCitizen() {
 
   // 국민관리 출력화면
   const citizenItems = citizenList.map((menu, index) => (
-    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderBottom: '1px solid black' }}>
-       <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.studentName}</td>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.name}</td>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.asset}</td>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.credit_rating}</td>
-    </tr>
+    <div onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} className="row justify-content-md-center" style={{ fontSize: "25px", textAlign: "center" }}>
+      <div className="col-2">{menu.citizenNumber}</div>
+      <div className="col-2">{menu.studentName}</div>
+      <div className="col-2">{menu.name}</div>
+      <div className="col-2">{menu.asset}</div>
+      <div className="col-2">{menu.credit_rating}</div>
+      <div><hr></hr></div>
+    </div>
   ));
 
 
@@ -628,27 +634,26 @@ export default function TeacherCitizen() {
 
   //신용도관리 출력화면
   const creditRatingItems = creditRatingList.map((menu, index) => (
-    <tr key={index} style={{ borderBottom: '1px solid black' }}>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.studentName}</td>
+    <div key={index} className="row justify-content-md-center" style={{ fontSize: "25px", textAlign: "center" }}>
+   <div className="col-2">{menu.citizenNumber}</div>
+   <div className="col-2">{menu.studentName}</div>
 
-      <td style={{ width: '20%', fontSize: '21px', textAlign: 'center' }}>
-
-        <input
-          type="number"
-          min={0}
-          max={100}
-          step={1}
-          value={menu.creditRating}
-          onChange={(e) => handleCreditRatingChange(e, index)}
-        />
-      </td>
-      <td style={{ width: '10%', fontSize: '10px', textAlign: 'center'}}>
-        <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
-      </td>
-    </tr>
+   <div className="col-2">
+    <input
+      type="number"
+      min={0}
+      max={100}
+      step={1}
+      value={menu.creditRating}
+      onChange={(e) => handleCreditRatingChange(e, index)}
+    />
+  </div>
+  <div className="col-2">
+    <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
+  </div>
+  <div><hr></hr></div>
+</div>
   ));
-
 
   //랭킹 리스트 가져오기
   useEffect(() => {
@@ -741,61 +746,54 @@ export default function TeacherCitizen() {
             </Modal.Body>
 
           </Modal>
-        
 
 
-               <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
-               <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
-        <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
-                         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
-                         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-                         <thead style={{ borderBottom: '5px solid black' }}>
-                    <tr>
-                    <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>번호</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>이름</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>직업</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>자산</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>신용도</th>
-                    </tr>
-                  </thead>
-                  <tbody style={{ height: '110px' }}>
-                   
-                    {/*여기에 추가*/}
-                    {citizenItems}
-                  </tbody>
-                </table>
+          <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
+            <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
+            <div className="border border-dark  border-3 p-3" style={heightStyle}>
+
+              <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+                <div className="col-2">번호</div>
+                <div className="col-2">이름</div>
+                <div className="col-2">직업</div>
+                <div className="col-2">자산</div>
+                <div className="col-2">신용도</div>
+              </div>
+              <div style={hrStyle}></div>
+              <div className="scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
+
+                {citizenItems}
               </div>
             </div>
-            </div>
-</div>
+          </div>
+        </div>
 
-          
-        
+
+
+
+
       ) : state === 1 ? (
 
         <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>    {/*중간탭*/}
         <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
-        <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
-        <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
-        <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-              <thead style={{ borderBottom: '5px solid black' }}>
-                <tr>
-                  <th style={{ width: '20%', fontSize: '27px', textAlign: 'center' }}>번호</th>
-                  <th style={{ width: '30%', fontSize: '27px', textAlign: 'center' }}> 이름 </th>
-                  <th style={{ width: '30%', fontSize: '27px', textAlign: 'center' }}>신용도</th>
-                  <th style={{ width: '20%', fontSize: '27px', textAlign: 'center' }}></th>
-
-                </tr>
-              </thead>
-              <tbody style={{ height: '110px' }}>
-
-                {creditRatingItems}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        </div>
+        <div className="border border-dark  border-3 p-3" style={heightStyle}>
+            
+             
+              <div className="row justify-content-md-center p-1" style={{ fontSize: "30px", textAlign: "center" }}>
+                <div className="col-2">번호</div>
+                  <div className="col-2">이름</div>
+                  <div className="col-2">신용도</div>
+                  <div className="col-2"></div>
+                </div>
+                <div style={hrStyle}></div>
+                <div className="scrollCss" style={{ overflowX: 'hidden', overflowY: 'auto', height: '55vh' }}>
+                  {creditRatingItems}
+                </div>
+              </div>
+            </div>
+          
+        
       ) : state === 2 ? (
 
         <div>
