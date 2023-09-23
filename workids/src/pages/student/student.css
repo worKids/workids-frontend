@@ -38,3 +38,38 @@
   height: 25vh;
   background-repeat: no-repeat;
 }
+.crown{
+  background-image: url(../../assets/crown.png);
+  background-position: right;
+  background-size: contain;
+  width: 3vw;
+  background-repeat: no-repeat;
+}
+.asset{
+  background-image: url(../../assets/asset.png);
+  background-position: left;
+  background-size: contain;
+  width: 3vw;
+  background-repeat: no-repeat;
+}
+.consumption{
+  background-image: url(../../assets/consumption.png);
+  background-position: left;
+  background-size: contain;
+  width: 3vw;
+  background-repeat: no-repeat;
+}
+.fine{
+  background-image: url(../../assets/fine.png);
+  background-position: left;
+  background-size: contain;
+  width: 3vw;
+  background-repeat: no-repeat;
+}
+.saving{
+  background-image: url(../../assets/saving.png);
+  background-position: left;
+  background-size: contain;
+  width: 3vw;
+  background-repeat: no-repeat;
+}

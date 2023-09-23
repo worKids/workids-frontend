@@ -912,7 +912,10 @@ const heightStyle = {
             <div className="container d-flex" style={{ height: "97%" }}>
 
               <div style={divBlock} className="m-1">
-                <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>자산왕</div>
+                <div className="row py-3 justify-content-md-center">
+                  <div className="col-6" style={{fontSize:"30px", textAlign:"right"}}>자산왕</div>
+                  <div className="col-1 asset"></div>
+                </div>
                 <div className="row justify-content-md-center">
                   {numberOfAsset === 0 ? (
                     <div>
@@ -938,7 +941,10 @@ const heightStyle = {
               </div>
 
               <div style={divBlock} className="m-1">
-                <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>소비왕</div>
+                <div className="row py-3 justify-content-md-center">
+                  <div className="col-6" style={{fontSize:"30px", textAlign:"right"}}>소비왕</div>
+                  <div className="col-1 consumption"></div>
+                </div>
                 <div className="row justify-content-md-center">
                   {numberOfConsumption === 0 ? (
                     <div>
@@ -964,7 +970,10 @@ const heightStyle = {
               </div>
 
               <div style={divBlock} className="m-1">
-                <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>저축왕</div>
+              <div className="row py-3 justify-content-md-center">
+                  <div className="col-6" style={{fontSize:"30px", textAlign:"right"}}>저축왕</div>
+                  <div className="col-1 saving"></div>
+                </div>
                 <div className="row justify-content-md-center">
                   {numberOfSaving === 0 ? (
                     <div>
@@ -990,7 +999,10 @@ const heightStyle = {
               </div>
 
               <div style={divBlock} className="m-1">
-                <div className="row justify-content-md-center p-3" style={{ fontSize: "30px" }}>벌금왕</div>
+                <div className="row py-3 justify-content-md-center">
+                  <div className="col-6" style={{fontSize:"30px", textAlign:"right"}}>벌금왕</div>
+                  <div className="col-1 fine"></div>
+                </div>
                 <div className="row justify-content-md-center">
                   {numberOfFine === 0 ? (
                     <div>
