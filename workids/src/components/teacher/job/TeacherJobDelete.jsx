@@ -35,11 +35,11 @@ export default function TeacherJobDelete({ name }) {
       });
   };
 
-  return (
-    <div>
-      <div onClick={handleShow} className="create-button hoverable">
-        삭제
-      </div>
+
+    return(
+        <div>
+           <div onClick={handleShow}  className="create-button hoverable">삭제</div>
+
 
       <Modal
         show={show}

@@ -44,12 +44,16 @@ export default function TeacherJobCreate() {
     });
   };
 
+
+
+
   const handleAddJob = () => {
     const token = userData.accessToken;
     if (!token) {
       navigate("/");
       onResetJob();
     }
+
 
     // 직업 리스트 뽑아오기
     axBase(token)({
@@ -75,7 +79,7 @@ export default function TeacherJobCreate() {
 
   return (
     <div>
-      <div onClick={handleShow} className="create-button hoverable">
+      <div onClick={handleShow} className="content-button hoverable px-3">
         추가
       </div>
 
