@@ -11,7 +11,10 @@ export default function StudentTopNav() {
     height: "13%",
   };
   const navigateToSelect = () => {
-    if (window.location.pathname === "/select") {
+    if (
+      window.location.pathname === "/select" ||
+      window.location.pathname === "/student/nation/join"
+    ) {
       navigate("/select");
     } else {
       navigate("/student/nation");
@@ -23,9 +26,7 @@ export default function StudentTopNav() {
         <div className="d-flex">
           <div className=" logo hoverable" onClick={navigateToSelect}></div>
           <div className="my-3">{userData.nationName ? userData.nationName : ""}</div>
-          {userData.nationNum && (
-            <div className="flag"></div>
-          )}
+          {userData.nationNum && <div className="flag"></div>}
         </div>
         <div
           className="m-3 hoverable"

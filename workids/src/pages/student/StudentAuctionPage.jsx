@@ -30,9 +30,10 @@ export default function StudentAuctionPage() {
     <div
       key={index}
       onClick={() => navigateMenu(index)}
-      className={`my-3 border border-dark  border-3 text-center p-3 rounded-pill sideNav ${
+      className={`my-3 border border-dark hoverable border-3 text-center p-3 rounded-pill sideNav ${
         isActive(index) ? "bg-warning text-white" : ""
       }`}
+      style={{ backgroundColor: "#FFFEEE" }}
     >
       {menu}
     </div>
@@ -48,7 +49,7 @@ export default function StudentAuctionPage() {
               <div className="border border-dark  border-3 bg-white text-center p-3 rounded-pill">
                 컴온 YO!♪ 여↗긴↘ 부동산임YO!♪
               </div>
-              <div className="lamu m-auto" onClick={navigateToMain}></div>
+              <div className="lamu m-auto hoverable" onClick={navigateToMain}></div>
             </div>
           </div>
         </div>
