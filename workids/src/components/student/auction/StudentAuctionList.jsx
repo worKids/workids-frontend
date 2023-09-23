@@ -80,7 +80,7 @@ export default function StudentAuctionList() {
           <div className="col-2">결과</div>
           <div className="col-2">배정된 번호</div>
         </div>
-        <div className="container overflow-auto" style={{ height: "60vh" }}>
+        <div className="container overflow-auto scrollCss" style={{ height: "55vh" }}>
           {auctionList}
         </div>
       </div>
