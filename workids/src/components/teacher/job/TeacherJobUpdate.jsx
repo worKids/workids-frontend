@@ -41,7 +41,7 @@ export default function TeacherJobUpdate({citizenNumber, name}){
 
     return(
         <div>
-            <button onClick={handleShow} className="content-button">수정</button>
+            <button onClick={handleShow} className="create-button">수정</button>
 
             <Modal show={show} onHide={handleClose}
             aria-labelledby="contained-modal-title-vcenter"

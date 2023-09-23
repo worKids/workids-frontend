@@ -619,7 +619,7 @@ const heightStyle = {
 
   // 국민관리 출력화면
   const citizenItems = citizenList.map((menu, index) => (
-    <div onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} className="row justify-content-md-center" style={{ fontSize: "25px", textAlign: "center" }}>
+    <div onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} className="row justify-content-md-center hoverable" style={{ fontSize: "25px", textAlign: "center" }}>
       <div className="col-2">{menu.citizenNumber}</div>
       <div className="col-2">{menu.studentName}</div>
       <div className="col-2">{menu.name}</div>
