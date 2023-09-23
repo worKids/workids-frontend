@@ -150,10 +150,10 @@ export default function TeacherJob() {
         const [selectedJob, setSelectedJob] = useState(menu.name);
 
         return (
-            <tr style={{ borderTop: '3px solid black', padding: '10px' }}>
-                <td style={{ fontSize: '24px' }}>{menu.citizenNumber}</td>
-                <td style={{ fontSize: '24px' }}>{menu.studentName}</td>
-                <td style={{ fontSize: '20px' }}>
+            <tr style={{ borderBottom: '1px solid black', padding: '10px' }}>
+                <td style={{ fontSize: '24px', textAlign: 'center' }}>{menu.citizenNumber}</td>
+                <td style={{ fontSize: '24px', textAlign: 'center' }}>{menu.studentName}</td>
+                <td style={{ fontSize: '20px', textAlign: 'center' }}>
                     <select
                         name="jobs"
                         id="jobs"
@@ -260,15 +260,15 @@ export default function TeacherJob() {
                     <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
                     <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
                            <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-                                <thead>
+                           <thead style={{ borderBottom: '5px solid black' }}>
                                     <tr>
-                                        <th style={{ width: '20%', fontSize: '28px' }}>번호</th>
-                                        <th style={{ width: '20%', fontSize: '28px' }}>이름</th>
-                                        <th style={{ width: '20%', fontSize: '28px' }}>직업</th>
-                                        <th style={{ width: '10%', fontSize: '28px' }}></th>
+                                        <th style={{ width: '20%', fontSize: '28px', textAlign: 'center' }}>번호</th>
+                                        <th style={{ width: '20%', fontSize: '28px', textAlign: 'center' }}>이름</th>
+                                        <th style={{ width: '20%', fontSize: '28px', textAlign: 'center' }}>직업</th>
+                                        <th style={{ width: '10%', fontSize: '28px', textAlign: 'center' }}></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style={{ height: '110px' }}>
 
                                     {JobStudentUpdateItems}
 

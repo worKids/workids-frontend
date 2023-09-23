@@ -614,12 +614,12 @@ export default function TeacherCitizen() {
 
   // 국민관리 출력화면
   const citizenItems = citizenList.map((menu, index) => (
-    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderTop: '3px solid black' }}>
-      <td style={{ width: '20%',fontSize: '23px' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.studentName}</td>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.name}</td>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.asset}</td>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.credit_rating}</td>
+    <tr onClick={() => { handleShow(); handleNumber(menu.citizenNumber); handleCitizenInfo(menu.citizenNumber); }} key={index} style={{ borderBottom: '1px solid black' }}>
+       <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.studentName}</td>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.name}</td>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.asset}</td>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.credit_rating}</td>
     </tr>
   ));
 
@@ -628,11 +628,11 @@ export default function TeacherCitizen() {
 
   //신용도관리 출력화면
   const creditRatingItems = creditRatingList.map((menu, index) => (
-    <tr key={index} style={{ borderTop: '3px solid black' }}>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.citizenNumber}</td>
-      <td style={{ width: '20%', fontSize: '23px' }}>{menu.studentName}</td>
+    <tr key={index} style={{ borderBottom: '1px solid black' }}>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.citizenNumber}</td>
+      <td style={{ width: '20%', fontSize: '23px', textAlign: 'center' }}>{menu.studentName}</td>
 
-      <td style={{ width: '20%', fontSize: '21px' }}>
+      <td style={{ width: '20%', fontSize: '21px', textAlign: 'center' }}>
 
         <input
           type="number"
@@ -643,7 +643,7 @@ export default function TeacherCitizen() {
           onChange={(e) => handleCreditRatingChange(e, index)}
         />
       </td>
-      <td style={{ width: '10%', fontSize: '10px' }}>
+      <td style={{ width: '10%', fontSize: '10px', textAlign: 'center'}}>
         <TeacherCreditRatingUpdate citizenNumber={menu.citizenNumber} creditRating={menu.creditRating} />
       </td>
     </tr>
@@ -750,16 +750,18 @@ export default function TeacherCitizen() {
                          <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
 
                          <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-                  <thead>
+                         <thead style={{ borderBottom: '5px solid black' }}>
                     <tr>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>번호</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>이름</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>직업</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>자산</th>
-                      <th style={{ width: '20%', fontSize: '27px', padding: '10px' }}>신용도</th>
+                    <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>번호</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>이름</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>직업</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>자산</th>
+                      <th style={{ width: '20%', fontSize: '27px', padding: '10px', textAlign: 'center' }}>신용도</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody style={{ height: '110px' }}>
+                   
+                    {/*여기에 추가*/}
                     {citizenItems}
                   </tbody>
                 </table>
@@ -777,16 +779,16 @@ export default function TeacherCitizen() {
         <div className=" border border-dark  border-3 p-3" style={{...divListStyle }}>
         <div className="overflow-auto m-3 p-4 scrollCss " style={{maxHeight:'45vh'}}>
         <table style={{...colStyle, marginLeft:'auto', marginRight:'auto', width:'90%'}}>
-              <thead>
+              <thead style={{ borderBottom: '5px solid black' }}>
                 <tr>
-                  <th style={{ width: '20%', fontSize: '27px' }}>번호</th>
-                  <th style={{ width: '30%', fontSize: '27px' }}> 이름 </th>
-                  <th style={{ width: '30%', fontSize: '27px' }}>신용도</th>
-                  <th style={{ width: '20%', fontSize: '27px' }}></th>
+                  <th style={{ width: '20%', fontSize: '27px', textAlign: 'center' }}>번호</th>
+                  <th style={{ width: '30%', fontSize: '27px', textAlign: 'center' }}> 이름 </th>
+                  <th style={{ width: '30%', fontSize: '27px', textAlign: 'center' }}>신용도</th>
+                  <th style={{ width: '20%', fontSize: '27px', textAlign: 'center' }}></th>
 
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{ height: '110px' }}>
 
                 {creditRatingItems}
               </tbody>
