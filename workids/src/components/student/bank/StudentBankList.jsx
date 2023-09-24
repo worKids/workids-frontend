@@ -249,10 +249,10 @@ export default function StudentBankList() {
             <p className="fs-5 text-center">상품을 가입하시겠습니까?</p>
           </Modal.Body>
           <Modal.Footer>
-            <div className="info-label fs-5 modal-button hoverable" onClick={handleCancel}>
+            <div className="info-label fs-5 modal-button hoverable" onClick={handleConfirm}>
                 Yes
             </div>
-            <div className="info-label fs-5 modal-button hoverable" onClick={handleConfirm}>
+            <div className="info-label fs-5 modal-button hoverable" onClick={handleCancel}>
                 No
             </div>
           </Modal.Footer>
