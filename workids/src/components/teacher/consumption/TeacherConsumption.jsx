@@ -199,6 +199,7 @@ export default function TeacherConsumption(){
                 {state === 0 ?(
                     //첫번째 탭 메뉴
                     numberOfConsumption === 0 ?(
+                    <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
                     <div className="h-100 d-flex justify-content-center align-items-center" >
                         <div>
                             소비 항목을 생성해주세요.
@@ -206,6 +207,7 @@ export default function TeacherConsumption(){
                         <div className="justify-content-end p-3">
                             <TeacherConsumptionCreate onUpdate={handleUpdateCheck}/>
                         </div>
+                    </div>
                     </div>
                     ):(
                     <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>

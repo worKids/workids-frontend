@@ -27,6 +27,13 @@
   width: 3vw;
   background-repeat: no-repeat;
 }
+.blackFlag{
+  background-image: url(../../assets/blackFlag.png);
+  background-position: center;
+  background-size: contain;
+  width: 2.4vw;
+  background-repeat: no-repeat;
+}
 
 .info-label {
   font-family: 'Your-Preferred-Font', "KCC-Ganpan"; /* 원하는 글꼴 설정 */

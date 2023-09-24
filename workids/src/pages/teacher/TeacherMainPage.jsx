@@ -134,8 +134,11 @@ export default function TeacherMainPage() {
               style={{ ...borderRound, backgroundColor: "#FFFEEE" }}
             >
               <div>
-                <div className="fs-3 mb-4" style={{ textAlign: "center", gridColumn: "span 2" }}>
-                  {userData.nationName} 나라
+                <div className="conatiner d-flex justify-content-center" style={{ marginBottom:"2vh"}}>
+                  <div className="blackFlag"></div>
+                  <div className="fs-3 px-3" style={{ textAlign: "center", gridColumn: "span 2" }}>
+                    {userData.nationName} 나라 
+                  </div>
                 </div>
                 <div className="d-flex justify-content-around">
                   <div className="d-flex">

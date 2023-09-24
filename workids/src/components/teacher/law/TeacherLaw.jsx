@@ -147,13 +147,16 @@ export default function TeacherLaw(){
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
-        <div key={index} className="row m-2 p-2 fs-4" style={{...colStyle,textAlign:'center'}}>
+        <div>
+        <div key={index} className="row m-2 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
             <div className="col-3"  style={{overflow:"hidden"}}>{menu.content}</div>
             <div className="col-2">{menu.fine}</div>
             <div className="col-3">{menu.createdDate}</div>
             <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
+        </div>
+        <div style={{...hrStyle, height:"1px",width:"96%" , marginLeft:"3vh"}}> </div>
         </div>
     ));
     
@@ -229,6 +232,7 @@ export default function TeacherLaw(){
 
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
+        <div>
         <div key={index} className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-sm-1">{menu.citizenNumber}</div>
             <div className="col-sm-1">{menu.studentName}</div>
@@ -245,6 +249,8 @@ export default function TeacherLaw(){
                 />  
             </div>
             <div className="col-sm-1"><TeacherLawStudentDelete tabType={1} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
+        </div>
+        <div style={{...hrStyle, height:"1px",width:"98%" , marginLeft:"2vh"}}> </div>
         </div>
     ));
 
@@ -350,11 +356,13 @@ export default function TeacherLaw(){
                 {state === 0 ? (
                     
                     numberOfLawList === 0 ?(
+                        <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
                         <div className="h-100 d-flex justify-content-center align-items-center">
                             <div>법을 제정해주세요.</div>
                             <div className="justify-content-end p-3">
                                 <TeacherLawCreate onUpdate={handleUpdateCheck}/>
                             </div>
+                        </div>
                         </div>
                     ) :(
                     <div className="border border-dark  border-3 p-3" style={{ ...divStyle2, height: "65vh" }}>
@@ -410,16 +418,16 @@ export default function TeacherLaw(){
                         </div>
                         <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                         <div style={divLawStudentList} className="container justify-content-md-center border border-dark  border-3 ">
-                            <div className="row m-2 p-1 fs-4" style={colStyle}>
+                            <div className="row fs-4 px-2 mx-2" style={{...colStyle, paddingTop:"2vh" }}>
                                 <div className="col-1">번호</div>
                                 <div className="col-2">이름</div>
                                 <div className="col-3">법 내용</div>
                                 <div className="col-2">벌금</div>
                                 <div className="col-3">부과일</div>
                                 <div className="col-1"></div>
-                                <div style={hrStyle}></div>
+                                <div style={{...hrStyle, marginTop:"2vh"}}></div>
                             </div>
-                            <div className="overflow-auto scrollCss" style={{height:'28vh'}}>
+                            <div className="scrollCss" style={{overflowX:"hidden", height:'25vh'}}>
                                 {FineStudentItems}    
                             </div>
                         </div>
@@ -431,7 +439,7 @@ export default function TeacherLaw(){
                         </div>
                         <div className="container d-flex justify-content-end">(단위:{userData.moneyName})</div>
                         <div style={divLawStudentList} className="container justify-content-md-center border border-dark  border-3 ">
-                            <div className="row m-1 p-1 fs-4" style={colStyle}>
+                            <div className="row mx-1 px-1 fs-4" style={{...colStyle, paddingTop:"2vh"}}>
                                 <div className="col-sm-1">번호</div>
                                 <div className="col-sm-1">이름</div>
                                 <div className="col-sm-3">법 내용</div>
@@ -439,9 +447,9 @@ export default function TeacherLaw(){
                                 <div className="col-sm-2">부과일</div>
                                 <div className="col-sm-1">체크</div>
                                 <div className="col-sm-1"></div>
-                                <div style={hrStyle}></div>
+                                <div style={{...hrStyle,marginTop:"2vh"}}></div>
                             </div>
-                            <div className="overflow-auto scrollCss" style={{height:'28vh'}}>
+                            <div className="scrollCss" style={{height:'25vh', overflowX:"hidden", overflowY:"auto"}}>
                                 {PenaltyStudentItems}   
                             </div> 
                         </div>

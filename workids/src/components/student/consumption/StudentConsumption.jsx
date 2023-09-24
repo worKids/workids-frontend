@@ -177,8 +177,10 @@ export default function StudentConsumption(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">소비 신청하기</div>
           {numberOfConsumptionList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              아직 생성된 소비 항목이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                아직 생성된 소비 항목이 없습니다.
+              </div>
             </div>
           ) : (
             <>
@@ -202,8 +204,10 @@ export default function StudentConsumption(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">소비 신청 내역 보기</div>
           {numberOfStudentConsumptionList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              신청한 소비 항목이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                신청한 소비 항목이 없습니다.
+              </div>
             </div>
           ) : (
             <>
@@ -229,8 +233,10 @@ export default function StudentConsumption(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">소비 완료 내역 보기</div>
           {numberOfApprovalConsumptionList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              소비 완료 항목이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                소비 완료 항목이 없습니다.
+              </div>
             </div>
           ) : (
             <>
