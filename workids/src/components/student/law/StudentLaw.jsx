@@ -167,8 +167,10 @@ export default function StudentLaw(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">나라 법 조회하기</div>
           {numberOfLawList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              아직 제정된 법이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                아직 제정된 법이 없습니다.
+              </div>
             </div>
           ): (
             <>
@@ -192,8 +194,10 @@ export default function StudentLaw(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">벌금 내역 보기</div>
           {numberOfFineList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              부과된 벌금이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                부과된 벌금이 없습니다.
+              </div>
             </div>
           ): (
             <>
@@ -217,8 +221,10 @@ export default function StudentLaw(props) {
         <div className="h-100">
           <div className="mx-3 mt-2 fs-3">벌칙 내역 보기</div>
           {numberOfPenaltyList === 0 ? (
-            <div className="h-100 d-flex justify-content-center align-items-center">
-              부과된 벌칙이 없습니다.
+            <div className="border border-dark  border-3 p-3 my-3" style={heightStyle}>
+              <div className="h-100 d-flex justify-content-center align-items-center">
+                부과된 벌칙이 없습니다.
+              </div>
             </div>
           ): (
             <>
