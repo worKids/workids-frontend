@@ -147,8 +147,8 @@ export default function TeacherLaw(){
 
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
-        <div>
-        <div key={index} className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
+        <div key={index}>
+        <div className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
             <div className="col-3"  style={{overflow:"hidden"}}>{menu.content}</div>
@@ -232,8 +232,8 @@ export default function TeacherLaw(){
 
     //학생 - 벌칙 출력
     const PenaltyStudentItems  = penaltyStudentList.map((menu, index) => (
-        <div>
-        <div key={index} className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
+        <div key={index} >
+        <div className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-sm-1">{menu.citizenNumber}</div>
             <div className="col-sm-1">{menu.studentName}</div>
             <div className="col-sm-3" style={{overflow:"hidden"}}>{menu.content}</div>

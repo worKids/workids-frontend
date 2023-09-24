@@ -143,8 +143,8 @@ export default function TeacherConsumption(){
 
     //미결재 리스트 출력
     const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
-        <div>
-            <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
+        <div key={index}>
+            <div className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
                 <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
                 <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
                 <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
@@ -182,8 +182,8 @@ export default function TeacherConsumption(){
 
     //결재 리스트 출력
     const approvalItems = approvalConsumptionList.map((menu,index) => (
-        <div>
-            <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
+        <div key={index}>
+            <div className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
                 <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
                 <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
                 <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
