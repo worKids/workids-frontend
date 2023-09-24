@@ -161,9 +161,9 @@ export default function StudentAccountList() {
             <div className="col-2 d-flex justify-content-center align-items-center">
               {bank.endDate}
             </div>
-            <div className="col-1 d-flex justify-content-center align-items-center">
+            <div className="col-2 d-flex justify-content-center align-items-center">
               <div
-                className="content-button hoverable"
+                className="content-button hoverable px-3 fs-5"
                 onClick={() => {
                   setTransactionAccountNum(bank.bankNationStudentNum);
                   setTransactionAccountNumber(bank.accountNumber);
@@ -212,7 +212,7 @@ export default function StudentAccountList() {
             </div>
             <div className="col-1 d-flex justify-content-center align-items-center">
               <div
-                className="content-button hoverable"
+                className="content-button hoverable px-1"
                 onClick={() => {
                   setTransactionAccountNum(bank.bankNationStudentNum);
                   setTransactionAccountNumber(bank.accountNumber);
@@ -225,7 +225,7 @@ export default function StudentAccountList() {
             <div className="col-1 d-flex justify-content-center align-items-center">
               {/* 해지하기 버튼 */}
               <div
-                className="create-button hoverable"
+                className="create-button hoverable px-1"
                 onClick={() => {
                   setCancelAccountNum(bank.bankNationStudentNum);
                   handleJoinButtonClick();
@@ -316,7 +316,7 @@ export default function StudentAccountList() {
             <div className="col-1"></div>
           </div>
           <div
-            className="container overflow-auto"
+            className="container overflow-hidden"
             style={{ height: "10vh", backgroundColor: "#FFEFD5", borderRadius: "20px" }}
           >
             {showMainBankList}

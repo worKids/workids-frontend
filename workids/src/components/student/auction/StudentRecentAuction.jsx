@@ -63,6 +63,8 @@ export default function StudentRecentAuction() {
       setSelectSeat(seat);
     }
   };
+
+  
   const creatBid = () => {
     if (selectSeat === "") {
       alert("자리를 선택해주세요.");
@@ -100,11 +102,13 @@ export default function StudentRecentAuction() {
   };
   return (
     <div className="fs-5">
-      <h4 className="mx-3">{createDate} 경매</h4>
       {auctionNum === "" ? (
-        <div>최근 경매가 존재하지 않습니다.</div>
+          <div className="h-100 d-flex justify-content-center align-items-center fs-6" style={{marginTop:"20%"}}>
+            최근 경매가 존재하지 않습니다.
+          </div>
       ) : (
         <div>
+          <h4 className="mx-3">{createDate} 경매</h4>
           <div className="border border-dark  border-3" style={divStyle}>
             <div className="text-center w-50 border m-auto" style={{ backgroundColor: "#D9D9D9" }}>
               칠판(정면)

@@ -196,11 +196,13 @@ export default function TeacherJob() {
       </div>
       {state === 0 ? (
         numberOfJobList === 0 ? (
+          <div className="border border-dark  border-3 p-3" style={{ ...divvStyle, height: "65vh" }}>
           <div className="h-100 d-flex justify-content-center align-items-center">
             <div>직업을 생성해주세요.</div>
             <div className="justify-content-end p-3">
               <TeacherJobCreate onUpdate={handleUpdateCheck}/>
             </div>
+          </div>
           </div>
         ) : (
           <div

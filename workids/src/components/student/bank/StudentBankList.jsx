@@ -48,7 +48,7 @@ export default function StudentBankList() {
   };
 
   const midStyle = {
-    height: "100%",
+    height: "58vh",
     width: "50%",
     borderRadius: "30px",
     backgroundColor: "#FED338",
@@ -162,13 +162,13 @@ export default function StudentBankList() {
         <div className="col-2">유형</div>
         <div className="col-2">상품명</div>
         {/* <div className="col-3">상품 설명</div> */}
-        <div className="col-2">상품 가입 기간(주)</div>
+        <div className="col-2">상품 기간(주)</div>
         <div className="col-2">만기 이자율(%)</div>
         <div className="col-3"></div>
       </div>
       <div
         className="container overflow-auto scrollCss"
-        style={{ height: "54vh", backgroundColor: "#FFEFD5", borderRadius: "20px" }}
+        style={{ height: "53vh", backgroundColor: "#FFEFD5", borderRadius: "20px" }}
       >
         {showInUseBankList}
       </div>
@@ -179,8 +179,8 @@ export default function StudentBankList() {
         <FontAwesomeIcon icon={faChevronLeft} />
         뒤로 가기
       </div>
-      <div className="border border-dark  border-3 p-3 fs-4 text-center m-auto" style={midStyle}>
-        <div className="row m-2 text-center p-3 ">
+      <div className="border border-dark  border-3 p-2 fs-4 text-center m-auto" style={midStyle}>
+        <div className="row m-2 text-center p-2 ">
           <div className="col-6 d-flex justify-content-center align-items-center">
             <div>유형: </div>
           </div>
@@ -188,7 +188,7 @@ export default function StudentBankList() {
             {productInfo.productType == 1 ? <div>예금</div> : null}
           </div>
         </div>
-        <div className="row m-2 text-center p-3 ">
+        <div className="row m-2 text-center p-2 ">
           <div className="col-6 d-flex justify-content-center align-items-center">
             <div>상품명: </div>
           </div>
@@ -196,27 +196,27 @@ export default function StudentBankList() {
             {productInfo.productName}
           </div>
         </div>
-        <div className="row m-2 text-center p-3 ">
+        <div className="row m-2 text-center p-2 ">
           <div className="col-6 d-flex justify-content-center align-items-center">
             <div>만기 이자율(%): </div>
           </div>
           <div className="col-6 d-flex justify-content-center align-items-center">
-            {productInfo.interestRate}
+            {productInfo.interestRate}%
+          </div>
+        </div>
+        <div className="row m-2 text-center p-2 ">
+          <div className="col-6 d-flex justify-content-center align-items-center">
+            <div>상품 기간(주): </div>
+          </div>
+          <div className="col-6 d-flex justify-content-center align-items-center">
+            {productInfo.productPeriod}주
           </div>
         </div>
         <div className="row m-2 text-center p-3 ">
-          <div className="col-6 d-flex justify-content-center align-items-center">
-            <div>상품 가입 기간(주): </div>
-          </div>
-          <div className="col-6 d-flex justify-content-center align-items-center">
-            {productInfo.productPeriod}
-          </div>
-        </div>
-        <div className="row m-2 text-center p-3 ">
-          <div className="col-6 d-flex justify-content-center align-items-center">
+          <div className="col-5 d-flex justify-content-center align-items-center">
             <div>예금 금액: </div>
           </div>
-          <div className="col-6 d-flex justify-content-center align-items-center">
+          <div className="col-5 d-flex justify-content-center align-items-center">
             <input
               type="text"
               value={depositAmount}
@@ -224,29 +224,37 @@ export default function StudentBankList() {
                 setDepositAmount(e.target.value);
               }}
               placeholder="예금 금액 입력"
+              style={{width:"24vh"}}
             />
+          </div>
+          <div className="col-2 d-flex justify-content-center align-items-center">
+            {userData.moneyName}
           </div>
         </div>
         {/* 가입하기 버튼 */}
-        <div className="content-button col-6 m-auto" onClick={handleJoinButtonClick}>
+        <div className="content-button col-6 m-auto my-4" onClick={handleJoinButtonClick}>
           가입하기
         </div>
 
         {/* 모달 */}
-        <Modal show={showModal} onHide={handleCancel}>
+        <Modal show={showModal} onHide={handleCancel}
+            style={{ fontFamily: "KCC-Ganpan" }}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
           <Modal.Header closeButton>
             <Modal.Title>확인창</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>상품을 가입하시겠습니까?</p>
+            <p className="fs-5 text-center">상품을 가입하시겠습니까?</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCancel}>
-              취소
-            </Button>
-            <Button variant="primary" onClick={handleConfirm}>
-              확인
-            </Button>
+            <div className="info-label fs-5 modal-button hoverable" onClick={handleCancel}>
+                Yes
+            </div>
+            <div className="info-label fs-5 modal-button hoverable" onClick={handleConfirm}>
+                No
+            </div>
           </Modal.Footer>
         </Modal>
       </div>

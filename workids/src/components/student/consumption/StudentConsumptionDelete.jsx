@@ -44,20 +44,25 @@ export default function StudentConsumptionDelete({consumptionNationStudentNum, o
             <div onClick={handleShow} className="create-button" style={{width:"10vh"}}>취소</div>
 
             <Modal show={show} onHide={handleClose}
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
+                style={{ fontFamily: "KCC-Ganpan" }}
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
             >
                 <Modal.Header>
                     <Modal.Title>신청 내역 취소하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>
+                    <div className="text-center fs-5">
                         해당 소비 내역 신청을 취소하시겠습니까?
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={() => handleStudentConsumptionDelete()}>Yes</button>
-                    <button onClick={handleClose}>No</button>
+                    <div className="info-label fs-5 modal-button hoverable" onClick={handleStudentConsumptionDelete}>
+                        Yes
+                    </div>
+                    <div className="info-label fs-5 modal-button hoverable" onClick={handleClose}>
+                        No
+                    </div>
                 </Modal.Footer>
             </Modal>
         </div>

@@ -278,9 +278,12 @@ export default function StudentMainPage() {
             style={{ ...rightBottomDiv, backgroundColor: "#FFFEEE" }}
           >
             <div className="container">
-              <div className="text-center fs-3 justify-content-center">
-                    <div>{userData.nationName} 나라 </div>
-              </div>
+              <div className="conatiner d-flex justify-content-center" style={{ marginBottom:"2vh"}}>
+                  <div className="blackFlag"></div>
+                  <div className="fs-3 px-3" style={{ textAlign: "center", gridColumn: "span 2" }}>
+                    {userData.nationName} 나라 
+                  </div>
+                </div>
               <div className="d-flex justify-content-around mt-2 fs-5">
                 <div>대통령 : {nationMainInfo.presidentName}</div>
                 <div>국민 수 : {nationMainInfo.totalCitizen} 명</div>

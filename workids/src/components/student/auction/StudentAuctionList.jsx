@@ -8,6 +8,14 @@ export default function StudentAuctionList() {
   const userData = useRecoilValue(userState);
   const navigate = useNavigate();
   const [aucList, setAucList] = useState([]);
+
+  const hrStyle = {
+    width: "100%",
+    height: "5px",
+    backgroundColor: "black",
+    margin : "5px"
+  }
+
   useEffect(() => {
     const token = userData.accessToken;
     if (!token) {
@@ -75,12 +83,13 @@ export default function StudentAuctionList() {
     <div>
       <div>
         <div className="row m-2 text-center fs-3">
-          <div className="col-2">번호</div>
+          <div className="col-2">No.</div>
           <div className="col-2">경매 날짜</div>
           <div className="col-2">신청번호</div>
           <div className="col-2">금액</div>
           <div className="col-2">결과</div>
           <div className="col-2">배정번호</div>
+          <div style={hrStyle}></div>
         </div>
         <div className="container overflow-auto scrollCss" style={{ height: "55vh" }}>
           {auctionList}
