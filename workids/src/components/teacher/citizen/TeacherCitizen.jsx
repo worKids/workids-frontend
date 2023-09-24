@@ -35,7 +35,7 @@ const heightStyle = {
   backgroundColor: '#FFFEEE',
 };
 
-  const [inputValue, setInputValue] = useState("0"); // 입력한 값을 상태로 관리합니다.
+  const [inputValue, setInputValue] = useState(null); // 입력한 값을 상태로 관리합니다.
   const [rankingList, setLankingList] = useState({ assetRanking: [], consumptionRanking: [], savingRanking: [], fineRanking: [] });
   const numberOfAsset = rankingList.assetRanking.length;
   const numberOfConsumption = rankingList.consumptionRanking.length;
@@ -363,6 +363,7 @@ const heightStyle = {
   const handleInputChange = (e) => {
     // 입력값이 변경될 때 상태를 업데이트합니다.
     setInputValue(e.target.value);
+    
   };
 
 
@@ -840,8 +841,9 @@ const heightStyle = {
                   {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
                   <input
                       type="number"
-                      value={inputValue}
+                      value={inputValue || ''}
                       onChange={handleInputChange}
+                      placeholder="학급 번호"
                       style={{
                           width: '160px', // 원하는 넓이로 조절
                       }}
@@ -863,7 +865,8 @@ const heightStyle = {
               {/* 1번 라디오 버튼을 선택한 경우 보여질 내용 */}
               <input
                   type="number"
-                  value={inputValue}
+                  value={inputValue || ''}
+                  placeholder="학급 번호"
                   onChange={handleInputChange}
                   style={{
                       width: '160px', // 원하는 넓이로 조절
