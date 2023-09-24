@@ -57,6 +57,7 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
             <div onClick={handleShow} className="content-button fs-6 hoverable" style={{width:"8vh", height:"4vh"}}>처리</div>
 
             <Modal show={show} onHide={handleClose}
+            style={{ fontFamily: "KCC-Ganpan" }}
             aria-labelledby="contained-modal-title-vcenter"
             centered
             >
@@ -64,7 +65,7 @@ export default function TeacherConsumptionProcess({consumptionNationStudentNum, 
                     <Modal.Title>미결재건 처리하기</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form className="d-flex justify-content-center">
+                    <Form className="d-flex justify-content-center fs-5 mx-2">
                         {['radio'].map((type) => (
                             <div key={`inline-${type}`} className="mb-3">
                                 <Form.Check

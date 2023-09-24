@@ -148,7 +148,7 @@ export default function TeacherLaw(){
     //학생 - 벌금 출력
     const FineStudentItems  = fineStudentList.map((menu, index) => (
         <div>
-        <div key={index} className="row m-2 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
+        <div key={index} className="row m-1 p-2 fs-5" style={{...colStyle,textAlign:'center'}}>
             <div className="col-1">{menu.citizenNumber}</div>
             <div className="col-2">{menu.studentName}</div>
             <div className="col-3"  style={{overflow:"hidden"}}>{menu.content}</div>
@@ -156,7 +156,7 @@ export default function TeacherLaw(){
             <div className="col-3">{menu.createdDate}</div>
             <div className="col-1"><TeacherLawStudentDelete tabType={0} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
         </div>
-        <div style={{...hrStyle, height:"1px",width:"96%" , marginLeft:"3vh"}}> </div>
+        <div style={{backgroundColor:"black", height:"0.6px",width:"96%" , marginLeft:"3vh"}}> </div>
         </div>
     ));
     
@@ -250,7 +250,7 @@ export default function TeacherLaw(){
             </div>
             <div className="col-sm-1"><TeacherLawStudentDelete tabType={1} lawNationStudentNum={menu.lawNationStudentNum} onUpdate={handleUpdateCheck}/></div>
         </div>
-        <div style={{...hrStyle, height:"1px",width:"98%" , marginLeft:"2vh"}}> </div>
+        <div style={{backgroundColor:"black", height:"0.6px",width:"98%" , marginLeft:"2vh"}}> </div>
         </div>
     ));
 

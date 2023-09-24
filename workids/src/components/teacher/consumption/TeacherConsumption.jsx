@@ -143,13 +143,16 @@ export default function TeacherConsumption(){
 
     //미결재 리스트 출력
     const outStadndingItems = outStandingConsumptionList.map((menu,index) => (
-        <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
-            <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
-            <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
-            <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
-            <div className="col-sm-1 p-2" style={colStyle}>{menu.amount}</div>
-            <div className="col-sm-3 p-2" style={colStyle}>{menu.createdDate}</div>
-            <div className="col-sm-2 p-2" style={colStyle}><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state} onUpdate={handleUpdateCheck}/></div>
+        <div>
+            <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
+                <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
+                <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
+                <div className="col-sm-3 p-2" style={{...colStyle, overflow:"hidden"}}>{menu.content}</div>
+                <div className="col-sm-1 p-2" style={colStyle}>{menu.amount}</div>
+                <div className="col-sm-3 p-2" style={colStyle}>{menu.createdDate}</div>
+                <div className="col-sm-2 p-2" style={colStyle}><TeacherConsumptionProcess consumptionNationStudentNum={menu.consumptionNationStudentNum} state={menu.state} onUpdate={handleUpdateCheck}/></div>
+            </div>
+            <div style={{height:"0.4px", backgroundColor:"black"}}> </div>
         </div>
     ));
 
@@ -179,7 +182,7 @@ export default function TeacherConsumption(){
 
     //결재 리스트 출력
     const approvalItems = approvalConsumptionList.map((menu,index) => (
-
+        <div>
             <div key={index} className="row justify-content-md-center p-1" style={{ fontSize: "18px", textAlign: "center" }}>
                 <div className="col-sm-1 p-2" style={colStyle}>{menu.citizenNumber}</div>
                 <div className="col-sm-2 p-2" style={colStyle}>{menu.studentName}</div>
@@ -188,6 +191,8 @@ export default function TeacherConsumption(){
                 <div className="col-sm-3 p-2" style={colStyle}>{menu.updatedDate}</div>
                 <div className="col-sm-2 p-2" style={colStyle}>{menu.state === 1 ? "승인됨" : "거절됨"}</div>
             </div>
+            <div style={{height:"0.4px", backgroundColor:"black"}}> </div>
+        </div>
     ));
 
 
